@@ -28,7 +28,7 @@
 
 
     </head>
-    <body>
+    <body class="col-sm-12">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -46,7 +46,7 @@
 
             <div class="content col-sm-12">
                 <div class="title m-b-md">
-                    Burble
+                    Proyecto - Burble 
 
 
 
@@ -54,83 +54,338 @@
 
                 <div class="row col-sm-12 " id="list" >
 
+<div class="col-sm-12">
+         
 
-           
-   
+   <button class="btn btn-light rounded-circle float-right"> <i class="fas fa-plus"></i>   </button>
 
 
-
+</div>
 
 
 <div class="col col-sm-6">
 
 
-  <div class="container-fluid rounded border border-secondary ">
-   <h3 align="left"><strong> NOMBRE PROYECTO</strong> <small class="comentarios-proyecto" aling="right">Comentarios basicos de cada proyecto</small> </h3>
+  <div class="container-fluid borde-burble border  ">
 
-   <h6 align="left"><strong>EMPRESA</strong> <small class="float-right text-info" aling="right">  12/02/2018   </small> </h6>
+
+
+<a href="">
+   <h3 align="left"><strong> NOMBRE PROYECTO</strong> <small class="comentarios-proyecto" aling="right">Comentarios basicos de cada proyecto</small> </h3>
+</a>
+
+
+
+
+
+   <h6 align="left"><strong>EMPRESA</strong> <small class="float-right text-info" aling="right"> <strong>  12/02/2018</strong>   </small> </h6>
 
 
 <div class="container-fluid   ">
-    <p class="border  container-fluid"  align="left">
-<i class="fas fa-briefcase"></i>
-Nombre de tarea  <i class="fas fa-circle"></i>  <i class="far fa-user-circle"></i> <i class="far fa-image"></i>
 
+
+<p class="border  container-fluid"  align="left">
+<i class="fas fa-stop"></i>
+Nombre de tarea  <i class="fas fa-circle text-danger"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
 comentarios sobre esta tarea
-
 </p>
+  
+<p class="border  container-fluid"  align="left">
+<i class="fas fa-stop"></i>
+Nombre de tarea  <i class="fas fa-circle text-danger"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
+comentarios sobre esta tarea
+</p>
+  
+<p class="border  container-fluid"  align="left">
+<i class="fas fa-stop"></i>
+Nombre de tarea  <i class="fas fa-circle text-danger"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
+comentarios sobre esta tarea
+</p>
+
+
+
+
 </div>
 
 <!-- IMAGENES -->
 <div class="float-right button-collapse btn btn-light " id="button-collapse"  data-toggle="collapse" href="#collapseExample" role="button">
 
-<i class="fas fa-sort-down "></i>
+<i style="font-size: 12px" class="fas fa-chevron-down"></i>
 
 </div>
 
 <div class="container-fluid collapse" id="collapseExample">
 
-​<img src="img/img.png" class="img-fluid img-thumbnail" alt="...">
-<img src="img/img.png" class="img-fluid img-thumbnail" alt="...">
-<img src="img/img.png" class="img-fluid img-thumbnail" alt="...">
-<img src="img/img.png" class="img-fluid img-thumbnail" alt="...">
+​<img width="120" src="img/pieza.png" class="img-fluid  " alt="...">
+<img width="120" src="img/pieza.png" class="img-fluid  " alt="...">
+<img width="120" src="img/pieza.png" class="img-fluid  " alt="...">
+<img width="120" src="img/pieza.png" class="img-fluid  " alt="...">
 
 </div>
 
 <!-- IMAGENES -->
 </div> <!-- CIERRE PROYECTO -->
-
-
-
 </div>
 
 
 <br>
-<hr>
-
-<!-- SUBPROYECTO -->
-<div  class="row col-sm-10 " id="list" >
-
-<div class="col-sm-2">
-<div class="container-fluid border rounded border-secondary">
-<p class="margin-bottom-none" align="left">
-   <strong>  PROYECTO </strong> 
-    
-</p>
-
-<p class="margin-bottom-none" align="left" class="name-empresa-espera">
- <small class="">EMPRESA</small>   
-</p>
 
 
-<p>Tarea</p>
+
+<div class="col-sm-12">
+  <hr>
+</div>
 
 
-<p><small>  1/02/2018</small></p>
+<!-- SUBPROYECTOS -->
+<div  class="row col-sm-9 " id="list" >
+
+
+<!-- TARJETA -->
+
+<div class="col-sm-4">
+<div class="card borde-burble" >
+
+   <div class="card-header">
+<h5 class="card-title">NOMBRE PROYECTO</h5>
+  </div>
+
+
+<div id="demo" class="carousel slide card-img-top " data-ride="carousel">
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/pieza.png"  width="150" >
+  <div class="carousel-caption d-none d-md-block">
+ 
+    tarea
+
+
+  </div>
+    </div>
+    <div class="carousel-item">
+  <img src="img/pieza.png"  width="150" >
+
+  <div class="carousel-caption d-none d-md-block">
+  
+    tarea
+
+
+  </div>
+
+
+    </div>
+
+   <div class="carousel-item">
+     <img src="img/pieza.png"   width="150" >
+
+
+  <div class="carousel-caption d-none d-md-block">
+   
+
+    tarea
+
+  </div>
+
+    </div>
+
+
+
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev " href="#demo" data-slide="prev">
+ <i class="fas fa-chevron-left text-dark" ></i>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+<i class="fas fa-chevron-right text-dark"></i>
+  </a>
+</div>
+
+
+
+<div class="card-body">
+<p align="Left" class="text-sm-left">Aqui se introduciran comentarios sobre este proyecto.</p>
+
+</div>
+
+
+
+
 
 </div>
 
 </div>
+<!-- TARJETA -->
+
+
+
+<!-- TARJETA -->
+
+<div class="col-sm-4">
+<div class="card borde-burble" >
+
+   <div class="card-header">
+<h5 class="card-title">NOMBRE PROYECTO</h5>
+  </div>
+
+
+<div id="demo" class="carousel slide card-img-top " data-ride="carousel">
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/pieza.png" alt="Los Angeles" width="150" >
+  <div class="carousel-caption d-none d-md-block">
+ 
+    tarea
+
+
+  </div>
+    </div>
+    <div class="carousel-item">
+  <img src="img/pieza.png" alt="Los Angeles" width="150" >
+
+  <div class="carousel-caption d-none d-md-block">
+  
+    tarea
+
+
+  </div>
+
+
+    </div>
+
+   <div class="carousel-item">
+     <img src="img/pieza.png" alt="Los Angeles" width="150" >
+
+
+  <div class="carousel-caption d-none d-md-block">
+   
+
+    tarea
+
+  </div>
+
+    </div>
+
+
+
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev " href="#demo" data-slide="prev">
+ <i class="fas fa-chevron-left text-dark" ></i>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+<i class="fas fa-chevron-right text-dark"></i>
+  </a>
+</div>
+
+
+
+<div class="card-body">
+<p align="Left" class="text-sm-left">Aqui se introduciran comentarios sobre este proyecto.</p>
+
+</div>
+</div>
+</div>
+<!-- TARJETA -->
+
+
+<!-- TARJETA -->
+
+<div class="col-sm-4">
+<div class="card borde-burble" >
+
+   <div class="card-header">
+<h5 class="card-title">NOMBRE PROYECTO</h5>
+  </div>
+
+
+<div id="demo" class="carousel slide card-img-top " data-ride="carousel">
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/pieza.png" alt="Los Angeles" width="150" >
+  <div class="carousel-caption d-none d-md-block">
+ 
+    tarea
+
+
+  </div>
+    </div>
+    <div class="carousel-item">
+  <img src="img/pieza.png" alt="Los Angeles" width="150" >
+
+  <div class="carousel-caption d-none d-md-block">
+  
+    tarea
+
+
+  </div>
+
+
+    </div>
+
+   <div class="carousel-item">
+     <img src="img/pieza.png" alt="Los Angeles" width="150" >
+
+
+  <div class="carousel-caption d-none d-md-block">
+   
+
+    tarea
+
+  </div>
+
+    </div>
+
+
+
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev " href="#demo" data-slide="prev">
+ <i class="fas fa-chevron-left text-dark" ></i>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+<i class="fas fa-chevron-right text-dark"></i>
+  </a>
+</div>
+
+
+
+<div class="card-body">
+<p align="Left" class="text-sm-left">Aqui se introduciran comentarios sobre este proyecto.</p>
+
+</div>
+</div>
+</div>
+<!-- TARJETA -->
+
+
+
+
+
+
 
 
 
@@ -143,24 +398,48 @@ comentarios sobre esta tarea
 </div>
 
 <!-- FREEZE-->
-<div  class="col-sm-2  ">
+<div  class="col-sm-3">
+
+<div class="card borde-burble" >
+
+<div class="card-body ">
+
+<div class="freeze">
 
 
-<div class="container-fluid border  rounded border-secondary">
 
-
-<p>
-FREEZE
-</p>
-
-
-<p>
-UNFREEZE
-</p>
+<p align="Left" class="text-sm-left"><h5><i class="fas fa-snowflake"></i> Freeze</h5> </p>
 
 
 
 </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+<div class="card-footer">
+  
+
+  <button class="btn btn-primary"> Unfreeze</button>
+</div>
+
+
+
+
+
+</div>
+
 </div>
 
 <!-- FREEZE-->

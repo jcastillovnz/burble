@@ -9,6 +9,35 @@
                 margin: 0;
             }
 
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+
+.freeze  {
+    border: 2px dotted black;
+    padding: 15px;
+
+    background-clip: padding-box;
+
+
+  }
+.borde-burble{
+
+  border-radius: 11px;
+}
+
+
+.bold  {
+   font-weight: bold;
+}
+
+
+
 
       #button-collapse{
       	border: 1px;
@@ -97,5 +126,7 @@ border-radius: 50%;
    margin: 0px;
    padding:none;
             }
+
+
 
 
