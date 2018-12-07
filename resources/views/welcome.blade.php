@@ -85,20 +85,32 @@
 
 
 <p class="border  tarea container-fluid"  align="left">
+
+
 <i class="fas fa-stop"></i>
-Nombre de tarea  <i class="fas fa-circle text-danger"  title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
+
+
+<a href="">
+Nombre de tarea  
+</a>
+
+<i class="fas fa-circle text-danger"  title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
 comentarios sobre esta tarea
 </p>
   
 <p class="border tarea container-fluid"  align="left">
 <i class="fas fa-stop"></i>
-Nombre de tarea  <i class="fas fa-circle text-danger" title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
+<a href="">
+Nombre de tarea  
+</a> <i class="fas fa-circle text-danger" title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
 comentarios sobre esta tarea
 </p>
   
 <p class="border  tarea container-fluid text-secondary"  align="left">
 <i class="fas fa-stop"></i>
-Nombre de tarea  <i class="fas fa-circle text-danger" title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
+<a href="">
+Nombre de tarea  
+</a> <i class="fas fa-circle text-danger" title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
 comentarios sobre esta tarea
 </p>
 
@@ -128,7 +140,7 @@ comentarios sobre esta tarea
 </div>
 
 
-<br>
+
 
 
 
@@ -147,7 +159,7 @@ comentarios sobre esta tarea
 <div class="card borde-burble" >
 
    <div class="card-header">
-<h5 class="card-title">NOMBRE PROYECTO</h5>
+<h6 class="">NOMBRE PROYECTO</h6>
   </div>
 
 
@@ -232,7 +244,7 @@ comentarios sobre esta tarea
 <div class="card borde-burble" >
 
    <div class="card-header">
-<h5 class="card-title">NOMBRE PROYECTO</h5>
+<h6   class="proyecto-min">NOMBRE PROYECTO</h6>
   </div>
 
 
@@ -310,7 +322,7 @@ comentarios sobre esta tarea
 <div class="card borde-burble" >
 
    <div class="card-header">
-<h5 class="card-title">NOMBRE PROYECTO</h5>
+<h6   class="proyecto-min">NOMBRE PROYECTO</h6>
   </div>
 
 
@@ -390,7 +402,7 @@ comentarios sobre esta tarea
 <div class="card borde-burble" >
 
    <div class="card-header">
-<h5 class="card-title">NOMBRE PROYECTO</h5>
+<h6   class="proyecto-min">NOMBRE PROYECTO</h6>
   </div>
 
 
