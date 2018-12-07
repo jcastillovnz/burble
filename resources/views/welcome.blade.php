@@ -70,9 +70,9 @@
 
 
 
-<a href="">
-   <h3 align="left"><strong> NOMBRE PROYECTO</strong> <small class="comentarios-proyecto" aling="right">Comentarios basicos de cada proyecto</small> </h3>
-</a>
+
+   <h3 align="left"> <a href="">  <strong> NOMBRE PROYECTO</strong> </a>    <small class="comentarios-proyecto float-right" aling="right">Comentarios basicos de cada proyecto general</small> </h3>
+
 
 
 
