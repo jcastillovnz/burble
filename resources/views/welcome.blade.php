@@ -159,7 +159,7 @@ comentarios sobre esta tarea
 <div class="card borde-burble" >
 
    <div class="card-header">
-<h6   class="proyecto-min">NOMBRE PROYECTO</h6>
+<h6   class="proyecto-min"><strong> NOMBRE PROYECTO</strong></h6>
   </div>
 
 
@@ -244,7 +244,7 @@ comentarios sobre esta tarea
 <div class="card borde-burble" >
 
    <div class="card-header">
-<h6   class="proyecto-min">NOMBRE PROYECTO</h6>
+<h6   class="proyecto-min"><strong> NOMBRE PROYECTO</strong></h6>
   </div>
 
 
@@ -322,7 +322,7 @@ comentarios sobre esta tarea
 <div class="card borde-burble" >
 
    <div class="card-header">
-<h6   class="proyecto-min">NOMBRE PROYECTO</h6>
+<h6   class="proyecto-min"><strong> NOMBRE PROYECTO</strong></h6>
   </div>
 
 
@@ -402,7 +402,7 @@ comentarios sobre esta tarea
 <div class="card borde-burble" >
 
    <div class="card-header">
-<h6   class="proyecto-min">NOMBRE PROYECTO</h6>
+<h6   class="proyecto-min"><strong> NOMBRE PROYECTO</strong></h6>
   </div>
 
 
