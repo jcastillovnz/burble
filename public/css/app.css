@@ -154,11 +154,11 @@ border-radius: 50%;
 /*LOADER*/
 .loader {
 
+z-index: 5;
+margin-top: 15%;
+margin-left:-3%;
 
-
-
-
-  position: relative;
+  position: fixed;
   display: inline-block;
 
 

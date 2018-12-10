@@ -1,16 +1,13 @@
 
 
-function nuevoProyecto() {
+window.onload = function(){
+	show_loader()
+
+};
 
 
-
-
-alert("hola")
-
+function show_loader() {
+	
+document.getElementById("loader").style.display = "none";
 
 }
-
-
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-});
