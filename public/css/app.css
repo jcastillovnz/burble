@@ -16,6 +16,22 @@ hr {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.titulo-principal{
+font-size: 18px;
+}
+
+
+
+.margin-bottom-none{
+
+	margin-bottom: 0px;
+	margin: none;
+	padding-bottom: none;
+	padding: none;
+
+
+
+}
 
 
 .freeze  {
