@@ -10,7 +10,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
            <!-- Fonts -->
@@ -21,8 +20,7 @@
 
          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
-
-         <script src="js/vuej.js" ></script>
+<script src="{{ asset('js/app.js') }}" defer></script>
 <script src="js/sortable.js" ></script>
 
 
@@ -32,18 +30,24 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 
-</head>
-<body   class="col-sm-12">
-    <div id="app">
 
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+
+<nav class="navbar navbar-expand-lg navbar-light  ">
     <a class="navbar-brand text-primary" href="{{ url('/') }}">
+
+<h5> 
+
 <strong>
                     {{ config('app.name', 'Laravel') }}
 
 </strong>
+
+</h5>
+
+
+
                 </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -71,31 +75,36 @@
 
    <ul class="navbar-nav  my-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fas fa-home"></i> Inicio <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-chart-area"></i> Estadisticas</a>
-      </li>
+        <a class="nav-link" href="/home"><i class="fas fa-home"></i> Inicio <span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#"><i class="fas fa-chart-area"></i> Estadisticas</a>
+</li>
    
-    </ul>
+</ul>
 
 
-
-                    
-
-
-                            
-
-
-
-  </div>
-
-
-
-
-
-
+</div>
 </nav>
+
+
+
+</head>
+<body   class="col-sm-12">
+
+
+
+
+
+<center>
+<div class="loader"></div>
+</center>
+
+    <div id="app">
+
+
+
+
 
 
 
@@ -104,9 +113,9 @@
  @guest
   @else
 <a class="navbar-brand text-primary" href="{{ url('/') }}">
-<img src="img/user.png" width="40">
+<img src="img/user.png" width="30">
 <strong>
-              {{ Auth::user()->name }} 
+              {{ Auth::user()->name }}  {{ Auth::user()->apellido }} 
 </strong>
 </a>
 
@@ -116,50 +125,30 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
-
-
-
     <ul class="navbar-nav mr-auto mt-2 my-lg-0">
-
     </ul>
-
-
-
-
    <ul class="navbar-nav  my-lg-0">
-
     </ul>
 
+<a class="nav-link"  data-toggle="modal"  data-target=".nuevoCliente"   href="#"><i class="fas fa-suitcase"></i> Registrar cliente</a>
 
 
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+<a class="nav-link"  data-toggle="modal"  data-target=".nuevoEmpleado"   href="#"> <i class="fas fa-user-tie"></i>  Registrar empleado </a>
 
 
 
-                            <i class="fas fa-user"></i> 
-Perfil
-
-                                </a>
-
-   <a class="nav-link" href="#"><i class="fas fa-users-cog"></i> Configuracion</a>
-
-        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Salir<span class="sr-only">(current)</span></a>
-                
+ <a class="nav-link"  href=""  onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <i class="fas fa-sign-out-alt"></i> Salir<span class="sr-only">(current)</span></a>
 
 
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
 
   </div>
-
-
-    
-@endguest
-
-
 </nav>
-
-
-
+@endguest
 
 
 
@@ -223,9 +212,6 @@ Perfil
             </div>
         </nav>
     -->
-
-
-
 
 
 
