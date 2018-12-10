@@ -158,6 +158,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <main class="py-4">
             @yield('content')
         </main>
@@ -165,13 +181,13 @@
 </body>
 
 <footer class="col-sm-12 margin-bottom-none" >
-    <center>
+   
 <p>
-  
+   <center>
 © 2018  Burble para Achelier Studio - <i class="fas fa-code"></i> Desarrollado por Jose Castillo 
-
+</center>
 
 </p>
-</center>
+
 </footer>
 </html>
