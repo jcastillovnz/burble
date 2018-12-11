@@ -19,7 +19,6 @@ class Tareas extends Migration
  Schema::create('tareas', function (Blueprint $table) {
              $table->increments('id');
              $table->string('nombre');
-            $table->string('tipo');
              $table->string('prioridad');
             $table->string('estado');
             $table->string('comentario');
