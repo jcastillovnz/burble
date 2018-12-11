@@ -242,8 +242,12 @@ BURBLE
 
 <div class="float-right">
 <button type="submit" name="go" class="btn btn-info btn-sm rounded">
-<i class="fas fa-angle-right"></i>  Ingresar
+<i class="fas fa-fingerprint"></i> Ingresar
 </button>
+
+
+
+
 </div>
 
 </form>

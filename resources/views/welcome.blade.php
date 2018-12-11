@@ -46,9 +46,11 @@
 
             <div class="content col-sm-12">
       
-<div class="col-sm-12">
+<div class="btn-group">
          
 
+   <button class="btn btn-light rounded-circle float-right"> <i class="fas fa-plus"></i>   </button>
+   <button class="btn btn-light rounded-circle float-right"> <i class="fas fa-plus"></i>   </button>
    <button class="btn btn-light rounded-circle float-right"> <i class="fas fa-plus"></i>   </button>
 
 
@@ -128,8 +130,8 @@ comentarios sobre esta tarea
 
 
 
-<div class="float-right button-collapse btn btn-light " id="button-collapse"  data-toggle="collapse" href="#collapseExample" role="button">
-
+<div class="float-right button-collapse btn btn-light " id="button-collapse"     data-toggle="collapse" href="#collapseExample" role="button">
+nuevaTarea
 
 
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>

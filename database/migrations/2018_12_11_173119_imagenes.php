@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PiezasGraficas extends Migration
+class Imagenes extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,13 @@ class PiezasGraficas extends Migration
     public function up()
     {
         //
-
- Schema::create('piezas_graficas', function (Blueprint $table) {
+ Schema::create('imagenes', function (Blueprint $table) {
              $table->increments('id');
+             $table->string('img');
              $table->string('tipo');
-             $table->string('cantidad');
             $table->string('comentario');
         });
+
 
 
 

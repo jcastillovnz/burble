@@ -32,13 +32,11 @@
 <script src="js/sortable.js" ></script>
   <script src="{{ asset('js/app.js') }}" defer></script>
 
-</head>
-<body   class="col-sm-12">
-    <div id="app">
 
 
 
-<nav class="navbar navbar-expand-lg navbar-light ">
+
+<nav class="navbar navbar-expand-lg navbar-light border-bottom ">
     <a class="navbar-brand text-primary" href="{{ url('/') }}">
 <strong>
                     {{ config('app.name', 'Laravel') }}
@@ -71,13 +69,25 @@
 
    <ul class="navbar-nav  my-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fas fa-home"></i> Inicio <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#"><i class="fas fa-user"></i> Iniciar session <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-chart-area"></i> Estadisticas</a>
+     <a class="nav-link" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                   <i class="fas fa-sign-out-alt"></i> Salir
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+
       </li>
    
     </ul>
+
+</nav>
+
 
 
 
@@ -106,7 +116,9 @@
 
 
 
-</nav>
+
+
+
 
 
 <nav class="navbar navbar-expand-lg navbar-light ">
@@ -143,45 +155,57 @@
 
 
 
+  
+
+
+
+   <ul class="navbar-nav  my-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><i class="fas fa-home"></i> Inicio <span class="sr-only">(current)</span></a>
+      </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#"  data-toggle="modal" data-target=".nuevoCliente"><i class="fas fa-suitcase"></i> Registrar cliente</a>
+      </li>
 
 
 
 
-   <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Registrar usuario</a>
 
 
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fas fa-chart-area"></i> Estadisticas</a>
+      </li>
+   
 
 
-   <a class="nav-link" href="#"  data-toggle="modal" data-target=".nuevoCliente"><i class="fas fa-suitcase"></i> Registrar cliente</a>
+ 
 
 
-
-
-
-
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-
-
-
-                            <i class="fas fa-user"></i> 
-Perfil
-
-                                </a>
+     <li class="nav-item">
 
    <a class="nav-link" href="#"><i class="fas fa-users-cog"></i> Configuracion</a>
 
 
 
-       <a class="nav-link" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    Salir
-                                    </a>
+      </li>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
 
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
 
 
 
