@@ -32,7 +32,7 @@ class ClienteController extends Controller
 
 
 $cliente = new clientes();
-$cliente->nombre=  $request->nombre;
+$cliente->nombre=  $request->nombre_empresa;
 $cliente->ciudad=$request->ciudad;
 $cliente->pais=$request->pais;
 $cliente->telefono=$request->telefono;
@@ -41,15 +41,23 @@ $cliente->save();
 
 
 $contacto = new contactos();
-$contacto->nombre=  $request->nombre;
-$contacto->apellido=  $request->apellido;
-$contacto->telefono=  $request->telefono;
-$contacto->email=  $request->email;
+$contacto->nombre=  $request->nombre_contacto;
+$contacto->apellido=  $request->apellido_contacto;
+$contacto->telefono=  $request->telefono_contacto;
+$contacto->email=  $request->email_contacto;
 $contacto->save();
 
 
 
-return view('home');
+if ($cliente->save()==true) {
+
+
+
+
+}
+
+
+
 
 
 

@@ -982,7 +982,7 @@ Datos de contacto
 <i class="fas fa-user"></i>
 </span>
 </div>
-<input required=""  type="" class="form-control" name="" placeholder="Nombre">
+<input required=""  type="" class="form-control" name="nombre_contacto" placeholder="Nombre">
 
   </div>
 
@@ -995,7 +995,7 @@ Datos de contacto
 <i class="fas fa-user"></i>
 </span>
 </div>
-<input type="" class="form-control" name="" placeholder="Apellido">
+<input type="" class="form-control" name="Apellido_contacto" placeholder="Apellido">
 
   </div>
 
@@ -1021,7 +1021,7 @@ Datos de contacto
       </span>
     </div>
 
-<input required="" type="" class="form-control" name="" placeholder="Telefono">
+<input required="" type="" class="form-control" name="telefono_contacto" placeholder="Telefono">
 
 </div>
 
@@ -1035,14 +1035,9 @@ Datos de contacto
 <i class="fas fa-mail-bulk"></i>
 </span>
 </div>
-<input  required=""  type="email" class="form-control" name="" placeholder="Email">
+<input  required=""  type="email" class="form-control" name="email_contacto" placeholder="Email">
 
   </div>
-
-
-
-
-
 
 
 

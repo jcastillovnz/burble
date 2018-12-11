@@ -19,8 +19,10 @@ class Imagenes extends Migration
              $table->string('img')->nullable();
              $table->string('tipo')->nullable();
             $table->string('comentario')->nullable();
-           $table->timestamps();
-
+        
+ $table->integer('tareas_id')->unsigned()->nullable() ;
+$table->foreign('tareas_id')->references('id')->on('tareas')  ->onupdate('cascade') ->onDelete('cascade')   ;
+$table->timestamps();
 
         });
 

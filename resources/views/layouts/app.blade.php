@@ -88,10 +88,13 @@
 
 
 </head>
+
+
+
+
+
+
 <body   class="col-sm-12">
-
-
-
 
 
 <center>
@@ -103,8 +106,6 @@
   </div>
 
 
-
-<!--  
 
 
 
@@ -129,38 +130,36 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
 
+
+
+
+
+
 <ul class="navbar-nav  my-lg-0">
       <li class="nav-item active">
         <a class="nav-link" href="#"><i class="fas fa-home"></i> Inicio <span class="sr-only">(current)</span></a>
 </li>
 
-
-
 <li class="nav-item">
         <a class="nav-link" href="#"  data-toggle="modal" data-target=".nuevoCliente"><i class="fas fa-suitcase"></i> Registrar cliente</a>
 </li>
 
-
-
 <li class="nav-item">
         <a class="nav-link" href="#"><i class="fas fa-chart-area"></i> Estadisticas</a>
 </li>
-   
-
+  
 <li class="nav-item">
    <a class="nav-link" href="#"><i class="fas fa-users-cog"></i> Configuracion</a>
 </li>
 
+</ul>
 
-    </ul>
-
-
+@endguest
 
 </div>
 </nav>
     
-@endguest
--->
+
 
 
 

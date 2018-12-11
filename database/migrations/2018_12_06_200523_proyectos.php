@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Tareas extends Migration
+class Proyectos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,24 +13,41 @@ class Tareas extends Migration
      */
     public function up()
     {
+        //
 
-
-
- Schema::create('tareas', function (Blueprint $table) {
-             $table->increments('id')->nullable();
+ Schema::create('proyectos', function (Blueprint $table) {
+             $table->increments('id');
              $table->string('nombre')->nullable();
-             $table->string('prioridad')->nullable();
-            $table->string('estado')->nullable();
+             $table->string('fecha_entrega')->nullable();
+                  $table->string('presupuesto')->nullable();
             $table->string('comentario')->nullable();
 
-       $table->timestamps();
 
 
 
-        });
 
-        //
+$table->integer('clientes_id')->unsigned()->nullable() ;
+$table->foreign('clientes_id')->references('id')->on('clientes')  ->onupdate('cascade') ->onDelete('cascade')   ;
+$table->timestamps();
+
+
+
+
+
+
+
+
+
+
+
+
+  });
+
+
+
+
     }
+
 
     /**
      * Reverse the migrations.

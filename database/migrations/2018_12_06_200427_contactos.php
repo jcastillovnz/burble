@@ -24,7 +24,13 @@ class Contactos extends Migration
             $table->string('email')->nullable();
             $table->string('ciudad')->nullable();
            $table->string('telefono')->nullable();
-          $table->timestamps();
+
+$table->integer('clientes_id')->unsigned()->nullable() ;
+$table->foreign('clientes_id')->references('id')->on('clientes')  ->onupdate('cascade') ->onDelete('cascade')   ;
+$table->timestamps();
+
+
+
 
         });
 

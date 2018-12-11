@@ -21,13 +21,11 @@ class clientes extends Migration
 
             $table->increments('id');
             $table->string('nombre');
-             $table->string('apellido');
             $table->string('sitio_web')->nullable();
             $table->string('ciudad')->nullable();
             $table->string('pais')->nullable();
            $table->string('telefono')->nullable();
            $table->timestamps();
-
         });
 
 

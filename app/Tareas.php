@@ -27,6 +27,13 @@ public function proyectos()
 
 
 
+public function users()
+{
+    return $this->hasOne('App\User');
+
+}
+
+
 
 public function imagenes()
 {
