@@ -26,8 +26,6 @@ padding-top: 11%;
 
 padding-bottom: 15%;
 
-
-
 }
 }
 
