@@ -147,7 +147,12 @@
 
 
 
-   <a class="nav-link" href="#"><i class="fas fa-suitcase"></i> Registrar cliente</a>
+   <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Registrar usuario</a>
+
+
+
+
+   <a class="nav-link" href="#"  data-toggle="modal" data-target=".nuevoCliente"><i class="fas fa-suitcase"></i> Registrar cliente</a>
 
 
 

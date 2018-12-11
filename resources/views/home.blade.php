@@ -8,7 +8,7 @@
 <div class="  col-sm-12">
          
 
-   <button class="btn btn-light rounded-circle float-right"> <i class="fas fa-plus"></i>   </button>
+   <button class="btn btn-light rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
 
 
 </div>
@@ -71,12 +71,24 @@ comentarios sobre esta tarea
 </div>
 
 <!-- IMAGENES -->
+<!-- BOTONES-->
 <div class="float-right button-collapse btn btn-light " id="button-collapse"  data-toggle="collapse" href="#collapseExample" role="button">
 
 <i style="font-size: 12px" class="fas fa-chevron-down"></i>
 
 </div>
 
+
+
+<div class="float-right button-collapse btn btn-light " id="button-collapse"   role="button">
+
+
+
+<i style="font-size: 12px" class="fas fa-plus-circle"></i>
+
+
+
+</div>
 <div class="container-fluid collapse" id="collapseExample">
 
 ​<img width="120" src="img/pieza.png" class="img-fluid  " alt="...">

@@ -117,11 +117,31 @@ comentarios sobre esta tarea
 </div>
 
 <!-- IMAGENES -->
+
+
+<!-- BOTONES-->
 <div class="float-right button-collapse btn btn-light " id="button-collapse"  data-toggle="collapse" href="#collapseExample" role="button">
 
 <i style="font-size: 12px" class="fas fa-chevron-down"></i>
 
 </div>
+
+
+
+<div class="float-right button-collapse btn btn-light " id="button-collapse"  data-toggle="collapse" href="#collapseExample" role="button">
+
+
+
+<i style="font-size: 12px" class="fas fa-plus-circle"></i>
+
+
+
+</div>
+
+
+
+
+
 
 <div class="container-fluid collapse" id="collapseExample">
 
