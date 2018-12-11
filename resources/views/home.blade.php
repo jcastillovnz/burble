@@ -597,17 +597,14 @@ Registrar un nuevo proyecto
 
    <div class="modal-header ">
     
-
-
-
+<center>
 <h5 class="text-primary ">
 <i class="fas fa-briefcase"></i>
 <strong>
 Registrar un nuevo Cliente
 </strong>
 </h5>
-
-
+</center>
 
 
    <button type="button" class="close" data-dismiss="modal">&times;</button>
