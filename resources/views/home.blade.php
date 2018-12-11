@@ -434,12 +434,6 @@ comentarios sobre esta tarea
 
 
 
-
-
-
-<<<<<<< HEAD
-
-
 <!-- MODAL NUEVO PROYECTO  -->
 
 
@@ -999,7 +993,4 @@ Registrar una nueva tarea
 
 
 
-
-=======
->>>>>>> parent of c925060... casi termina el dia
 @endsection

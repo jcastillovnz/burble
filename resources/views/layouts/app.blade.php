@@ -38,7 +38,7 @@
 
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+<nav class="navbar navbar-expand-lg navbar-light ">
     <a class="navbar-brand text-primary" href="{{ url('/') }}">
 <strong>
                     {{ config('app.name', 'Laravel') }}
@@ -143,6 +143,17 @@
 
 
 
+
+
+
+
+   <a class="nav-link" href="#"><i class="fas fa-suitcase"></i> Registrar cliente</a>
+
+
+
+
+
+
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
 
@@ -154,8 +165,23 @@ Perfil
 
    <a class="nav-link" href="#"><i class="fas fa-users-cog"></i> Configuracion</a>
 
-        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Salir<span class="sr-only">(current)</span></a>
-                
+
+
+       <a class="nav-link" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    Salir
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+
+
+
+
+
+
 
 
 
