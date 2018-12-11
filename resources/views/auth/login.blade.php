@@ -11,13 +11,20 @@
 
 @media screen and (min-width: 1150px) {
 
+.login{
+
+max-width: 280px;
+}
+
+
+
+
+
 .pwd-container{
 
-padding-top: 10%;
+padding-top: 11%;
 
-padding-bottom: 18%;
-
-
+padding-bottom: 15%;
 
 }
 }
@@ -39,7 +46,6 @@ padding-top: 30%;
 
 
 
-
 <!--  
 
 <div class="col-md-4" >
@@ -47,100 +53,85 @@ padding-top: 30%;
 
 
 <div  align="center"    >
+
 <h1 class="text-primary">
 <strong>
 Burble
 </strong>
 </h1>
+
+
 </div>
 
-
-
-
-<form class="hidden"  method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+      <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                         @csrf
- <div class="input-group container-fluid">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text"> <i class="fas fa-user-circle"></i>  </span>
-</div>
-<input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Email" value="{{ old('email') }}" required autofocus>
-   @if ($errors->has('email'))
-<span class="invalid-feedback" role="alert">
-<strong>{{ $errors->first('email') }}</strong>
-</span>
-            @endif
-</div>
 
-
-
-
-
-<div class="input-group  container-fluid">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text">   <i class="fas fa-lock"></i>   
- </span>
-</div>
- <input id="password" placeholder="Contraseña" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
- @if ($errors->has('password'))
-<span class="invalid-feedback" role="alert">
-<strong>{{ $errors->first('password') }}</strong>
-</span>
-@endif
-
-
-
-
-<div class="float-right"><button type="submit" name="go" class="btn btn-info btn-sm rounded">
-<i class="fas fa-angle-right"></i>  Ingresar
-</button>
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-</form>
-<div>
-</div>
-          
-      -->
-        
-
-
-
-<<<<<<< HEAD
-<div style="" class="container " style=""  >
-  
    
-  <div class="pwd-container "   >
-    <div class="col-md-4 "  ></div>
- 
-    <div class="col-md-3 " id="login" >
 
-      <section style="" class="login-form">
+ <div class="input-group container-fluid">
+    <div class="input-group-prepend">
+      <span style="width: 35px"  class="input-group-text"> <i class="fas fa-user-circle"></i>  </span>
+    </div>
+   <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Email" value="{{ old('email') }}" required autofocus>
+   @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+  </div>
 
-<div  align="center"   >
-<span style="font-size: 30px; "  class="text-info"  > 
-<i class="fa fa-university" aria-hidden="true"></i>
-<strong>
-Estudio Mirolo  
-</strong>
-</span>
-</div>
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Login') }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-<!--  
-          <img src="imagenes/logo.png" class="img-responsive" alt="" /> 
--->
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+ <div class="input-group  container-fluid">
+    <div class="input-group-prepend">
+      <span style="width: 35px"  class="input-group-text">   <i class="fas fa-lock"></i>    </span>
+    </div>
+ <input id="password" placeholder="Contraseña" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
 
-    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
+                        @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+  </div>
+
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+
+
+
+
+
+    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
    @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -149,7 +140,7 @@ Estudio Mirolo
 
         <br> 
 
-           <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required  placeholder="Contraseña" >
+           <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
 
                         @if ($errors->has('password'))
@@ -162,67 +153,92 @@ Estudio Mirolo
           <div class="pwstrength_viewport_progress"></div>
           <br>  
          
-          
-          <button type="submit" name="go" class="btn  btn-primary btn-block btn-sm">
-<i class="fas fa-sign-in-alt"></i>
-          Entrar al sistema</button>
-     
-          <div>
-         
-          </div>
-          
-        </form>
-        
-        <div class="form-links">
 
 
-      </div>
-        </div>
-      </section>  
-      </div>
-      
- 
 
 
-=======
+<div class="col-sm-12">
 
-<div class="container">
-  <div class="row align-items-start">
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
-  </div>
-  <div class="row align-items-center">
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
-  </div>
-  <div class="row align-items-end">
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
-  </div>
+<div class="float-right"><button type="submit" name="go" class="btn btn-info btn-sm rounded">
+<i class="fas fa-angle-right"></i>  Ingresar
+</button>
 </div>
 
->>>>>>> parent of 3561931... UPDATE TRABAJO ULTIMO
+ -->
+
+
+<div class=" row  pwd-container">
+
+
+<div class="col-md-4"></div>
+
+
+<div class="col-md-4"> 
+
+
+<div class="login">
+
+
+<h3>
+<p align="center" class="text-info">
+<strong>
+BURBLE
+</strong>
+</p>
+</h3>
+
+
+  <form class="hidden" method="POST" action="{{ route('login') }}">
+                        @csrf
+<div class="input-group  container-fluid">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text">   <i class="fas fa-user"></i>  </span>
+</div>
+
+<input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+   @if ($errors->has('email'))
+        <span class="invalid-feedback" role="alert">
+<strong>{{ $errors->first('email') }}</strong>
+</span>
+@endif
+ </div>
+
+
+
+
+<div class="input-group  container-fluid">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text">   <i class="fas fa-lock"></i>    </span>
+</div>
+
+ <input id="password" placeholder="Contraseña" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+@if ($errors->has('password'))
+<span class="invalid-feedback" role="alert">
+<strong>{{ $errors->first('password') }}</strong>
+</span>
+@endif
+ </div>
+
+
+   
+
+<div class="float-right">
+<button type="submit" name="go" class="btn btn-info btn-sm rounded">
+<i class="fas fa-fingerprint"></i> Ingresar
+</button>
+</div>
+
+</form>
+</div> <!-- cierre login -->
+
+
+
+ </div>
+
+
+
+
+<div class="col-md-4"></div>
 
 
 
@@ -231,7 +247,6 @@ Estudio Mirolo
 
 
 
- 
 
-
+  </div><!-- /.container contenedor-->
 @endsection

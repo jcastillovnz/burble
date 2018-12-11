@@ -151,14 +151,19 @@ border-radius: 50%;
 
 
 
-/*LOADER*/
-.loader {
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 z-index: 5;
 margin-top: 15%;
 margin-left:-3%;
+=======
+>>>>>>> parent of da7325b... dia terminado, reparar login
 
-  position: fixed;
+
+
+
+  position: relative;
   display: inline-block;
 
 
@@ -181,3 +186,5 @@ margin-left:-3%;
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+=======
+>>>>>>> parent of c925060... casi termina el dia

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Contactos extends Migration
+class Proyectos extends Migration
 {
     /**
      * Run the migrations.
@@ -15,15 +15,16 @@ class Contactos extends Migration
     {
         //
 
- Schema::create('contactos', function (Blueprint $table) {
- $table->increments('id');
+ Schema::create('proyectos', function (Blueprint $table) {
+             $table->increments('id');
+             $table->string('nombre')->nullable();
+             $table->string('fecha_entrega')->nullable();
+                  $table->string('presupuesto')->nullable();
+            $table->string('comentario')->nullable();
 
-          
-            $table->string('nombre')->nullable();
-             $table->string('apellido')->nullable();
-            $table->string('email')->nullable();
-            $table->string('ciudad')->nullable();
-           $table->string('telefono')->nullable();
+
+
+
 
 $table->integer('clientes_id')->unsigned()->nullable() ;
 $table->foreign('clientes_id')->references('id')->on('clientes')  ->onupdate('cascade') ->onDelete('cascade')   ;
@@ -32,9 +33,21 @@ $table->timestamps();
 
 
 
-        });
+
+
+
+
+
+
+
+
+  });
+
+
+
 
     }
+
 
     /**
      * Reverse the migrations.
