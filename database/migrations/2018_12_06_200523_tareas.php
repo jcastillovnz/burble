@@ -17,11 +17,16 @@ class Tareas extends Migration
 
 
  Schema::create('tareas', function (Blueprint $table) {
-             $table->increments('id');
-             $table->string('nombre');
-             $table->string('prioridad');
-            $table->string('estado');
-            $table->string('comentario');
+             $table->increments('id')->nullable();
+             $table->string('nombre')->nullable();
+             $table->string('prioridad')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('comentario')->nullable();
+
+       $table->timestamps();
+
+
+
         });
 
         //

@@ -81,16 +81,10 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-
-      </li>
+</li>
    
-    </ul>
-
+</ul>
 </nav>
-
-
-
-
 
 
 </head>
@@ -103,19 +97,14 @@
 <center>
 <div class="loader"></div>
 </center>
-
-    <div id="app">
-
-
-
-
+<div id="app">
 
 
   </div>
 
 
 
-
+<!--  
 
 
 
@@ -128,7 +117,7 @@
 <a class="navbar-brand text-primary" href="{{ url('/') }}">
 <img src="img/user.png" width="40">
 <strong>
-              {{ Auth::user()->name }} 
+{{ Auth::user()->name }} 
 </strong>
 </a>
 
@@ -140,86 +129,38 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
 
-
-
-    <ul class="navbar-nav mr-auto mt-2 my-lg-0">
-
-    </ul>
-
-
-
-
-   <ul class="navbar-nav  my-lg-0">
-
-    </ul>
-
-
-
-  
-
-
-
-   <ul class="navbar-nav  my-lg-0">
+<ul class="navbar-nav  my-lg-0">
       <li class="nav-item active">
         <a class="nav-link" href="#"><i class="fas fa-home"></i> Inicio <span class="sr-only">(current)</span></a>
-      </li>
+</li>
 
-    <li class="nav-item">
+
+
+<li class="nav-item">
         <a class="nav-link" href="#"  data-toggle="modal" data-target=".nuevoCliente"><i class="fas fa-suitcase"></i> Registrar cliente</a>
-      </li>
+</li>
 
 
 
-
-
-
-      <li class="nav-item">
+<li class="nav-item">
         <a class="nav-link" href="#"><i class="fas fa-chart-area"></i> Estadisticas</a>
-      </li>
+</li>
    
 
-
- 
-
-
-     <li class="nav-item">
-
+<li class="nav-item">
    <a class="nav-link" href="#"><i class="fas fa-users-cog"></i> Configuracion</a>
-
-
-
-      </li>
+</li>
 
 
     </ul>
 
 
 
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
-  </div>
-
+</div>
 </nav>
     
 @endguest
-
+-->
 
 
 
@@ -296,7 +237,7 @@
 
     
             @yield('content')
-                <main class="py-4">
+         <main class="py-4">
         </main>
     </div>
 </body>

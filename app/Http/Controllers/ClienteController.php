@@ -4,6 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+use App\Clientes;
+use App\Contactos;
+
+
+
+
+
+
 class ClienteController extends Controller
 {
     //
@@ -18,33 +27,25 @@ class ClienteController extends Controller
     }
 
 
-   public function create()
+   public function create( Request $request )
     {
 
 
-$cliente = new cliente();
+$cliente = new clientes();
 $cliente->nombre=  $request->nombre;
-$cliente->sitio_web=$request->sitio_web;
+$cliente->ciudad=$request->ciudad;
 $cliente->pais=$request->pais;
 $cliente->telefono=$request->telefono;
 $cliente->save();
 
 
 
-$cliente = new contacto();
-$cliente->nombre=  $request->nombre;
-$cliente->apellido=  $request->apellido;
-$cliente->telefono=  $request->telefono;
-$cliente->email=  $request->email;
-
-$cliente->save();
-
-
-
-
-
-
-
+$contacto = new contactos();
+$contacto->nombre=  $request->nombre;
+$contacto->apellido=  $request->apellido;
+$contacto->telefono=  $request->telefono;
+$contacto->email=  $request->email;
+$contacto->save();
 
 
 

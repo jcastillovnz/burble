@@ -17,16 +17,16 @@ class clientes extends Migration
 
 
  Schema::create('clientes', function (Blueprint $table) {
- $table->increments('id');
 
-          
+
+            $table->increments('id');
             $table->string('nombre');
              $table->string('apellido');
-            $table->string('sitio_web');
-            $table->string('ciudad');
-            $table->string('pais');
-           $table->string('telefono');
-
+            $table->string('sitio_web')->nullable();
+            $table->string('ciudad')->nullable();
+            $table->string('pais')->nullable();
+           $table->string('telefono')->nullable();
+           $table->timestamps();
 
         });
 

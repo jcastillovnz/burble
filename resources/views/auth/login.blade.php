@@ -3,21 +3,6 @@
 @section('content')
 
 
-<script type="text/javascript">
-  
-var mediaquery = window.matchMedia("(max-width: 1150px)");
-if (mediaquery.matches) {
-  ///PANTALLA MOVIL
-$(document).ready(function(){
-  
-$("#login").removeClass("well")
-
-});
-
-} 
-
-
-</script>
 
 
 
@@ -26,11 +11,20 @@ $("#login").removeClass("well")
 
 @media screen and (min-width: 1150px) {
 
+.login{
+
+max-width: 280px;
+}
+
+
+
+
+
 .pwd-container{
 
-padding-top: 10%;
+padding-top: 11%;
 
-padding-bottom: 18%;
+padding-bottom: 15%;
 
 
 
@@ -175,17 +169,20 @@ Burble
  -->
 
 
-<div class="container pwd-container">
+<div class=" row  pwd-container">
 
 
 <div class="col-md-4"></div>
 
 
 <div class="col-md-4"> 
-  <h3>
+
+
+<div class="login">
+
+
+<h3>
 <p align="center" class="text-info">
-
-
 <strong>
 BURBLE
 </strong>
@@ -195,10 +192,6 @@ BURBLE
 
   <form class="hidden" method="POST" action="{{ route('login') }}">
                         @csrf
-
-
-
-
 <div class="input-group  container-fluid">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text">   <i class="fas fa-user"></i>  </span>
@@ -211,15 +204,6 @@ BURBLE
 </span>
 @endif
  </div>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -244,14 +228,10 @@ BURBLE
 <button type="submit" name="go" class="btn btn-info btn-sm rounded">
 <i class="fas fa-fingerprint"></i> Ingresar
 </button>
-
-
-
-
 </div>
 
 </form>
-
+</div> <!-- cierre login -->
 
 
 
@@ -261,6 +241,10 @@ BURBLE
 
 
 <div class="col-md-4"></div>
+
+
+
+
 
 
 

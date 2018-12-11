@@ -19,12 +19,12 @@ class Contactos extends Migration
  $table->increments('id');
 
           
-            $table->string('nombre');
-             $table->string('apellido');
-            $table->string('email');
-            $table->string('ciudad');
-           $table->string('telefono');
-
+            $table->string('nombre')->nullable();
+             $table->string('apellido')->nullable();
+            $table->string('email')->nullable();
+            $table->string('ciudad')->nullable();
+           $table->string('telefono')->nullable();
+          $table->timestamps();
 
         });
 

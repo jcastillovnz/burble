@@ -16,9 +16,12 @@ class Imagenes extends Migration
         //
  Schema::create('imagenes', function (Blueprint $table) {
              $table->increments('id');
-             $table->string('img');
-             $table->string('tipo');
-            $table->string('comentario');
+             $table->string('img')->nullable();
+             $table->string('tipo')->nullable();
+            $table->string('comentario')->nullable();
+           $table->timestamps();
+
+
         });
 
 
