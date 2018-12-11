@@ -81,13 +81,26 @@
 
 
 
+
 </head>
 <body   class="col-sm-12">
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> parent of de10b70... fallo
 <center>
 <div class="loader" id="loader"></div>
 </center>
-<div id="app">
+
+    <div id="app">
+
+
+
+
 
 
   </div>
