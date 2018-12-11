@@ -110,7 +110,76 @@ Burble
 
 
 
-<center>HOLA</center>
+<div style="" class="container " style=""  >
+  
+   
+  <div class="pwd-container "   >
+    <div class="col-md-4 "  ></div>
+ 
+    <div class="col-md-3 " id="login" >
+
+      <section style="" class="login-form">
+
+<div  align="center"   >
+<span style="font-size: 30px; "  class="text-info"  > 
+<i class="fa fa-university" aria-hidden="true"></i>
+<strong>
+Estudio Mirolo  
+</strong>
+</span>
+</div>
+
+                        @csrf
+
+<!--  
+          <img src="imagenes/logo.png" class="img-responsive" alt="" /> 
+-->
+
+
+    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
+   @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+
+        <br> 
+
+           <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required  placeholder="Contraseña" >
+
+
+                        @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+
+          
+          <div class="pwstrength_viewport_progress"></div>
+          <br>  
+         
+          
+          <button type="submit" name="go" class="btn  btn-primary btn-block btn-sm">
+<i class="fas fa-sign-in-alt"></i>
+          Entrar al sistema</button>
+     
+          <div>
+         
+          </div>
+          
+        </form>
+        
+        <div class="form-links">
+
+
+      </div>
+        </div>
+      </section>  
+      </div>
+      
+ 
+
+
 
 
 
