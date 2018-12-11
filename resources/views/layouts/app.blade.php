@@ -88,23 +88,14 @@
 </nav>
 
 
-
 </head>
 <body   class="col-sm-12">
-
-
-
 
 
 <center>
 <div class="loader" id="loader"></div>
 </center>
-
-    <div id="app">
-
-
-
-
+<div id="app">
 
 
 
