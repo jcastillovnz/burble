@@ -490,26 +490,9 @@ Registrar un nuevo proyecto
 
   <div class="modal-body">
     
-
-
- <div class="input-group  col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
-    </div>
-    <input type="text" class="form-control" placeholder="Nombre de proyecto">
-  
-  </div>
-
-
- <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
-    </div>
-    <input type="number" class="form-control" placeholder="Presupuesto">
-
-  </div>
-
-
+<form class="navbar-form hidden" role="form" action="{{ url('/nuevo_proyecto') }}"
+ method="GET" >
+ {{ csrf_field() }}
 
 
  <div class="input-group col-sm-12">
@@ -517,19 +500,19 @@ Registrar un nuevo proyecto
       <span style="width: 35px"  class="input-group-text"><i  class="fas fa-briefcase"></i> </span>
     </div>
  
-<select class="form-control">
+<select required=""  name="cliente" class="form-control">
 
-<option>Cliente / Empresa</option>
+<option value="" selected="">Cliente / Empresa</option>
 
 @if ( isset($clientes)==true   )
 
 @foreach( $clientes as $cliente)
-<option> {{$cliente->nombre}}</option>
+<option value="{{$cliente->id}}"  > {{$cliente->nombre}}</option>
 @endforeach
 
 
 @else
-<option>Registre un cliente</option>
+<option value="">Registre un cliente</option>
 
 
 
@@ -537,6 +520,47 @@ Registrar un nuevo proyecto
 </select>
 
   </div>
+
+
+
+
+ <div class="input-group  col-sm-12">
+    <div class="input-group-prepend">
+      <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
+    </div>
+    <input  required="" name="nombre_proyecto" type="text" class="form-control" placeholder="Nombre de proyecto">
+  
+  </div>
+
+
+
+
+
+ <div class="input-group col-sm-12">
+    <div class="input-group-prepend">
+      <span style="width: 35px"  class="input-group-text"><i class="fas fa-clock"></i>  </span>
+    </div>
+    <input  required="" name="fecha_entrega" type="date" class="form-control" placeholder="Fecha de entrega">
+
+  </div>
+
+
+
+
+
+
+
+ <div class="input-group col-sm-12">
+    <div class="input-group-prepend">
+      <span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
+    </div>
+    <input  required="" name="presupuesto" type="number" class="form-control" placeholder="Presupuesto">
+
+  </div>
+
+
+
+
 
 
 
@@ -551,7 +575,7 @@ Registrar un nuevo proyecto
       <span style="width: 35px"   class="input-group-text"><i class="fas fa-comments"></i> </span>
     </div>
    
-<textarea class="form-control" placeholder="Comentarios..."></textarea>
+<textarea required="" name="comentario" class="form-control" placeholder="Comentarios..."></textarea>
 
 
   </div>
@@ -580,12 +604,12 @@ Registrar un nuevo proyecto
 
 
 
-<button class="btn btn-success btn-sm" type="button"  >
+<button class="btn btn-success btn-sm" type="sumbit"  >
 <i class="fas fa-save"></i>
 </button>
 
 
-
+</form>
 
 </div>
 
@@ -1105,14 +1129,9 @@ Datos de contacto
 
 <div class="modal fade nuevaTarea" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
-
-
   <div class="modal-dialog modal-sm-8">
  
     <div class="modal-content">
-
-
-
    <div class="modal-header ">
     
 <div class="col-sm-12 text-primary">
@@ -1126,13 +1145,6 @@ Registrar un nueva tarea
 
       </div>
 
-
-
-
-
-
-
-
   <div class="modal-body">
     
 
@@ -1145,13 +1157,55 @@ Registrar un nueva tarea
   
   </div>
 
+ <div class="input-group col-sm-12">
+    <div class="input-group-prepend">
+      <span style="width: 35px"  class="input-group-text">
+
+<i class="fas fa-project-diagram"></i>
+         </span>
+    </div>
+<select class="form-control">
+    <option selected="" value="">Tipo de tarea</option>
+<option value="Imagen">Imagen</option>
+<option value="Proceso">Proceso</option>
+<option value="Cambio">Cambio</option>
+
+
+
+
+</select>
+  </div>
+
+
+
+
 
  <div class="input-group col-sm-12">
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i class="far fa-chart-bar"></i>  </span>
     </div>
-    <input type="text" class="form-control" placeholder="Prioridad">
+
+
+    
+
+<select class="form-control">
+    
+<option>Prioridad</option>
+<option>Alta / Rojo</option>
+<option>Media / Amarillo</option>
+<option>Baja / Verde</option>
+
+</select>
+
+
   </div>
+
+
+
+
+
+
+
 
 
 

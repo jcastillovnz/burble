@@ -22,3 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/nuevo_cliente', 'ClienteController@create');
+
+
+Route::get('/nuevo_proyecto', 'ProyectoController@create');
+
