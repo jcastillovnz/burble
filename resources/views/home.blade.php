@@ -14,6 +14,7 @@
 </div>
 
 
+
 <div class="col col-sm-6">
 
 
@@ -455,13 +456,13 @@ comentarios sobre esta tarea
 
 
 
-<div class="modal fade nuevoProyecto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div  id="AppProyecto"   class="modal fade nuevoProyecto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
 
 
   <div class="modal-dialog modal-sm-8">
  
-    <div id="AppProyecto" class="modal-content">
+    <div   class="modal-content">
 
 
 
@@ -490,7 +491,7 @@ Registrar un nuevo proyecto
 
   <div  class="modal-body">
     
-<form class="navbar-form hidden" role="form" action="{{ url('/nuevo_proyecto') }}"
+<form     class="navbar-form hidden" role="form" action="{{ url('/proyecto/create/') }}"
  method="GET" >
  {{ csrf_field() }}
 
@@ -593,10 +594,18 @@ Registrar un nuevo proyecto
 
 
 
-<div class="modal-footer">
+<div    class="modal-footer">
 
 
-<div class="btn btn-group  ">
+
+
+
+<div  class="btn btn-group  ">
+
+<div id="loader-sm" class="loader loader-sm "></div>
+
+
+
 <button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>
@@ -604,8 +613,10 @@ Registrar un nuevo proyecto
 
 
 
-<button class="btn btn-success btn-sm"  v-on:click="enviar()"   >
-<i class="fas fa-save"></i>  gggg
+
+
+<button  id="btn-proyecto"   class="btn btn-success btn-sm"     v-on:click.prevent="enviar(this)"   >
+<i class="fas fa-save"></i> 
 </button>
 
 
@@ -625,8 +636,7 @@ Registrar un nuevo proyecto
 
 <!-- MODAL NUEVO PROYECTO  -->
 
-
-
+ 
 <!-- MODAL NUEVO CLIENTE -->
 
 
@@ -1106,11 +1116,7 @@ Datos de contacto
 
 </div>
 
-
-
     </div>
-
-
   </div>
 </div>
 
