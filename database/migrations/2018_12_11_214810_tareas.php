@@ -17,7 +17,7 @@ class Tareas extends Migration
 
 
  Schema::create('tareas', function (Blueprint $table) {
-             $table->increments('id')->nullable();
+             $table->increments('id');
              $table->string('nombre')->nullable();
              $table->string('prioridad')->nullable();
             $table->string('estado')->nullable();

@@ -51,7 +51,7 @@ $contacto->save();
 
 if ($cliente->save()==true) {
 
-
+return view('home');
 
 
 }

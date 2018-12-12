@@ -17,7 +17,7 @@ class Estadisticas extends Migration
 
 
  Schema::create('estadisticas', function (Blueprint $table) {
-             $table->increments('id')->nullable();
+             $table->increments('id');
              $table->string('produccion_mensual')->nullable();
              $table->string('produccion_empleado')->nullable();
  $table->timestamps();
