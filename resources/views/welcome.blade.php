@@ -131,7 +131,7 @@ comentarios sobre esta tarea
 
 
 <div class="float-right button-collapse btn btn-light " id="button-collapse"     data-toggle="collapse" href="#collapseExample" role="button">
-nuevaTarea
+
 
 
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>

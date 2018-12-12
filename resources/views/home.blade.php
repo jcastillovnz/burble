@@ -461,7 +461,7 @@ comentarios sobre esta tarea
 
   <div class="modal-dialog modal-sm-8">
  
-    <div class="modal-content">
+    <div id="AppProyecto" class="modal-content">
 
 
 
@@ -488,7 +488,7 @@ Registrar un nuevo proyecto
 
 
 
-  <div class="modal-body">
+  <div  class="modal-body">
     
 <form class="navbar-form hidden" role="form" action="{{ url('/nuevo_proyecto') }}"
  method="GET" >
@@ -604,8 +604,8 @@ Registrar un nuevo proyecto
 
 
 
-<button class="btn btn-success btn-sm" type="sumbit"  >
-<i class="fas fa-save"></i>
+<button class="btn btn-success btn-sm"  v-on:click="enviar()"   >
+<i class="fas fa-save"></i>  gggg
 </button>
 
 
@@ -668,12 +668,12 @@ Registrar un nuevo Cliente
 
 
 
-  <div class="modal-body">
+  <div   class="modal-body">
     
 
 
 
-<form class="navbar-form hidden" role="form" action="{{ url('/nuevo_cliente') }}"
+<form   class="navbar-form hidden" role="form" action="{{ url('/nuevo_cliente') }}"
  method="GET" >
  {{ csrf_field() }}
 

@@ -152,31 +152,33 @@ border-radius: 50%;
 
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-z-index: 5;
-margin-top: 15%;
-margin-left:-3%;
-=======
->>>>>>> parent of da7325b... dia terminado, reparar login
 
 
 
 
-  position: relative;
+/*LOADER*/
+
+
+
+
+.loader {
+
+  position: fixed;
   display: inline-block;
+margin-left: 40%;
+z-index: 102;
+margin-top: 12%;
 
-
-  border: 6px solid #f3f3f3;
-  border-radius: 4050%;
-  border-top: 6px solid #8cc7ff;
-  border-bottom: 6px solid #8cc7ff;
-  width: 60px;
-  height: 60px;
-  -webkit-animation: spin 2s linear infinite;
+  border: 7px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 7px solid #3498db;
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
 }
 
+/* Safari */
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
@@ -186,5 +188,7 @@ margin-left:-3%;
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-=======
->>>>>>> parent of c925060... casi termina el dia
+
+
+
+/*LOADER*/
