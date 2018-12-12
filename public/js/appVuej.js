@@ -27,10 +27,6 @@ var url = '/api/proyecto/create/' ;
 
 
 
-
-
-
-
 axios.get( url, {
   params: {
 cliente: this.cliente,
@@ -55,8 +51,10 @@ comentario: this.comentario,
 
 
 document.getElementById('loader-sm').style.display="none"
+$('.nuevoProyecto').modal('hide')
+document.getElementById('btn-proyecto').disabled = false;
 
-
+var notification = alertify.notify('<strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong>', 'success', 5, function(){  console.log('dismissed'); });
         // this is now called!
     });
 

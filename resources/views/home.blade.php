@@ -615,7 +615,7 @@ Registrar un nuevo proyecto
 
 
 
-<button  id="btn-proyecto"   class="btn btn-success btn-sm"     v-on:click.prevent="enviar(this)"   >
+<button  id="btn-proyecto" type="sumbit"  class="btn btn-success btn-sm"     v-on:click.prevent="enviar(this)"   >
 <i class="fas fa-save"></i> 
 </button>
 
