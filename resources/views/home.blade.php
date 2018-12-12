@@ -519,10 +519,21 @@ Registrar un nuevo proyecto
  
 <select class="form-control">
 
-<option> Empresa</option>
-<option> Empresa 1</option>
-<option> Empresa 2</option>
+<option>Cliente / Empresa</option>
 
+@if ( isset($clientes)==true   )
+
+@foreach( $clientes as $cliente)
+<option> {{$cliente->nombre}}</option>
+@endforeach
+
+
+@else
+<option>Registre un cliente</option>
+
+
+
+@endif
 </select>
 
   </div>
@@ -946,7 +957,7 @@ Registrar un nuevo Cliente
       </span>
     </div>
 
-<input   type="" class="form-control" name="" placeholder="Telefono">
+<input   type="" class="form-control" name="telefono" placeholder="Telefono">
 
   </div>
 

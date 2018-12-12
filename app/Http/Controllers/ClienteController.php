@@ -34,6 +34,7 @@ class ClienteController extends Controller
 $cliente = new clientes();
 $cliente->nombre=  $request->nombre_empresa;
 $cliente->ciudad=$request->ciudad;
+$cliente->sitio_web=$request->sitio_web;
 $cliente->pais=$request->pais;
 $cliente->telefono=$request->telefono;
 $cliente->save();
@@ -51,7 +52,7 @@ $contacto->save();
 
 if ($cliente->save()==true) {
 
-return view('home');
+  return redirect('home');
 
 
 }

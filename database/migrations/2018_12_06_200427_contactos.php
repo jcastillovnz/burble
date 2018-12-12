@@ -19,10 +19,10 @@ class Contactos extends Migration
  $table->increments('id');
 
           
-            $table->string('nombre')->nullable();
+             $table->string('nombre')->nullable();
              $table->string('apellido')->nullable();
             $table->string('email')->nullable();
-            $table->string('ciudad')->nullable();
+    
            $table->string('telefono')->nullable();
 
 $table->integer('clientes_id')->unsigned()->nullable() ;

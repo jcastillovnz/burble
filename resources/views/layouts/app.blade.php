@@ -68,9 +68,14 @@
 
 
    <ul class="navbar-nav  my-lg-0">
+ @guest
+
+
       <li class="nav-item active">
         <a class="nav-link" href="#"><i class="fas fa-user"></i> Iniciar session <span class="sr-only">(current)</span></a>
       </li>
+ @else
+
       <li class="nav-item">
      <a class="nav-link" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -82,6 +87,9 @@
                                         @csrf
                                     </form>
 </li>
+
+
+@endguest
    
 </ul>
 </nav>

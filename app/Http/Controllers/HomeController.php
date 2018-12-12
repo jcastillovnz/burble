@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Clientes;
+use App\Contactos;
+
+
+
+
+
 class HomeController extends Controller
 {
     /**
@@ -23,6 +30,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+       $clientes=Clientes::all();
+        return view('home', compact('clientes'));
     }
 }
