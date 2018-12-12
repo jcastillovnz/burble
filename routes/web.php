@@ -25,3 +25,4 @@ Route::get('/nuevo_cliente', 'ClienteController@create');
 
 
 
+Route::get('/usuarios_consulta/', 'ConfiguracionController@consulta');

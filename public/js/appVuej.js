@@ -15,38 +15,36 @@ methods: {
 read: function(e) {
 
 
-var cliente;
-var proyecto;
-var fecha_entrega;
-var fecha_entrega;
-var presupuesto;
-var comentarios;
-
-
-
-var formData = new FormData();
-formData.append('tarjetaverdefrontal', $('#input_tarjeta_verde_frontal')[0].files[0]);
-$.ajax({
-        url: $avatarForm.attr('action') + '?' + $avatarForm.serialize(),
-         beforeSend: function(){
-$(".loader").show();
-
- },
-        method: $avatarForm.attr('method'),
-        data: formData,
-        processData: false,
-        contentType: false
-    }).done(function (data) {
-
-
-
-});
 
 
 
 
+var url = '/api/proyecto/create/' ;
 
 
+axios({
+      method: 'get',
+      url: url, 
+
+
+      ,
+      validateStatus: (status) => {
+        return true; // I'm always returning true, you may want to do it depending on the status received
+      },
+    }).catch(error => {
+
+
+
+    }).then(response => {
+
+
+
+console.log(response.data)
+
+
+
+        // this is now called!
+    });
 
 
 
@@ -80,6 +78,8 @@ enviar: function(e) {
 
 document.getElementById('btn-proyecto').disabled = true;
 document.getElementById('loader-sm').style.display="block"
+
+this.read()
 
 
  }

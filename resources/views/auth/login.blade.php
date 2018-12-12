@@ -181,8 +181,9 @@ Burble
 
 <h3>
 <p align="center" class="text-info">
-<strong>
+  
 BURBLE
+<strong>
 </strong>
 </p>
 </h3>

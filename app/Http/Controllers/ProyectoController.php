@@ -27,6 +27,14 @@ class ProyectoController extends Controller
 
 
 
+
+dd($request->all());
+
+
+
+
+
+/*
 $proyecto= new Proyectos();
 $proyecto->nombre=  $request->nombre_proyecto;
 $proyecto->fecha_entrega=$request->fecha_entrega;
@@ -37,8 +45,6 @@ $proyecto->save();
 
 
 
-
-
 if ($proyecto->save()==true) {
 
   return redirect('home');
@@ -46,7 +52,7 @@ if ($proyecto->save()==true) {
 
 }
 
-
+*/
 
 
 

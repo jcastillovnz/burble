@@ -16,6 +16,9 @@
     <!-- Fonts -->
            <!-- Fonts -->
         <!-- Fonts -->
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
   
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" >
@@ -24,15 +27,8 @@
 
 
 
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-
-
-<script src="{{ asset('js/vue.js') }}" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.min.js"></script>
+<script src="{{ asset('js/vue.js') }}" defer></script>
 <script src="{{ asset('js/appVuej.js') }}" defer></script>
 
 
