@@ -491,7 +491,7 @@ Registrar un nuevo proyecto
 
   <div  class="modal-body">
     
-<form     class="navbar-form hidden" role="form" action="{{ url('/proyecto/create/') }}"
+<form     class="navbar-form hidden" role="form" 
  method="GET" >
  {{ csrf_field() }}
 
@@ -501,7 +501,7 @@ Registrar un nuevo proyecto
       <span style="width: 35px"  class="input-group-text"><i  class="fas fa-briefcase"></i> </span>
     </div>
  
-<select required=""  name="cliente" class="form-control">
+<select required=""  v-model="cliente" class="form-control">
 
 <option value="" selected="">Cliente / Empresa</option>
 
@@ -529,7 +529,7 @@ Registrar un nuevo proyecto
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
     </div>
-    <input  required="" name="nombre_proyecto" type="text" class="form-control" placeholder="Nombre de proyecto">
+    <input  required="" v-model="proyecto" type="text" class="form-control" placeholder="Nombre de proyecto">
   
   </div>
 
@@ -541,7 +541,7 @@ Registrar un nuevo proyecto
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-clock"></i>  </span>
     </div>
-    <input  required="" name="fecha_entrega" type="date" class="form-control" placeholder="Fecha de entrega">
+    <input  required="" v-model="fecha_entrega" type="date" class="form-control" placeholder="Fecha de entrega">
 
   </div>
 
@@ -555,7 +555,7 @@ Registrar un nuevo proyecto
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
     </div>
-    <input  required="" name="presupuesto" type="number" class="form-control" placeholder="Presupuesto">
+    <input  required="" v-model="presupuesto" type="number" class="form-control" placeholder="Presupuesto">
 
   </div>
 
@@ -576,7 +576,7 @@ Registrar un nuevo proyecto
       <span style="width: 35px"   class="input-group-text"><i class="fas fa-comments"></i> </span>
     </div>
    
-<textarea required="" name="comentario" class="form-control" placeholder="Comentarios..."></textarea>
+<textarea required="" v-model="comentario" class="form-control" placeholder="Comentarios..."></textarea>
 
 
   </div>

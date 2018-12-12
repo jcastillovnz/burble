@@ -6,7 +6,11 @@
 var Proyectos = new Vue({ 
     el: '#AppProyecto',
     data: {
-        message: 'HOLA!'
+        cliente: '',
+        proyecto: '',
+        fecha_entrega: '',
+        presupuesto: '',
+        comentario: '',
     },
 
 methods: {
@@ -22,11 +26,21 @@ read: function(e) {
 var url = '/api/proyecto/create/' ;
 
 
-axios({
-      method: 'get',
-      url: url, 
 
 
+
+
+
+axios.get( url, {
+  params: {
+cliente: this.cliente,
+proyecto: this.proyecto,
+fecha_entrega: this.fecha_entrega,
+presupuesto: this.presupuesto,
+comentario: this.comentario,
+
+
+  }
       ,
       validateStatus: (status) => {
         return true; // I'm always returning true, you may want to do it depending on the status received
@@ -39,8 +53,8 @@ axios({
 
 
 
-console.log(response.data)
 
+document.getElementById('loader-sm').style.display="none"
 
 
         // this is now called!
