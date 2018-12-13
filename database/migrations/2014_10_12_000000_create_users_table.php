@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('apellido')->nullable();
+            $table->string('foto')->nullable();
             $table->string('alias')->nullable();
             $table->string('fecha_nacimiento')->nullable();
             $table->string('rango')->nullable();
@@ -24,8 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('direccion')->nullable();
             $table->string('telefono')->nullable();
             $table->string('obra_social')->nullable();
-            $table->string('art')->nullable();
-            $table->string('contacto_art')->nullable();
+            $table->string('servicio_ambulancia')->nullable();
+            $table->string('contacto_ambulancia')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
