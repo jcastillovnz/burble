@@ -195,9 +195,9 @@ Registrar un nuevo usuario
 <div class="col-sm-12">
     <div v-on:click="$refs.file.click()" >
 
-<img  id="profile" class="img-fluid img-thumbnail rounded-circle" width="120"  v-bind:src="'/img/user.png'"   >
+<img  id="profile" class="img-fluid img-thumbnail rounded-circle" width="120" v-bind:src="'/img/'+foto"  >
 
-<input  v-on:change="cargar_foto" class="invisible"  ref="file" type="file" name="" >
+<input  v-on:change="cargar_foto" class="invisible"  ref="file" type="file"  value=""  name="cargar_foto"  >
 
 
 

@@ -140,7 +140,7 @@ var Usuarios = new Vue({
     el: '#Appusuarios',
     data: {
        mensaje: 'mensaje puto',
-    
+       foto: 'user.png' ,
     },
 
 methods: {
@@ -159,7 +159,7 @@ cliente: this.cliente,
 proyecto: this.proyecto,
 fecha_entrega: this.fecha_entrega,
 presupuesto: this.presupuesto,
-comentario: this.comentario,
+foto: this.comentario,
 
 
   }
@@ -209,21 +209,6 @@ document.getElementById('btn-proyecto').disabled = false;
 
 
 
-/*LEER URL*/
-/*
-    window.axios.get('/api/proyecto/create').then(({ data }) => {
-
-    data.forEach(crud => {
-    this.cruds.push(new Crud(crud));
-
-      });
-    });
-*/
-
-
- /*LEER URL*/
-
-
   },
 
 
@@ -249,8 +234,11 @@ this.read()
 
 cargar_foto: function(e) {
 
+const file = event.target.files[0]
+this.foto =  file.name;
 
-foto:  'image.jpg'
+
+
 
 
  }
