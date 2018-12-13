@@ -73,32 +73,46 @@ comentarios sobre esta tarea
 
 <!-- IMAGENES -->
 <!-- BOTONES-->
-<div class="float-right button-collapse btn btn-light " id="button-collapse"  data-toggle="collapse" href="#collapseExample" role="button">
+
+<div class="float-right btn-group " >
+
+
+<div class="float-right button-collapse btn btn-light "   id="button-collapse" data-toggle="collapse" href="#collapseExample" role="button">
 
 <i style="font-size: 12px" class="fas fa-chevron-down"></i>
 
 </div>
 
 
-<div class="float-right button-collapse btn btn-light " id="button-collapse">
+<div class="float-right  btn btn-light "  id="button-collapse">
 <i  style="font-size: 12px" class="fas fa-pen-square"></i>
 </div>
+
 
 <div class="float-right button-collapse btn btn-light " id="button-collapse"  data-toggle="modal" data-target=".nuevaTarea"  role="button">
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>
 </div>
 
 
+</div>
+<!-- BOTONES-->
 
 
 
 
-<div class="container-fluid collapse" id="collapseExample">
+<div  class="collapse " id="collapseExample">
 
-​<img width="120" src="img/pieza.png" class="img-fluid  " alt="...">
-<img width="120" src="img/pieza.png" class="img-fluid  " alt="...">
-<img width="120" src="img/pieza.png" class="img-fluid  " alt="...">
-<img width="120" src="img/pieza.png" class="img-fluid  " alt="...">
+
+ <div class="center">
+
+​<img width="120" src="img/pieza.png" class="img-fluid" alt="...">
+<img width="120" src="img/pieza.png" class="img-fluid" alt="...">
+<img width="120" src="img/pieza.png" class="img-fluid" alt="...">
+<img width="120" src="img/pieza.png" class="img-fluid" alt="...">
+
+
+</div>
+
 
 </div>
 

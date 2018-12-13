@@ -20,9 +20,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::get('/mi-cuenta', 'CuentaController@index')->name('cuenta');
+
+
+
+
 
 Route::get('/nuevo_cliente', 'ClienteController@create');
 
 
 
-Route::get('/usuarios_consulta/', 'ConfiguracionController@consulta');
