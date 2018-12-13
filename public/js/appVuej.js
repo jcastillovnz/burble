@@ -140,7 +140,7 @@ var Usuarios = new Vue({
     el: '#Appusuarios',
     data: {
        mensaje: 'mensaje puto',
-       foto: 'user.png' ,
+       foto: 'img/user.png' ,
     },
 
 methods: {
@@ -234,8 +234,18 @@ this.read()
 
 cargar_foto: function(e) {
 
-const file = event.target.files[0]
-this.foto =  file.name;
+const file = event.target.files[0];
+this.foto = URL.createObjectURL(file);
+
+
+
+
+
+
+
+
+
+
 
 
 
