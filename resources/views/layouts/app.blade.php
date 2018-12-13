@@ -168,7 +168,7 @@
 
 <ul class="navbar-nav  my-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fas fa-home"></i> Inicio <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ url('/home') }}"><i class="fas fa-home"></i> Inicio <span class="sr-only">(current)</span></a>
 </li>
 
 <li class="nav-item">
@@ -186,9 +186,9 @@
   <a class="nav-link dropdown-toggle"  data-toggle="dropdown"><i class="fas fa-cogs nav-item"></i> Configuracion
   <span class="caret"></span></a>
   <ul class="dropdown-menu ">
-    <li class="dropdown-item"><a class="dropdown-item" href="{{ url('/mi-cuenta') }}"><i class="fas fa-user-alt "></i>  Mi cuenta</a></li>
-    <li class="dropdown-item"><a class="dropdown-item" href="{{ url('/gestiones') }}"><i class="fas fa-users-cog "></i>  Gestiones</a></li>
-    <li class="dropdown-item"><a  class="dropdown-item" href="#"><i class="fas fa-lock "></i>  Salir</a></li>
+    <li class="dropdown-item"><a class="dropdown-item nav-link" href="{{ url('/mi-cuenta') }}"><i class="fas fa-user-alt "></i>  Mi cuenta</a></li>
+    <li class="dropdown-item"><a class="dropdown-item nav-link" href="{{ url('/gestiones') }}"><i class="fas fa-users-cog "></i>  Gestiones</a></li>
+    <li class="dropdown-item"><a  class="dropdown-item nav-link" href="#"><i class="fas fa-lock "></i>  Salir</a></li>
   </ul>
 </div>
 
