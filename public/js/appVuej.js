@@ -57,7 +57,7 @@ $('.nuevoProyecto').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
  document.getElementById("formulario_proyecto").reset();       
- Object.assign(this.$data, this.$options.data());
+
 
 }
 else

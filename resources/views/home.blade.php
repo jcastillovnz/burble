@@ -80,16 +80,19 @@ comentarios sobre esta tarea
 </div>
 
 
+<div class="float-right button-collapse btn btn-light " id="button-collapse">
+<i  style="font-size: 12px" class="fas fa-pen-square"></i>
+</div>
 
 <div class="float-right button-collapse btn btn-light " id="button-collapse"  data-toggle="modal" data-target=".nuevaTarea"  role="button">
-
-
-
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>
-
-
-
 </div>
+
+
+
+
+
+
 <div class="container-fluid collapse" id="collapseExample">
 
 ​<img width="120" src="img/pieza.png" class="img-fluid  " alt="...">
@@ -477,7 +480,7 @@ Registrar un nuevo proyecto
 </div>
   <div  class="modal-body">
     
-<form  id="formulario_proyecto"   class="navbar-form hidden" role="form" action="" 
+<form  id="formulario_proyecto" autocomplete="off"   class="navbar-form hidden" role="form" action="" 
  method="GET" >
  {{ csrf_field() }}
 
@@ -487,7 +490,7 @@ Registrar un nuevo proyecto
       <span style="width: 35px"  class="input-group-text"><i  class="fas fa-briefcase"></i> </span>
     </div>
  
-<select required=""  v-model="cliente" class="form-control">
+<select required="" autocomplete="off"  v-model="cliente" class="form-control">
 
 <option value="" selected="">Cliente / Empresa</option>
 
@@ -515,7 +518,7 @@ Registrar un nuevo proyecto
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
     </div>
-    <input  required="" v-model="proyecto" type="text" class="form-control" placeholder="Nombre de proyecto">
+    <input  autocomplete="off" required="" v-model="proyecto" type="text" class="form-control" placeholder="Nombre de proyecto">
   
   </div>
 
@@ -527,7 +530,7 @@ Registrar un nuevo proyecto
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-clock"></i>  </span>
     </div>
-    <input  required="" v-model="fecha_entrega" type="date" class="form-control" placeholder="Fecha de entrega">
+    <input  autocomplete="off" required="" v-model="fecha_entrega" type="date" class="form-control" placeholder="Fecha de entrega">
 
   </div>
 
@@ -541,7 +544,7 @@ Registrar un nuevo proyecto
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
     </div>
-    <input  required="" v-model="presupuesto" type="number" min="100" max="5000"   class="form-control" placeholder="Presupuesto">
+    <input  autocomplete="off" required="" v-model="presupuesto" type="number" min="100" max="5000"   class="form-control" placeholder="Presupuesto">
 
   </div>
 
@@ -562,7 +565,7 @@ Registrar un nuevo proyecto
       <span style="width: 35px"   class="input-group-text"><i class="fas fa-comments"></i> </span>
     </div>
    
-<textarea required="" v-model="comentario" class="form-control" placeholder="Comentarios..."></textarea>
+<textarea autocomplete="off" required="" v-model="comentario" class="form-control" placeholder="Comentarios..."></textarea>
 
 
   </div>
