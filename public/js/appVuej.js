@@ -139,8 +139,19 @@ this.read()
 var Usuarios = new Vue({ 
     el: '#Appusuarios',
     data: {
-       mensaje: 'mensaje puto',
-       foto: 'img/user.png' ,
+    foto: 'img/user.png' ,
+     nombre: '',
+     apellido: '',
+     email: '',
+     password: '',
+     alias: '',
+     fecha_entrega: '',
+     rango: '',
+     cuit: '',
+     direccion: '',
+     obra_social: '',
+     servicio_ambulancia: '',
+     contacto_ambulancia: '',
     },
 
 methods: {
@@ -149,18 +160,25 @@ methods: {
 read: function(e) {
 
 
-var url = '/api/proyecto/create/' ;
+var url = '/api/usuario/create/' ;
 
 
 
 axios.get( url, {
   params: {
-cliente: this.cliente,
-proyecto: this.proyecto,
-fecha_entrega: this.fecha_entrega,
-presupuesto: this.presupuesto,
-foto: this.comentario,
-
+  foto: 'img/user.png' ,
+     nombre: this.nombre,
+     apellido: this.apellido,
+     email: this.email,
+     password: this.password,
+     alias:this.alias,
+     fecha_entrega:this.fecha_entrega,
+     rango: this.rango,
+     cuit: this.cuit,
+     direccion: this.direccion,
+     obra_social: this.obra_social,
+     servicio_ambulancia: this.servicio_ambulancia,
+     contacto_ambulancia: this.contacto_ambulancia,
 
   }
       ,
@@ -181,7 +199,7 @@ if (response.data == "true") {
 document.getElementById('loader-sm').style.display="none"
 $('.nuevoProyecto').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
-var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
  document.getElementById("formulario_proyecto").reset();       
 
 
@@ -220,10 +238,8 @@ document.getElementById('btn-proyecto').disabled = false;
 
 enviar: function(e) {
 
-
 document.getElementById('btn-proyecto').disabled = true;
 document.getElementById('loader-sm').style.display="block"
-
 this.read()
 
 
@@ -236,18 +252,6 @@ cargar_foto: function(e) {
 
 const file = event.target.files[0];
 this.foto = URL.createObjectURL(file);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

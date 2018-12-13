@@ -171,7 +171,7 @@
  
     <div class="modal-content">
 
-
+<form  class="hidden"  action="" >
 
    <div class="modal-header ">
     
@@ -203,7 +203,7 @@ Registrar un nuevo usuario
 
 <p class="text-info">
 <strong> 
-Subir foto
+Sube una foto
 </strong>
 </p>
     </div>
@@ -407,22 +407,7 @@ Subir foto
 
 
 
-
-
-
-
-
-
-
-
-
-      </div>
-
-
-
-
-
-
+ </div>
 
 
 
@@ -441,14 +426,13 @@ Subir foto
 
 
 
-
-<button class="btn btn-success btn-sm" type="button"  >
-<i class="fas fa-save"></i>
+<button  id="btn-proyecto" type="sumbit"  class="btn btn-success btn-sm"     v-on:click.prevent="enviar(this)"   >
+<i class="fas fa-save"></i> 
 </button>
 
 
 
-
+</form>
 </div>
 
 </div>
