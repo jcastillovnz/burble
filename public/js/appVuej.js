@@ -50,11 +50,33 @@ comentario: this.comentario,
 
 
 
+if (response.data == "true") {
+
+document.getElementById('loader-sm').style.display="none"
+$('.nuevoProyecto').modal('hide')
+document.getElementById('btn-proyecto').disabled = false;
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+ document.getElementById("formulario_proyecto").reset();       
+ Object.assign(this.$data, this.$options.data());
+
+}
+else
+{
+
 document.getElementById('loader-sm').style.display="none"
 $('.nuevoProyecto').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
 
-var notification = alertify.notify('<strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong>', 'success', 5, function(){  console.log('dismissed'); });
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+
+ document.getElementById("formulario_proyecto").reset();    
+
+
+}
+
+
+
+
         // this is now called!
     });
 

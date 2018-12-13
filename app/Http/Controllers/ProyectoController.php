@@ -28,15 +28,11 @@ class ProyectoController extends Controller
 
 
 
-dd($request->all());
 
 
 
-
-
-/*
 $proyecto= new Proyectos();
-$proyecto->nombre=  $request->nombre_proyecto;
+$proyecto->nombre=  $request->proyecto;
 $proyecto->fecha_entrega=$request->fecha_entrega;
 $proyecto->presupuesto=$request->presupuesto;
 $proyecto->comentario=$request->comentario;
@@ -46,13 +42,21 @@ $proyecto->save();
 
 
 if ($proyecto->save()==true) {
-
-  return redirect('home');
-
+$data = "true";
+return response()->json($data); 
 
 }
 
-*/
+
+else {
+
+$data = "false";
+return response()->json($data); 
+
+}
+
+
+
 
 
 

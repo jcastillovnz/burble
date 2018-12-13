@@ -464,10 +464,7 @@ comentarios sobre esta tarea
  
     <div   class="modal-content">
 
-
-
    <div class="modal-header ">
-    
 
 <div class="col-sm-12 text-primary">
 <i class="fas fa-cube"></i>
@@ -477,21 +474,10 @@ Registrar un nuevo proyecto
 <button type="button" class="close float-right" data-dismiss="modal">&times;</button>
 </div>
 
-
-
-   
-      </div>
-
-
-
-
-
-
-
-
+</div>
   <div  class="modal-body">
     
-<form     class="navbar-form hidden" role="form" 
+<form  id="formulario_proyecto"   class="navbar-form hidden" role="form" action="" 
  method="GET" >
  {{ csrf_field() }}
 
@@ -555,7 +541,7 @@ Registrar un nuevo proyecto
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
     </div>
-    <input  required="" v-model="presupuesto" type="number" class="form-control" placeholder="Presupuesto">
+    <input  required="" v-model="presupuesto" type="number" min="100" max="5000"   class="form-control" placeholder="Presupuesto">
 
   </div>
 
@@ -1096,6 +1082,12 @@ Datos de contacto
 
 
 <div class="btn btn-group  ">
+
+<div id="loader-sm" class="loader loader-sm "></div>
+
+
+
+
 <button class="btn btn-light btn-sm " title="Cancelar" type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>
@@ -1273,6 +1265,9 @@ Registrar un nueva tarea
 
 
 <div class="btn btn-group  ">
+
+    <div id="loader-sm" class="loader loader-sm "></div>
+
 <button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>
@@ -1419,6 +1414,8 @@ Registrar un nuevo usuario
 
 
 <div class="btn btn-group  ">
+<div id="loader-sm" class="loader loader-sm "></div>
+
 <button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>
@@ -1470,6 +1467,9 @@ Registrar un nuevo usuario
 
 
 <div class="btn btn-group  ">
+
+<div id="loader-sm" class="loader loader-sm "></div>
+
 <button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>
