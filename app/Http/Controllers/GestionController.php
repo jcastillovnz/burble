@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class GestionesController extends Controller
+class GestionController extends Controller
 {
     //
 
@@ -18,6 +18,23 @@ class GestionesController extends Controller
 
 
     }
+
+
+
+  public function createUser( Request $request)
+    {
+
+ 
+
+dd($request->all());
+
+
+
+    }
+
+
+
+
 
 
 

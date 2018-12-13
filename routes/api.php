@@ -23,4 +23,5 @@ use Illuminate\Http\Request;
 Route::get('/proyecto/create/', 'ProyectoController@create');
 
 
-Route::get('/usuarios_consulta/', 'ConfiguracionController@consulta');
+Route::get('/usuario/create/', 'GestionController@createUser');
+
