@@ -171,7 +171,7 @@
  
     <div class="modal-content">
 
-<form  class="hidden"  action="" >
+<form id="formulario_usuario"  autocomplete="off"    method="GET" class="hidden"  @submit.prevent="enviar(this)" >
 
    <div class="modal-header ">
     
@@ -191,11 +191,11 @@ Registrar un nuevo usuario
 
   <div class="modal-body">
     
-
+<!--  
 <div class="col-sm-12">
     <div v-on:click="$refs.file.click()" >
 
-<img   class="preview  img-fluid img-thumbnail rounded-circle" width="120" height="120" v-bind:src="foto"  >
+<img   class="preview  img-fluid img-thumbnail rounded-circle" width="120" height="120" v-bind:src="preview"  >
 
 <input  v-on:change="cargar_foto" class="invisible"  ref="file" type="file"  value=""  name="cargar_foto"  >
 
@@ -209,7 +209,7 @@ Sube una foto
     </div>
  
   </div>
-
+-->
 
 
 
@@ -218,7 +218,7 @@ Sube una foto
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i></span>
     </div>
-    <input type="text" class="form-control" placeholder="Nombre">
+    <input required="" type="text" class="form-control"  v-model="nombre"   placeholder="Nombre">
   
   </div>
 
@@ -233,7 +233,7 @@ Sube una foto
 
          </span>
     </div>
-    <input type="text" class="form-control" placeholder="Apellido">
+    <input required="" type="text" class="form-control" v-model="apellido" placeholder="Apellido">
   </div>
 
 
@@ -250,7 +250,7 @@ Sube una foto
       </span>
     </div>
 
-<input class="form-control" type="text" name="" placeholder="Email">
+<input required="" autocomplete="off" value="" class="form-control"  v-on:keyup="monitor(this)"   type="email" name="email" v-model="email"   placeholder="Email">
 
 
   </div>
@@ -264,21 +264,9 @@ Sube una foto
       </span>
     </div>
 
-<input class="form-control" type="text" name="" placeholder="Contraseña">
-
+<input required=""  autocomplete="new-password"  class="form-control" type="password" name="password" value="" v-model="password" placeholder="Contraseña">
 
   </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -290,7 +278,7 @@ Sube una foto
         <i class="fas fa-cog"></i> 
          </span>
     </div>
-    <input type="text" class="form-control" placeholder="Alias">
+    <input type="text" class="form-control" v-model="alias" placeholder="Alias">
   </div>
 
 
@@ -301,7 +289,7 @@ Sube una foto
 <i class="fas fa-clock"></i>
          </span>
     </div>
-    <input type="date" class="form-control" placeholder="Fecha nacimiento">
+    <input type="date" class="form-control" v-model="fecha_nacimiento" value=""  placeholder="Fecha nacimiento">
   </div>
 
 
@@ -318,14 +306,11 @@ Sube una foto
       </span>
     </div>
 
-<select class="form-control">
+<select   required="" name="rango" v-model="rango"    class="form-control">
 <option value="" selected="">Rango</option>
-
-
-<option value="">Empleado</option>
-<option value="">Freelance</option>
-<option value="">Administrador</option>
-
+<option value="Empleado">Empleado</option>
+<option value="Freelance">Freelance</option>
+<option value="Administrador">Administrador</option>
 </select>
 
 
@@ -336,11 +321,11 @@ Sube una foto
 
 
  <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
-    </div>
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
+</div>
 
-<input class="form-control" type="text" name="" placeholder="CUIT">
+<input required="" value="" class="form-control" type="text" value="" name="cuit" v-model="cuit" placeholder="CUIT">
 
 
   </div>
@@ -355,7 +340,7 @@ Sube una foto
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
     </div>
 
-<input class="form-control" type="text" name="" placeholder="Direccion">
+<input class="form-control" type="text" value=""  v-model="direccion"   name="" placeholder="Direccion">
 
 
   </div>
@@ -373,7 +358,7 @@ Sube una foto
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i>  </span>
     </div>
 
-<input class="form-control" type="text" name="" placeholder="Obra social">
+<input value="" class="form-control" type="text" name="obra_social" v-model="obra_social"   placeholder="Obra social">
 
 
   </div>
@@ -386,7 +371,7 @@ Sube una foto
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
     </div>
 
-<input class="form-control" type="text" name="" placeholder="servicio de ambulancia">
+<input class="form-control" type="text" value="" name="servicio_ambulancia" v-model="servicio_ambulancia"   placeholder="servicio de ambulancia">
 
 
   </div>
@@ -398,7 +383,7 @@ Sube una foto
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
     </div>
 
-<input class="form-control" type="text" name="" placeholder="Contacto de ambulancia">
+<input class="form-control" type="text" value=""  name="contacto_ambulancia"  v-model="contacto_ambulancia" placeholder="Contacto de ambulancia">
 
 
   </div>
@@ -426,10 +411,9 @@ Sube una foto
 
 
 
-<button  id="btn-proyecto" type="sumbit"  class="btn btn-success btn-sm"     v-on:click.prevent="enviar(this)"   >
+<button  id="btn-proyecto" type="submit"  class="btn btn-success btn-sm"     >
 <i class="fas fa-save"></i> 
 </button>
-
 
 
 </form>

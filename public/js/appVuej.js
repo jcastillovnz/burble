@@ -2,7 +2,6 @@
 
 
 
-
 var Proyectos = new Vue({ 
     el: '#AppProyecto',
     data: {
@@ -116,11 +115,6 @@ this.read()
 
 
 
-
-
-
-
-
     }
 
 
@@ -130,8 +124,6 @@ this.read()
 });
 
 
-
-
 /*COMPONENTE USUARIOS*/
 
 
@@ -139,13 +131,15 @@ this.read()
 var Usuarios = new Vue({ 
     el: '#Appusuarios',
     data: {
-    foto: 'img/user.png' ,
-     nombre: '',
+
+    preview: 'img/user.png' ,
+    
+   nombre: '',
      apellido: '',
      email: '',
      password: '',
      alias: '',
-     fecha_entrega: '',
+     fecha_nacimiento: '',
      rango: '',
      cuit: '',
      direccion: '',
@@ -157,7 +151,10 @@ var Usuarios = new Vue({
 methods: {
 
 
+
+
 read: function(e) {
+
 
 
 var url = '/api/usuario/create/' ;
@@ -166,13 +163,14 @@ var url = '/api/usuario/create/' ;
 
 axios.get( url, {
   params: {
-  foto: 'img/user.png' ,
+
+
      nombre: this.nombre,
      apellido: this.apellido,
      email: this.email,
      password: this.password,
      alias:this.alias,
-     fecha_entrega:this.fecha_entrega,
+     fecha_nacimiento:this.fecha_nacimiento,
      rango: this.rango,
      cuit: this.cuit,
      direccion: this.direccion,
@@ -180,7 +178,9 @@ axios.get( url, {
      servicio_ambulancia: this.servicio_ambulancia,
      contacto_ambulancia: this.contacto_ambulancia,
 
+
   }
+
       ,
       validateStatus: (status) => {
         return true; // I'm always returning true, you may want to do it depending on the status received
@@ -192,12 +192,12 @@ axios.get( url, {
     }).then(response => {
 
 
-
+/**/
 
 if (response.data == "true") {
 
 document.getElementById('loader-sm').style.display="none"
-$('.nuevoProyecto').modal('hide')
+$('.nuevoUsuario').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
  document.getElementById("formulario_proyecto").reset();       
@@ -213,7 +213,7 @@ document.getElementById('btn-proyecto').disabled = false;
 
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
 
- document.getElementById("formulario_proyecto").reset();    
+   
 
 
 }
@@ -232,8 +232,18 @@ document.getElementById('btn-proyecto').disabled = false;
 
 
 
+monitor: function(e) {
 
 
+
+alert(this.email )
+
+
+
+
+
+ }
+,
 
 
 enviar: function(e) {
@@ -251,8 +261,10 @@ this.read()
 cargar_foto: function(e) {
 
 const file = event.target.files[0];
-this.foto = URL.createObjectURL(file);
+this.preview = URL.createObjectURL(file);
 
+//Convertir en archivo antes de enviar
+this.foto = file.name;
 
 
  }
