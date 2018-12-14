@@ -26,6 +26,29 @@ class GestionController extends Controller
 
 
 
+   public function monitor(Request $request)
+    {
+
+
+
+return User::where('email', $id)->select( 'user.email'
+)->first();
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
   public function createUser( Request $request)
     {
 

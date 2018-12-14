@@ -25,3 +25,4 @@ Route::get('/proyecto/create/', 'ProyectoController@create');
 
 Route::get('/usuario/create/', 'GestionController@createUser');
 
+Route::get('/usuario/consulta_mail/', 'GestionController@monitor');

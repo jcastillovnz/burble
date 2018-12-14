@@ -235,8 +235,16 @@ document.getElementById('btn-proyecto').disabled = false;
 monitor: function(e) {
 
 
+axios({
+  url: '/api/usuario/consulta_mail/',
+  method: 'get',
+  data: {
+    email: 'bar'
+  }
+}).then(function (response) {
+    console.log(response);
+  })
 
-alert(this.email )
 
 
 
