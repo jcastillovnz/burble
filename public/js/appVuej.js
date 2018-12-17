@@ -61,9 +61,7 @@ else
 document.getElementById('loader-sm').style.display="none"
 $('.nuevoProyecto').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
-
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
-
  document.getElementById("formulario_proyecto").reset();    
 
 
@@ -238,12 +236,36 @@ monitor: function(e) {
 axios({
   url: '/api/usuario/consulta_mail/',
   method: 'get',
-  data: {
-    email: 'bar'
+  params: {
+    email: this.email
   }
 }).then(function (response) {
-    console.log(response);
+
+
+if (response.data =="true") {
+var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Email ya existe </strong> </center>');
+this.email = 'sss'
+
+
+
+
+}
+
+
+
+
+
   })
+
+
+
+
+
+
+
+
+
+
 
 
 

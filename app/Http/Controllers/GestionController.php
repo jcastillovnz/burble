@@ -30,21 +30,22 @@ class GestionController extends Controller
     {
 
 
-
-return User::where('email', $id)->select( 'user.email'
-)->first();
+$mail = User::where('email', $request->email)->first();
 
 
 
 
+if ($mail == true){
+
+$data = "true";
+return response()->json($data); 
+
+}
 
 
 
 
-    }
-
-
-
+}
 
 
 
