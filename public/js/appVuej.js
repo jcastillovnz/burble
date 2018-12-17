@@ -1,9 +1,12 @@
 
-window.onload = function () {
+
+
+
+
 
 
 var Proyectos = new Vue({ 
-    el: '#AppProyecto',
+    el: '#AppProyectos',
     data: {
         cliente: '',
         proyecto: '',
@@ -59,9 +62,15 @@ document.getElementById('btn-proyecto').disabled = false;
 });
 },
 enviar: function(e) {
+
+
+alert("hello")
+
 document.getElementById('btn-proyecto').disabled = true;
 document.getElementById('loader-sm').style.display="block"
 this.read()
+
+
 }
 }
 
@@ -204,7 +213,7 @@ this.read()
 /*GESTIONAR USUARIOS*/
 
 var Gestionusuarios = new Vue({ 
-    el: '#AppGestion',
+    el: '#AppUsuarios',
   mounted(){
 
 this.getUsers();
@@ -378,4 +387,3 @@ this.foto = file.name;
 
 
 
-}

@@ -63,27 +63,17 @@
 
 
 
-  <div  id="AppGestion"  class=" col-sm-9 ">
+  <div  id="AppUsuarios"  class=" col-sm-9 ">
 
 
 
 
 <div    class="card table-responsive" >
 
-
-
-
 <div  class="">
   <p>
    <h5 > <strong ><i class="fas fa-cogs"></i> Gestion de usuarios</strong>   </h5>
-
-
-
    <button class="btn btn-light rounded-circle float-right " data-toggle="modal" data-target=".nuevoUsuario"> <i class="fas fa-plus"></i>   </button>
-
-
-
-
 </p>
 
 
@@ -134,28 +124,13 @@
 
 
 
-
-
-
-
-
-
-
-
-
 <!-- MODAL NUEVO USUARIO -->
-
-
 <div  class="modal fade nuevoUsuario" tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-
-
-  <div  class="modal-dialog modal-sm-8">
- 
-    <div class="modal-content">
+<div  class="modal-dialog modal-sm-8">
+ <div class="modal-content">
 
 <form id="formulario_usuario"  autocomplete="off"    method="GET" class="hidden"  @submit.prevent="enviar(this)" >
-
-   <div class="modal-header ">
+ <div class="modal-header ">
     
 <div class="col-sm-12 text-primary">
 <i class="fas fa-suitcase"></i>
@@ -298,9 +273,6 @@ Sube una foto
   </div>
 
 
-
-
-
  <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
@@ -311,11 +283,6 @@ Sube una foto
 
   </div>
 
-
-
-
-
-
  <div class="input-group col-sm-12">
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
@@ -325,14 +292,6 @@ Sube una foto
 
 
   </div>
-
-
-
-
-
-
-
-
 
 <div class="input-group col-sm-12">
     <div class="input-group-prepend">

@@ -5,7 +5,7 @@
 
       <div class="content  " >
 
-<div class="  col-sm-12">
+<div   id="AppProyectos"  class="col-sm-12">
          
 
    <button class="btn btn-light rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
@@ -470,10 +470,112 @@ comentarios sobre esta tarea
 
 
 
+<!-- MODAL NUEVO PROYECTO  -->
+<div     class="modal fade nuevoProyecto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog modal-sm-8">
+ 
+    <div    class="modal-content">
+
+   <div class="modal-header ">
+
+<div class="col-sm-12 text-primary">
+<i class="fas fa-cube"></i>
+<strong>
+Registrar un nuevo proyecto
+</strong>
+<button type="button" class="close float-right" data-dismiss="modal">&times;</button>
+</div>
+</div>
+
+
+
+<div  class="modal-body">
+<form  id="formulario_proyecto"   autocomplete="off"    method="GET"   @submit.prevent="enviar(event)" >
+ <div class="input-group col-sm-12">
+<div class="input-group-prepend">
+      <span style="width: 35px"  class="input-group-text"><i  class="fas fa-briefcase"></i> </span>
+    </div>
+ 
+<select required="" autocomplete="off"  v-model="cliente" class="form-control">
+
+<option value="" selected="">Cliente / Empresa</option>
+
+@if ( isset($clientes)==true   )
+
+@foreach( $clientes as $cliente)
+<option value="{{$cliente->id}}"  > {{$cliente->nombre}}</option>
+@endforeach
+
+
+@else
+<option value="">Registre un cliente</option>
+
+
+
+@endif
+</select>
+
+  </div>
+
+
+
+ <div class="input-group  col-sm-12">
+    <div class="input-group-prepend">
+
+
+
+      <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
+    </div>
+    <input  autocomplete="off" required="" v-model="proyecto" type="text" class="form-control" placeholder="Nombre de proyecto">
+  
+  </div>
+
+
+<div class="input-group col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-clock"></i>  </span>
+</div>
+<input  autocomplete="off" required="" v-model="fecha_entrega" type="date" class="form-control" placeholder="Fecha de entrega">
+</div>
+<div class="input-group col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
+</div>
+<input  autocomplete="off" required="" v-model="presupuesto" type="number" min="100" max="5000000"   class="form-control" placeholder="Presupuesto">
+</div>
+<div class="input-group col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"   class="input-group-text"><i class="fas fa-comments"></i> </span>
+</div>
+   
+<textarea autocomplete="off" required="" v-model="comentario" class="form-control" placeholder="Comentarios..."></textarea>
+</div>
+ </div>
+<div  class="modal-footer">
+<div  class="btn btn-group  ">
+<div id="loader-sm" class="loader loader-sm "></div>
+<button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
+<i class="fas fa-times-circle"></i>
+</button>
+
+<button  id="btn-proyecto"  type="submit"    class="btn btn-success btn-sm"   >
+<i class="fas fa-save"></i> 
+</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- MODAL NUEVO PROYECTO  -->
+
+
+
+
+
 
 <!-- MODAL NUEVO CLIENTE -->
-
-
 
 <div id=""   class="modal fade nuevoCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-sm-8">
@@ -502,18 +604,12 @@ Registrar un nuevo Cliente
   
   </div>
 
-
  <div class="input-group col-sm-12">
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
     </div>
     <input  name="sitio_web"   type="text" class="form-control" placeholder="Sitio web">
-
-  </div>
-
-
-
-
+</div>
  <div class="input-group col-sm-12">
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-map-marker-alt"></i></i> </span>
@@ -522,25 +618,13 @@ Registrar un nuevo Cliente
 <input  name="ciudad"  class="form-control" type="" name="" placeholder="Ciudad">
 
   </div>
-
-
-
-
-
-
-
-
-
 <div class="input-group col-sm-12">
     <div class="input-group-prepend">
       <span style="width: 35px"   class="input-group-text">
 
  <i class="fas fa-globe-americas"></i>
-
-
-      </span>
+</span>
     </div>
-
 <select  class="form-control" name="pais">
 <option value="Elegir" id="AF">Pais</option>
 <option value="Afganistán" id="AF">Afganistán</option>
@@ -782,10 +866,6 @@ Registrar un nuevo Cliente
 <option value="Zimbabue" id="ZW">Zimbabue</option>
 </select>
   </div>
-
-
-
-
 <div class="input-group col-sm-12">
     <div class="input-group-prepend">
       <span style="width: 35px"   class="input-group-text">
@@ -799,16 +879,6 @@ Registrar un nuevo Cliente
 <input   type="" class="form-control" name="telefono" placeholder="Telefono">
 
   </div>
-
-
-
-
-
-
-
-
-
-
 <br>
 <p align="center"  class="text-primary">
 
@@ -817,289 +887,58 @@ Registrar un nuevo Cliente
 Datos de contacto
 </strong>
 </p>
-
-
-
 <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"   class="input-group-text">
+<div class="input-group-prepend">
+<span style="width: 35px"   class="input-group-text">
 <i class="fas fa-user"></i>
 </span>
 </div>
 <input required=""  type="" class="form-control" name="nombre_contacto" placeholder="Nombre">
-
-  </div>
-
-
+</div>
 <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"   class="input-group-text">
+<div class="input-group-prepend">
+<span style="width: 35px"   class="input-group-text">
 <i class="fas fa-user"></i>
 </span>
 </div>
 <input type="" class="form-control" name="Apellido_contacto" placeholder="Apellido">
-
-  </div>
-
-
-<div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"   class="input-group-text">
-
-<i class="fas fa-phone-square"></i>
-
-
-      </span>
-    </div>
-
-<input required="" type="" class="form-control" name="telefono_contacto" placeholder="Telefono">
-
 </div>
-
-
-
-
-
 <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"   class="input-group-text">
+<div class="input-group-prepend">
+<span style="width: 35px"   class="input-group-text">
+<i class="fas fa-phone-square"></i></span>
+</div>
+<input required="" type="" class="form-control" name="telefono_contacto" placeholder="Telefono">
+</div>
+<div class="input-group col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"   class="input-group-text">
 <i class="fas fa-mail-bulk"></i>
 </span>
 </div>
 <input  required=""  type="email" class="form-control" name="email_contacto" placeholder="Email">
-
-  </div>
-
-
-
 </div>
-
-
-
-
-
+</div>
 <div class="modal-footer">
-
-
 <div class="btn btn-group  ">
-
 <div id="loader-sm" class="loader loader-sm "></div>
-
-
-
-
 <button class="btn btn-light btn-sm " title="Cancelar" type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>
-
-
-
-
 <button class="btn btn-success btn-sm" type="sumbit" title="Guardar" >
 <i class="fas fa-save"></i>
 </button>
-
-
-
 </form>
-
-
 </div>
-
 </div>
-
-    </div>
-  </div>
+</div>
+</div>
 </div>
 
 <!-- MODAL NUEVO CLIENTE -->
 
 
-
-
-
-
-
-
-
-
-
-<!-- MODAL NUEVO PROYECTO  -->
-<div  id="AppProyecto"   class="modal fade nuevoProyecto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-
-  <div class="modal-dialog modal-sm-8">
- 
-    <div   class="modal-content">
-
-   <div class="modal-header ">
-
-<div class="col-sm-12 text-primary">
-<i class="fas fa-cube"></i>
-<strong>
-Registrar un nuevo proyecto
-</strong>
-<button type="button" class="close float-right" data-dismiss="modal">&times;</button>
-</div>
-
-</div>
-  <div  class="modal-body">
-    
-<form  id="formulario_proyecto" autocomplete="off"   class="navbar-form hidden" role="form" action="" 
- method="GET" >
- {{ csrf_field() }}
-
-
- <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i  class="fas fa-briefcase"></i> </span>
-    </div>
- 
-<select required="" autocomplete="off"  v-model="cliente" class="form-control">
-
-<option value="" selected="">Cliente / Empresa</option>
-
-@if ( isset($clientes)==true   )
-
-@foreach( $clientes as $cliente)
-<option value="{{$cliente->id}}"  > {{$cliente->nombre}}</option>
-@endforeach
-
-
-@else
-<option value="">Registre un cliente</option>
-
-
-
-@endif
-</select>
-
-  </div>
-
-
-
-
- <div class="input-group  col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
-    </div>
-    <input  autocomplete="off" required="" v-model="proyecto" type="text" class="form-control" placeholder="Nombre de proyecto">
-  
-  </div>
-
-
-
-
-
- <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-clock"></i>  </span>
-    </div>
-    <input  autocomplete="off" required="" v-model="fecha_entrega" type="date" class="form-control" placeholder="Fecha de entrega">
-
-  </div>
-
-
-
-
-
-
-
- <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
-    </div>
-    <input  autocomplete="off" required="" v-model="presupuesto" type="number" min="100" max="5000"   class="form-control" placeholder="Presupuesto">
-
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"   class="input-group-text"><i class="fas fa-comments"></i> </span>
-    </div>
-   
-<textarea autocomplete="off" required="" v-model="comentario" class="form-control" placeholder="Comentarios..."></textarea>
-
-
-  </div>
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-
-
-<div    class="modal-footer">
-
-
-
-
-
-<div  class="btn btn-group  ">
-
-<div id="loader-sm" class="loader loader-sm "></div>
-
-
-
-<button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
-<i class="fas fa-times-circle"></i>
-</button>
-
-
-
-
-
-
-<button  id="btn-proyecto" type="sumbit"  class="btn btn-success btn-sm"     v-on:click.prevent="enviar(this)"   >
-<i class="fas fa-save"></i> 
-</button>
-
-
-</form>
-
-</div>
-
-</div>
-
-
-
-    </div>
-
-
-  </div>
-</div>
-
-<!-- MODAL NUEVO PROYECTO  -->
-
- 
-
-
-
-
-
-
 <!-- MODAL NUEVA TAREA -->
-
-
-
 <div class="modal fade nuevaTarea" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
   <div class="modal-dialog modal-sm-8">
@@ -1118,70 +957,37 @@ Registrar un nueva tarea
 
       </div>
 
-  <div class="modal-body">
-    
-
-
- <div class="input-group  col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
-    </div>
-    <input type="text" class="form-control" placeholder="Nombre de tarea">
-  
-  </div>
-
- <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text">
-
+<div class="modal-body">
+<div class="input-group  col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
+</div>
+<input type="text" class="form-control" placeholder="Nombre de tarea">
+</div>
+<div class="input-group col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text">
 <i class="fas fa-project-diagram"></i>
-         </span>
-    </div>
+</span>
+</div>
 <select class="form-control">
-    <option selected="" value="">Tipo de tarea</option>
+<option selected="" value="">Tipo de tarea</option>
 <option value="Imagen">Imagen</option>
 <option value="Proceso">Proceso</option>
 <option value="Cambio">Cambio</option>
-
-
-
-
 </select>
-  </div>
-
-
-
-
-
- <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="far fa-chart-bar"></i>  </span>
-    </div>
-
-
-    
-
+</div>
+<div class="input-group col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="far fa-chart-bar"></i>  </span>
+</div>
 <select class="form-control">
-    
 <option>Prioridad</option>
 <option>Alta / Rojo</option>
 <option>Media / Amarillo</option>
 <option>Baja / Verde</option>
-
 </select>
-
-
-  </div>
-
-
-
-
-
-
-
-
-
-
+</div>
  <div class="input-group col-sm-12">
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text">
@@ -1192,79 +998,33 @@ Registrar un nueva tarea
     <input type="text" class="form-control" placeholder="Estado">
   </div>
 
-
-
-
-
-
  <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-shield"></i>  </span>
-    </div>
-
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-user-shield"></i>  </span>
+</div>
 <select class="form-control">
 <option>Asignar a empleado</option>
-
 </select>
-
-
-  </div>
-
-
-
-
-
-
-
- <div class="input-group col-sm-12">
-  <div class="input-group-prepend">
-  <span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
-  </div>
- 
+</div>
+<div class="input-group col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
+</div>
 <textarea class="form-control"  placeholder="comentarios"></textarea>
-
-
-  </div>
-
-
-
-
-
-
-
-
-
-
-
+</div>
 <div class="modal-footer">
-
-
 <div class="btn btn-group  ">
-
-    <div id="loader-sm" class="loader loader-sm "></div>
-
+<div id="loader-sm" class="loader loader-sm "></div>
 <button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>
-
-
-
-
 <button class="btn btn-success btn-sm" type="button"  >
 <i class="fas fa-save"></i>
 </button>
-
-
-
-
 </div>
-
 </div>
-
-    </div>
-
-
-  </div>
+</div>
+</div>
 </div>
 
 <!-- MODAL NUEVA TAREA -->
