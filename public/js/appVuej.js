@@ -61,10 +61,8 @@ document.getElementById('btn-proyecto').disabled = false;
 
 });
 },
-enviar: function(e) {
-
-
-alert("hello")
+Enviar: function(e) {
+alert("hello_proyecto")
 
 document.getElementById('btn-proyecto').disabled = true;
 document.getElementById('loader-sm').style.display="block"

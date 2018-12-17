@@ -491,7 +491,7 @@ Registrar un nuevo proyecto
 
 
 <div  class="modal-body">
-<form  id="formulario_proyecto"   autocomplete="off"    method="GET"   @submit.prevent="enviar(event)" >
+<form role="form"  id="formulario_proyecto"     >
  <div class="input-group col-sm-12">
 <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i  class="fas fa-briefcase"></i> </span>
@@ -516,10 +516,7 @@ Registrar un nuevo proyecto
 @endif
 </select>
 
-  </div>
-
-
-
+</div>
  <div class="input-group  col-sm-12">
     <div class="input-group-prepend">
 
@@ -528,10 +525,7 @@ Registrar un nuevo proyecto
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
     </div>
     <input  autocomplete="off" required="" v-model="proyecto" type="text" class="form-control" placeholder="Nombre de proyecto">
-  
   </div>
-
-
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-clock"></i>  </span>
@@ -548,7 +542,6 @@ Registrar un nuevo proyecto
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text"><i class="fas fa-comments"></i> </span>
 </div>
-   
 <textarea autocomplete="off" required="" v-model="comentario" class="form-control" placeholder="Comentarios..."></textarea>
 </div>
  </div>

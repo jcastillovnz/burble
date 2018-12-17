@@ -15,19 +15,8 @@ class ProyectoController extends Controller
 {
     //
 
-
-
-
-
-
-
-
-   public function create( Request $request )
+public function create( Request $request )
     {
-
-
-
-
 
 $proyecto= new Proyectos();
 $proyecto->nombre=  $request->proyecto;
@@ -52,8 +41,6 @@ $data = "false";
 return response()->json($data); 
 
 }
-
-
 
 
 
