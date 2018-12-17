@@ -26,9 +26,7 @@ class ProyectoController extends Controller
     {
 
 
-
-
-
+dd($request->all());
 
 
 $proyecto= new Proyectos();

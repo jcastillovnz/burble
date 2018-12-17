@@ -6,25 +6,15 @@
   
 
 
-
-
-
-
 <div class="row content">
 
       
-
-
-
-
-
   <div class="col-sm-3 ">
     
 
-<div class="card">
+<div  class="card table-responsive">
 
    <h5 > <strong ><i class="fas fa-chart-line"></i> Productividad </strong>   </h5>
-
 
 <table class="table">
   <thead>
@@ -73,36 +63,39 @@
 
 
 
-  <div    class=" col-sm-9 ">
+  <div  id="AppGestion"  class=" col-sm-9 ">
 
 
 
 
-<div class="card">
+<div    class="card table-responsive" >
 
 
 
 
-
-
-
-<div class="">
+<div  class="">
+  <p>
    <h5 > <strong ><i class="fas fa-cogs"></i> Gestion de usuarios</strong>   </h5>
 
 
-<div class="col-sm-12">
 
    <button class="btn btn-light rounded-circle float-right " data-toggle="modal" data-target=".nuevoUsuario"> <i class="fas fa-plus"></i>   </button>
-</div>   
+
+
+
+
+</p>
+
+
 </div>
 
 
 
 
-<table class="table table-striped">
+<table   class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">#   </th>
     <th scope="col" >  Foto    </th>
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
@@ -111,13 +104,13 @@
 
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-        <td> <img width="30" src="img/user.png">    </td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+  <tbody >
+    <tr v-for="item in lists"   >
+      <th scope="row"   > @{{item.id}} </th> 
+        <td>  <img width="30" src="img/user.png">    </td>
+      <td>@{{item.name}}</td>
+      <td>@{{item.apellido}}</td>
+      <td>@{{item.rango}}</td>
          <td>
 
        <div class="dropdown">
@@ -125,9 +118,9 @@
   <i class="fas fa-cogs"></i>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-     <a class="dropdown-item" href="#">Ver</a>
-    <a class="dropdown-item" href="#">Editar</a>
-    <a class="dropdown-item" href="#">Eliminar</a>
+     <a class="dropdown-item" href="#">Detalles</a>
+    <a class="dropdown-item"   v-on:click="editar(e)" >Editar</a>
+    <a class="dropdown-item"   v-on:click="eliminar(item)" > Eliminar</a>
 
   </div>
 </div>
@@ -147,17 +140,6 @@
 
 
 
-</div>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -167,7 +149,7 @@
 <div  class="modal fade nuevoUsuario" tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
 
-  <div id="Appusuarios"  class="modal-dialog modal-sm-8">
+  <div  class="modal-dialog modal-sm-8">
  
     <div class="modal-content">
 
@@ -185,7 +167,6 @@ Registrar un nuevo usuario
 </div>
 
       </div>
-
 
 
 
@@ -250,7 +231,7 @@ Sube una foto
       </span>
     </div>
 
-<input required="" autocomplete="off" value="" class="form-control"  v-on:keyup="monitor(this)"   type="email" name="email" v-model="email"   placeholder="Email">
+<input required="" autocomplete="off" value="" class="form-control" id="email" v-on:keyup="monitor(this)"   type="email" name="email" v-model="email"   placeholder="Email">
 
 
   </div>
@@ -395,10 +376,6 @@ Sube una foto
  </div>
 
 
-
-
-
-
 <div class="modal-footer">
 
 
@@ -428,32 +405,27 @@ Sube una foto
 
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- MODAL NUEVO USUARIO -->
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @endsection

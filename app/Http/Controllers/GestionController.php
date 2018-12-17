@@ -25,12 +25,39 @@ class GestionController extends Controller
     }
 
 
+public function delete(Request $request)
+{
+
+
+$usuario=User::destroy($request->id);
+
+return  $usuario;
+
+
+
+}
+
+
+
+
+
+
+public function list(Request $request)
+{
+
+
+$usuarios=User::all();
+return $usuarios;
+
+}
+
+
 
    public function monitor(Request $request)
     {
 
 
-$mail = User::where('email', $request->email)->first();
+$mail = User::where('email', $request->mail)->first();
 
 
 
@@ -41,9 +68,6 @@ $data = "true";
 return response()->json($data); 
 
 }
-
-
-
 
 }
 
