@@ -3,6 +3,11 @@
 
 var Proyectos = new Vue({ 
     el: '#AppProyectos',
+      proyectos(){
+
+this.getProyects();
+
+    },
     data: {
         cliente: '',
         proyecto: '',
@@ -12,6 +17,16 @@ var Proyectos = new Vue({
     },
 
 methods: {
+
+getProyects: function(dato)  {
+ var url = '/api/proyectos/consulta/';
+  axios.get(url).then(response => {
+  this.lists = response.data
+});
+ }
+,
+
+
 
 
 sendData: function(e) {
@@ -107,13 +122,7 @@ var GestioClientes = new Vue({
 
     },
 
-getProyects: function(dato)  {
- var url = '/api/proyectos/consulta/';
-  axios.get(url).then(response => {
-  this.lists = response.data
-});
- }
-,
+
 
 
 
