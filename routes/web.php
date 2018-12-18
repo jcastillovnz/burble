@@ -24,5 +24,8 @@ Route::get('/mi-cuenta', 'CuentaController@index')->name('cuenta');
 Route::get('/gestiones', 'GestionController@index')->name('gestiones');
 Route::get('/nuevo_cliente', 'ClienteController@create');
 
+Route::get('/nuevo_cliente', 'ClienteController@create');
+
+
 
 

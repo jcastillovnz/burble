@@ -1,10 +1,6 @@
 
 
 
-
-
-
-
 var Proyectos = new Vue({ 
     el: '#AppProyectos',
     data: {
@@ -18,7 +14,9 @@ var Proyectos = new Vue({
 methods: {
 
 
-read: function(e) {
+sendData: function(e) {
+
+
 var url = '/api/proyecto/create/' ;
 axios.get( url, {
   params: {
@@ -61,39 +59,31 @@ document.getElementById('btn-proyecto').disabled = false;
 
 });
 },
-Enviar: function(e) {
-alert("hello_proyecto")
+submit : function(e) {
 
 document.getElementById('btn-proyecto').disabled = true;
 document.getElementById('loader-sm').style.display="block"
-this.read()
+this.sendData()
 
 
 }
+
+
 }
 
 });
 
 
+
+
+
+
+
+
+
+
 /*COMPONENTE USUARIOS*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*GESTIONAR USUARIOS*/
-
 var GestioClientes = new Vue({ 
     el: '#AppClientes',
 
@@ -116,6 +106,16 @@ var GestioClientes = new Vue({
 
 
     },
+
+getProyects: function(dato)  {
+ var url = '/api/proyectos/consulta/';
+  axios.get(url).then(response => {
+  this.lists = response.data
+});
+ }
+,
+
+
 
 editar: function(dato)  {
 
@@ -363,6 +363,7 @@ document.getElementById("email").value = "";
 ,
 
 enviar: function(e) {
+    alert("helloUSUARIO")
 
 document.getElementById('btn-proyecto').disabled = true;
 document.getElementById('loader-sm').style.display="block"

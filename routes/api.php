@@ -28,6 +28,7 @@ Route::get('/usuario/consulta_mail/', 'GestionController@monitor');
 
 Route::get('/usuarios/consulta/', 'GestionController@list');
 
+Route::get('/proyectos/consulta/working', 'ProyectoController@working');
 
 
-Route::get('/usuarios/delete/', 'GestionController@delete');
+Route::get('/proyectos/consulta/waiting', 'ProyectoController@waiting');

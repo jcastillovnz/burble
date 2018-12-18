@@ -29,9 +29,7 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.min.js"></script>
-<script src="{{ asset('js/vue.js') }}" defer></script>
-<script src="{{ asset('js/appVuej.js') }}" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.1/axios.min.js" defer></script>
 
 
 <script    type="text/javascript" src="{{ asset('js/jQuery.js') }}"   ></script>
@@ -47,40 +45,21 @@
 
 
 
-
-
-
 <nav class="navbar navbar-expand-lg navbar-light border-bottom ">
     <a class="navbar-brand text-primary" href="{{ url('/') }}">
-<strong>
-                    {{ config('app.name', 'Laravel') }}
-
+<strong>              {{ config('app.name', 'Laravel') }}
 </strong>
-                </a>
+</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
-
-
-
-    <ul class="navbar-nav mr-auto mt-2 my-lg-0">
-
-    </ul>
-
-
-
-
-
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Proyecto / Tarea">
-      <button class="btn btn-light my-2 my-sm-0" type="submit">Buscar</button>
-    </form>
-
-
-
+<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+<ul class="navbar-nav mr-auto mt-2 my-lg-0">
+</ul>
+<form class="form-inline my-2 my-lg-0">
+<input class="form-control mr-sm-2" type="search" placeholder="Proyecto / Tarea">
+<button class="btn btn-light my-2 my-sm-0" type="submit">Buscar</button>
+</form>
    <ul class="navbar-nav  my-lg-0">
  @guest
 
@@ -107,10 +86,12 @@
    
 </ul>
 </nav>
+<script src="{{ asset('js/vue.js') }}" defer></script>
+<script src="{{ asset('js/appVuej.js') }}" defer></script>
+
 
 
 </head>
-
 
 
 
@@ -287,10 +268,11 @@
 </body>
 
 <footer class="col-sm-12 margin-bottom-none" >
-    <center>
+<center>
 <p>
   
 © 2018  Burble para Achelier Studio - <i class="fas fa-code"></i> Desarrollado por Jose Castillo 
+
 
 
 </p>

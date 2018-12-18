@@ -3,44 +3,35 @@
 @section('content')
 
 
-      <div class="content  " >
-
-<div   id="AppProyectos"  class="col-sm-12">
-         
-
-   <button class="btn btn-light rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
 
 
+
+<div id="AppProyectos"    class="content " >
+
+
+<div      class="col-sm-12">
+
+
+
+
+<button class="btn btn-light rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
 </div>
 
 
 
-<div class="col col-sm-6">
-
-
-  <div class="container-fluid borde-burble border  ">
+<div class="col-sm-12 row">
 
 
 
+<div   class="col-sm-6">
+<div class="container-fluid borde-burble border  ">
+<h3 align="left" class="titulo-principal" > <a href="">  <strong > NOMBRE PROYECTO</strong> </a>    <small class="comentarios-proyecto float-right" aling="right">Comentarios basicos de cada proyecto general</small> </h3>
 
-   <h3 align="left" class="titulo-principal" > <a href="">  <strong > NOMBRE PROYECTO</strong> </a>    <small class="comentarios-proyecto float-right" aling="right">Comentarios basicos de cada proyecto general</small> </h3>
-
-
-
-
-
-
-   <h6 align="left"><strong>EMPRESA</strong> <small class="float-right text-info" aling="right"> <strong>  12/02/2018</strong>   </small> </h6>
-
-
+<h6 align="left"><strong>EMPRESA</strong> <small class="float-right text-info" aling="right"> <strong>  12/02/2018</strong></small></h6>
 <div class="container-fluid   ">
 
-
 <p class="border  tarea container-fluid"  align="left">
-
-
 <i class="fas fa-stop"></i>
-
 
 <a href="">
 Nombre de tarea  
@@ -50,6 +41,7 @@ Nombre de tarea
 comentarios sobre esta tarea
 </p>
   
+
 <p class="border tarea container-fluid"  align="left">
 <i class="fas fa-stop"></i>
 <a href="">
@@ -58,6 +50,8 @@ Nombre de tarea
 comentarios sobre esta tarea
 </p>
   
+
+
 <p class="border  tarea container-fluid text-secondary"  align="left">
 <i class="fas fa-stop"></i>
 <a href="">
@@ -65,60 +59,57 @@ Nombre de tarea
 </a> <i class="fas fa-circle text-danger" title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
 comentarios sobre esta tarea
 </p>
-
-
-
-
 </div>
+
+
 
 <!-- IMAGENES -->
 <!-- BOTONES-->
-
 <div class="float-right btn-group " >
-
-
 <div class="float-right button-collapse btn btn-light "   id="button-collapse" data-toggle="collapse" href="#collapseExample" role="button">
-
 <i style="font-size: 12px" class="fas fa-chevron-down"></i>
-
 </div>
-
-
 <div class="float-right  btn btn-light "  id="button-collapse">
 <i  style="font-size: 12px" class="fas fa-pen-square"></i>
 </div>
-
-
 <div class="float-right button-collapse btn btn-light " id="button-collapse"  data-toggle="modal" data-target=".nuevaTarea"  role="button">
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>
 </div>
-
-
 </div>
 <!-- BOTONES-->
 
-
-
-
 <div  class="collapse " id="collapseExample">
-
-
- <div class="center">
-
+<div class="center">
 ​<img width="120" src="img/pieza.png" class="img-fluid" alt="...">
 <img width="120" src="img/pieza.png" class="img-fluid" alt="...">
 <img width="120" src="img/pieza.png" class="img-fluid" alt="...">
 <img width="120" src="img/pieza.png" class="img-fluid" alt="...">
 
-
 </div>
-
-
 </div>
-
 <!-- IMAGENES -->
-</div> <!-- CIERRE PROYECTO -->
+</div> 
 </div>
+<!-- CIERRE PROYECTO -->
+
+
+
+
+<!-- PROYECTO -->
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
 
 
 
@@ -470,13 +461,24 @@ comentarios sobre esta tarea
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 <!-- MODAL NUEVO PROYECTO  -->
 <div     class="modal fade nuevoProyecto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
   <div class="modal-dialog modal-sm-8">
  
     <div    class="modal-content">
-
+<form method="GET" class="hidden" role="form"  v-on:submit.prevent="submit(this)"  >
    <div class="modal-header ">
 
 <div class="col-sm-12 text-primary">
@@ -491,7 +493,7 @@ Registrar un nuevo proyecto
 
 
 <div  class="modal-body">
-<form role="form"  id="formulario_proyecto"     >
+
  <div class="input-group col-sm-12">
 <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text"><i  class="fas fa-briefcase"></i> </span>
@@ -518,26 +520,30 @@ Registrar un nuevo proyecto
 
 </div>
  <div class="input-group  col-sm-12">
-    <div class="input-group-prepend">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
+</div>
+<input  autocomplete="off" required="" v-model="proyecto" type="text" class="form-control" placeholder="Nombre de proyecto">
+</div>
 
 
 
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
-    </div>
-    <input  autocomplete="off" required="" v-model="proyecto" type="text" class="form-control" placeholder="Nombre de proyecto">
-  </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-clock"></i>  </span>
 </div>
 <input  autocomplete="off" required="" v-model="fecha_entrega" type="date" class="form-control" placeholder="Fecha de entrega">
 </div>
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
 </div>
 <input  autocomplete="off" required="" v-model="presupuesto" type="number" min="100" max="5000000"   class="form-control" placeholder="Presupuesto">
 </div>
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text"><i class="fas fa-comments"></i> </span>
@@ -545,6 +551,8 @@ Registrar un nuevo proyecto
 <textarea autocomplete="off" required="" v-model="comentario" class="form-control" placeholder="Comentarios..."></textarea>
 </div>
  </div>
+
+
 <div  class="modal-footer">
 <div  class="btn btn-group  ">
 <div id="loader-sm" class="loader loader-sm "></div>
@@ -552,9 +560,11 @@ Registrar un nuevo proyecto
 <i class="fas fa-times-circle"></i>
 </button>
 
-<button  id="btn-proyecto"  type="submit"    class="btn btn-success btn-sm"   >
+<button type="submit"  id="btn-proyecto" class="btn btn-success btn-sm"     >
 <i class="fas fa-save"></i> 
 </button>
+
+
 </form>
 </div>
 </div>
@@ -562,8 +572,6 @@ Registrar un nuevo proyecto
 </div>
 </div>
 <!-- MODAL NUEVO PROYECTO  -->
-
-
 
 
 
@@ -1021,6 +1029,7 @@ Registrar un nueva tarea
 </div>
 
 <!-- MODAL NUEVA TAREA -->
+
 
 
 
