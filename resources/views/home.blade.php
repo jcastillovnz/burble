@@ -19,13 +19,13 @@
 
 
 
-<div class="col-sm-12 row">
+<div     class="col-sm-12 row">
 
 
 
-<div   class="col-sm-6">
+<div v-for="item in lists"   class="col-sm-6">
 <div class="container-fluid borde-burble border  ">
-<h3 align="left" class="titulo-principal" > <a href="">  <strong > NOMBRE PROYECTO</strong> </a>    <small class="comentarios-proyecto float-right" aling="right">Comentarios basicos de cada proyecto general</small> </h3>
+<h3 align="left" class="titulo-principal" > <a href="">  <strong >   @{{item.nombre}}  </strong> </a>    <small class="comentarios-proyecto float-right" aling="right">@{{item.comentario}}</small> </h3>
 
 <h6 align="left"><strong>EMPRESA</strong> <small class="float-right text-info" aling="right"> <strong>  12/02/2018</strong></small></h6>
 <div class="container-fluid   ">

@@ -3,12 +3,14 @@
 
 var Proyectos = new Vue({ 
     el: '#AppProyectos',
-      proyectos(){
+     mounted(){
 
 this.getProyects();
 
     },
     data: {
+
+           lists: [],
         cliente: '',
         proyecto: '',
         fecha_entrega: '',
@@ -19,10 +21,15 @@ this.getProyects();
 methods: {
 
 getProyects: function(dato)  {
- var url = '/api/proyectos/consulta/';
+
+ var url = '/api/proyectos/';
   axios.get(url).then(response => {
   this.lists = response.data
 });
+
+
+
+
  }
 ,
 
@@ -56,7 +63,7 @@ document.getElementById('loader-sm').style.display="none"
 $('.nuevoProyecto').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-
+this.getProyects();
 
 // document.getElementById("formulario_proyecto").reset();       
 
@@ -69,6 +76,7 @@ $('.nuevoProyecto').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
  document.getElementById("formulario_proyecto").reset();    
+
 
 }
 

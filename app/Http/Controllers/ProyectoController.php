@@ -50,10 +50,12 @@ return response()->json($data);
 
 
 
-public function working( Request $request )
+public function list( Request $request )
     {
 
-$proyectos =Proyectos::all();
+$proyectos = Proyectos::all();
+
+
 return $proyectos;
 
 
