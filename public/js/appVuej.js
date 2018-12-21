@@ -110,11 +110,11 @@ this.sendData()
 var GestioClientes = new Vue({ 
     el: '#AppClientes',
 
-
     data: {
 
-   nombre: '',
+   nombre_empresa: '',
      apellido: '',
+       nombre_empresa: 'HELffLO',
      email: '',
      password: '',
      alias: '',
@@ -129,18 +129,10 @@ var GestioClientes = new Vue({
 
 
     },
-
-
-
-
-
 editar: function(dato)  {
 
 
 alert("EDITAR")
-
-
-
  }
 ,
 
@@ -204,20 +196,16 @@ document.getElementById('btn-proyecto').disabled = false;
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
 
 }
- 
-    });
-
+ });
   },
+enviar_proyecto: function(e) {
 
-enviar: function(e) {
 
-document.getElementById('btn-proyecto').disabled = true;
-document.getElementById('loader-sm').style.display="block"
-this.read()
+alert("hola");
+
+
 
 }
-
-
 });
 
 
