@@ -112,6 +112,8 @@
 <div  id="AppClientes"  class="modal fade nuevoCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-sm-8">
  <div   class="modal-content">
+<form method="GET" class="hidden" role="form"    >
+
 <div class="modal-header ">
 <div class="col-sm-12 text-primary">
 <i class="fas fa-suitcase"></i>
@@ -124,9 +126,7 @@ Registrar un nuevo Cliente
 
 <div   class="modal-body">
     
-<form   class="navbar-form hidden" role="form" action="{{ url('/nuevo_cliente') }}"
- method="GET" >
- {{ csrf_field() }}
+
 
  <div class="input-group  col-sm-12">
     <div class="input-group-prepend">
@@ -453,7 +453,7 @@ Datos de contacto
 <button class="btn btn-light btn-sm " title="Cancelar" type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>
-<button class="btn btn-success btn-sm" v-on:click="enviar(e)" title="Guardar" >
+<button class="btn btn-success btn-sm"  v-on:click.prevent="submit(this)" title="Guardar" >
 <i class="fas fa-save"></i>
 </button>
 </form>

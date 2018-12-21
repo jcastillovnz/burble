@@ -129,12 +129,7 @@ var GestioClientes = new Vue({
 
 
     },
-editar: function(dato)  {
 
-
-alert("EDITAR")
- }
-,
 
 eliminar: function(dato)  {
 
@@ -198,11 +193,11 @@ document.getElementById('btn-proyecto').disabled = false;
 }
  });
   },
-enviar_proyecto: function(e) {
+submit: function(dato)  {
 
 
-alert("hola");
 
+alert("HOLA CLIENTE")
 
 
 }
