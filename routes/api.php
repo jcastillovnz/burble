@@ -30,4 +30,5 @@ Route::get('/usuarios/consulta/', 'GestionController@list');
 
 Route::get('/proyectos/', 'ProyectoController@list');
 
+Route::get('/clientes/create/', 'ClienteController@create');
 

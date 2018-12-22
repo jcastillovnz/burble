@@ -99,21 +99,11 @@
 
 <body   class="col-sm-12">
 
-
-
-
-
-<div class="col-sm-12 cargador">
-<div  id="loader" class="loader loader-lg"></div>
-</div>
-
-
 <!-- MODAL NUEVO CLIENTE -->
-<div  id="AppClientes"  class="modal fade nuevoCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div    class="modal fade nuevoCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-sm-8">
- <div   class="modal-content">
-<form method="GET" class="hidden" role="form"    >
-
+ <div  id="AppClientes" class="modal-content">
+<form  v-on:submit.prevent="enviar(this)"    method="GET" class="hidden" role="form"     >
 <div class="modal-header ">
 <div class="col-sm-12 text-primary">
 <i class="fas fa-suitcase"></i>
@@ -123,41 +113,34 @@ Registrar un nuevo Cliente
 <button type="button" class="close float-right" data-dismiss="modal">&times;</button>
 </div>
 </div>
-
 <div   class="modal-body">
-    
-
-
- <div class="input-group  col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
-    </div>
-    <input required="" type="text" class="form-control" v-model="nombre_empresa" placeholder="Nombre de empresa">
-  
-  </div>
-
-@{{ nombre_empresa }}
-
- <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
+<div class="input-group  col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
 </div>
-<input  name="sitio_web"   type="text" class="form-control" placeholder="Sitio web">
+<input required="" type="text" class="form-control" v-model="empresa" placeholder="Nombre de empresa">
+</div>
+
+<div class="input-group col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>  </span>
+</div>
+<input v-model="sitio_web"   type="text" class="form-control" placeholder="Sitio web">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-map-marker-alt"></i></i> </span>
 </div>
-<input  name="ciudad"  class="form-control" type="" name="" placeholder="Ciudad">
- </div>
+<input  v-model="ciudad"  class="form-control" type="" name="" placeholder="Ciudad">
+</div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text">
 <i class="fas fa-globe-americas"></i>
 </span>
 </div>
-<select  class="form-control" name="pais">
-<option value="Elegir" id="AF">Pais</option>
+<select  class="form-control"  v-model="pais">
+<option value="" selected="">Pais</option>
 <option value="Afganistán" id="AF">Afganistán</option>
 <option value="Albania" id="AL">Albania</option>
 <option value="Alemania" id="DE">Alemania</option>
@@ -396,21 +379,18 @@ Registrar un nuevo Cliente
 <option value="Zambia" id="ZM">Zambia</option>
 <option value="Zimbabue" id="ZW">Zimbabue</option>
 </select>
-  </div>
+</div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text">
 <i class="fas fa-phone-square"></i>
 </span>
 </div>
-
-<input   type="" class="form-control" name="telefono" placeholder="Telefono">
-
-  </div>
+<input   type="" class="form-control" v-model="telefono" placeholder="Telefono">
+</div>
 <br>
 <p align="center"  class="text-primary">
-
-  <i class="fas fa-phone-square"></i>
+<i class="fas fa-phone-square"></i>
 <strong>
 Datos de contacto
 </strong>
@@ -421,7 +401,7 @@ Datos de contacto
 <i class="fas fa-user"></i>
 </span>
 </div>
-<input required=""  type="" class="form-control" name="nombre_contacto" placeholder="Nombre">
+<input required=""  type="" class="form-control" v-model="nombre_contacto" placeholder="Nombre">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -429,14 +409,14 @@ Datos de contacto
 <i class="fas fa-user"></i>
 </span>
 </div>
-<input type="" class="form-control" name="Apellido_contacto" placeholder="Apellido">
+<input type="" class="form-control" v-model="apellido_contacto" placeholder="Apellido">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text">
 <i class="fas fa-phone-square"></i></span>
 </div>
-<input required="" type="" class="form-control" name="telefono_contacto" placeholder="Telefono">
+<input required="" type="" class="form-control" v-model="telefono_contacto" placeholder="Telefono">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -444,7 +424,7 @@ Datos de contacto
 <i class="fas fa-mail-bulk"></i>
 </span>
 </div>
-<input  required=""  type="email" class="form-control" name="email_contacto" placeholder="Email">
+<input  required=""  type="email" class="form-control" v-model="email_contacto" placeholder="Email">
 </div>
 </div>
 <div class="modal-footer">
@@ -453,8 +433,8 @@ Datos de contacto
 <button class="btn btn-light btn-sm " title="Cancelar" type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>
-<button class="btn btn-success btn-sm"  v-on:click.prevent="submit(this)" title="Guardar" >
-<i class="fas fa-save"></i>
+<button type="submit"  id="btn-clientes" class="btn btn-success btn-sm"     >
+<i class="fas fa-save"></i> 
 </button>
 </form>
 </div>
@@ -462,8 +442,19 @@ Datos de contacto
 </div>
 </div>
 </div>
-
 <!-- MODAL NUEVO CLIENTE -->
+
+
+
+
+
+
+
+<div class="col-sm-12 cargador">
+<div  id="loader" class="loader loader-lg"></div>
+</div>
+
+
 
 
 
@@ -624,5 +615,9 @@ Datos de contacto
 
 </p>
 </center>
+
+
+
+
 </footer>
 </html>

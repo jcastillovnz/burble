@@ -98,72 +98,52 @@ this.sendData()
 
 
 
+/*COMPONENTE CLIENTES*/
 
 
+var AppClientes = new Vue({
+el: '#AppClientes',
+data: {
+empresa: null,
+sitio_web: null,
+ciudad: null,
+pais: '',
+telefono: null,
+nombre_contacto: null,
+apellido_contacto: null,
+telefono_contacto: null,
+email_contacto: null,
+
+  },
+  methods: {
+    enviar: function (event) {
+     document.getElementById('btn-clientes').disabled = true;
+document.getElementById('loader-sm').style.display="block"
+this.read()
 
 
-
-
-
-/*COMPONENTE USUARIOS*/
-/*GESTIONAR USUARIOS*/
-var GestioClientes = new Vue({ 
-    el: '#AppClientes',
-
-    data: {
-
-   nombre_empresa: '',
-     apellido: '',
-       nombre_empresa: 'HELffLO',
-     email: '',
-     password: '',
-     alias: '',
-     fecha_nacimiento: '',
-     rango: '',
-     cuit: '',
-     direccion: '',
-     obra_social: '',
-     servicio_ambulancia: '',
-     contacto_ambulancia: '',
 
 
 
     },
 
 
-eliminar: function(dato)  {
 
-axios({
-  url: '/api/usuarios/delete/',
-  method: 'get',
-  params: {
- id: dato.id
-  }
-}).then(function (response) {
-
-Gestionusuarios.getUsers();
-
-  })
- }
-,
 read: function(e) {
 
-var url = '/api/usuario/create/' ;
+var url = '/api/clientes/create/' ;
 
 axios.get( url, {
   params: {
-     nombre: this.nombre,
-     apellido: this.apellido,
-     email: this.email,
-     password: this.password,
-     alias:this.alias,
-     fecha_nacimiento:this.fecha_nacimiento,
-     rango: this.rango,
-     cuit: this.cuit,
-     direccion: this.direccion,
-     obra_social: this.obra_social,
-     servicio_ambulancia: this.servicio_ambulancia,
-     contacto_ambulancia: this.contacto_ambulancia,
+ empresa: this.empresa,
+sitio_web: this.sitio_web,
+ciudad: this.ciudad,
+pais: this.pais,
+telefono: this.telefono,
+nombre_contacto: this.nombre_contacto,
+apellido_contacto: this.apellido_contacto,
+telefono_contacto: this.telefono_contacto,
+email_contacto: this.email_contacto,
   },
 validateStatus: (status) => {
         return true; // I'm always returning true, you may want to do it depending on the status received
@@ -175,36 +155,39 @@ validateStatus: (status) => {
 if (response.data == "true") {
 
 document.getElementById('loader-sm').style.display="none"
-$('.nuevoUsuario').modal('hide')
-document.getElementById('btn-proyecto').disabled = false;
+$('.nuevoCliente').modal('hide')
+document.getElementById('btn-clientes').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-this.getUsers();
-//document.getElementById("formulario_proyecto").reset();      
+ location ="/home";
+
+
+    
 }
 else
 {
 
-document.getElementById('loader-sm').style.display="none"
-$('.nuevoUsuario').modal('hide')
-document.getElementById('btn-proyecto').disabled = false;
 
+
+document.getElementById('loader-sm').style.display="none"
+$('.nuevoCliente').modal('hide')
+document.getElementById('btn-clientes').disabled = false;
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
 
 }
  });
-  },
-submit: function(dato)  {
+  }
 
 
 
-alert("HOLA CLIENTE")
-
-
-}
-});
 
 
 
+
+  }
+})
+
+
+/*GESTIONAR CLIENTES*/
 
 
 
@@ -363,7 +346,7 @@ document.getElementById("email").value = "";
 ,
 
 enviar: function(e) {
-    alert("helloUSUARIO")
+
 
 document.getElementById('btn-proyecto').disabled = true;
 document.getElementById('loader-sm').style.display="block"

@@ -32,7 +32,7 @@ class ClienteController extends Controller
 
 
 $cliente = new clientes();
-$cliente->nombre=  $request->nombre_empresa;
+$cliente->nombre=  $request->empresa;
 $cliente->ciudad=$request->ciudad;
 $cliente->sitio_web=$request->sitio_web;
 $cliente->pais=$request->pais;
@@ -50,10 +50,17 @@ $contacto->save();
 
 
 
-if ($cliente->save()==true) {
+if ($contacto->save()==true) {
+$data = "true";
+return response()->json($data); 
 
-  return redirect('home');
+}
 
+
+else {
+
+$data = "false";
+return response()->json($data); 
 
 }
 

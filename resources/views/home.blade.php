@@ -466,7 +466,7 @@ comentarios sobre esta tarea
 
   <div class="modal-dialog modal-sm-8">
  
-    <div    class="modal-content">
+    <div id="AppProyectos"   class="modal-content">
 <form method="GET" class="hidden" role="form"  v-on:submit.prevent="submit(this)"  >
    <div class="modal-header ">
 
@@ -500,7 +500,7 @@ Registrar un nuevo proyecto
 
 
 @else
-<option value="">Registre un cliente</option>
+<option value="">Seleccione un cliente</option>
 
 
 
