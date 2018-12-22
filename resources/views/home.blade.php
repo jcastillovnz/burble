@@ -18,16 +18,18 @@
 </div>
 
 
-
 <div     class="col-sm-12 row">
-
-
 
 <div v-for="item in lists"   class="col-sm-6">
 <div class="container-fluid borde-burble border  ">
-<h3 align="left" class="titulo-principal" > <a href="">  <strong >   @{{item.nombre}}  </strong> </a>    <small class="comentarios-proyecto float-right" aling="right">@{{item.comentario}}</small> </h3>
+<p>
 
-<h6 align="left"><strong>EMPRESA</strong> <small class="float-right text-info" aling="right"> <strong>  12/02/2018</strong></small></h6>
+
+<h4 align="left"  > <a href="">  <strong >   @{{item.nombre}}  </strong> </a>    <small class="comentarios-proyecto float-right" aling="right">@{{item.comentario}}</small> </h4>
+
+</p>
+
+<h6 align="left"><strong>empresa</strong> <small class="float-right text-info" aling="right"> <strong>  12/02/2018</strong></small></h6>
 <div class="container-fluid   ">
 
 <p class="border  tarea container-fluid"  align="left">
@@ -41,7 +43,6 @@ Nombre de tarea
 comentarios sobre esta tarea
 </p>
   
-
 <p class="border tarea container-fluid"  align="left">
 <i class="fas fa-stop"></i>
 <a href="">
@@ -50,8 +51,6 @@ Nombre de tarea
 comentarios sobre esta tarea
 </p>
   
-
-
 <p class="border  tarea container-fluid text-secondary"  align="left">
 <i class="fas fa-stop"></i>
 <a href="">
@@ -60,9 +59,6 @@ Nombre de tarea
 comentarios sobre esta tarea
 </p>
 </div>
-
-
-
 <!-- IMAGENES -->
 <!-- BOTONES-->
 <div class="float-right btn-group " >
@@ -77,7 +73,6 @@ comentarios sobre esta tarea
 </div>
 </div>
 <!-- BOTONES-->
-
 <div  class="collapse " id="collapseExample">
 <div class="center">
 ​<img width="120" src="img/pieza.png" class="img-fluid" alt="...">
@@ -91,10 +86,6 @@ comentarios sobre esta tarea
 </div> 
 </div>
 <!-- CIERRE PROYECTO -->
-
-
-
-
 <!-- PROYECTO -->
 
 
@@ -117,346 +108,68 @@ comentarios sobre esta tarea
 
 
 <div class="col-sm-12">
-  <hr>
+<hr>
 </div>
 
 
 <!-- SUBPROYECTOS -->
 <div  class="row col-sm-12 " id="list" >
 
-
 <!-- TARJETA -->
-
 <div class="col-sm-3">
 <div class="card borde-burble" >
-
-   <div class="card-header">
+<div class="card-header">
 <h6   class="proyecto-min">NOMBRE PROYECTO</h6>
-  </div>
-
+</div>
 
 <div id="demo" class="carousel slide card-img-top " data-ride="carousel">
   <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
+<ul class="carousel-indicators">
+<li data-target="#demo" data-slide-to="0" class="active"></li>
+<li data-target="#demo" data-slide-to="1"></li>
+<li data-target="#demo" data-slide-to="2"></li>
+</ul>
   <!-- The slideshow -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="img/pieza.png" alt="Los Angeles" width="150" >
-  <div class="carousel-caption d-none d-md-block">
- 
-    tarea
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="img/pieza.png" alt="Los Angeles" width="150" >
+<div class="carousel-caption d-none d-md-block">
+tarea
+</div>
+</div>
+<div class="carousel-item">
+<img src="img/pieza.png" alt="Los Angeles" width="150" >
+<div class="carousel-caption d-none d-md-block">
+tarea
+</div>
+</div>
+<div class="carousel-item">
+<img src="img/pieza.png" alt="Los Angeles" width="150" >
+<div class="carousel-caption d-none d-md-block">
+tarea
+</div>
+</div>
+</div>
 
-
-  </div>
-    </div>
-    <div class="carousel-item">
-  <img src="img/pieza.png" alt="Los Angeles" width="150" >
-
-  <div class="carousel-caption d-none d-md-block">
-  
-    tarea
-
-
-  </div>
-
-
-    </div>
-
-   <div class="carousel-item">
-     <img src="img/pieza.png" alt="Los Angeles" width="150" >
-
-
-  <div class="carousel-caption d-none d-md-block">
-   
-
-    tarea
-
-  </div>
-
-    </div>
-
-
-
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev " href="#demo" data-slide="prev">
- <i class="fas fa-chevron-left text-dark" ></i>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
+<!-- Left and right controls -->
+<a class="carousel-control-prev " href="#demo" data-slide="prev">
+<i class="fas fa-chevron-left text-dark" ></i>
+</a>
+<a class="carousel-control-next" href="#demo" data-slide="next">
 <i class="fas fa-chevron-right text-dark"></i>
-  </a>
+</a>
 </div>
 
-<!-- 
-
-<div class="card-body">
-
-</div>
- -->
 
 <div class="btn-group">
-<button class="btn btn-danger float-right btn-sm" ><i class="far fa-trash-alt"></i></button>
 <button class="btn btn-light float-right btn-sm" ><i class="fas fa-snowflake"></i></button>
 </div>
-
 </div>
 </div>
 <!-- TARJETA -->
 
 
-<!-- TARJETA -->
 
-<div class="col-sm-3">
-<div class="card borde-burble" >
-
-   <div class="card-header">
-<h6   class="proyecto-min">NOMBRE PROYECTO</h6>
-  </div>
-
-
-<div id="demo" class="carousel slide card-img-top " data-ride="carousel">
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
-  <!-- The slideshow -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="img/pieza.png" alt="Los Angeles" width="150" >
-  <div class="carousel-caption d-none d-md-block">
- 
-    tarea
-
-
-  </div>
-    </div>
-    <div class="carousel-item">
-  <img src="img/pieza.png" alt="Los Angeles" width="150" >
-
-  <div class="carousel-caption d-none d-md-block">
-  
-    tarea
-
-
-  </div>
-
-
-    </div>
-
-   <div class="carousel-item">
-     <img src="img/pieza.png" alt="Los Angeles" width="150" >
-
-
-  <div class="carousel-caption d-none d-md-block">
-   
-
-    tarea
-
-  </div>
-
-    </div>
-
-
-
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev " href="#demo" data-slide="prev">
- <i class="fas fa-chevron-left text-dark" ></i>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-<i class="fas fa-chevron-right text-dark"></i>
-  </a>
-</div>
-
-<!-- 
-
-<div class="card-body">
-
-</div>
- -->
-
-<div class="btn-group">
-<button class="btn btn-light float-right" >x</button>
-<button class="btn btn-light float-right" >x</button>
-</div>
-
-</div>
-</div>
-<!-- TARJETA -->
-
-<!-- TARJETA -->
-
-<div class="col-sm-3">
-<div class="card borde-burble" >
-
-   <div class="card-header">
-<h6   class="proyecto-min">NOMBRE PROYECTO</h6>
-  </div>
-
-
-<div id="demo" class="carousel slide card-img-top " data-ride="carousel">
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
-  <!-- The slideshow -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="img/pieza.png" alt="Los Angeles" width="150" >
-  <div class="carousel-caption d-none d-md-block">
- 
-    tarea
-
-
-  </div>
-    </div>
-    <div class="carousel-item">
-  <img src="img/pieza.png" alt="Los Angeles" width="150" >
-
-  <div class="carousel-caption d-none d-md-block">
-  
-    tarea
-
-
-  </div>
-
-
-    </div>
-
-   <div class="carousel-item">
-     <img src="img/pieza.png" alt="Los Angeles" width="150" >
-
-
-  <div class="carousel-caption d-none d-md-block">
-   
-
-    tarea
-
-  </div>
-
-    </div>
-
-
-
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev " href="#demo" data-slide="prev">
- <i class="fas fa-chevron-left text-dark" ></i>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-<i class="fas fa-chevron-right text-dark"></i>
-  </a>
-</div>
-
-<!-- 
-
-<div class="card-body">
-
-</div>
- -->
-
-<div class="btn-group">
-<button class="btn btn-light float-right" >x</button>
-<button class="btn btn-light float-right" >x</button>
-</div>
-
-</div>
-</div>
-<!-- TARJETA -->
-
-<!-- TARJETA -->
-
-<div class="col-sm-3">
-<div class="card borde-burble" >
-
-   <div class="card-header">
-<h6   class="proyecto-min">NOMBRE PROYECTO</h6>
-  </div>
-
-
-<div id="demo" class="carousel slide card-img-top " data-ride="carousel">
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
-  <!-- The slideshow -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="img/pieza.png" alt="Los Angeles" width="150" >
-  <div class="carousel-caption d-none d-md-block">
- 
-    tarea
-
-
-  </div>
-    </div>
-    <div class="carousel-item">
-  <img src="img/pieza.png" alt="Los Angeles" width="150" >
-
-  <div class="carousel-caption d-none d-md-block">
-  
-    tarea
-
-
-  </div>
-
-
-    </div>
-
-   <div class="carousel-item">
-     <img src="img/pieza.png" alt="Los Angeles" width="150" >
-
-
-  <div class="carousel-caption d-none d-md-block">
-   
-
-    tarea
-
-  </div>
-
-    </div>
-
-
-
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev " href="#demo" data-slide="prev">
- <i class="fas fa-chevron-left text-dark" ></i>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-<i class="fas fa-chevron-right text-dark"></i>
-  </a>
-</div>
-
-<!-- 
-
-<div class="card-body">
-
-</div>
- -->
-
-<div class="btn-group">
-<button class="btn btn-light float-right" >x</button>
-<button class="btn btn-light float-right" >x</button>
-</div>
-
-</div>
-</div>
-<!-- TARJETA -->
 
 
 

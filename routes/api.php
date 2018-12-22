@@ -22,11 +22,20 @@ use Illuminate\Http\Request;
 
 Route::get('/proyecto/create/', 'ProyectoController@create');
 
+
+
 Route::get('/usuario/create/', 'GestionController@createUser');
 
 Route::get('/usuario/consulta_mail/', 'GestionController@monitor');
 
 Route::get('/usuarios/consulta/', 'GestionController@list');
+
+Route::get('/usuarios/delete/', 'GestionController@delete');
+
+
+
+
+
 
 Route::get('/proyectos/', 'ProyectoController@list');
 

@@ -205,8 +205,8 @@ this.getUsers();
 
      lists: [],
      list: [],
-    preview: 'img/user.png' ,
-   nombre: '',
+     preview: 'img/user.png' ,
+     nombre: '',
      apellido: '',
      email: '',
      password: '',
@@ -218,7 +218,7 @@ this.getUsers();
      obra_social: '',
      servicio_ambulancia: '',
      contacto_ambulancia: '',
-
+     id: '',
 
 
     },
@@ -244,7 +244,6 @@ alert("EDITAR")
 ,
 
 eliminar: function(dato)  {
-
 
 
 axios({

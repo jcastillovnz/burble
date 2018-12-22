@@ -29,6 +29,7 @@ public function delete(Request $request)
 {
 
 
+
 $usuario=User::destroy($request->id);
 
 return  $usuario;

@@ -70,13 +70,27 @@
 
 <div    class="card table-responsive" >
 
-<div  class="btn btn-group ">
-  <p>
-   <h5 > <strong ><i class="fas fa-cogs"></i> Gestion de usuarios</strong>   </h5>
-   <button  style="margin-top: none;   margin: 0; padding-top: none;" class="btn btn-light  btn-sm rounded-circle float-right " data-toggle="modal" data-target=".nuevoUsuario"> <i class="fas fa-plus"></i>   </button>
+
+
+
+<div  class="">
+
+  <p></p>
+ 
+   <h5 > <strong ><i class="fas fa-cogs"></i> Gestion de usuarios</strong>   
+
+
+  <small>
+   <button   class="btn btn-light  btn-sm rounded-circle float-right" data-toggle="modal"data-target=".nuevoUsuario"><i class="fas fa-plus"></i> </button>
+</small>
+
+
+
+   </h5>
+
+
+
 </p>
-
-
 </div>
 
 
