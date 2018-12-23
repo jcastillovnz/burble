@@ -12,7 +12,7 @@
 @media screen and (min-width: 1150px) {
 
 .login{
-
+margin: auto;
 max-width: 280px;
 }
 
@@ -167,13 +167,13 @@ Burble
  -->
 
 
-<div class=" row  pwd-container">
+<div class="row  pwd-container">
 
 
-<div class="col-md-4"></div>
+<div  class="col-md-4"></div>
 
 
-<div class="col-md-4"> 
+<div   class="col-md-4"> 
 
 
 <div class="login">
@@ -218,13 +218,17 @@ BURBLE
 <strong>{{ $errors->first('password') }}</strong>
 </span>
 @endif
+
+
+
  </div>
 
 
    
 
-<div class="float-right">
-<button type="submit" name="go" class="btn btn-info btn-sm rounded">
+<div class="input-group container-fluid float-right">
+
+<button type="submit" name="go" class="btn btn-info btn-sm rounded float-right">
 <i class="fas fa-fingerprint"></i> Ingresar
 </button>
 </div>
@@ -239,7 +243,7 @@ BURBLE
 
 
 
-<div class="col-md-4"></div>
+<div  class="col-md-4"></div>
 
 
 
