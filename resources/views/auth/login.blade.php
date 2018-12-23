@@ -170,7 +170,7 @@ Burble
 <div class="row  pwd-container">
 
 
-<div  class="col-md-4"></div>
+<div   class="col-md-4"></div>
 
 
 <div   class="col-md-4"> 
@@ -181,9 +181,9 @@ Burble
 
 <h3>
 <p align="center" class="text-info">
-  
+  <strong>
 BURBLE
-<strong>
+
 </strong>
 </p>
 </h3>
@@ -191,7 +191,7 @@ BURBLE
 
   <form class="hidden" method="POST" action="{{ route('login') }}">
                         @csrf
-<div class="input-group  container-fluid">
+<div class="input-group  ">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text">   <i class="fas fa-user"></i>  </span>
 </div>
@@ -207,7 +207,7 @@ BURBLE
 
 
 
-<div class="input-group  container-fluid">
+<div class="input-group  ">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text">   <i class="fas fa-lock"></i>    </span>
 </div>
@@ -226,7 +226,7 @@ BURBLE
 
    
 
-<div class="input-group container-fluid float-right">
+<div class="btn-group  float-right">
 
 <button type="submit" name="go" class="btn btn-info btn-sm rounded float-right">
 <i class="fas fa-fingerprint"></i> Ingresar
@@ -243,7 +243,7 @@ BURBLE
 
 
 
-<div  class="col-md-4"></div>
+<div   class="col-md-4"></div>
 
 
 
