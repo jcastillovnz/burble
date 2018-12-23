@@ -96,26 +96,21 @@ comentarios sobre esta tarea
 <div class="collapse " v-bind:id="'collapseExample'+ item.id">
 
 
-<div class="card card-body ">
-
-<div class="container row col-sm-12">
+<div class="card card-body col-sm-12">
 
 
-<div class="col-sm-3" style="width: 100px;">
+<!--  
+<div class="col-sm-3 ">
 <img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
 </div>
-<div class="col-sm-3" style="width: 100px;">
-<img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
-</div>
+-->
 
-<div class="col-sm-3" style="width: 100px;">
+<div class="text-center">
 <img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
-</div>
-<div class="col-sm-3" style="width: 100px;">
+<img width="100"  src="img/pieza.png" class="img-fluid" alt="..."><img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
 <img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
 </div>
 
-</div>
 
 
   </div>
