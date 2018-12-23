@@ -31,31 +31,33 @@
 
 <div     class="col-sm-12 row">
 
+
+
+
 <div v-for="item in lists"  class="col-sm-6">
 
-@{{item.length}}
+
+
 <div   class="container-fluid borde-burble border bg-light">
 <p>
-
-
-<h4 align="left"  > <a href="">  <strong >     </strong> </a>    <small class="comentarios-proyecto float-right" aling="right">     </small> </h4>
-
+<h4 align="left"> 
+<a href="">  
+<strong >     
+</strong></a>    
+<small class="comentarios-proyecto float-right" aling="right">     
+</small> 
+</h4>
 </p>
-
 <h6 align="left"><strong>empresa</strong> <small class="float-right text-info" aling="right"> <strong>  12/02/2018</strong></small></h6>
 <div class="container-fluid   ">
-
 <p class="border  tarea container-fluid"  align="left">
 <i class="fas fa-stop"></i>
-
 <a href="">
 Nombre de tarea  
 </a>
-
 <i class="fas fa-circle text-danger"  title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
 comentarios sobre esta tarea
 </p>
-  
 <p class="border tarea container-fluid"  align="left">
 <i class="fas fa-stop"></i>
 <a href="">
@@ -63,7 +65,6 @@ Nombre de tarea
 </a> <i class="fas fa-circle text-danger" title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
 comentarios sobre esta tarea
 </p>
-  
 <p class="border  tarea container-fluid text-secondary"  align="left">
 <i class="fas fa-stop"></i>
 <a href="">
@@ -72,51 +73,50 @@ Nombre de tarea
 comentarios sobre esta tarea
 </p>
 </div>
-<!-- IMAGENES -->
-<!-- BOTONES-->
-<div class="float-right btn-group " >
-<div class="float-right button-collapse btn btn-light border border-dark"   id="button-collapse" data-toggle="collapse" v-bind:href="'#collapseExample'+ item.id" role="button">
-<i style="font-size: 12px" class="fas fa-chevron-down"></i>
+
+
+<div class="btn-group float-right"  style="background-color: red;">
+
+<div class="button-collapse btn btn-light border border-dark"   id="button-collapse" data-toggle="collapse" v-bind:href="'#collapseExample'+ item.id"  aria-expanded="false" aria-controls="collapseExample" role="button">
+<i style="font-size: 12px" class="fas fa-chevron-down" ></i>
 </div>
-<div class="float-right  btn btn-light border border-dark"  id="button-collapse">
+<!--  
+<div class="float-right  btn btn-light border border-dark" aria-expanded="false" id="button-collapse">
 <i  style="font-size: 12px" class="fas fa-pen-square"></i>
 </div>
 
-<div class="float-right button-collapse btn btn-light border border-dark" id="button-collapse"  data-toggle="modal" data-target=".nuevaTarea"  role="button">
+<div class="float-right button-collapse btn btn-light border border-dark" aria-expanded="false"  id="button-collapse"  data-toggle="modal" data-target=".nuevaTarea"  role="button">
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>
 </div>
+-->
 </div>
 
 
-<!-- BOTONES-->
-<div  class="collapse " v-bind:id="'collapseExample'+ item.id">
-<div class="container row">
+<hr class="invisible">
+<div class="collapse " v-bind:id="'collapseExample'+ item.id">
 
-<div class="mx-auto" style="width: 100px;">
+
+<div class="card card-body">
+
+
+
+
 <img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
-</div>
 
-<div class="mx-auto" style="width: 100px; margin: auto">
 <img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
-</div>
-<div class="mx-auto" style="width: 100px;">
-<img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
-</div>
-<div class="mx-auto" style="width: 100px;">
-<img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
-</div>
+
+
+
+  </div>
+
 
 
 </div>
 
-
-<!-- IMAGENES -->
-</div> 
 </div>
+
 <!-- CIERRE PROYECTO -->
 <!-- PROYECTO -->
-
-
 
 
 

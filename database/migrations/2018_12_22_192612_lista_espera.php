@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PosicionEspera extends Migration
+class listaEspera extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class PosicionEspera extends Migration
     public function up()
     {
         //
- Schema::create('posicion_espera', function (Blueprint $table) {
+ Schema::create('lista_espera', function (Blueprint $table) {
              $table->increments('id');
              $table->string('posicion_0')->nullable();
              $table->string('posicion_1')->nullable();

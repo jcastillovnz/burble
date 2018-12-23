@@ -66,7 +66,17 @@ return $proyectos;
 
 
 
+public function listPrincipal( Request $request )
+    {
 
+
+$proyectos = Proyectos::all();
+return $proyectos;
+
+
+
+
+    }
 
 
 
