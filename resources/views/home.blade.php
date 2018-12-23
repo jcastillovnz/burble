@@ -11,21 +11,32 @@
 
 <div      class="col-sm-12">
 
+<span align="left" >
+ 
+<h4 class="text-info" > <i class="fas fa-cube"></i>
+<strong ></i>Proyectos en proceso</strong>   
+<small>
+<button title="Nuevo proyecto" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
+</small>
 
 
+</h4>
+</span>
 
-<button class="btn btn-light rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
+
+</p>
+
 </div>
 
 
 <div     class="col-sm-12 row">
 
 <div v-for="item in lists"   class="col-sm-6">
-<div class="container-fluid borde-burble border  ">
+<div class="container-fluid borde-burble border bg-light">
 <p>
 
 
-<h4 align="left"  > <a href="">  <strong >   @{{item.nombre}}  </strong> </a>    <small class="comentarios-proyecto float-right" aling="right">@{{item.comentario}}</small> </h4>
+<h4 align="left"  > <a href="">  <strong >     </strong> </a>    <small class="comentarios-proyecto float-right" aling="right">     </small> </h4>
 
 </p>
 
@@ -62,26 +73,41 @@ comentarios sobre esta tarea
 <!-- IMAGENES -->
 <!-- BOTONES-->
 <div class="float-right btn-group " >
-<div class="float-right button-collapse btn btn-light "   id="button-collapse" data-toggle="collapse" href="#collapseExample" role="button">
+<div class="float-right button-collapse btn btn-light border border-dark"   id="button-collapse" data-toggle="collapse" v-bind:href="'#collapseExample'+ item.id" role="button">
 <i style="font-size: 12px" class="fas fa-chevron-down"></i>
 </div>
-<div class="float-right  btn btn-light "  id="button-collapse">
+<div class="float-right  btn btn-light border border-dark"  id="button-collapse">
 <i  style="font-size: 12px" class="fas fa-pen-square"></i>
 </div>
-<div class="float-right button-collapse btn btn-light " id="button-collapse"  data-toggle="modal" data-target=".nuevaTarea"  role="button">
+
+<div class="float-right button-collapse btn btn-light border border-dark" id="button-collapse"  data-toggle="modal" data-target=".nuevaTarea"  role="button">
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>
 </div>
 </div>
+
+
 <!-- BOTONES-->
-<div  class="collapse " id="collapseExample">
-<div class="center">
-​<img width="120" src="img/pieza.png" class="img-fluid" alt="...">
-<img width="120" src="img/pieza.png" class="img-fluid" alt="...">
-<img width="120" src="img/pieza.png" class="img-fluid" alt="...">
-<img width="120" src="img/pieza.png" class="img-fluid" alt="...">
+<div  class="collapse " v-bind:id="'collapseExample'+ item.id">
+<div class="container row">
+
+<div class="mx-auto" style="width: 100px;">
+<img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
+</div>
+
+<div class="mx-auto" style="width: 100px; margin: auto">
+<img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
+</div>
+<div class="mx-auto" style="width: 100px;">
+<img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
+</div>
+<div class="mx-auto" style="width: 100px;">
+<img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
+</div>
+
 
 </div>
-</div>
+
+
 <!-- IMAGENES -->
 </div> 
 </div>
@@ -116,7 +142,7 @@ comentarios sobre esta tarea
 <div  class="row col-sm-12 " id="list" >
 
 <!-- TARJETA -->
-<div class="col-sm-3">
+<div v-for="item in lists"   class="col-sm-3">
 <div class="card borde-burble" >
 <div class="card-header">
 <h6   class="proyecto-min">NOMBRE PROYECTO</h6>
@@ -132,19 +158,19 @@ comentarios sobre esta tarea
   <!-- The slideshow -->
 <div class="carousel-inner">
 <div class="carousel-item active">
-<img src="img/pieza.png" alt="Los Angeles" width="150" >
+<img src="img/pieza.png" alt="Los Angeles" width="100" >
 <div class="carousel-caption d-none d-md-block">
 tarea
 </div>
 </div>
 <div class="carousel-item">
-<img src="img/pieza.png" alt="Los Angeles" width="150" >
+<img src="img/pieza.png" alt="Los Angeles" width="100" >
 <div class="carousel-caption d-none d-md-block">
 tarea
 </div>
 </div>
 <div class="carousel-item">
-<img src="img/pieza.png" alt="Los Angeles" width="150" >
+<img src="img/pieza.png" alt="Los Angeles" width="100" >
 <div class="carousel-caption d-none d-md-block">
 tarea
 </div>
@@ -162,7 +188,7 @@ tarea
 
 
 <div class="btn-group">
-<button class="btn btn-light float-right btn-sm" ><i class="fas fa-snowflake"></i></button>
+<button class="btn btn-light float-right btn-sm" ><i class="far fa-window-minimize"></i></button>
 </div>
 </div>
 </div>

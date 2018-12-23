@@ -38,6 +38,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <!-- Sortable.js -->
+  <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
 
 <script src="js/sortable.js" ></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
@@ -468,12 +470,12 @@ Datos de contacto
 
  @guest
   @else
-<a class="navbar-brand text-primary" href="{{ url('/') }}">
+<span class="navbar-brand text-primary" href="{{ url('/') }}">
 <img src="img/user.png" width="40">
 <strong>
 {{ Auth::user()->name }} 
 </strong>
-</a>
+</span>
 
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -600,18 +602,16 @@ Datos de contacto
 
 
 
-<main class="py-4">
-</main>
+
 </div>
 </body>
 
 <footer class="col-sm-12 margin-bottom-none" >
 <center>
+  <br>
 <p>
   
 © 2018  Burble para Achelier Studio - <i class="fas fa-code"></i> Desarrollado por Jose Castillo 
-
-
 
 </p>
 </center>
