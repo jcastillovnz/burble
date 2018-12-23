@@ -33,7 +33,7 @@
 
 <div v-for="item in lists"  class="col-sm-6">
 
-
+@{{item.length}}
 <div   class="container-fluid borde-burble border bg-light">
 <p>
 
