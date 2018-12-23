@@ -9,38 +9,21 @@
 
 <style type="text/css">
 
-@media screen and (min-width: 1150px) {
-
-.login{
-margin: auto;
-max-width: 280px;
-}
 
 
 
 
 
-.pwd-container{
-
-padding-top: 11%;
-
-padding-bottom: 15%;
-
-}
-}
 
   
-@media screen and (max-width: 1150px) {
- 
 
-.pwd-container{
-
-padding-top: 30%;
+.centrado-porcentual {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
 }
-
-
-}
-
 </style>
 
 
@@ -165,31 +148,21 @@ Burble
 </div>
 
  -->
+<div class="col-sm-4 ">
+</div>
 
 
-<div class="row  pwd-container">
 
-
-<div  class="col-md-4"></div>
-
-
-<div   class="col-md-4"> 
-
-
-<div class="login">
-
-
+<div class="col-sm-3 centrado-porcentual ">
 <h3>
 <p align="center" class="text-info">
-  
 BURBLE
 <strong>
 </strong>
 </p>
 </h3>
 
-
-  <form class="hidden" method="POST" action="{{ route('login') }}">
+<form class="hidden" method="POST" action="{{ route('login') }}">
                         @csrf
 <div class="input-group  container-fluid">
 <div class="input-group-prepend">
@@ -218,40 +191,25 @@ BURBLE
 <strong>{{ $errors->first('password') }}</strong>
 </span>
 @endif
-
-
-
- </div>
+</div>
 
 
    
 
 <div class="input-group container-fluid float-right">
-
 <button type="submit" name="go" class="btn btn-info btn-sm rounded float-right">
 <i class="fas fa-fingerprint"></i> Ingresar
 </button>
 </div>
 
 </form>
-</div> <!-- cierre login -->
 
+</div><!-- /.container contenedor-->
 
-
- </div>
-
-
-
-
-<div  class="col-md-4"></div>
+<div class="col-sm-4 ">
+</div>
 
 
 
 
-
-
-
-
-
-  </div><!-- /.container contenedor-->
 @endsection
