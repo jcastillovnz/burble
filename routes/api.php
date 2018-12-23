@@ -33,11 +33,21 @@ Route::get('/usuarios/consulta/', 'GestionController@list');
 Route::get('/usuarios/delete/', 'GestionController@delete');
 
 
+Route::get('/clientes/create/', 'ClienteController@create');
+
+
 
 
 
 
 Route::get('/proyectos/', 'ProyectoController@list');
 
-Route::get('/clientes/create/', 'ClienteController@create');
+
+
+Route::get('/proyectos/principal', 'ProyectoController@listPrincipal');
+Route::get('/proyectos/espera', 'ProyectoController@listEspera');
+
+
+
+
 

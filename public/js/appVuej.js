@@ -10,7 +10,9 @@ this.getProyects();
     },
     data: {
 
-           lists: [],
+        lists: [],
+        lista_principal:[],
+        lista_espera: [],
         cliente: '',
         proyecto: '',
         fecha_entrega: '',
@@ -22,10 +24,29 @@ methods: {
 
 getProyects: function(dato)  {
 
- var url = '/api/proyectos/';
-  axios.get(url).then(response => {
-  this.lists = response.data
+
+
+var urlProyectos = '/api/proyectos/';
+axios.get(urlProyectos).then(response => {
+this.lists = response.data
 });
+
+
+/*
+
+var urlPrincipal = '/api/proyectos/principal';
+axios.get(urlPrincipal).then(response => {
+this.lista_principal = response.data
+});
+
+
+
+var urlEspera = '/api/proyectos/espera';
+axios.get(urlEspera).then(response => {
+this.lista_espera = response.data
+});
+
+*/
 
 
 

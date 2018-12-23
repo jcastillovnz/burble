@@ -31,7 +31,9 @@
 
 <div     class="col-sm-12 row">
 
-<div v-for="item in lists"   class="col-sm-6">
+<div v-for="item in lista_principal"   class="col-sm-6">
+
+
 <div class="container-fluid borde-burble border bg-light">
 <p>
 
