@@ -7,7 +7,8 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 
 use App\File;
-
+use App\lista_principal;
+use App\lista_espera;
 
 class GestionController extends Controller
 {
@@ -45,7 +46,6 @@ return  $usuario;
 
 public function list(Request $request)
 {
-
 
 $usuarios=User::all();
 return $usuarios;
@@ -96,14 +96,23 @@ $usuario->direccion=  $request->direccion;
 $usuario->obra_social=  $request->obra_social;
 $usuario->servicio_ambulancia=  $request->servicio_ambulancia;
 $usuario->contacto_ambulancia=  $request->contacto_ambulancia;
-
 $usuario->save();
+
+
+
+
+
+$lista_espera = Lista_espera::where('id', 1)
+
+
+
+
+
 
 
 if ($usuario->save()==true) {
 $data = "true";
 return response()->json($data); 
-
 }
 
 else {
