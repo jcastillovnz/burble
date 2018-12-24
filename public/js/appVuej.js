@@ -32,7 +32,7 @@ this.lists = response.data
 });
 
 
-/*
+
 
 var urlPrincipal = '/api/proyectos/principal';
 axios.get(urlPrincipal).then(response => {
@@ -46,7 +46,7 @@ axios.get(urlEspera).then(response => {
 this.lista_espera = response.data
 });
 
-*/
+
 
 
 

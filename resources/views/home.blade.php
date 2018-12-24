@@ -34,8 +34,7 @@
 
 
 
-<div v-for="item in lists"  class="col-sm-6">
-
+<div v-for="item in lista_principal"  class="col-sm-6">
 
 
 <div   class="container-fluid borde-burble border bg-light">
@@ -75,50 +74,41 @@ comentarios sobre esta tarea
 </div>
 
 
-<div class="btn-group float-right"  style="background-color: red;">
+<div class="btn-group float-right" >
 
 <div class="button-collapse btn btn-light border border-dark"   id="button-collapse" data-toggle="collapse" v-bind:href="'#collapseExample'+ item.id"  aria-expanded="false" aria-controls="collapseExample" role="button">
 <i style="font-size: 12px" class="fas fa-chevron-down" ></i>
 </div>
-<!--  
-<div class="float-right  btn btn-light border border-dark" aria-expanded="false" id="button-collapse">
+
+<div class=" btn btn-light border border-dark" aria-expanded="false" id="button-collapse">
 <i  style="font-size: 12px" class="fas fa-pen-square"></i>
 </div>
 
-<div class="float-right button-collapse btn btn-light border border-dark" aria-expanded="false"  id="button-collapse"  data-toggle="modal" data-target=".nuevaTarea"  role="button">
+<div class="button-collapse btn btn-light border border-dark" aria-expanded="false"  id="button-collapse"  data-toggle="modal" data-target=".nuevaTarea"  role="button">
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>
 </div>
--->
+
 </div>
 
 
 <hr class="invisible">
+
 <div class="collapse " v-bind:id="'collapseExample'+ item.id">
-
-
-<div class="card card-body col-sm-12">
-
-
-<!--  
-<div class="col-sm-3 ">
-<img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
-</div>
--->
+<div class="col-sm-12 img-group">
 
 <div class="text-center">
-<img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
-<img width="100"  src="img/pieza.png" class="img-fluid" alt="..."><img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
-<img width="100"  src="img/pieza.png" class="img-fluid" alt="...">
+<img width="120"  src="img/pieza.png" class="img-fluid" alt="...">
+<img width="120"  src="img/pieza.png" class="img-fluid" alt="...">
+<img width="120"  src="img/pieza.png" class="img-fluid" alt="...">
+<img width="120"  src="img/pieza.png" class="img-fluid" alt="...">
+</div>
+
+
 </div>
 
 
 
-  </div>
-
-
-
 </div>
-
 </div>
 
 <!-- CIERRE PROYECTO -->
@@ -146,11 +136,76 @@ comentarios sobre esta tarea
 </div>
 
 
+
+
+
 <!-- SUBPROYECTOS -->
 <div  class="row col-sm-12 " id="list" >
 
 <!-- TARJETA -->
-<div v-for="item in lists"   class="col-sm-3">
+<template v-if="lista_espera.length <=  0">
+
+
+<div  class="col-sm-3">
+<div class="card borde-burble" >
+<div class="card-header">
+<h6   class="proyecto-min">Em</h6>
+</div>
+
+<div id="demo" class="carousel slide card-img-top " data-ride="carousel">
+  <!-- Indicators -->
+<ul class="carousel-indicators">
+<li data-target="#demo" data-slide-to="0" class="active"></li>
+<li data-target="#demo" data-slide-to="1"></li>
+<li data-target="#demo" data-slide-to="2"></li>
+</ul>
+  <!-- The slideshow -->
+<div class="carousel-inner">
+<div class="carousel-item active">
+<img src="img/pieza.png" alt="Los Angeles" width="100" >
+<div class="carousel-caption d-none d-md-block">
+tarea
+</div>
+</div>
+<div class="carousel-item">
+<img src="img/pieza.png" alt="Los Angeles" width="100" >
+<div class="carousel-caption d-none d-md-block">
+tarea
+</div>
+</div>
+<div class="carousel-item">
+<img src="img/pieza.png" alt="Los Angeles" width="100" >
+<div class="carousel-caption d-none d-md-block">
+tarea
+</div>
+</div>
+</div>
+
+<!-- Left and right controls -->
+<a class="carousel-control-prev " href="#demo" data-slide="prev">
+<i class="fas fa-chevron-left text-dark" ></i>
+</a>
+<a class="carousel-control-next" href="#demo" data-slide="next">
+<i class="fas fa-chevron-right text-dark"></i>
+</a>
+</div>
+
+
+<div class="btn-group">
+<button class="btn btn-light float-right btn-sm" ><i class="far fa-window-minimize"></i></button>
+</div>
+</div>
+</div>
+<!-- TARJETA -->
+
+
+
+
+
+</template>
+
+
+<div v-for="item in lista_espera"   class="col-sm-3">
 <div class="card borde-burble" >
 <div class="card-header">
 <h6   class="proyecto-min">NOMBRE PROYECTO</h6>

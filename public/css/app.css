@@ -198,7 +198,7 @@ height: 30px;
   body
   {
 
-    background-color: red;
+    
   }
 .loader-lg {
 
@@ -207,6 +207,13 @@ margin-top: 70%;
 }
 }
 
+
+.img-group{
+
+margin-top: 0px;
+padding-top: none;
+
+}
 
 
 

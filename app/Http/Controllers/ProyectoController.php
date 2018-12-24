@@ -7,8 +7,8 @@ use App\Clientes;
 use App\Contactos;
 use App\Proyectos;
 
-
-
+use App\lista_principal;
+use App\lista_espera;
 
 
 class ProyectoController extends Controller
@@ -70,13 +70,33 @@ public function listPrincipal( Request $request )
     {
 
 
-$proyectos = Proyectos::all();
-return $proyectos;
+$lista_principal = Lista_principal::all();
+return $lista_principal;
 
 
 
 
     }
+
+
+public function listEspera( Request $request )
+    {
+
+
+$lista_espera = Lista_espera::all();
+return $lista_espera;
+
+
+
+
+    }
+
+
+
+
+
+
+
 
 
 

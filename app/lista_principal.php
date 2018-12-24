@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class lista_principal extends Model
+class Lista_principal extends Model
 {
     //
 
