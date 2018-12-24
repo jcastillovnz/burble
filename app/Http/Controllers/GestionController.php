@@ -102,12 +102,6 @@ $usuario->save();
 
 
 
-$lista_espera = Lista_espera::where('id', 1)
-
-
-
-
-
 
 
 if ($usuario->save()==true) {

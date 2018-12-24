@@ -28,6 +28,21 @@ $proyecto->save();
 
 
 
+$lista_espera = Lista_espera::where('id', 1);
+
+dd($lista_espera->posision_0);
+$lista_espera->posision_0;
+$lista_espera->posision_1;
+$lista_espera->posision_2;
+$lista_espera->posision_3;
+
+
+
+
+
+
+
+
 if ($proyecto->save()==true) {
 $data = "true";
 return response()->json($data); 
