@@ -31,11 +31,6 @@ $proyecto->save();
 $lista_espera = Lista_espera::all();
 $count = count($lista_espera);
 
-if ($count==4)
-{
-echo "SE POSICIONARA EN LA ULTIMA POSICION";
-$this->ordenamiento ($suiche , $lista_espera);
-}
 
 
 if ($count==0)
@@ -50,18 +45,28 @@ for ($x = 0; $x <= 3; $x++) {
 
 
 if ( $x == 0) {
-	$lista_espera->posicion=$proyecto->id;
+$lista_espera->posicion="nuevaposision";
+echo " POSICIONES NUEVAS".$lista_espera->posicion ;
+$lista_espera->posicion->save();
 }
 else{
-$lista_espera->posicion=null;
-
-}
-$lista_espera->save();
-
 
 
 }
 
+
+
+}
+
+if ($count==4)
+{
+
+/*
+echo "SE POSICIONARA EN LA ULTIMA POSICION";
+$this->ordenamiento ($suiche , $lista_espera);
+*/
+
+}
 
 
 
