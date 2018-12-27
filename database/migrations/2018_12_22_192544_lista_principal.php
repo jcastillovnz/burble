@@ -18,11 +18,8 @@ class listaPrincipal extends Migration
 
  Schema::create('lista_principal', function (Blueprint $table) {
              $table->increments('id');
-             $table->string('posicion_0')->nullable();
-             $table->string('posicion_1')->nullable();
-             $table->string('posicion_2')->nullable();
-             $table->string('posicion_3')->nullable();
-             $table->timestamps();
+             $table->string('posicion')->nullable();
+ $table->timestamps();
 
 
       });

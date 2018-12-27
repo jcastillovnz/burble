@@ -42,29 +42,34 @@ for ($x = 0; $x <= 3; $x++) {
 	echo "<br>" ;
 	echo "POSICION: ".$x;
 
-
+$lista_espera = new Lista_espera();
 
 if ( $x == 0) {
-$lista_espera->posicion="nuevaposision";
-echo " POSICIONES NUEVAS".$lista_espera->posicion ;
-$lista_espera->posicion->save();
+
+echo " POSICIONES NUEVAS";
+
+$lista_espera->posicion = $proyecto->id;
+
+
 }
 else{
-
+    echo "<br>" ;
+    echo "POSICION: NULL".$x;
+$lista_espera->posicion = null;
 
 }
 
-
+$lista_espera->save();
 
 }
 
 if ($count==4)
 {
 
-/*
+
 echo "SE POSICIONARA EN LA ULTIMA POSICION";
 $this->ordenamiento ($suiche , $lista_espera);
-*/
+
 
 }
 
