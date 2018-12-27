@@ -197,18 +197,14 @@ tarea
 </div>
 </div>
 <!-- TARJETA -->
-
-
-
-
-
 </template>
+
 
 
 <div v-for="item in lista_espera"   class="col-sm-3">
 <div class="card borde-burble" >
 <div class="card-header">
-<h6   class="proyecto-min">NOMBRE PROYECTO</h6>
+<h6   class="proyecto-min">   NOMBRE PROYECTO</h6>
 </div>
 
 <div id="demo" class="carousel slide card-img-top " data-ride="carousel">
@@ -256,6 +252,13 @@ tarea
 </div>
 </div>
 <!-- TARJETA -->
+
+
+
+
+
+
+
 
 
 

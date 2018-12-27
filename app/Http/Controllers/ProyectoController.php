@@ -28,21 +28,48 @@ $proyecto->save();
 
 
 
-$lista_espera = Lista_espera::where('id', 1);
+$lista_espera = Lista_espera::all();
+$count = count($lista_espera);
 
-dd($lista_espera->posision_0);
-$lista_espera->posision_0;
-$lista_espera->posision_1;
-$lista_espera->posision_2;
-$lista_espera->posision_3;
-
-
-
+if ($count==4)
+{
+echo "SE POSICIONARA EN LA ULTIMA POSICION";
+$this->ordenamiento ($suiche , $lista_espera);
+}
 
 
+if ($count==0)
+{
+
+echo "SE CREARA NUEVO";
+
+for ($x = 0; $x <= 3; $x++) {
+	echo "<br>" ;
+	echo "POSICION: ".$x;
 
 
 
+if ( $x == 0) {
+	$lista_espera->posicion=$proyecto->id;
+}
+else{
+$lista_espera->posicion=null;
+
+}
+$lista_espera->save();
+
+
+
+}
+
+
+
+
+}
+
+
+
+/*
 if ($proyecto->save()==true) {
 $data = "true";
 return response()->json($data); 
@@ -56,12 +83,27 @@ $data = "false";
 return response()->json($data); 
 
 }
-
+*/
 
 
 
 
     }
+
+public function ordenamiento ( $suiche , $lista_espera ){
+
+echo "<br>" ;
+
+foreach ($lista_espera as $key => $value) {
+echo "Recorrido";
+echo "<br>";
+echo "".$key;
+
+
+}
+
+
+}
 
 
 
@@ -69,8 +111,6 @@ public function list( Request $request )
     {
 
 $proyectos = Proyectos::all();
-
-
 return $proyectos;
 
 
