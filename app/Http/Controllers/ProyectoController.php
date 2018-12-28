@@ -85,23 +85,33 @@ return response()->json($data);
 
 public function ordenamiento( $proyecto, $lista_espera ){
 
+dd($lista_espera)  ;
 
 
+arsort($lista_espera);
 
+
+/*
 foreach ($lista_espera as $key => $data) {
 
-
-
-if ($key == 3) {
-$data->posicion = $proyecto->id;
+echo "POSICION $key:  "; echo "ESTADO : "   ;
+if ($data->posicion==true ) {
+echo "Existen un dato";
 }
 
+else {
+
+echo "Es Null";
+
+}
+
+echo"\n";
 
 
 
 }
+*/
 
-$data->save();
 
 }
 
