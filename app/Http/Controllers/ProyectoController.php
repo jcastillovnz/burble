@@ -36,25 +36,21 @@ $count = count($lista_espera);
 if ($count==0)
 {
 
-echo "SE CREARA NUEVO";
 
 for ($x = 0; $x <= 3; $x++) {
-	echo "<br>" ;
-	echo "POSICION: ".$x;
+
 
 $lista_espera = new Lista_espera();
 
 if ( $x == 0) {
 
-echo " POSICIONES NUEVAS";
 
 $lista_espera->posicion = $proyecto->id;
 
 
 }
 else{
-    echo "<br>" ;
-    echo "POSICION: NULL".$x;
+ 
 $lista_espera->posicion = null;
 
 }
@@ -63,55 +59,49 @@ $lista_espera->save();
 
 }
 
+}
+
 if ($count==4)
 {
 
-
-echo "SE POSICIONARA EN LA ULTIMA POSICION";
-$this->ordenamiento ($suiche , $lista_espera);
-
-
+$this->ordenamiento ($proyecto, $lista_espera);
 }
 
 
 
-}
 
-
-
-/*
 if ($proyecto->save()==true) {
 $data = "true";
 return response()->json($data); 
 
 }
-
-
 else {
-
 $data = "false";
 return response()->json($data); 
-
 }
-*/
-
-
-
-
-    }
-
-public function ordenamiento ( $suiche , $lista_espera ){
-
-echo "<br>" ;
-
-foreach ($lista_espera as $key => $value) {
-echo "Recorrido";
-echo "<br>";
-echo "".$key;
 
 
 }
 
+public function ordenamiento( $proyecto, $lista_espera ){
+
+
+
+
+foreach ($lista_espera as $key => $data) {
+
+
+
+if ($key == 3) {
+$data->posicion = $proyecto->id;
+}
+
+
+
+
+}
+
+$data->save();
 
 }
 
