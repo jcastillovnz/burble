@@ -9,7 +9,8 @@ use App\Proyectos;
 
 use App\lista_principal;
 use App\lista_espera;
-
+use Auth;
+use DB;
 
 class ProyectoController extends Controller
 {
@@ -31,41 +32,30 @@ $proyecto->save();
 $lista_espera = Lista_espera::all();
 $count = count($lista_espera);
 
-
-
-if ($count==0)
+if ($count>=0 AND $count<=3 )
 {
-
-
-for ($x = 0; $x <= 3; $x++) {
-
-
 $lista_espera = new Lista_espera();
-
-if ( $x == 0) {
-
-
-$lista_espera->posicion = $proyecto->id;
-
-
-}
-else{
- 
-$lista_espera->posicion = null;
-
-}
-
+$lista_espera->proyectos_id = $proyecto->id;
 $lista_espera->save();
-
 }
 
-}
 
-if ($count==4)
+if ($count==4 )
 {
+foreach ($lista_espera as $key => $value) {
 
-$this->ordenamiento ($proyecto, $lista_espera);
+	if ($key ==3) {
+		$value->proyectos_id=$proyecto->id;
+        $value->save();
+
+	}
+
 }
+
+}
+
+
+
 
 
 
@@ -73,7 +63,6 @@ $this->ordenamiento ($proyecto, $lista_espera);
 if ($proyecto->save()==true) {
 $data = "true";
 return response()->json($data); 
-
 }
 else {
 $data = "false";
@@ -81,39 +70,11 @@ return response()->json($data);
 }
 
 
-}
-
-public function ordenamiento( $proyecto, $lista_espera ){
-
-dd($lista_espera)  ;
-
-
-arsort($lista_espera);
-
-
-/*
-foreach ($lista_espera as $key => $data) {
-
-echo "POSICION $key:  "; echo "ESTADO : "   ;
-if ($data->posicion==true ) {
-echo "Existen un dato";
-}
-
-else {
-
-echo "Es Null";
-
-}
-
-echo"\n";
-
 
 
 }
-*/
 
 
-}
 
 
 
@@ -148,7 +109,11 @@ public function listEspera( Request $request )
     {
 
 
-$lista_espera = Lista_espera::all();
+$lista_espera = DB::table('lista_espera')
+->Join('proyectos', 'lista_espera.proyectos_id', '=', 'proyectos.id')
+->select( 
+'lista_espera.id',   'lista_espera.posicion', 'proyectos.nombre AS nombre_proyecto')->get();
+
 return $lista_espera;
 
 

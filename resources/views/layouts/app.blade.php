@@ -24,8 +24,9 @@
           <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" >
            <link href="css/app.css" rel="stylesheet" type="text/css">
            <link href="{{ asset('css/alertify.css') }}" rel="stylesheet" type="text/css">
-
-
+      <link href="{{ asset('css/loader.css') }}" rel="stylesheet" type="text/css">
+ 
+             
 
 
 
@@ -97,9 +98,14 @@
 
 
 
+<div  id="loader" class="loader loader-lg" ></div>
+
+<body   class="col-sm-12  ">
 
 
-<body   class="col-sm-12">
+
+
+
 
 <!-- MODAL NUEVO CLIENTE -->
 <div    class="modal fade nuevoCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -451,10 +457,6 @@ Datos de contacto
 
 
 
-
-<div class="col-sm-12 cargador">
-<div  id="loader" class="loader loader-lg"></div>
-</div>
 
 
 

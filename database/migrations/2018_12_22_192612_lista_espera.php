@@ -15,9 +15,14 @@ class listaEspera extends Migration
     {
         //
  Schema::create('lista_espera', function (Blueprint $table) {
-             $table->increments('id');
-             $table->string('posicion')->nullable();
-  $table->timestamps();
+$table->increments('id');
+$table->string('posicion')->nullable();
+$table->integer('proyectos_id')->unsigned()->nullable() ;
+$table->foreign('proyectos_id')->references('id')->on('proyectos')  ->onupdate('cascade') ->onDelete('cascade')   ;
+$table->timestamps();
+
+
+
 
                  });
     }

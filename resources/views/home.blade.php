@@ -11,17 +11,15 @@
 
 <div      class="col-sm-12">
 
-<span align="left" >
- 
-<h4 class="text-info" > <i class="fas fa-cube"></i>
-<strong ></i>Proyectos en proceso</strong>   
-<small>
+
+
+<strong class="float-left"></i>Proyectos en proceso</strong>   
+
 <button title="Nuevo proyecto" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
-</small>
 
 
-</h4>
-</span>
+
+
 
 
 </p>
@@ -32,22 +30,23 @@
 <div     class="col-sm-12 row">
 
 
-
-
 <div v-for="item in lista_principal"  class="col-sm-6">
 
 
 <div   class="container-fluid borde-burble border bg-light">
 <p>
-<h4 align="left"> 
+<h4 class="proyecto-min" align="left"> 
 <a href="">  
-<strong >     
+<strong >     Proyecto
 </strong></a>    
 <small class="comentarios-proyecto float-right" aling="right">     
+  comentario proyecto
 </small> 
 </h4>
 </p>
-<h6 align="left"><strong>empresa</strong> <small class="float-right text-info" aling="right"> <strong>  12/02/2018</strong></small></h6>
+<h6 class="empresa-min" align="left"><strong>empresa</strong> <small class="float-right text-info" aling="right"> <strong>  12/02/2018</strong></small></h6>
+
+
 <div class="container-fluid   ">
 <p class="border  tarea container-fluid"  align="left">
 <i class="fas fa-stop"></i>
@@ -129,9 +128,11 @@ comentarios sobre esta tarea
 
 
 
-
-
 <div class="col-sm-12">
+<p align="left"><strong> Proyectos en espera</strong></p>
+
+
+
 <hr>
 </div>
 
@@ -152,43 +153,7 @@ comentarios sobre esta tarea
 <h6   class="proyecto-min">Em</h6>
 </div>
 
-<div id="demo" class="carousel slide card-img-top " data-ride="carousel">
-  <!-- Indicators -->
-<ul class="carousel-indicators">
-<li data-target="#demo" data-slide-to="0" class="active"></li>
-<li data-target="#demo" data-slide-to="1"></li>
-<li data-target="#demo" data-slide-to="2"></li>
-</ul>
-  <!-- The slideshow -->
-<div class="carousel-inner">
-<div class="carousel-item active">
-<img src="img/pieza.png" alt="Los Angeles" width="100" >
-<div class="carousel-caption d-none d-md-block">
-tarea
-</div>
-</div>
-<div class="carousel-item">
-<img src="img/pieza.png" alt="Los Angeles" width="100" >
-<div class="carousel-caption d-none d-md-block">
-tarea
-</div>
-</div>
-<div class="carousel-item">
-<img src="img/pieza.png" alt="Los Angeles" width="100" >
-<div class="carousel-caption d-none d-md-block">
-tarea
-</div>
-</div>
-</div>
 
-<!-- Left and right controls -->
-<a class="carousel-control-prev " href="#demo" data-slide="prev">
-<i class="fas fa-chevron-left text-dark" ></i>
-</a>
-<a class="carousel-control-next" href="#demo" data-slide="next">
-<i class="fas fa-chevron-right text-dark"></i>
-</a>
-</div>
 
 
 <div class="btn-group">
@@ -202,53 +167,31 @@ tarea
 
 
 <div v-for="item in lista_espera"   class="col-sm-3">
-<div class="card borde-burble" >
-<div class="card-header">
-<h6   class="proyecto-min">   NOMBRE PROYECTO</h6>
-</div>
-
-<div id="demo" class="carousel slide card-img-top " data-ride="carousel">
-  <!-- Indicators -->
-<ul class="carousel-indicators">
-<li data-target="#demo" data-slide-to="0" class="active"></li>
-<li data-target="#demo" data-slide-to="1"></li>
-<li data-target="#demo" data-slide-to="2"></li>
-</ul>
-  <!-- The slideshow -->
-<div class="carousel-inner">
-<div class="carousel-item active">
-<img src="img/pieza.png" alt="Los Angeles" width="100" >
-<div class="carousel-caption d-none d-md-block">
-tarea
-</div>
-</div>
-<div class="carousel-item">
-<img src="img/pieza.png" alt="Los Angeles" width="100" >
-<div class="carousel-caption d-none d-md-block">
-tarea
-</div>
-</div>
-<div class="carousel-item">
-<img src="img/pieza.png" alt="Los Angeles" width="100" >
-<div class="carousel-caption d-none d-md-block">
-tarea
-</div>
-</div>
-</div>
-
-<!-- Left and right controls -->
-<a class="carousel-control-prev " href="#demo" data-slide="prev">
-<i class="fas fa-chevron-left text-dark" ></i>
+<div class="card borde-burble bg-light" >
+<div class="" >
+  <p  align="left">
+    <a href="">
+<h6   class="proyecto-min "> @{{item.nombre_proyecto}} </h6>
 </a>
-<a class="carousel-control-next" href="#demo" data-slide="next">
-<i class="fas fa-chevron-right text-dark"></i>
-</a>
+</p>
+<h3 class="empresa-min"> Empresa</h3>
+
+</div>
+
+<div align="center">
+Tareas
 </div>
 
 
-<div class="btn-group">
-<button class="btn btn-light float-right btn-sm" ><i class="far fa-window-minimize"></i></button>
+<div class="fecha-xs" >
+  <p class="float-right">
+<small>
+ <strong>   12/09/2018 </strong> 
+</small>
+</p>
+
 </div>
+
 </div>
 </div>
 <!-- TARJETA -->

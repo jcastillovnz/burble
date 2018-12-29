@@ -24,22 +24,15 @@ methods: {
 
 getProyects: function(dato)  {
 
-
-
 var urlProyectos = '/api/proyectos/';
 axios.get(urlProyectos).then(response => {
 this.lists = response.data
 });
 
-
-
-
 var urlPrincipal = '/api/proyectos/principal';
 axios.get(urlPrincipal).then(response => {
 this.lista_principal = response.data
 });
-
-
 
 var urlEspera = '/api/proyectos/espera';
 axios.get(urlEspera).then(response => {
@@ -47,13 +40,8 @@ this.lista_espera = response.data
 });
 
 
-
-
-
-
  }
 ,
-
 
 
 
@@ -78,13 +66,12 @@ comentario: this.comentario,
 
 if (response.data == "true") {
 
-
-
 document.getElementById('loader-sm').style.display="none"
 $('.nuevoProyecto').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 this.getProyects();
+
 
 // document.getElementById("formulario_proyecto").reset();       
 
