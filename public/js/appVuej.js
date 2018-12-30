@@ -43,7 +43,13 @@ this.lista_espera = response.data
  }
 ,
 
+delete_espera: function(e) {
 
+alert("HOLA");
+
+
+}
+,
 
 sendData: function(e) {
 
@@ -58,6 +64,10 @@ presupuesto: this.presupuesto,
 comentario: this.comentario,
   }
       ,
+
+
+
+
       validateStatus: (status) => {
         return true; // I'm always returning true, you may want to do it depending on the status received
       },
@@ -85,7 +95,6 @@ document.getElementById('btn-proyecto').disabled = false;
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
  document.getElementById("formulario_proyecto").reset();    
 
-
 }
 
 });
@@ -98,6 +107,10 @@ this.sendData()
 
 
 }
+,
+
+
+
 
 
 }

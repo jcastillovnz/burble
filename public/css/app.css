@@ -70,6 +70,14 @@ height: 120px;
   border-radius: 11px;
 }
 
+.bar{
+margin-left: 0px;
+padding-left: none;
+
+ width: 8px; 
+ height: 15px; 
+background: #428bca;
+}
 
 .bold  {
    font-weight: bold;
@@ -94,6 +102,13 @@ height: 120px;
 
 }
 #button-collapse{
+border: 1px;
+margin-top: -20px;
+border-radius: 50%;
+}
+
+
+.button-absolute{
 border: 1px;
 margin-top: -20px;
 border-radius: 50%;
@@ -193,3 +208,6 @@ margin-top: 0px;
 padding-top: none;
 
 }
+
+
+

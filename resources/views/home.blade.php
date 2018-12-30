@@ -48,8 +48,10 @@
 
 
 <div class="container-fluid   ">
+
+
 <p class="border  tarea container-fluid"  align="left">
-<i class="fas fa-stop"></i>
+<i class="fas bar float-left"></i>
 <a href="">
 Nombre de tarea  
 </a>
@@ -57,7 +59,9 @@ Nombre de tarea
 comentarios sobre esta tarea
 </p>
 <p class="border tarea container-fluid"  align="left">
-<i class="fas fa-stop"></i>
+
+
+
 <a href="">
 Nombre de tarea  
 </a> <i class="fas fa-circle text-danger" title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
@@ -141,11 +145,10 @@ comentarios sobre esta tarea
 
 
 <!-- SUBPROYECTOS -->
-<div  class="row col-sm-12 " id="list" >
+<div  id="AppProyectos" class="row col-sm-12 " id="list" >
 
 <!-- TARJETA -->
 <template v-if="lista_espera.length <=  0">
-
 
 <div  class="col-sm-3">
 <div class="card borde-burble" >
@@ -168,23 +171,36 @@ comentarios sobre esta tarea
 
 <div v-for="item in lista_espera"   class="col-sm-3">
 <div class="card borde-burble bg-light" >
-<div class="" >
-  <p  align="left">
-    <a href="">
-<h6   class="proyecto-min "> @{{item.nombre_proyecto}} </h6>
+<div class="container" >
+<p align="left">
+<a  href="">
+
+<strong class="proyecto-min">
+@{{item.nombre_proyecto}}
+</strong>
+
 </a>
+
+
+<p class="empresa-min" align="left">
+
+ <strong> Empresa</strong> 
+
 </p>
-<h3 class="empresa-min"> Empresa</h3>
+</p>
 
 </div>
 
-<div align="center">
+
+
+
+<div class="container" align="left ">
 Tareas
 </div>
 
 
-<div class="fecha-xs" >
-  <p class="float-right">
+<div class="container" >
+<p class="" align="right">
 <small>
  <strong>   12/09/2018 </strong> 
 </small>
@@ -192,7 +208,27 @@ Tareas
 
 </div>
 
+
+
+
+
+
+
+
+
 </div>
+
+
+<div class="btn-group float-right button-absolute" >
+<div v-on:click="delete_espera()"  class="button-collapse btn btn-light border border-dark btn-sm rounded-circle"  >
+<i class="fas fa-folder-minus"></i>
+</div>
+
+
+</div>
+
+
+
 </div>
 <!-- TARJETA -->
 
