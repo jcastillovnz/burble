@@ -1,6 +1,7 @@
 
 
 
+
 var Proyectos = new Vue({ 
     el: '#AppProyectos',
      mounted(){
@@ -43,10 +44,19 @@ this.lista_espera = response.data
  }
 ,
 
-delete_espera: function(e) {
+delete_espera: function(dato) {
 
-alert("HOLA");
+axios({
+  url: '/api/lista_espera/delete/',
+  method: 'get',
+  params: {
+ id: dato.id
+  }
+}).then(function (response) {
 
+Proyectos.getProyects();
+
+  })
 
 }
 ,
@@ -102,19 +112,15 @@ document.getElementById('btn-proyecto').disabled = false;
 submit : function(e) {
 
 document.getElementById('btn-proyecto').disabled = true;
-document.getElementById('loader-sm').style.display="block"
+document.getElementById('loader-proyecto').style.display="block"
 this.sendData()
 
 
 }
+
 ,
 
-
-
-
-
-}
-
+  }
 });
 
 

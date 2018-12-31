@@ -40,12 +40,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <!-- Sortable.js -->
-  <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
-
-<script src="js/sortable.js" ></script>
+<!-- CDNJS :: Sortable (https://cdnjs.com/) -->
+<script src="//cdn.jsdelivr.net/npm/sortablejs@1.7.0/Sortable.min.js"></script>
+<!-- CDNJS :: Vue.Draggable (https://cdnjs.com/) -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.17.0/vuedraggable.min.js"></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
-
-
 
 
 <nav class="navbar navbar-expand-lg navbar-light border-bottom ">
@@ -438,6 +437,8 @@ Datos de contacto
 <div class="modal-footer">
 <div class="btn btn-group  ">
 <div id="loader-sm" class="loader loader-sm "></div>
+
+
 <button class="btn btn-light btn-sm " title="Cancelar" type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>

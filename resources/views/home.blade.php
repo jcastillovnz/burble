@@ -145,27 +145,39 @@ comentarios sobre esta tarea
 
 
 <!-- SUBPROYECTOS -->
-<div  id="AppProyectos" class="row col-sm-12 " id="list" >
+<div     id="AppProyectos" class="row col-sm-12 " id="list"  >
 
 <!-- TARJETA -->
 <template v-if="lista_espera.length <=  0">
 
 <div  class="col-sm-3">
-<div class="card borde-burble" >
-<div class="card-header">
-<h6   class="proyecto-min">Em</h6>
+<div class="card borde-burble alert-warning" >
+<div class="container alert ">
+<p align="center">
+
+
+
+
+<h6> <strong> <i class="fas fa-exclamation-circle"></i>   Registre un nuevo proyecto </strong>  </h6>
+</p>
+
 </div>
 
 
 
 
-<div class="btn-group">
-<button class="btn btn-light float-right btn-sm" ><i class="far fa-window-minimize"></i></button>
+</div>
+
+<div class="btn-group float-right button-absolute " >
+<div    data-toggle="modal" data-target=".nuevoProyecto" class=" btn btn-light border border-dark btn-sm rounded-circle"  >
+<i style="font-size: 13px;" class="fas fa-plus-circle"></i>
 </div>
 </div>
 </div>
 <!-- TARJETA -->
 </template>
+
+
 
 
 
@@ -192,8 +204,6 @@ comentarios sobre esta tarea
 </div>
 
 
-
-
 <div class="container" align="left ">
 Tareas
 </div>
@@ -208,28 +218,16 @@ Tareas
 
 </div>
 
-
-
-
-
-
-
-
-
 </div>
-
 
 <div class="btn-group float-right button-absolute" >
-<div v-on:click="delete_espera()"  class="button-collapse btn btn-light border border-dark btn-sm rounded-circle"  >
-<i class="fas fa-folder-minus"></i>
+<div v-on:click="delete_espera(item)"  class="button-collapse btn btn-light border border-dark btn-sm rounded-circle"  >
+<i class="fas fa-trash"></i>
+</div>
+</div>
 </div>
 
 
-</div>
-
-
-
-</div>
 <!-- TARJETA -->
 
 
@@ -328,7 +326,7 @@ Registrar un nuevo proyecto
 
 <div  class="modal-footer">
 <div  class="btn btn-group  ">
-<div id="loader-sm" class="loader loader-sm "></div>
+<div id="loader-proyecto" class="loader loader-sm "></div>
 <button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>
@@ -426,7 +424,9 @@ Registrar un nueva tarea
 </div>
 <div class="modal-footer">
 <div class="btn btn-group  ">
-<div id="loader-sm" class="loader loader-sm "></div>
+<div  class="loader loader-sm"></div>
+
+
 <button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>

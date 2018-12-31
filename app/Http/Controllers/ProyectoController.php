@@ -74,9 +74,14 @@ return response()->json($data);
 
 }
 
+ public function deleteListaEspera(Request $request)
+{
+	
+$lista_espera=Lista_espera::destroy($request->id);
+return  $lista_espera;
 
 
-
+}
 
 public function list( Request $request )
     {
