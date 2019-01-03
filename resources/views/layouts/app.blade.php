@@ -42,11 +42,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <!-- Sortable.js -->
 <!-- CDNJS :: Sortable (https://cdnjs.com/) -->
-<<<<<<< HEAD
-<script src="https://unpkg.com/vue-draggable@1.0.5/lib/vue-draggable.js"></script>
-=======
 
->>>>>>> 8c5531581fa4050083d2bd51839e5525873db148
+<script src="https://unpkg.com/vue-draggable@1.0.5/lib/vue-draggable.js"></script>
+
+
+
 
 <script src="{{ asset('js/app.js') }}" defer></script>
 
