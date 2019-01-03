@@ -1,4 +1,7 @@
 
+Vue.use(VueDraggable);
+
+
 
 
 
@@ -19,6 +22,23 @@ this.getProyects();
         fecha_entrega: '',
         presupuesto: '',
         comentario: '',
+
+        options: {
+      dropzoneSelector: '.lista',
+      draggableSelector: '.col-sm-3',
+      // excludeOlderBrowsers: true,
+    //showDropzoneAreas: true,
+      // multipleDropzonesItemsDraggingEnabled: true,
+     onDrop(event) {
+       alert("Hola");
+   },
+      // onDragstart(event) {
+      //   event.stop();
+      // },
+      // onDragend(event) {
+      //   event.stop();
+      // }
+    }
     },
 
 methods: {

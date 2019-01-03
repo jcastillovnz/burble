@@ -7,27 +7,17 @@
 
 
 <div id="AppProyectos"    class="content " >
+<template id="listas">
 
-
-<div      class="col-sm-12">
-
-
-
+<div  class="col-sm-12">
 <strong class="float-left"></i>Proyectos en proceso</strong>   
 
 <button title="Nuevo proyecto" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
-
-
-
-
-
-
 </p>
-
 </div>
 
 
-<div     class="col-sm-12 row">
+<div   v-drag-and-drop:options="options"    class="col-sm-12 row">
 
 
 <div v-for="item in lista_principal"  class="col-sm-6">
@@ -117,12 +107,6 @@ comentarios sobre esta tarea
 <!-- CIERRE PROYECTO -->
 <!-- PROYECTO -->
 
-
-
-
-
-
-
 </div>
 
 
@@ -145,7 +129,7 @@ comentarios sobre esta tarea
 
 
 <!-- SUBPROYECTOS -->
-<div     id="AppProyectos" class="row col-sm-12 " id="list"  >
+<div    class="row col-sm-12 "   >
 
 <!-- TARJETA -->
 <template v-if="lista_espera.length <=  0">
@@ -180,8 +164,8 @@ comentarios sobre esta tarea
 
 
 
-
-<div v-for="item in lista_espera"   class="col-sm-3">
+<template class="lista">
+<div v-for="item in lista_espera"   class="col-sm-3 ">
 <div class="card borde-burble bg-light" >
 <div class="container" >
 <p align="left">
@@ -200,10 +184,7 @@ comentarios sobre esta tarea
 
 </p>
 </p>
-
 </div>
-
-
 <div class="container" align="left ">
 Tareas
 </div>
@@ -226,7 +207,7 @@ Tareas
 </div>
 </div>
 </div>
-
+</template>
 
 <!-- TARJETA -->
 
@@ -244,7 +225,7 @@ Tareas
 
 
 <!-- MODAL NUEVO PROYECTO  -->
-<div     class="modal fade nuevoProyecto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div   class="modal fade nuevoProyecto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
   <div class="modal-dialog modal-sm-8">
  
@@ -350,23 +331,18 @@ Registrar un nuevo proyecto
 
 <!-- MODAL NUEVA TAREA -->
 <div class="modal fade nuevaTarea" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-
-  <div class="modal-dialog modal-sm-8">
- 
-    <div class="modal-content">
-   <div class="modal-header ">
+<div class="modal-dialog modal-sm-8">
+<div class="modal-content">
+<div class="modal-header ">
     
 <div class="col-sm-12 text-primary">
 <i class="fas fa-suitcase"></i>
 <strong>
 Registrar un nueva tarea
-
 </strong>
 <button type="button" class="close float-right" data-dismiss="modal">&times;</button>
 </div>
-
-      </div>
-
+</div>
 <div class="modal-body">
 <div class="input-group  col-sm-12">
 <div class="input-group-prepend">
@@ -440,7 +416,7 @@ Registrar un nueva tarea
 </div>
 
 <!-- MODAL NUEVA TAREA -->
-
+</template>
 </div>
 
 
