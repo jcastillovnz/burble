@@ -1,7 +1,6 @@
 
 
 
-
 var Proyectos = new Vue({ 
     el: '#AppProyectos',
      mounted(){
@@ -73,8 +72,24 @@ fecha_entrega: this.fecha_entrega,
 presupuesto: this.presupuesto,
 comentario: this.comentario,
   }
-      ,
+  ,
 
+
+
+allowDrop: function(e) {
+
+ev.preventDefault();
+
+  }
+  ,
+Drop: function(e) {
+
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+
+  }
+  ,
 
 
 
