@@ -196,6 +196,10 @@ border-radius: 50%;
             }
 
 
+.ghost {
+  opacity: .5;
+  background: #C8EBFB;
+}
 
 
 

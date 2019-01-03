@@ -17,10 +17,14 @@
 </div>
 
 
+<<<<<<< HEAD
 <div   v-drag-and-drop:options="options"    class="col-sm-12 row">
+=======
+<div   class="col-sm-12 row ">
+>>>>>>> 8c5531581fa4050083d2bd51839e5525873db148
 
 
-<div v-for="item in lista_principal"  class="col-sm-6">
+<div  v-for="item in lista_principal"  class="col-sm-6">
 
 
 <div   class="container-fluid borde-burble border bg-light">
@@ -129,7 +133,12 @@ comentarios sobre esta tarea
 
 
 <!-- SUBPROYECTOS -->
+<<<<<<< HEAD
 <div    class="row col-sm-12 "   >
+=======
+<div   id="AppProyectos" class="row col-sm-12 "   >
+
+>>>>>>> 8c5531581fa4050083d2bd51839e5525873db148
 
 <!-- TARJETA -->
 <template v-if="lista_espera.length <=  0">
@@ -163,56 +172,53 @@ comentarios sobre esta tarea
 
 
 
+<template   v-for="item in lista_espera" >
 
+<<<<<<< HEAD
 <template class="lista">
 <div v-for="item in lista_espera"   class="col-sm-3 ">
+=======
+<div   class="col-sm-3 ">
+>>>>>>> 8c5531581fa4050083d2bd51839e5525873db148
 <div class="card borde-burble bg-light" >
 <div class="container" >
 <p align="left">
 <a  href="">
-
 <strong class="proyecto-min">
 @{{item.nombre_proyecto}}
 </strong>
-
 </a>
 
-
 <p class="empresa-min" align="left">
-
  <strong> Empresa</strong> 
-
 </p>
 </p>
 </div>
 <div class="container" align="left ">
 Tareas
 </div>
-
-
 <div class="container" >
 <p class="" align="right">
 <small>
  <strong>   12/09/2018 </strong> 
 </small>
 </p>
-
 </div>
-
 </div>
-
 <div class="btn-group float-right button-absolute" >
 <div v-on:click="delete_espera(item)"  class="button-collapse btn btn-light border border-dark btn-sm rounded-circle"  >
 <i class="fas fa-trash"></i>
 </div>
 </div>
 </div>
+<<<<<<< HEAD
 </template>
+=======
+
+ </template><!--LISTADO TERMINA-->
+>>>>>>> 8c5531581fa4050083d2bd51839e5525873db148
 
 <!-- TARJETA -->
-
-
-
 
 
 
