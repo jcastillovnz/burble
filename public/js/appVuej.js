@@ -24,13 +24,12 @@ this.getProyects();
 
         options: {
       dropzoneSelector: '.lista',
-      draggableSelector: '.col-sm-3',
+      draggableSelector: '.item',
       // excludeOlderBrowsers: true,
-    //showDropzoneAreas: true,
-      // multipleDropzonesItemsDraggingEnabled: true,
-     onDrop(event) {
-       alert("Hola");
-   },
+   //showDropzoneAreas: true,
+      // onDrop(event) {
+      //   console.log(event);
+      // },
       // onDragstart(event) {
       //   event.stop();
       // },
@@ -96,20 +95,7 @@ comentario: this.comentario,
 
 
 
-allowDrop: function(e) {
 
-ev.preventDefault();
-
-  }
-  ,
-Drop: function(e) {
-
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-
-  }
-  ,
 
 
 

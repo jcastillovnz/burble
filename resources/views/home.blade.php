@@ -17,9 +17,9 @@
 </div>
 
 
-<div   v-drag-and-drop:options="options"    class="col-sm-12 row">
 
-<div   class="col-sm-12 row ">
+
+<div     class="col-sm-12 row ">
 
 
 
@@ -133,9 +133,9 @@ comentarios sobre esta tarea
 
 <!-- SUBPROYECTOS -->
 
-<div    class="row col-sm-12 "   >
 
-<div   id="AppProyectos" class="row col-sm-12 "   >
+
+<div   v-drag-and-drop:options="options"  class="row col-sm-12 "   >
 
 
 <!-- TARJETA -->
@@ -172,12 +172,12 @@ comentarios sobre esta tarea
 
 
 
-<template class="lista">
+<template   class="lista">
 
 
-<div  v-for="item in lista_espera" class="col-sm-3 ">
-<div class="card borde-burble bg-light" >
-<div class="container" >
+<div  v-for="item in lista_espera"  :key="item.id" class="col-sm-3 ">
+<div class="card borde-burble bg-light item " >
+<div class="container " >
 <p align="left">
 <a  href="">
 <strong class="proyecto-min">
@@ -206,7 +206,6 @@ Tareas
 <i class="fas fa-trash"></i>
 </div>
 </div>
-
 
 
  </template><!--LISTADO TERMINA-->

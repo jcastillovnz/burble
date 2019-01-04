@@ -196,10 +196,7 @@ border-radius: 50%;
             }
 
 
-.ghost {
-  opacity: .5;
-  background: #C8EBFB;
-}
+
 
 
 
@@ -215,7 +212,7 @@ padding-top: none;
 
 
 
-
+/*
 .lista {
   display: flex;
   flex-direction: column;
@@ -232,13 +229,12 @@ padding-top: none;
   margin-right: 5px;
 }
 
-/* drop target state */
 .lista[aria-dropeffect="move"] {
   border-color:#68b;
   background:#fff;
 }
 
-/* drop target focus and dragover state */
+
 .lista[aria-dropeffect="move"]:focus,
 .lista[aria-dropeffect="move"].dragover
 {
@@ -270,18 +266,18 @@ padding-top: none;
   outline:none;
   box-shadow:0 0 0 2px #68b, inset 0 0 0 1px #ddd;
 }
-/* items grabbed state */
+
 .item[aria-grabbed="true"]
 {
   background:#5cc1a6;
   color:#fff;
 }
-
+*/
 
 
 @keyframes nodeInserted {
-    from { opacity: 0.2; }
-    to { opacity: 0.8; }
+    from { opacity: 0.1; }
+    to { opacity: 0.4; }
 }
 
 .item-dropzone-area {
