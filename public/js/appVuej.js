@@ -5,6 +5,13 @@ var Proyectos = new Vue({
     el: '#AppProyectos',
      mounted(){
 
+
+  this.$root.$on('Proyectos', () => {
+            // your code goes here
+          
+        },
+
+
 this.getProyects();
 
     },
@@ -19,21 +26,11 @@ this.getProyects();
         presupuesto: '',
         comentario: '',
 
-        options: {
-      dropzoneSelector: '.lista',
-      draggableSelector: '.item',
-      // excludeOlderBrowsers: true,
-   //showDropzoneAreas: true,
-      // onDrop(event) {
-      //   console.log(event);
-      // },
-      // onDragstart(event) {
-      //   event.stop();
-      // },
-      // onDragend(event) {
-      //   event.stop();
-      // }
-    }
+ 
+
+
+
+
     },
 
 methods: {
@@ -91,8 +88,12 @@ comentario: this.comentario,
   ,
 
 
+fa : function(e) {
 
 
+alert("hola")
+}
+,
 
 
 
@@ -152,15 +153,41 @@ this.sendData()
 var list = document.getElementById("lista_espera");
 Sortable.create(list, { 
   /* options */ 
- animation: 200, // ms, animation speed 
+ animation: 150, // ms, animation speed 
   ghostClass: "ghost",
-  scroll: true,
-  
-    onUpdate: function (evt/**Event*/){
+ // Element is chosen
+  onChoose: function (/**Event*/evt) {
+    evt.oldIndex;  // element index within parent
+  },
 
-    var item = evt.item; 
+// Element dragging started
+  onStart: function (/**Event*/evt) {
+    evt.oldIndex;  // element index within parent
+  },
+
+  // Element dragging ended
+  onEnd: function (/**Event*/evt) {
+    var itemEl = evt.item;  // dragged HTMLElement
+    evt.to;    // target list
+    evt.from;  // previous list
+    evt.oldIndex;  // element's old index within old parent
+    evt.newIndex;  // element's new index within new parent
+  },
+
+  
+onUpdate: function (evt/**Event*/){
+var item = evt.item; 
+var id = evt.item.id;
+var oldindex = evt.oldIndex;
+var newIndex = evt.newIndex;
+console.log(evt.newIndex);
+this.$Proyectos.fa();
+alert("ARREGLO SET "+id+ "EN posicion"+newIndex);
+    
       // the current dragged HTMLElement
   },
+
+
   
 }); // That's all.
 

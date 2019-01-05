@@ -26,7 +26,7 @@
 <div  v-for="item in lista_principal"  class="col-sm-6">
 
 
-<div   class="container-fluid borde-burble border bg-light">
+<div   class="container-fluid      borde-burble border bg-light">
 <p>
 <h4 class="proyecto-min" align="left"> 
 <a href="">  
@@ -175,13 +175,13 @@ comentarios sobre esta tarea
 <template   v-sortable="{ onUpdate: onUpdate }">
 
 
-<div  v-for="item in lista_espera"  :key="item.id" class="col-sm-3 ">
+<div v-bind:id="item.id" v-for="item in lista_espera"  :key="item.id" class="col-sm-3 ">
 <div class="card borde-burble bg-light item " >
 <div class="container " >
 <p align="left">
 <a  href="">
 <strong class="proyecto-min">
-@{{item.nombre_proyecto}}
+@{{item.nombre_proyecto}}      @{{item.id}}
 </strong>
 </a>
 
