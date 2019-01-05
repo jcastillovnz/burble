@@ -135,7 +135,7 @@ comentarios sobre esta tarea
 
 
 
-<div   v-drag-and-drop:options="options"  class="row col-sm-12 "   >
+<div   id="lista_espera"  class="row col-sm-12 "   >
 
 
 <!-- TARJETA -->
@@ -172,7 +172,7 @@ comentarios sobre esta tarea
 
 
 
-<template   class="lista">
+<template   v-sortable="{ onUpdate: onUpdate }">
 
 
 <div  v-for="item in lista_espera"  :key="item.id" class="col-sm-3 ">

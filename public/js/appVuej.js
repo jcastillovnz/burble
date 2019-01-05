@@ -1,7 +1,4 @@
 
-Vue.use(VueDraggable);
-
-
 
 
 var Proyectos = new Vue({ 
@@ -143,6 +140,49 @@ this.sendData()
 
   }
 });
+
+
+
+
+
+
+
+
+
+var list = document.getElementById("lista_espera");
+Sortable.create(list, { 
+  /* options */ 
+ animation: 200, // ms, animation speed 
+  ghostClass: "ghost",
+  scroll: true,
+  
+    onUpdate: function (evt/**Event*/){
+
+    var item = evt.item; 
+      // the current dragged HTMLElement
+  },
+  
+}); // That's all.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

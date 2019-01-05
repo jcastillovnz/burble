@@ -42,7 +42,7 @@
   <!-- Sortable.js -->
 <!-- CDNJS :: Sortable (https://cdnjs.com/) -->
 
-<script src="https://unpkg.com/vue-draggable@1.0.5/lib/vue-draggable.js"></script>
+<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
 
 
 
