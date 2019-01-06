@@ -1,15 +1,11 @@
 
-
+ const EventBus = new Vue();
 
 var Proyectos = new Vue({ 
     el: '#AppProyectos',
      mounted(){
 
 
-  this.$root.$on('Proyectos', () => {
-            // your code goes here
-          
-        },
 
 
 this.getProyects();
@@ -63,17 +59,19 @@ axios({
   method: 'get',
   params: {
  id: dato.id
-  }
-}).then(function (response) {
+  }}
+  ).then(function (response) {
 
 Proyectos.getProyects();
 
-  })
+
+})
 
 }
 ,
 
 sendData: function(e) {
+
 
 
 var url = '/api/proyecto/create/' ;
@@ -84,20 +82,10 @@ proyecto: this.proyecto,
 fecha_entrega: this.fecha_entrega,
 presupuesto: this.presupuesto,
 comentario: this.comentario,
-  }
-  ,
 
-
-fa : function(e) {
-
-
-alert("hola")
 }
-,
-
-
-
-      validateStatus: (status) => {
+  ,
+validateStatus: (status) => {
         return true; // I'm always returning true, you may want to do it depending on the status received
       },
     }).catch(error => {
@@ -110,14 +98,10 @@ $('.nuevoProyecto').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 this.getProyects();
-
-
 // document.getElementById("formulario_proyecto").reset();       
-
 }
 else
 {
-
 document.getElementById('loader-sm').style.display="none"
 $('.nuevoProyecto').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
@@ -128,6 +112,8 @@ document.getElementById('btn-proyecto').disabled = false;
 
 });
 },
+
+
 submit : function(e) {
 
 document.getElementById('btn-proyecto').disabled = true;
@@ -149,12 +135,15 @@ this.sendData()
 
 
 
-
-var list = document.getElementById("lista_espera");
-Sortable.create(list, { 
+var espera = document.getElementById("lista_espera");
+Sortable.create(espera, { 
   /* options */ 
- animation: 150, // ms, animation speed 
-  ghostClass: "ghost",
+animation: 150, // ms, animation speed 
+ghostClass: "ghost",
+scroll: true,
+bubbleScroll: true,
+listado:[] ,
+
  // Element is chosen
   onChoose: function (/**Event*/evt) {
     evt.oldIndex;  // element index within parent
@@ -165,36 +154,59 @@ Sortable.create(list, {
     evt.oldIndex;  // element index within parent
   },
 
-  // Element dragging ended
-  onEnd: function (/**Event*/evt) {
-    var itemEl = evt.item;  // dragged HTMLElement
-    evt.to;    // target list
-    evt.from;  // previous list
-    evt.oldIndex;  // element's old index within old parent
-    evt.newIndex;  // element's new index within new parent
-  },
 
   
 onUpdate: function (evt/**Event*/){
-var item = evt.item; 
-var id = evt.item.id;
-var oldindex = evt.oldIndex;
-var newIndex = evt.newIndex;
-console.log(evt.newIndex);
-this.$Proyectos.fa();
-alert("ARREGLO SET "+id+ "EN posicion"+newIndex);
+
+const Neworden = [...document.querySelectorAll('.item_espera')].map(el => el.id);
+
+axios({
+  url: '/api/lista_espera/update/',
+  method: 'get',
+  params: {
+ nuevoOrden: Neworden,
+
+  }}
+  ).then(function (response) {
     
-      // the current dragged HTMLElement
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+})
+
+// the current dragged HTMLElement
   },
 
 
   
 }); // That's all.
 
+/*PROCESO*/
+
+
+var proceso = document.getElementById("lista_proceso");
+Sortable.create(proceso, { 
+  /* options */ 
+animation: 150, // ms, animation speed 
+ghostClass: "ghost",
+scroll: true,
+bubbleScroll: true,
+listado:[] ,
+
+  
+onUpdate: function (evt/**Event*/){
+
+const Neworden = [...document.querySelectorAll('.item_proceso')].map(el => el.id);
 
 
 
+// the current dragged HTMLElement
+  },
 
+
+  
+}); // That's all.
+
+/*PROCESO*/
 
 
 

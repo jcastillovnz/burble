@@ -19,7 +19,7 @@
 
 
 
-<div     class="col-sm-12 row ">
+<div  id="lista_proceso"   v-sortable="{ onUpdate: onUpdate }" class="col-sm-12 row ">
 
 
 
@@ -27,10 +27,12 @@
 
 
 <div   class="container-fluid      borde-burble border bg-light">
-<p>
+<p>@{{item.id}}
 <h4 class="proyecto-min" align="left"> 
 <a href="">  
-<strong >     Proyecto
+<strong >  
+
+     @{{item.nombre_proyecto}}
 </strong></a>    
 <small class="comentarios-proyecto float-right" aling="right">     
   comentario proyecto
@@ -41,8 +43,6 @@
 
 
 <div class="container-fluid   ">
-
-
 <p class="border  tarea container-fluid"  align="left">
 <i class="fas bar float-left"></i>
 <a href="">
@@ -88,7 +88,6 @@ comentarios sobre esta tarea
 
 
 <hr class="invisible">
-
 <div class="collapse " v-bind:id="'collapseExample'+ item.id">
 <div class="col-sm-12 img-group">
 
@@ -175,13 +174,15 @@ comentarios sobre esta tarea
 <template   v-sortable="{ onUpdate: onUpdate }">
 
 
-<div v-bind:id="item.id" v-for="item in lista_espera"  :key="item.id" class="col-sm-3 ">
+<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"    v-for="(item, index) in lista_espera"   class="col-sm-3 item_espera">
+
+ 
 <div class="card borde-burble bg-light item " >
 <div class="container " >
 <p align="left">
 <a  href="">
 <strong class="proyecto-min">
-@{{item.nombre_proyecto}}      @{{item.id}}
+@{{item.nombre_proyecto}}      @{{item.proyectos_id}}
 </strong>
 </a>
 
@@ -215,7 +216,7 @@ Tareas
 
 
 
-
+</template>
 
 
 
@@ -415,7 +416,7 @@ Registrar un nueva tarea
 </div>
 
 <!-- MODAL NUEVA TAREA -->
-</template>
+
 </div>
 
 

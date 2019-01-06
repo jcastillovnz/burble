@@ -44,7 +44,8 @@
 
 <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
 
-
+<!-- CDNJS :: Vue.Draggable (https://cdnjs.com/) -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.17.0/vuedraggable.min.js"></script>
 
 
 <script src="{{ asset('js/app.js') }}" defer></script>
