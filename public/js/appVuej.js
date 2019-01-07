@@ -130,7 +130,8 @@ this.sendData()
 
 
 
-
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
 
 
 
@@ -138,15 +139,18 @@ this.sendData()
 var espera = document.getElementById("lista_espera");
 Sortable.create(espera, { 
   /* options */ 
+  group: "listados",
+  sort: true,
+
 animation: 150, // ms, animation speed 
-ghostClass: "ghost",
-scroll: true,
-bubbleScroll: true,
+
 listado:[] ,
 
  // Element is chosen
   onChoose: function (/**Event*/evt) {
     evt.oldIndex;  // element index within parent
+
+
   },
 
 // Element dragging started
@@ -160,17 +164,16 @@ onUpdate: function (evt/**Event*/){
 
 const Neworden = [...document.querySelectorAll('.item_espera')].map(el => el.id);
 
+console.log(Neworden);
+
+
 axios({
-  url: '/api/lista_espera/update/',
-  method: 'get',
-  params: {
- nuevoOrden: Neworden,
-
-  }}
-  ).then(function (response) {
-    
+url: '/api/lista_espera/update/',
+method: 'get',
+params: {
+nuevoOrden: Neworden,
+}}).then(function (response) { 
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-
 })
 
 // the current dragged HTMLElement
@@ -185,21 +188,59 @@ var notification = alertify.notify(' <center> <strong style="color:white;"> <i c
 
 var proceso = document.getElementById("lista_proceso");
 Sortable.create(proceso, { 
-  /* options */ 
+/* options */ 
+
+group: "listados",
 animation: 150, // ms, animation speed 
 ghostClass: "ghost",
-scroll: true,
-bubbleScroll: true,
+
 listado:[] ,
+
+// Element is dropped into the list from another list
+  onAdd: function (/**Event*/evt) {
+
+
+
+axios({
+  url: '/api/proyectos/principal/add/',
+  method: 'get',
+  params: {
+ id: evt.item.id,
+
+  }}
+  ).then(function (response) {
+    
+//var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+})
+
+
+
+  },
 
   
 onUpdate: function (evt/**Event*/){
 
 const Neworden = [...document.querySelectorAll('.item_proceso')].map(el => el.id);
+console.log(Neworden)
+
+
+axios({
+  url: '/api/proyectos/principal/update/',
+  method: 'get',
+  params: {
+ nuevoOrden: Neworden,
+
+  }}
+  ).then(function (response) {
+    
+//var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+})
 
 
 
-// the current dragged HTMLElement
+
   },
 
 
@@ -208,7 +249,8 @@ const Neworden = [...document.querySelectorAll('.item_proceso')].map(el => el.id
 
 /*PROCESO*/
 
-
+/*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*/
 
 
 
@@ -253,7 +295,6 @@ this.read()
 
 
     },
-
 
 
 read: function(e) {

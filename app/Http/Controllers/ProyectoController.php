@@ -169,7 +169,23 @@ return $lista_espera;
 
 
 
+public function UpdateListaPrincipal(Request $request)
+{
+    
+$lista_principal = lista_principal::all();
 
+
+foreach ($lista_principal as $key => $value) {
+
+$value->proyectos_id =  $request->nuevoOrden[$key];
+$value->save();
+
+
+}
+
+
+
+}
 
 
 
