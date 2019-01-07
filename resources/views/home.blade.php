@@ -86,6 +86,15 @@ comentarios sobre esta tarea
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>
 </div>
 
+
+
+<div v-on:click="delete_principal(item)"   class=" btn btn-light border border-dark" aria-expanded="false" id="button-collapse">
+<i  style="font-size: 12px" class="fas fa-trash"></i>
+</div>
+
+
+
+
 </div>
 
 
@@ -198,7 +207,7 @@ Tareas
 </div>
 </div>
 
-
+</div>
  </template><!--LISTADO TERMINA-->
 
 

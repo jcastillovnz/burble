@@ -1,5 +1,5 @@
 
- const EventBus = new Vue();
+
 
 var Proyectos = new Vue({ 
     el: '#AppProyectos',
@@ -46,6 +46,28 @@ this.lista_espera = response.data
 
  }
 ,
+
+
+delete_principal: function(dato) {
+
+
+axios({
+  url: '/api/lista_principal/delete/',
+  method: 'get',
+  params: {
+ id: dato.id
+  }}
+  ).then(function (response) {
+
+Proyectos.getProyects();
+
+
+})
+
+}
+,
+
+
 
 delete_espera: function(dato) {
 
@@ -136,6 +158,7 @@ Sortable.create(espera, {
   /* options */ 
   group: "listados",
   sort: true,
+  swapThreshold: 1,
 
 animation: 150, // ms, animation speed 
 
@@ -188,6 +211,8 @@ Sortable.create(proceso, {
 group: "listados",
 animation: 150, // ms, animation speed 
 ghostClass: "ghost",
+disabled:false,
+swapThreshold: 1,
 
 listado:[] ,
 
@@ -201,6 +226,8 @@ axios({
  id: evt.item.id,
   }}
   ).then(function (response) {
+Proyectos.getProyects();
+
 //var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); })
 })
 
@@ -219,7 +246,7 @@ axios({
 
   }}
   ).then(function (response) {
-    
+   
 //var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 
 })

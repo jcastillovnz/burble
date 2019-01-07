@@ -56,6 +56,10 @@ Route::get('/proyectos/principal/add/', 'ProyectoController@AddListaPrincipal');
 
 
 Route::get('/lista_espera/delete/', 'ProyectoController@deleteListaEspera');
+Route::get('/lista_principal/delete/', 'ProyectoController@deleteListaPrincipal');
+
+
+
 
 Route::get('/lista_espera/update/', 'ProyectoController@updateListaEspera');
 
