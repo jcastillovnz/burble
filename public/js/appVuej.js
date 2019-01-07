@@ -174,7 +174,7 @@ axios({
   }}
   ).then(function (response) {
 Proyectos.delete_espera(evt.item.id);
-item.id.remove();
+item.remove();
 
 Proyectos.getProyects();
 //var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); })
