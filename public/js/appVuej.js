@@ -109,8 +109,7 @@ validateStatus: (status) => {
     }).then(response => {
 
 if (response.data == "true") {
-
-document.getElementById('loader-sm').style.display="none"
+document.getElementById('carga-proyecto').style.display="none";
 $('.nuevoProyecto').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
@@ -134,7 +133,7 @@ document.getElementById('btn-proyecto').disabled = false;
 submit : function(e) {
 
 document.getElementById('btn-proyecto').disabled = true;
-document.getElementById('loader-proyecto').style.display="block"
+document.getElementById('carga-proyecto').style.display="block";
 this.sendData()
 
 
@@ -159,7 +158,6 @@ ghostClass: "ghost",
 disabled:false,
 swapThreshold: 1,
 
-listado:[] ,
 
 // Element is dropped into the list from another list
   onAdd: function (/**Event*/evt) {
@@ -176,7 +174,7 @@ axios({
   }}
   ).then(function (response) {
 Proyectos.delete_espera(evt.item.id);
-item.remove();
+item.id.remove();
 
 Proyectos.getProyects();
 //var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); })

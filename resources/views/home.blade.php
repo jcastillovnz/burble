@@ -10,13 +10,15 @@
 <template id="listas">
 
 <div  class="col-sm-12">
-<strong class="float-left"></i>Proyectos en proceso</strong>   
+<strong class="float-left"></i>Proyectos en proceso   <p>
+<template id="EnProceso" class="loader loader-sm"></template>
+</p></strong> 
+
+
 
 <button title="Nuevo proyecto" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
 </p>
 </div>
-
-
 
 
 <div   id="lista_proceso"  class="col-sm-12 row ">
@@ -306,7 +308,7 @@ Registrar un nuevo proyecto
 
 <div  class="modal-footer">
 <div  class="btn btn-group  ">
-<div id="loader-proyecto" class="loader loader-sm "></div>
+<div id="carga-proyecto" class="loader loader-sm "></div>
 <button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>

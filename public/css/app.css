@@ -278,6 +278,10 @@ padding-top: none;
 }
 */
 
+#EnProceso{
+
+  display: block;
+}
 
 @keyframes nodeInserted {
     from { opacity: 0.1; }
