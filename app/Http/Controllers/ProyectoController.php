@@ -83,6 +83,44 @@ return  $lista_espera;
 
 }
 
+
+ public function updateListaEspera(Request $request)
+{
+    
+
+    
+$lista_espera = Lista_espera::all();
+
+
+
+foreach ($lista_espera as $key => $value) {
+
+
+echo "Lista vieja <br>";
+echo "KEY ".$key; echo "   ID:".$value->proyectos_id; 
+
+echo "<br>Lista nuev <br>";
+echo "KEY ".$key; echo "   ID:".$request->nuevoOrden[$key]; 
+
+$value->proyectos_id =  $request->nuevoOrden[$key];
+$value->save();
+
+
+
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
 public function list( Request $request )
     {
 
@@ -101,8 +139,14 @@ public function listPrincipal( Request $request )
     {
 
 
-$lista_principal = Lista_principal::all();
-return $lista_principal;
+
+
+$lista_espera = DB::table('lista_principal')
+->Join('proyectos', 'lista_principal.proyectos_id', '=', 'proyectos.id')
+->select( 
+'lista_principal.id','lista_principal.proyectos_id',     'lista_principal.posicion', 'proyectos.nombre AS nombre_proyecto')->get();
+return $lista_espera;
+
 
 
 
@@ -112,17 +156,11 @@ return $lista_principal;
 
 public function listEspera( Request $request )
     {
-
-
 $lista_espera = DB::table('lista_espera')
 ->Join('proyectos', 'lista_espera.proyectos_id', '=', 'proyectos.id')
 ->select( 
-'lista_espera.id',   'lista_espera.posicion', 'proyectos.nombre AS nombre_proyecto')->get();
-
+'lista_espera.id','lista_espera.proyectos_id',     'lista_espera.posicion', 'proyectos.nombre AS nombre_proyecto')->get();
 return $lista_espera;
-
-
-
 
     }
 
@@ -131,7 +169,23 @@ return $lista_espera;
 
 
 
+public function UpdateListaPrincipal(Request $request)
+{
+    
+$lista_principal = lista_principal::all();
 
+
+foreach ($lista_principal as $key => $value) {
+
+$value->proyectos_id =  $request->nuevoOrden[$key];
+$value->save();
+
+
+}
+
+
+
+}
 
 
 

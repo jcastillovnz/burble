@@ -19,18 +19,23 @@
 
 
 
-<div     class="col-sm-12 row ">
+<div   id="lista_proceso"  class="col-sm-12 row ">
 
 
 
-<div  v-for="item in lista_principal"  class="col-sm-6">
+<template   v-sortable="{ onUpdate: onUpdate }">
 
 
-<div   class="container-fluid borde-burble border bg-light">
-<p>
+<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"   v-for="item in lista_principal"  class="col-sm-6 item_proceso">
+
+
+<div   class="container-fluid      borde-burble border bg-light">
+<p>@{{item.proyectos_id}}
 <h4 class="proyecto-min" align="left"> 
 <a href="">  
-<strong >     Proyecto
+<strong >  
+
+     @{{item.nombre_proyecto}}
 </strong></a>    
 <small class="comentarios-proyecto float-right" aling="right">     
   comentario proyecto
@@ -41,8 +46,6 @@
 
 
 <div class="container-fluid   ">
-
-
 <p class="border  tarea container-fluid"  align="left">
 <i class="fas bar float-left"></i>
 <a href="">
@@ -88,7 +91,6 @@ comentarios sobre esta tarea
 
 
 <hr class="invisible">
-
 <div class="collapse " v-bind:id="'collapseExample'+ item.id">
 <div class="col-sm-12 img-group">
 
@@ -105,6 +107,8 @@ comentarios sobre esta tarea
 
 
 </div>
+
+</template>
 </div>
 
 <!-- CIERRE PROYECTO -->
@@ -135,7 +139,6 @@ comentarios sobre esta tarea
 
 
 
-<div   v-drag-and-drop:options="options" id="99"   class="row col-sm-12 "   >
 
 
 <!-- TARJETA -->
@@ -172,16 +175,18 @@ comentarios sobre esta tarea
 
 
 
-<template   class="lista">
+<template   v-sortable="{ onUpdate: onUpdate }">
 
 
-<div  v-for="item in lista_espera"  :key="item.id" class="col-sm-3 ">
+<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"    v-for="(item, index) in lista_espera"   class="col-sm-3 item_espera">
+
+ 
 <div class="card borde-burble bg-light item " >
 <div class="container " >
 <p align="left">
 <a  href="">
 <strong class="proyecto-min">
-@{{item.nombre_proyecto}}
+@{{item.nombre_proyecto}}      @{{item.proyectos_id}}
 </strong>
 </a>
 
@@ -215,7 +220,7 @@ Tareas
 
 
 
-
+</template>
 
 
 
@@ -415,7 +420,7 @@ Registrar un nueva tarea
 </div>
 
 <!-- MODAL NUEVA TAREA -->
-</template>
+
 </div>
 
 
