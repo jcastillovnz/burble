@@ -22,20 +22,29 @@ this.getProyects();
         presupuesto: '',
         comentario: '',
 
-        options: {
+      options: {
       dropzoneSelector: '.lista',
       draggableSelector: '.item',
+       nativeEvent: {}, // native js event
       // excludeOlderBrowsers: true,
-   //showDropzoneAreas: true,
-      // onDrop(event) {
+      showDropzoneAreas: true,
+      onDrop(event) {
       //   console.log(event);
-      // },
-      // onDragstart(event) {
+
+ console.log(event)
+ },
+       onDragstart(event) {
       //   event.stop();
-      // },
-      // onDragend(event) {
-      //   event.stop();
-      // }
+    },
+      onDragend(event) {
+   // event.stop();
+ console.log(event)
+
+      },
+
+
+
+
     }
     },
 

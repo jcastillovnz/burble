@@ -135,7 +135,7 @@ comentarios sobre esta tarea
 
 
 
-<div   v-drag-and-drop:options="options"  class="row col-sm-12 "   >
+<div   v-drag-and-drop:options="options" id="99"   class="row col-sm-12 "   >
 
 
 <!-- TARJETA -->
