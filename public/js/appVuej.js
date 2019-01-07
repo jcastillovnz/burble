@@ -48,14 +48,14 @@ this.lista_espera = response.data
 ,
 
 
-delete_principal: function(dato) {
-
+delete_principal: function(item) {
+console.log(item);
 
 axios({
   url: '/api/lista_principal/delete/',
   method: 'get',
   params: {
- id: dato.id
+ id:item
   }}
   ).then(function (response) {
 
@@ -69,13 +69,13 @@ Proyectos.getProyects();
 
 
 
-delete_espera: function(dato) {
-
+delete_espera: function(item) {
+console.log(item);
 axios({
   url: '/api/lista_espera/delete/',
   method: 'get',
   params: {
- id: dato.id
+ id: item
   }}
   ).then(function (response) {
 
@@ -149,21 +149,75 @@ this.sendData()
 
 /*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
 /*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+var proceso = document.getElementById("lista_proceso");
+Sortable.create(proceso, { 
+/* options */ 
+
+group: "listados",
+animation: 150, // ms, animation speed 
+ghostClass: "ghost",
+disabled:false,
+swapThreshold: 1,
+
+listado:[] ,
+
+// Element is dropped into the list from another list
+  onAdd: function (/**Event*/evt) {
+console.log(evt.item.id);
+var id = evt.item.id;
+var item =  evt.item;
+
+
+axios({ 
+  url: '/api/proyectos/principal/add/',
+  method: 'get',
+  params: {
+ id: evt.item.id ,
+  }}
+  ).then(function (response) {
+Proyectos.delete_espera(evt.item.id);
+item.remove();
+
+Proyectos.getProyects();
+//var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); })
+})
+},
+
+
+onClone: function (/**Event*/evt) {
+    var origEl = evt.item;
+    var cloneEl = evt.clone;
+  },
+
+
+onUpdate: function (evt/**Event*/){
+const Neworden = [...document.querySelectorAll('.item_proceso')].map(el => el.id);
+console.log(Neworden)
+axios({
+  url: '/api/proyectos/principal/update/',
+  method: 'get',
+  params: {
+ nuevoOrden: Neworden,
+
+  }}
+  ).then(function (response) {
+   
+//var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+})
+},
+}); // That's all.
 
 
 
 
 var espera = document.getElementById("lista_espera");
 Sortable.create(espera, { 
-  /* options */ 
+/* options */ 
   group: "listados",
   sort: true,
   swapThreshold: 1,
-
 animation: 150, // ms, animation speed 
-
-listado:[] ,
-
  // Element is chosen
   onChoose: function (/**Event*/evt) {
     evt.oldIndex;  // element index within parent
@@ -171,12 +225,25 @@ listado:[] ,
 
   },
 
+
+  onAdd: function (/**Event*/evt) {
+
+
+
+
+
+},
+
+
 // Element dragging started
   onStart: function (/**Event*/evt) {
     evt.oldIndex;  // element index within parent
   },
 
-
+onClone: function (/**Event*/evt) {
+    var origEl = evt.item;
+    var cloneEl = evt.clone;
+  },
   
 onUpdate: function (evt/**Event*/){
 
@@ -204,55 +271,6 @@ var notification = alertify.notify(' <center> <strong style="color:white;"> <i c
 /*PROCESO*/
 
 
-var proceso = document.getElementById("lista_proceso");
-Sortable.create(proceso, { 
-/* options */ 
-
-group: "listados",
-animation: 150, // ms, animation speed 
-ghostClass: "ghost",
-disabled:false,
-swapThreshold: 1,
-
-listado:[] ,
-
-// Element is dropped into the list from another list
-  onAdd: function (/**Event*/evt) {
-
-axios({ 
-  url: '/api/proyectos/principal/add/',
-  method: 'get',
-  params: {
- id: evt.item.id,
-  }}
-  ).then(function (response) {
-Proyectos.getProyects();
-
-//var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); })
-})
-
-
-
-},
-
-onUpdate: function (evt/**Event*/){
-const Neworden = [...document.querySelectorAll('.item_proceso')].map(el => el.id);
-console.log(Neworden)
-axios({
-  url: '/api/proyectos/principal/update/',
-  method: 'get',
-  params: {
- nuevoOrden: Neworden,
-
-  }}
-  ).then(function (response) {
-   
-//var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-
-})
-},
-
-}); // That's all.
 
 /*PROCESO*/
 

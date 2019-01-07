@@ -88,7 +88,7 @@ comentarios sobre esta tarea
 
 
 
-<div v-on:click="delete_principal(item)"   class=" btn btn-light border border-dark" aria-expanded="false" id="button-collapse">
+<div v-on:click="delete_principal(item.proyectos_id)"   class=" btn btn-light border border-dark" aria-expanded="false" id="button-collapse">
 <i  style="font-size: 12px" class="fas fa-trash"></i>
 </div>
 
@@ -202,7 +202,7 @@ Tareas
 </div>
 </div>
 <div class="btn-group float-right button-absolute" >
-<div v-on:click="delete_espera(item)"  class="button-collapse btn btn-light border border-dark btn-sm rounded-circle"  >
+<div v-on:click="delete_espera(item.proyectos_id)"  class="button-collapse btn btn-light border border-dark btn-sm rounded-circle"  >
 <i class="fas fa-trash"></i>
 </div>
 </div>

@@ -76,9 +76,11 @@ return response()->json($data);
 
  public function deleteListaEspera(Request $request)
 {
-	
-$lista_espera=Lista_espera::destroy($request->id);
+
+
+$lista_espera = Lista_espera::where('proyectos_id',$request->id)->delete();
 return  $lista_espera;
+
 
 
 }
@@ -86,9 +88,11 @@ return  $lista_espera;
 
  public function deleteListaPrincipal(Request $request)
 {
-	
-$lista_principal=Lista_principal::destroy($request->id);
+
+$lista_principal = Lista_principal::where('proyectos_id',$request->id)->delete();
 return  $lista_principal;
+
+
 
 
 }
@@ -140,9 +144,6 @@ foreach ($lista_principal as $key => $value) {
 $lista_espera = lista_espera::all();
 
 foreach ($lista_espera as $key => $value) {
-
-echo " ".$value->proyectos_id;
-echo "<br>";
 
 $value->proyectos_id =  $request->nuevoOrden[$key];
 $value->save();
@@ -218,7 +219,8 @@ $lista_espera = DB::table('lista_espera')
 ->Join('proyectos', 'lista_espera.proyectos_id', '=', 'proyectos.id')
 ->Join('clientes', 'proyectos.clientes_id', '=', 'clientes.id')
 ->select( 
-'lista_espera.id','lista_espera.proyectos_id',
+'lista_espera.id',
+'lista_espera.proyectos_id',
 'proyectos.fecha_entrega', 
 'lista_espera.posicion', 
 'proyectos.nombre AS nombre_proyecto')->get();
