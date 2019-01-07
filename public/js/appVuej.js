@@ -194,32 +194,23 @@ listado:[] ,
 // Element is dropped into the list from another list
   onAdd: function (/**Event*/evt) {
 
-
-
-axios({
+axios({ 
   url: '/api/proyectos/principal/add/',
   method: 'get',
   params: {
  id: evt.item.id,
-
   }}
   ).then(function (response) {
-    
-//var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-
+//var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); })
 })
 
 
 
-  },
+},
 
-  
 onUpdate: function (evt/**Event*/){
-
 const Neworden = [...document.querySelectorAll('.item_proceso')].map(el => el.id);
 console.log(Neworden)
-
-
 axios({
   url: '/api/proyectos/principal/update/',
   method: 'get',
@@ -232,14 +223,8 @@ axios({
 //var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 
 })
+},
 
-
-
-
-  },
-
-
-  
 }); // That's all.
 
 /*PROCESO*/

@@ -25,12 +25,11 @@
 
 <template   v-sortable="{ onUpdate: onUpdate }">
 
-
 <div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"   v-for="item in lista_principal"  class="col-sm-6 item_proceso">
 
 
 <div   class="container-fluid      borde-burble border bg-light">
-<p>@{{item.proyectos_id}}
+<p>
 <h4 class="proyecto-min" align="left"> 
 <a href="">  
 <strong >  
@@ -38,11 +37,11 @@
      @{{item.nombre_proyecto}}
 </strong></a>    
 <small class="comentarios-proyecto float-right" aling="right">     
-  comentario proyecto
+ @{{item.comentario}} 
 </small> 
 </h4>
 </p>
-<h6 class="empresa-min" align="left"><strong>empresa</strong> <small class="float-right text-info" aling="right"> <strong>  12/02/2018</strong></small></h6>
+<h6 class="empresa-min" align="left"><strong>  @{{item.nombre_empresa}}  </strong> <small class="float-right text-info" aling="right"> <strong>  @{{item.fecha_entrega}}  </strong></small></h6>
 
 
 <div class="container-fluid   ">
@@ -107,8 +106,9 @@ comentarios sobre esta tarea
 
 
 </div>
-
+<br>
 </template>
+
 </div>
 
 <!-- CIERRE PROYECTO -->
@@ -140,29 +140,16 @@ comentarios sobre esta tarea
 
 
 <div   id="lista_espera"  class="row col-sm-12 "   >
-
-
 <!-- TARJETA -->
 <template v-if="lista_espera.length <=  0">
-
 <div  class="col-sm-3">
 <div class="card borde-burble alert-warning" >
 <div class="container alert ">
 <p align="center">
-
-
-
-
 <h6> <strong> <i class="fas fa-exclamation-circle"></i>   Registre un nuevo proyecto </strong>  </h6>
 </p>
-
 </div>
-
-
-
-
 </div>
-
 <div class="btn-group float-right button-absolute " >
 <div    data-toggle="modal" data-target=".nuevoProyecto" class=" btn btn-light border border-dark btn-sm rounded-circle"  >
 <i style="font-size: 13px;" class="fas fa-plus-circle"></i>
@@ -177,9 +164,7 @@ comentarios sobre esta tarea
 
 
 <template   v-sortable="{ onUpdate: onUpdate }">
-
-
-<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"    v-for="(item, index) in lista_espera"   class="col-sm-3 item_espera">
+<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"    v-for="item in lista_espera"   class="col-sm-3 item_espera">
 
  
 <div class="card borde-burble bg-light item " >
@@ -187,12 +172,12 @@ comentarios sobre esta tarea
 <p align="left">
 <a  href="">
 <strong class="proyecto-min">
-@{{item.nombre_proyecto}}      @{{item.proyectos_id}}
+@{{item.nombre_proyecto}}    ID:  @{{item.proyectos_id}}
 </strong>
 </a>
 
 <p class="empresa-min" align="left">
- <strong> Empresa</strong> 
+ <strong> @{{item.nombre_empresa}} </strong> 
 </p>
 </p>
 </div>
@@ -202,7 +187,7 @@ Tareas
 <div class="container" >
 <p class="" align="right">
 <small>
- <strong>   12/09/2018 </strong> 
+ <strong>  @{{item.fecha_entrega}}  </strong> 
 </small>
 </p>
 </div>
