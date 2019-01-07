@@ -19,15 +19,18 @@
 
 
 
-<div  id="lista_proceso"   v-sortable="{ onUpdate: onUpdate }" class="col-sm-12 row ">
+<div   id="lista_proceso"  class="col-sm-12 row ">
 
 
 
-<div  v-for="item in lista_principal"  class="col-sm-6">
+<template   v-sortable="{ onUpdate: onUpdate }">
+
+
+<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"   v-for="item in lista_principal"  class="col-sm-6 item_proceso">
 
 
 <div   class="container-fluid      borde-burble border bg-light">
-<p>@{{item.id}}
+<p>@{{item.proyectos_id}}
 <h4 class="proyecto-min" align="left"> 
 <a href="">  
 <strong >  
@@ -104,6 +107,8 @@ comentarios sobre esta tarea
 
 
 </div>
+
+</template>
 </div>
 
 <!-- CIERRE PROYECTO -->
@@ -134,6 +139,7 @@ comentarios sobre esta tarea
 
 
 
+<div   id="lista_espera"  class="row col-sm-12 "   >
 
 
 <!-- TARJETA -->

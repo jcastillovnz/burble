@@ -84,38 +84,25 @@ return  $lista_espera;
 }
 
 
- public function updateListaEspera(Request $request)
-{
-    
-
-    
-$lista_espera = Lista_espera::all();
-
-
-
-foreach ($lista_espera as $key => $value) {
-
-
-echo "Lista vieja <br>";
-echo "KEY ".$key; echo "   ID:".$value->proyectos_id; 
-
-echo "<br>Lista nuev <br>";
-echo "KEY ".$key; echo "   ID:".$request->nuevoOrden[$key]; 
-
+ public function UpdateListaPrincipal(Request $request)
+{ 
+$lista_principal = lista_principal::all();
+foreach ($lista_principal as $key => $value) {
 $value->proyectos_id =  $request->nuevoOrden[$key];
 $value->save();
-
-
-
-
-
-
+}
 }
 
 
-
+ public function UpdateListaEspera(Request $request)
+{ 
+$lista_espera = lista_espera::all();
+foreach ($lista_espera as $key => $value) {
+$value->proyectos_id =  $request->nuevoOrden[$key];
+$value->save();
 }
 
+}
 
 
 
