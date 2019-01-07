@@ -225,13 +225,25 @@ animation: 150, // ms, animation speed
 
   },
 
-
   onAdd: function (/**Event*/evt) {
+console.log(evt.item.id);
+var id = evt.item.id;
+var item =  evt.item;
 
 
+axios({ 
+  url: '/api/proyectos/espera/add/',
+  method: 'get',
+  params: {
+ id: evt.item.id ,
+  }}
+  ).then(function (response) {
+Proyectos.delete_principal(evt.item.id);
+item.remove();
 
-
-
+Proyectos.getProyects();
+//var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); })
+})
 },
 
 

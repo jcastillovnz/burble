@@ -136,6 +136,45 @@ foreach ($lista_principal as $key => $value) {
 
 }
 
+ public function AddListaEspera(Request $request)
+{ 
+
+
+$lista_espera = lista_espera::all();
+$count = count($lista_espera);
+
+if ($count>=0 AND $count<=3 )
+{
+$lista_espera = new lista_espera();
+$lista_espera->proyectos_id = $request->id;
+$lista_espera->save();
+}
+
+
+if ($count==4 )
+{
+foreach ($lista_espera as $key => $value) {
+
+	if ($key ==3) {
+		$value->proyectos_id=$request->id;
+        $value->save();
+
+	}
+}
+}
+
+
+
+
+
+}
+
+
+
+
+
+
+
 
  public function UpdateListaEspera(Request $request)
 { 
