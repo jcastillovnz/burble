@@ -5,15 +5,12 @@ var Proyectos = new Vue({
     el: '#AppProyectos',
      mounted(){
 
+this.getListaPrincipal();
 
-
-
-this.getProyects();
+this.getListaEspera();
 
     },
     data: {
-
-        lists: [],
         lista_principal:[],
         lista_espera: [],
         cliente: '',
@@ -26,17 +23,20 @@ this.getProyects();
 
 methods: {
 
-getProyects: function(dato)  {
 
-var urlProyectos = '/api/proyectos/';
-axios.get(urlProyectos).then(response => {
-this.lists = response.data
-});
+getListaPrincipal: function(dato)  {
+
 
 var urlPrincipal = '/api/proyectos/principal';
 axios.get(urlPrincipal).then(response => {
 this.lista_principal = response.data
 });
+
+
+ }
+,
+getListaEspera: function(dato)  {
+
 
 var urlEspera = '/api/proyectos/espera';
 axios.get(urlEspera).then(response => {
@@ -44,8 +44,12 @@ this.lista_espera = response.data
 });
 
 
+
  }
 ,
+
+
+
 
 
 delete_principal: function(item) {
@@ -59,7 +63,7 @@ axios({
   }}
   ).then(function (response) {
 
-Proyectos.getProyects();
+Proyectos.getListaPrincipal();
 
 
 })
@@ -79,7 +83,7 @@ axios({
   }}
   ).then(function (response) {
 
-Proyectos.getProyects();
+Proyectos.getListaEspera();
 
 
 })
@@ -113,7 +117,7 @@ document.getElementById('carga-proyecto').style.display="none";
 $('.nuevoProyecto').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-this.getProyects();
+Proyectos.getListaEspera();
 // document.getElementById("formulario_proyecto").reset();       
 }
 else
@@ -145,7 +149,14 @@ this.sendData()
 });
 
 
-
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
 /*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
 /*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
 var proceso = document.getElementById("lista_proceso");
@@ -154,37 +165,50 @@ Sortable.create(proceso, {
 
 group: "listados",
 animation: 150, // ms, animation speed 
-ghostClass: "ghost",
+ghostClass: "gho",
 disabled:false,
 swapThreshold: 1,
-
+preventOnFilter: true,
 
 // Element is dropped into the list from another list
-  onAdd: function (/**Event*/evt) {
+onAdd: function (/**Event*/evt) {
 console.log(evt.item.id);
 var id = evt.item.id;
 var item =  evt.item;
-
-
 axios({ 
   url: '/api/proyectos/principal/add/',
   method: 'get',
   params: {
  id: evt.item.id ,
-  }}
+ }}
   ).then(function (response) {
-Proyectos.delete_espera(evt.item.id);
-item.remove();
 
-Proyectos.getProyects();
-//var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); })
+Proyectos.delete_espera(evt.item.id);
+ location ="/home";
+
+
+
 })
 },
+// Called by any change to the list (add / update / remove)
+onSort: function (/**Event*/evt) {
+    // same properties as onEnd
 
 
+  },
+
+
+// Element is removed from the list into another list
+  onRemove: function (/**Event*/evt) {
+    // same properties as onEnd
+console.log("remove desde proceso");
+
+console.log(evt);
+  },
 onClone: function (/**Event*/evt) {
     var origEl = evt.item;
     var cloneEl = evt.clone;
+       
   },
 
 
@@ -213,7 +237,10 @@ var espera = document.getElementById("lista_espera");
 Sortable.create(espera, { 
 /* options */ 
   group: "listados",
+  ghostClass: "ghostr",
   sort: true,
+  preventOnFilter: true,
+  fallbackClass: "sortable-fallback", 
   swapThreshold: 1,
 animation: 150, // ms, animation speed 
  // Element is chosen
@@ -222,12 +249,12 @@ animation: 150, // ms, animation speed
 
 
   },
+  onSort: function (/**Event*/evt) {
+    // same properties as onEnd
 
+
+  },
   onAdd: function (/**Event*/evt) {
-console.log(evt.item.id);
-var id = evt.item.id;
-var item =  evt.item;
-
 
 axios({ 
   url: '/api/proyectos/espera/add/',
@@ -237,14 +264,20 @@ axios({
   }}
   ).then(function (response) {
 Proyectos.delete_principal(evt.item.id);
-item.remove();
+Proyectos.getListaEspera();
+ location ="/home";
 
-Proyectos.getProyects();
+//Proyectos.getProyects();
 //var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); })
 })
 },
+// Element is removed from the list into another list
+ onRemove: function (/**Event*/evt) {
+    // same properties as onEnd
+console.log("remove desde espera");
+console.log(evt);
 
-
+  },
 // Element dragging started
   onStart: function (/**Event*/evt) {
     evt.oldIndex;  // element index within parent
@@ -253,15 +286,13 @@ Proyectos.getProyects();
 onClone: function (/**Event*/evt) {
     var origEl = evt.item;
     var cloneEl = evt.clone;
+ 
   },
   
 onUpdate: function (evt/**Event*/){
 
 const Neworden = [...document.querySelectorAll('.item_espera')].map(el => el.id);
-
 console.log(Neworden);
-
-
 axios({
 url: '/api/lista_espera/update/',
 method: 'get',
@@ -281,15 +312,16 @@ var notification = alertify.notify(' <center> <strong style="color:white;"> <i c
 /*PROCESO*/
 
 
-
-/*PROCESO*/
-
-/*PROCESO*//*PROCESO*/
-/*PROCESO*//*PROCESO*/
-
-
-
-
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+/*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
 
 
 

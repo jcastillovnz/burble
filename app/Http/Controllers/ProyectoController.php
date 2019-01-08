@@ -104,8 +104,9 @@ return  $lista_principal;
  public function AddListaPrincipal(Request $request)
 { 
 
+$monitor = lista_principal::where('proyectos_id', $request->id)->first();
 
-
+if (isset($monitor)==false) {
 
 $lista_principal = lista_principal::all();
 $count = count($lista_principal);
@@ -117,7 +118,6 @@ $lista_principal->proyectos_id = $request->id;
 $lista_principal->save();
 }
 
-
 if ($count==4 )
 {
 foreach ($lista_principal as $key => $value) {
@@ -125,7 +125,6 @@ foreach ($lista_principal as $key => $value) {
 	if ($key ==3) {
 		$value->proyectos_id=$request->id;
         $value->save();
-
 	}
 }
 }
@@ -134,10 +133,22 @@ foreach ($lista_principal as $key => $value) {
 
 
 
+
+}
+
+
+
+
 }
 
  public function AddListaEspera(Request $request)
 { 
+
+
+$monitor = lista_espera::where('proyectos_id', $request->id)->first();
+
+if (isset($monitor)==false) {
+
 
 
 $lista_espera = lista_espera::all();
@@ -149,8 +160,6 @@ $lista_espera = new lista_espera();
 $lista_espera->proyectos_id = $request->id;
 $lista_espera->save();
 }
-
-
 if ($count==4 )
 {
 foreach ($lista_espera as $key => $value) {
@@ -164,6 +173,7 @@ foreach ($lista_espera as $key => $value) {
 }
 
 
+}
 
 
 

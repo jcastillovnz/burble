@@ -10,11 +10,9 @@
 <template id="listas">
 
 <div  class="col-sm-12">
-<strong class="float-left"></i>Proyectos en proceso   <p>
-<template id="EnProceso" class="loader loader-sm"></template>
+<strong class="float-left"></i>Proyectos en proceso   <p> 
+
 </p></strong> 
-
-
 
 <button title="Nuevo proyecto" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
 </p>
@@ -27,9 +25,7 @@
 
 <template   v-sortable="{ onUpdate: onUpdate }">
 
-<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"   v-for="item in lista_principal"  class="col-sm-6 item_proceso">
-
-
+<div   :id="item.proyectos_id"  v-for="item in lista_principal"  class="col-sm-6 item_proceso">
 <div   class="container-fluid      borde-burble border bg-light">
 <p>
 <h4 class="proyecto-min" align="left"> 
@@ -44,8 +40,6 @@
 </h4>
 </p>
 <h6 class="empresa-min" align="left"><strong>  @{{item.nombre_empresa}}  </strong> <small class="float-right text-info" aling="right"> <strong>  @{{item.fecha_entrega}}  </strong></small></h6>
-
-
 <div class="container-fluid   ">
 <p class="border  tarea container-fluid"  align="left">
 <i class="fas bar float-left"></i>
@@ -157,7 +151,7 @@ comentarios sobre esta tarea
 <div class="card borde-burble alert-warning" >
 <div class="container alert ">
 <p align="center">
-<h6> <strong> <i class="fas fa-exclamation-circle"></i>   Registre un nuevo proyecto </strong>  </h6>
+<h6> <strong> <i class="fas fa-exclamation-circle"></i> No hay proyectos en espera </strong>  </h6>
 </p>
 </div>
 </div>
