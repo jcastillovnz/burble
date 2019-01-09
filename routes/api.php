@@ -45,6 +45,7 @@ Route::get('/proyectos/', 'ProyectoController@list');
 
 Route::get('/proyectos/principal', 'ProyectoController@listPrincipal');
 Route::get('/proyectos/espera', 'ProyectoController@listEspera');
+Route::get('/proyectos/tareas', 'ProyectoController@listTareas');
 
 
 Route::get('/proyectos/principal/update/', 'ProyectoController@UpdateListaPrincipal');

@@ -7,12 +7,16 @@ var Proyectos = new Vue({
 
 this.getListaPrincipal();
 
+this.getListaTareas();
+
 this.getListaEspera();
 
     },
     data: {
         lista_principal:[],
         lista_espera: [],
+        lista_tareas: [],
+
         cliente: '',
         proyecto: '',
         fecha_entrega: '',
@@ -25,16 +29,30 @@ methods: {
 
 
 getListaPrincipal: function(dato)  {
+  document.getElementById("loader").style.display = "none";;
 
 
 var urlPrincipal = '/api/proyectos/principal';
 axios.get(urlPrincipal).then(response => {
 this.lista_principal = response.data
 });
-
-
  }
 ,
+
+getListaTareas: function(dato)  {
+  document.getElementById("loader").style.display = "none";;
+
+
+var urlTareas = '/api/proyectos/tareas';
+axios.get(urlTareas).then(response => {
+this.lista_tareas = response.data
+});
+ }
+,
+
+
+
+
 getListaEspera: function(dato)  {
 
 
@@ -159,6 +177,10 @@ this.sendData()
 /*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
 /*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
 /*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
+
+window.onload = function() {
+
+
 var proceso = document.getElementById("lista_proceso");
 Sortable.create(proceso, { 
 /* options */ 
@@ -183,6 +205,8 @@ axios({
  }}
   ).then(function (response) {
 
+
+Proyectos.getListaEspera();
 Proyectos.delete_espera(evt.item.id);
  location ="/home";
 
@@ -264,7 +288,7 @@ axios({
   }}
   ).then(function (response) {
 Proyectos.delete_principal(evt.item.id);
-Proyectos.getListaEspera();
+Proyectos.getListaPrincipal();
  location ="/home";
 
 //Proyectos.getProyects();
@@ -299,6 +323,8 @@ method: 'get',
 params: {
 nuevoOrden: Neworden,
 }}).then(function (response) { 
+console.log(Neworden);
+
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 })
 
@@ -309,9 +335,13 @@ var notification = alertify.notify(' <center> <strong style="color:white;"> <i c
   
 }); // That's all.
 
+
+
+  
+
 /*PROCESO*/
 
-
+}
 /*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
 /*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
 /*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/

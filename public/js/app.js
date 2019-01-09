@@ -1,7 +1,13 @@
-window.onload = function() {loader()};
+window.onload = function() {
 
-function loader() {
+
+
     document.getElementById("loader").style.display = "none";;
-}
+
+};
+
+
+
+
 
 

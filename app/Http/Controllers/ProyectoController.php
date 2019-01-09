@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Clientes;
 use App\Contactos;
 use App\Proyectos;
+use App\Tareas;
 
-use App\lista_principal;
-use App\lista_espera;
+
+use App\Lista_principal;
+use App\Lista_espera;
 use Auth;
 use DB;
 
@@ -32,7 +34,7 @@ $proyecto->save();
 $lista_espera = Lista_espera::all();
 $count = count($lista_espera);
 
-if ($count>=0 AND $count<=3 )
+if ($count>=0 AND $count<=5 )
 {
 $lista_espera = new Lista_espera();
 $lista_espera->proyectos_id = $proyecto->id;
@@ -40,11 +42,11 @@ $lista_espera->save();
 }
 
 
-if ($count==4 )
+if ($count==6 )
 {
 foreach ($lista_espera as $key => $value) {
 
-	if ($key ==3) {
+	if ($key ==5) {
 		$value->proyectos_id=$proyecto->id;
         $value->save();
 
@@ -104,11 +106,11 @@ return  $lista_principal;
  public function AddListaPrincipal(Request $request)
 { 
 
-$monitor = lista_principal::where('proyectos_id', $request->id)->first();
+$monitor = Lista_principal::where('proyectos_id', $request->id)->first();
 
 if (isset($monitor)==false) {
 
-$lista_principal = lista_principal::all();
+$lista_principal = Lista_principal::all();
 $count = count($lista_principal);
 
 if ($count>=0 AND $count<=3 )
@@ -145,26 +147,26 @@ foreach ($lista_principal as $key => $value) {
 { 
 
 
-$monitor = lista_espera::where('proyectos_id', $request->id)->first();
+$monitor = Lista_espera::where('proyectos_id', $request->id)->first();
 
 if (isset($monitor)==false) {
 
 
 
-$lista_espera = lista_espera::all();
+$lista_espera = Lista_espera::all();
 $count = count($lista_espera);
 
-if ($count>=0 AND $count<=3 )
+if ($count>=0 AND $count<=5 )
 {
-$lista_espera = new lista_espera();
+$lista_espera = new Lista_espera();
 $lista_espera->proyectos_id = $request->id;
 $lista_espera->save();
 }
-if ($count==4 )
+if ($count==6 )
 {
 foreach ($lista_espera as $key => $value) {
 
-	if ($key ==3) {
+	if ($key ==5) {
 		$value->proyectos_id=$request->id;
         $value->save();
 
@@ -190,16 +192,13 @@ foreach ($lista_espera as $key => $value) {
 { 
 
 
-$lista_espera = lista_espera::all();
-
+$lista_espera = Lista_espera::all();
 foreach ($lista_espera as $key => $value) {
-
 $value->proyectos_id =  $request->nuevoOrden[$key];
 $value->save();
-
 }
 
-
+return response()->json($lista_espera); 
 
 }
 
@@ -209,13 +208,13 @@ $value->save();
 { 
 
 
-$lista_principal = lista_principal::all();
+$lista_principal = Lista_principal::all();
 foreach ($lista_principal as $key => $value) {
 $value->proyectos_id =  $request->nuevoOrden[$key];
 $value->save();
-
-
 }
+
+return response()->json($lista_principal); 
 
 }
 
@@ -226,11 +225,21 @@ $value->save();
 
 public function list( Request $request )
     {
-
+/*
 $proyectos = Proyectos::all();
-return response()->json($proyectos); 
+return response()->json($proyectos); */
     }
 
+
+
+public function listTareas( Request $request )
+    {
+
+$tareas = Tareas::all();
+return response()->json($tareas);
+
+
+    }
 
 
 
@@ -248,13 +257,36 @@ $lista_principal = DB::table('lista_principal')
 'lista_principal.proyectos_id',     
 'proyectos.nombre AS nombre_proyecto' , 
 'proyectos.fecha_entrega' , 
-'lista_principal.posicion', 
+'clientes.nombre AS nombre_empresa' , 
 'proyectos.comentario'
+)->orderBy('id', 'asc') ->get();
 
-  )->get();
 
 
-return response()->json($lista_principal); 
+foreach ($lista_principal as $key => $item) {
+
+
+echo "PADRE: $key";
+echo "<br>";
+$lista_tareas = [];
+$tareas = Tareas::where('proyectos_id', $item->proyectos_id )->get();
+
+foreach ($tareas as $key => $value) {
+
+echo "KEY:   $key ";
+echo $value->id; echo "  ".$value->nombre;
+echo "<br>";
+$lista_tareas = $value->nombre;
+
+}
+
+
+var_dump($lista_tareas);
+}
+
+
+
+//return response()->json($lista_principal); 
 
 
 
@@ -265,14 +297,25 @@ public function listEspera( Request $request )
     {
 
 $lista_espera = DB::table('lista_espera')
+
 ->Join('proyectos', 'lista_espera.proyectos_id', '=', 'proyectos.id')
+
 ->Join('clientes', 'proyectos.clientes_id', '=', 'clientes.id')
 ->select( 
 'lista_espera.id',
-'lista_espera.proyectos_id',
-'proyectos.fecha_entrega', 
-'lista_espera.posicion', 
-'proyectos.nombre AS nombre_proyecto')->get();
+'lista_espera.proyectos_id',     
+'proyectos.nombre AS nombre_proyecto' , 
+'proyectos.fecha_entrega' , 
+'clientes.nombre AS nombre_empresa' , 
+'proyectos.comentario'
+
+
+
+)->orderBy('id', 'asc')
+
+->get();;
+
+
 
 
 return response()->json($lista_espera); 

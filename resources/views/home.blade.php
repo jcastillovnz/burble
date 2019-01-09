@@ -10,16 +10,45 @@
 <template id="listas">
 
 <div  class="col-sm-12">
-<strong class="float-left"></i>Proyectos en proceso   <p> 
+<strong  class="float-left"> 
+<i class="fas fa-globe-americas"></i>
+  Proyectos en proceso   
 
-</p></strong> 
+</strong> </h3>
 
 <button title="Nuevo proyecto" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
 </p>
 </div>
 
 
+
+
 <div   id="lista_proceso"  class="col-sm-12 row ">
+
+
+<template v-if="lista_principal.length <=  0">
+
+<div  class="col-sm-6">
+<div class="card borde-burble alert-warning" >
+<div class="container alert ">
+
+<p align="center">
+<h6> <strong> <i class="fas fa-exclamation-circle"></i> No hay proyectos en espera </strong>  </h6>
+</p>
+</div>
+</div>
+<div class="btn-group float-right button-absolute " >
+<div    data-toggle="modal" data-target=".nuevoProyecto" class=" btn btn-light border border-dark btn-sm rounded-circle"  >
+<i style="font-size: 13px;" class="fas fa-plus-circle"></i>
+</div>
+</div>
+</div>
+<!-- TARJETA -->
+
+
+
+</template>
+
 
 
 
@@ -30,8 +59,7 @@
 <p>
 <h4 class="proyecto-min" align="left"> 
 <a href="">  
-<strong >  
-
+<strong style="font-size: 14px" >  
      @{{item.nombre_proyecto}}
 </strong></a>    
 <small class="comentarios-proyecto float-right" aling="right">     
@@ -40,54 +68,63 @@
 </h4>
 </p>
 <h6 class="empresa-min" align="left"><strong>  @{{item.nombre_empresa}}  </strong> <small class="float-right text-info" aling="right"> <strong>  @{{item.fecha_entrega}}  </strong></small></h6>
-<div class="container-fluid   ">
+
+
+
+
+<template  v-if="lista_tareas.length <=  0">
+
+<p class="border  tarea container-fluid "  align="left">
+<div class="alert alert-warning" role="alert">
+<p align="center">
+<h6> <strong> <i class="fas fa-exclamation-circle"></i> No hay proyectos en espera </strong>  </h6>
+</p>
+</div>
+</p>
+
+ 
+
+
+</template>
+
+
 <p class="border  tarea container-fluid"  align="left">
 <i class="fas bar float-left"></i>
-<a href="">
-Nombre de tarea  
-</a>
+<a href=""> Nombre de tarea   </a>
 <i class="fas fa-circle text-danger"  title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
 comentarios sobre esta tarea
 </p>
-<p class="border tarea container-fluid"  align="left">
 
 
 
-<a href="">
-Nombre de tarea  
-</a> <i class="fas fa-circle text-danger" title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
-comentarios sobre esta tarea
-</p>
-<p class="border  tarea container-fluid text-secondary"  align="left">
-<i class="fas fa-stop"></i>
-<a href="">
-Nombre de tarea  
-</a> <i class="fas fa-circle text-danger" title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
-comentarios sobre esta tarea
-</p>
-</div>
+
+
+
+
 
 
 <div class="btn-group float-right" >
 
-<div class="button-collapse btn btn-light border border-dark"   id="button-collapse" data-toggle="collapse" v-bind:href="'#collapseExample'+ item.id"  aria-expanded="false" aria-controls="collapseExample" role="button">
+
+
+<div class="button-collapse btn btn-light border border-dark btn-sm"   id="button-collapse" data-toggle="collapse" v-bind:href="'#collapseExample'+ item.id"  aria-expanded="false" aria-controls="collapseExample" role="button">
 <i style="font-size: 12px" class="fas fa-chevron-down" ></i>
 </div>
 
-<div class=" btn btn-light border border-dark" aria-expanded="false" id="button-collapse">
+
+<div class=" btn btn-light border border-dark btn-sm" aria-expanded="false" id="button-collapse">
 <i  style="font-size: 12px" class="fas fa-pen-square"></i>
 </div>
 
-<div class="button-collapse btn btn-light border border-dark" aria-expanded="false"  id="button-collapse"  data-toggle="modal" data-target=".nuevaTarea"  role="button">
+
+
+<div class="button-collapse btn btn-light btn-sm border border-dark" aria-expanded="false"  id="button-collapse"  data-toggle="modal" data-target=".nuevaTarea"  role="button">
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>
 </div>
 
-
-
-<div v-on:click="delete_principal(item.proyectos_id)"   class=" btn btn-light border border-dark" aria-expanded="false" id="button-collapse">
+<div v-on:click="delete_principal(item.proyectos_id)"   class=" btn btn-light btn-sm border border-dark" aria-expanded="false" id="button-collapse">
 <i  style="font-size: 12px" class="fas fa-trash"></i>
 </div>
-
 
 
 
@@ -95,9 +132,9 @@ comentarios sobre esta tarea
 
 
 <hr class="invisible">
+
 <div class="collapse " v-bind:id="'collapseExample'+ item.id">
 <div class="col-sm-12 img-group">
-
 <div class="text-center">
 <img width="120"  src="img/pieza.png" class="img-fluid" alt="...">
 <img width="120"  src="img/pieza.png" class="img-fluid" alt="...">
@@ -105,13 +142,10 @@ comentarios sobre esta tarea
 <img width="120"  src="img/pieza.png" class="img-fluid" alt="...">
 </div>
 
-
+</div>
 </div>
 
 
-
-</div>
-<br>
 </template>
 
 </div>
@@ -128,16 +162,13 @@ comentarios sobre esta tarea
 
 
 
-<div class="col-sm-12">
-<p align="left"><strong> Proyectos en espera</strong></p>
-
-
-
+<div  class="col-sm-12">
+<hr>
+<p align="left" ><strong>
+<i class="fas fa-globe-americas"></i>
+ Proyectos en espera</strong></p>
 <hr>
 </div>
-
-
-
 
 
 <!-- SUBPROYECTOS -->
@@ -147,7 +178,7 @@ comentarios sobre esta tarea
 <div   id="lista_espera"  class="row col-sm-12 "   >
 <!-- TARJETA -->
 <template v-if="lista_espera.length <=  0">
-<div  class="col-sm-3">
+<div  class="col-sm-2">
 <div class="card borde-burble alert-warning" >
 <div class="container alert ">
 <p align="center">
@@ -169,7 +200,7 @@ comentarios sobre esta tarea
 
 
 <template   v-sortable="{ onUpdate: onUpdate }">
-<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"    v-for="item in lista_espera"   class="col-sm-3 item_espera">
+<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"    v-for="item in lista_espera"   class="col-sm-2 item_espera">
 
  
 <div class="card borde-burble bg-light item " >
@@ -177,7 +208,7 @@ comentarios sobre esta tarea
 <p align="left">
 <a  href="">
 <strong class="proyecto-min">
-@{{item.nombre_proyecto}}    ID:  @{{item.proyectos_id}}
+@{{item.nombre_proyecto}}   
 </strong>
 </a>
 
