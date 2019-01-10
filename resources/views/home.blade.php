@@ -100,16 +100,28 @@ No existen tareas registradas
 
 </p>
 -->
-<div    class=" border "> 
-
-<a  href="" >  
+<div    class="tarea "> 
 
 
- @{{item.nombre_tarea }} </a>
-<i class="fas fa-circle text-danger"  title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
+<div class="row">
+<div class="col">
+  @{{item.nombre_tarea }} 
+</div>
+<div class="col">
+
+<i class="fas fa-circle text-danger iconos"  title="Estado"></i>  
+
+<i class="far fa-user-circle text-info iconos"></i> 
+
+<i class="far fa-image iconos"></i>
+
+</div>
+<div class="col">
+
 @{{item.comentario }}
 
-
+</div>
+</div>
 </div>
 
 
@@ -117,26 +129,24 @@ No existen tareas registradas
 
 
 
-
-
-
+<hr>
 <div class="btn-group float-right" >
-<div class="button-collapse btn btn-light border border-dark btn-sm"   id="button-collapse" data-toggle="collapse" v-bind:href="'#collapseExample'+ item.id"  aria-expanded="false" aria-controls="collapseExample" role="button">
+<div class="button-collapse btn-sm"   id="button-collapse" data-toggle="collapse" v-bind:href="'#collapseExample'+ item.id"  aria-expanded="false" aria-controls="collapseExample" role="button">
 <i style="font-size: 12px" class="fas fa-chevron-down" ></i>
 </div>
 
 
-<div class=" btn btn-light border border-dark btn-sm" aria-expanded="false" id="button-collapse">
+<div class="  btn-sm" aria-expanded="false" id="button-collapse">
 <i  style="font-size: 12px" class="fas fa-pen-square"></i>
 </div>
 
 
 
-<div class="button-collapse btn btn-light btn-sm border border-dark" aria-expanded="false"  id="button-collapse"  data-toggle="modal" data-target=".nuevaTarea"  role="button">
+<div class="button-collapse btn-sm " aria-expanded="false"  id="button-collapse"  data-toggle="modal" data-target=".nuevaTarea"  role="button">
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>
 </div>
 
-<div v-on:click="delete_principal(item.proyectos_id)"   class=" btn btn-light btn-sm border border-dark" aria-expanded="false" id="button-collapse">
+<div v-on:click="delete_principal(item.proyectos_id)"   class=" btn-sm " aria-expanded="false" id="button-collapse">
 <i  style="font-size: 12px" class="fas fa-trash"></i>
 </div>
 
@@ -243,7 +253,7 @@ Tareas
 </div>
 </div>
 <div class="btn-group float-right button-absolute" >
-<div v-on:click="delete_espera(item.proyectos_id)"  class="button-collapse btn btn-light border border-dark btn-sm rounded-circle"  >
+<div v-on:click="delete_espera(item.proyectos_id)"  class="button-collapse btn-sm "  >
 <i class="fas fa-trash"></i>
 </div>
 </div>

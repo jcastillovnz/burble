@@ -195,12 +195,22 @@ border-radius: 50%;
    padding:none;
             }
 
+.iconos{
+font-size: 20px;
+}
 
+.tarea{
+border-top: 1px solid #D3D3D3;
+border-right: 1px solid #D3D3D3;
+border-bottom: 1px solid #D3D3D3;
+border-left: 6px solid #ff9999;
+font-size: 13px;
+}
 
-
-
-
-
+.margin-none{
+  padding-left: 4px;
+margin:0px;
+}
 
 
 .img-group{
