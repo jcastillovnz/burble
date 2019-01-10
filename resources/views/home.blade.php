@@ -33,7 +33,7 @@
 <div class="container alert ">
 
 <p align="center">
-<h6> <strong> <i class="fas fa-exclamation-circle"></i> No hay proyectos en espera </strong>  </h6>
+<h6> <strong> <i class="fas fa-exclamation-circle"></i> No hay proyectos en proceso</strong>  </h6>
 </p>
 </div>
 </div>
@@ -54,14 +54,16 @@
 
 <template   v-sortable="{ onUpdate: onUpdate }">
 
-<div   :id="item.proyectos_id"  v-for="item in lista_principal"  class="col-sm-6 item_proceso">
+<div   :id="item.proyectos_id"  v-for="(item, index) in lista_principal"  class="col-sm-6 item_proceso">
 <div   class="container-fluid      borde-burble border bg-light">
 <p>
 <h4 class="proyecto-min" align="left"> 
-<a href="">  
+
+
+
 <strong style="font-size: 14px" >  
      @{{item.nombre_proyecto}}
-</strong></a>    
+</strong>   
 <small class="comentarios-proyecto float-right" aling="right">     
  @{{item.comentario}} 
 </small> 
@@ -72,31 +74,46 @@
 
 
 
-<template  v-if="lista_tareas.length <=  0">
 
-<p class="border  tarea container-fluid "  align="left">
-<div class="alert alert-warning" role="alert">
-<p align="center">
-<h6> <strong> <i class="fas fa-exclamation-circle"></i> No hay proyectos en espera </strong>  </h6>
+<template v-if="lista_tareas[index]==false" >
+<p    class="border  tarea container-fluid"  align="left">
+
+<p align="center" class="alert-warning">
+<i class="fas fa-exclamation-circle"></i>
+No existen tareas registradas
 </p>
-</div>
+
+
 </p>
-
- 
-
 
 </template>
 
 
-<p class="border  tarea container-fluid"  align="left">
-<i class="fas bar float-left"></i>
-<a href=""> Nombre de tarea   </a>
-<i class="fas fa-circle text-danger"  title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
-comentarios sobre esta tarea
+
+
+
+
+<template   v-for="(item, i) in lista_tareas[index]" >
+
+  <!--  
+<p    class="border  tarea container-fluid "  align="left">
+
 </p>
+-->
+<div    class=" border "> 
+
+<a  href="" >  
 
 
+ @{{item.nombre_tarea }} </a>
+<i class="fas fa-circle text-danger"  title="Estado"></i>  <i class="far fa-user-circle text-info"></i> <i class="far fa-image"></i>
+@{{item.comentario }}
 
+
+</div>
+
+
+</template>
 
 
 
@@ -104,9 +121,6 @@ comentarios sobre esta tarea
 
 
 <div class="btn-group float-right" >
-
-
-
 <div class="button-collapse btn btn-light border border-dark btn-sm"   id="button-collapse" data-toggle="collapse" v-bind:href="'#collapseExample'+ item.id"  aria-expanded="false" aria-controls="collapseExample" role="button">
 <i style="font-size: 12px" class="fas fa-chevron-down" ></i>
 </div>

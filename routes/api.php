@@ -19,7 +19,6 @@ use Illuminate\Http\Request;
 */
 
 
-
 Route::get('/proyecto/create/', 'ProyectoController@create');
 
 
@@ -43,9 +42,13 @@ Route::get('/clientes/create/', 'ClienteController@create');
 Route::get('/proyectos/', 'ProyectoController@list');
 
 
+
 Route::get('/proyectos/principal', 'ProyectoController@listPrincipal');
 Route::get('/proyectos/espera', 'ProyectoController@listEspera');
-Route::get('/proyectos/tareas', 'ProyectoController@listTareas');
+Route::get('/proyectos/tareas', 'ProyectoController@listTareas'); 
+
+
+
 
 
 Route::get('/proyectos/principal/update/', 'ProyectoController@UpdateListaPrincipal');

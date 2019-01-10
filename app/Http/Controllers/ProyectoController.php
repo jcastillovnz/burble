@@ -7,7 +7,7 @@ use App\Clientes;
 use App\Contactos;
 use App\Proyectos;
 use App\Tareas;
-
+use Session;
 
 use App\Lista_principal;
 use App\Lista_espera;
@@ -232,11 +232,52 @@ return response()->json($proyectos); */
 
 
 
-public function listTareas( Request $request )
+public function listTareas(  )
     {
 
-$tareas = Tareas::all();
-return response()->json($tareas);
+
+$lista_principal = DB::table('lista_principal')
+->Join('proyectos', 'lista_principal.proyectos_id', '=', 'proyectos.id')
+->leftJoin('clientes', 'proyectos.clientes_id', '=', 'clientes.id')
+->select( 
+'lista_principal.id',
+'lista_principal.proyectos_id',     
+'proyectos.nombre AS nombre_proyecto' , 
+'proyectos.fecha_entrega' , 
+'clientes.nombre AS nombre_empresa' , 
+'proyectos.comentario'
+)->orderBy('id', 'asc') ->get();
+
+
+ $listado_tareas = array();
+foreach ($lista_principal as $key => $item) {
+$lista_tareas[$key] = array();
+$tareas = Tareas::where('proyectos_id', $item->proyectos_id )->get();
+foreach ($tareas as $i => $value) {
+/*
+echo "PRINCIPAL:  $key ";  echo " TAREA:  $i";
+echo "<br>";
+echo "$value->proyectos_id";
+echo "<br>";
+*/
+
+$Tarea[$i] = array();
+$Tarea["id"]  =  $value->id;
+$Tarea["nombre_tarea"]  =  $value->nombre;
+$Tarea["prioridad"]  =    $value->prioridad;
+$Tarea["estado"]  = $value->estado;
+$Tarea["comentario"]  =   $value->comentario;
+$Tarea["proyectos_id"]  =   $value->proyectos_id;
+
+$lista_tareas[$key][$i] = $Tarea ;
+}
+
+$listado_tareas = $lista_tareas;
+
+}
+
+
+return response()->json($listado_tareas );
 
 
     }
@@ -260,34 +301,9 @@ $lista_principal = DB::table('lista_principal')
 'clientes.nombre AS nombre_empresa' , 
 'proyectos.comentario'
 )->orderBy('id', 'asc') ->get();
-
-
-
-foreach ($lista_principal as $key => $item) {
-
-
-echo "PADRE: $key";
-echo "<br>";
-$lista_tareas = [];
-$tareas = Tareas::where('proyectos_id', $item->proyectos_id )->get();
-
-foreach ($tareas as $key => $value) {
-
-echo "KEY:   $key ";
-echo $value->id; echo "  ".$value->nombre;
-echo "<br>";
-$lista_tareas = $value->nombre;
-
-}
-
-
-var_dump($lista_tareas);
-}
-
-
-
-//return response()->json($lista_principal); 
-
+return response()->json($lista_principal); 
+ 
+ 
 
 
     }
