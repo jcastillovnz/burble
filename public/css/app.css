@@ -90,6 +90,12 @@ background: #428bca;
 }
 
 
+
+.titulo-espera {
+
+margin-top: 15px;
+
+}
 .empresa-min {
  font-size: 14px;
  margin:auto;
@@ -97,7 +103,7 @@ background: #428bca;
 }
 
 .proyecto-min {
- font-size: 13px;
+ font-size: 15px;
  margin:auto;
 
 }
@@ -196,10 +202,12 @@ border-radius: 50%;
             }
 
 .iconos{
-font-size: 20px;
+font-size: 15px;
 }
 
 .tarea{
+  margin-bottom: 1px;
+  border-radius: 20px;
 border-top: 1px solid #D3D3D3;
 border-right: 1px solid #D3D3D3;
 border-bottom: 1px solid #D3D3D3;
@@ -225,13 +233,7 @@ padding-top: none;
   background-color: red;
 }
 
-.item:hover {
-  box-shadow:0 0 0 2px #68b, inset 0 0 0 1px #ddd;
-}
 
-.item:hover {
-  box-shadow:0 0 0 2px #68b, inset 0 0 0 1px #ddd;
-}
 
 .item[aria-grabbed="true"]
 {
@@ -239,11 +241,6 @@ padding-top: none;
   color:#fff;
 }
 
-.item:focus
-{
-  outline:none;
-  box-shadow:0 0 0 2px #68b, inset 0 0 0 1px #ddd;
-}
 
 
 

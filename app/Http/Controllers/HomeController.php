@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Clientes;
 use App\Contactos;
 
-
+use App\User;
 
 
 
@@ -32,6 +32,15 @@ class HomeController extends Controller
     {
 
        $clientes=Clientes::all();
+       $usuarios=User::all();
+        return $usuarios;
+
+
         return view('home', compact('clientes'));
+
+
+
+
+
     }
 }

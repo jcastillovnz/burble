@@ -23,7 +23,18 @@ this.getListaEspera();
         presupuesto: '',
         comentario: '',
 
-    },
+
+
+        nombre_tarea: '',
+        tipo_tarea: '',
+        prioridad_tarea: '',
+        estado_tarea: '',
+        empleado_id: '',
+        proyectos_id: '',
+        comentario_tarea: '',
+
+
+      },
 
 methods: {
 
@@ -102,8 +113,6 @@ axios({
   ).then(function (response) {
 
 Proyectos.getListaEspera();
-
-
 })
 
 }
@@ -150,6 +159,73 @@ document.getElementById('btn-proyecto').disabled = false;
 
 });
 },
+
+
+enviar_tarea: function(e) {
+
+
+var url = '/api/proyecto/tarea/create/' ;
+axios.get( url, {
+  params: {
+nombre_tarea: this.nombre_tarea,
+tipo_tarea: this.tipo_tarea,
+estado_tarea: this.tipo_tarea,
+prioridad_tarea: this.prioridad_tarea,
+empleado_id: this.empleado_id,
+proyectos_id: this.proyectos_id,
+comentario_tarea: this.comentario_tarea,
+
+}
+,
+validateStatus: (status) => {
+        return true; // I'm always returning true, you may want to do it depending on the status received
+      },
+    }).catch(error => {
+    }).then(response => {
+
+if (response.data == "true") {
+document.getElementById('carga-proyecto').style.display="none";
+$('.nuevaTarea').modal('hide')
+document.getElementById('btn-proyecto').disabled = false;
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+Proyectos.getListaEspera();
+Proyectos.getListaPrincipal();
+// document.getElementById("formulario_proyecto").reset();       
+}
+else
+{
+
+document.getElementById('loader-sm').style.display="none"
+$('.nuevaTarea').modal('hide')
+document.getElementById('btn-proyecto').disabled = false;
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+
+
+}
+
+});
+
+
+
+
+
+
+},
+
+
+submit_tarea: function(e) {
+
+
+alert(this.nombre_tarea);
+document.getElementById('btn-tarea').disabled = true;
+document.getElementById('carga-tarea').style.display="block";
+this.enviar_tarea()
+
+
+},
+
+
+
 
 
 submit : function(e) {

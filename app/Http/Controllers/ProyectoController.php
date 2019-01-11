@@ -223,11 +223,31 @@ return response()->json($lista_principal);
 
 
 
-public function list( Request $request )
+public function create_tarea( Request $request )
     {
-/*
-$proyectos = Proyectos::all();
-return response()->json($proyectos); */
+
+
+
+
+$tareas = new Tareas();
+$tareas->nombre=  $request->proyecto;
+$tareas->tipo=  $request->tipo_tarea;
+$tareas->prioridad=$request->prioridad_tarea;
+$tareas->estado=$request->estado_tarea;
+$tareas->comentario=$request->comentario;
+$tareas->users_id=$request->empleado_id;
+$tareas->proyectos_id=$request->proyectos_id;
+$tareas->save();
+if ($tareas->save()==true) {
+$data = "true";
+return response()->json($data); 
+}
+else {
+$data = "false";
+return response()->json($data); 
+}
+
+
     }
 
 
