@@ -228,7 +228,6 @@ public function create_tarea( Request $request )
 
 
 
-
 $tareas = new Tareas();
 $tareas->nombre=  $request->proyecto;
 $tareas->tipo=  $request->tipo_tarea;
@@ -238,6 +237,11 @@ $tareas->comentario=$request->comentario;
 $tareas->users_id=$request->empleado_id;
 $tareas->proyectos_id=$request->proyectos_id;
 $tareas->save();
+
+
+
+
+
 if ($tareas->save()==true) {
 $data = "true";
 return response()->json($data); 

@@ -106,10 +106,7 @@ No existen tareas registradas
 
 <div class="row">
 <div class="col">
-
-  @{{item.nombre_tarea }} 
-
-
+  @{{item.nombre_tarea}} 
 </div>
 <div class="col">
 
@@ -413,7 +410,7 @@ Registrar un nuevo proyecto
 <div   class="modal fade nuevaTarea"  v-bind:id="'modal_'+ item.proyectos_id"    tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-sm-8">
 <div  id="AppProyectos"   class="modal-content">
-<form method="GET" class="hidden" role="form"  v-on:submit.prevent="enviar_tarea()"  >
+<form method="GET" class="hidden" role="form"  v-on:submit.prevent="enviar_tarea(item.proyectos_id)"  >
 <div class="modal-header ">
 <div class="col-sm-12 text-primary">
 <i class="fas fa-suitcase"></i>
@@ -450,6 +447,9 @@ Registrar un nueva tarea
 <span style="width: 35px"  class="input-group-text"><i class="far fa-chart-bar"></i>  </span>
 </div>
 <select required="" v-model="prioridad_tarea"  class="form-control">
+  <option selected="" value="" > Seleccione prioridad  </option>
+
+
 <option>Prioridad</option>
 <option>Alta / Rojo</option>
 <option>Media / Amarillo</option>
@@ -464,23 +464,24 @@ Registrar un nueva tarea
 </div> 
 <input type="text" class="form-control" v-model="estado_tarea"   placeholder="Estado">
 
-<input type="hidden" class="hidden" name="proyectos_id" class="form-control" v-model="proyectos_id"  >
-
 
 
 </div>
- <div   class="input-group col-sm-12"  >
+ <div class="input-group col-sm-12"  >
 <div class="input-group-prepend"   >
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-shield"></i>  </span>
 </div>
 
-<template >
-<select required=""  v-model="empleado_id" class="form-control">
 
-<option   >Asignar a empleado</option>
+<select required=""   v-model="empleado_id" class="form-control">
+
+<option selected="" value="" > Seleccione empleado  </option>
+
+<option v-for="item in lista_users"  :value="item.id"  > @{{item.name }}  @{{item.apellido}} 
+
 
 </select>
-</template>
+
 
 </div>
 <div class="input-group col-sm-12">

@@ -11,11 +11,14 @@ this.getListaTareas();
 
 this.getListaEspera();
 
+this.getUsers();
+
     },
     data: {
         lista_principal:[],
         lista_espera: [],
         lista_tareas: [],
+        lista_users: [],
 
         cliente: '',
         proyecto: '',
@@ -38,7 +41,15 @@ this.getListaEspera();
 
 methods: {
 
+getUsers: function(dato)  {
+ var urlUsers = '/api/usuarios/consulta/';
+  axios.get(urlUsers).then(response => {
+  this.lista_users = response.data
 
+
+});
+ }
+,
 getListaPrincipal: function(dato)  {
   document.getElementById("loader").style.display = "none";;
 
@@ -51,7 +62,8 @@ this.lista_principal = response.data
 ,
 
 getListaTareas: function(dato)  {
-  document.getElementById("loader").style.display = "none";;
+
+document.getElementById("loader").style.display = "none";;
 
 
 var urlTareas = '/api/proyectos/tareas';
@@ -172,7 +184,7 @@ tipo_tarea: this.tipo_tarea,
 estado_tarea: this.tipo_tarea,
 prioridad_tarea: this.prioridad_tarea,
 empleado_id: this.empleado_id,
-proyectos_id: this.proyectos_id,
+proyectos_id: e,
 comentario_tarea: this.comentario_tarea,
 
 }
@@ -190,7 +202,9 @@ document.getElementById('btn-proyecto').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 Proyectos.getListaEspera();
 Proyectos.getListaPrincipal();
-// document.getElementById("formulario_proyecto").reset();       
+Proyectos.getListaTareas();
+Proyectos.getUsers();
+    
 }
 else
 {
