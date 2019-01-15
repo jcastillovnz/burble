@@ -52,7 +52,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light border-bottom ">
-    <a class="navbar-brand text-primary" href="{{ url('/') }}">
+    <a class="navbar-brand text-primary" href="{{ url('/home') }}">
 <strong>              {{ config('app.name', 'Laravel') }}
 </strong>
 </a>
@@ -96,7 +96,6 @@
 <script src="{{ asset('js/appVuej.js') }}" defer></script>
 
 
-
 </head>
 
 
@@ -116,12 +115,16 @@
  <div  id="AppClientes" class="modal-content">
 <form  v-on:submit.prevent="enviar(this)"    method="GET" class="hidden" role="form"     >
 <div class="modal-header ">
-<div class="col-sm-12 text-primary">
+<div class="col-sm-12 ">
+<p align="center" class="text-primary">
 <i class="fas fa-suitcase"></i>
+
 <strong>
 Registrar un nuevo Cliente
 </strong>
-<button type="button" class="close float-right" data-dismiss="modal">&times;</button>
+
+
+<button type="button" class="close float-right" data-dismiss="modal">&times;</button></p>
 </div>
 </div>
 <div   class="modal-body">
@@ -459,28 +462,16 @@ Datos de contacto
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <nav class="navbar navbar-expand-lg navbar-light ">
 
  @guest
   @else
-<span class="navbar-brand text-primary" href="{{ url('/') }}">
+<span class="navbar-brand text-info" href="{{ url('/') }}">
 <img src="img/user.png" width="40">
-<strong>
-{{ Auth::user()->name }} 
+<strong style="font-size: 15px;"> 
+{{ Auth::user()->name }}  {{ Auth::user()->apellido }}  
+
+<input type="hidden"  class="hidden" id="user_id"  value="{{ Auth::user()->id}} " name="">
 </strong>
 </span>
 

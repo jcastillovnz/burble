@@ -94,38 +94,96 @@ this.lista_espera = response.data
 
 
 delete_principal: function(item) {
-console.log(item);
+
 
 axios({
   url: '/api/lista_principal/delete/',
   method: 'get',
   params: {
- id:item
+ id:item.proyectos_id
   }}
   ).then(function (response) {
-
 Proyectos.getListaPrincipal();
-
-
 })
+
+
+
+
+
+
+
+}
+,
+confirmar_delete_principal: function(item) {
+
+
+alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar el proyecto '+item.nombre_proyecto +' de la lista de proyectos en proceso?' 
+  ,() => {
+    
+
+Proyectos.delete_principal(item);
+
+
+    }, 
+function()
+{ 
+
+ ///CODIGO AL CANCELAR
+
+
+});
+
+
+
 
 }
 ,
 
 
 
+
 delete_espera: function(item) {
-console.log(item);
+
+
 axios({
   url: '/api/lista_espera/delete/',
   method: 'get',
   params: {
- id: item
+ id: item.proyectos_id
   }}
   ).then(function (response) {
 
 Proyectos.getListaEspera();
 })
+
+
+
+
+}
+,
+
+
+confirmar_delete_espera: function(item) {
+
+
+alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar el proyecto '+item.nombre_proyecto +' de la lista de proyectos en espera?' 
+  ,() => {
+    
+
+Proyectos.delete_espera(item);
+
+
+    }, 
+function()
+{ 
+
+ ///CODIGO AL CANCELAR
+
+
+});
+
+
+
 
 }
 ,
@@ -175,13 +233,17 @@ document.getElementById('btn-proyecto').disabled = false;
 
 enviar_tarea: function(e) {
 
+document.getElementById('loader_'+e).style.display="block";
+document.getElementById('btn-tarea_'+e).disabled = true;
+
+
 
 var url = '/api/proyecto/tarea/create/' ;
 axios.get( url, {
   params: {
 nombre_tarea: this.nombre_tarea,
 tipo_tarea: this.tipo_tarea,
-estado_tarea: this.tipo_tarea,
+estado_tarea: 'amarilo',
 prioridad_tarea: this.prioridad_tarea,
 empleado_id: this.empleado_id,
 proyectos_id: e,
@@ -190,15 +252,23 @@ comentario_tarea: this.comentario_tarea,
 }
 ,
 validateStatus: (status) => {
+
+
+
+
         return true; // I'm always returning true, you may want to do it depending on the status received
       },
     }).catch(error => {
     }).then(response => {
 
 if (response.data == "true") {
-document.getElementById('carga-proyecto').style.display="none";
+
+document.getElementById('loader_'+e).style.display="none"
+document.getElementById('btn-tarea_'+e).disabled = false;
+
 $('.nuevaTarea').modal('hide')
-document.getElementById('btn-proyecto').disabled = false;
+
+
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 Proyectos.getListaEspera();
 Proyectos.getListaPrincipal();
@@ -209,9 +279,9 @@ Proyectos.getUsers();
 else
 {
 
-document.getElementById('loader-sm').style.display="none"
+document.getElementById('loader_'+e).style.display="none"
 $('.nuevaTarea').modal('hide')
-document.getElementById('btn-proyecto').disabled = false;
+document.getElementById('btn-tarea').disabled = false;
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
 
 
@@ -228,11 +298,14 @@ document.getElementById('btn-proyecto').disabled = false;
 
 
 submit_tarea: function(e) {
+var x = document.getElementsByClassName("loader-sm")[0];
+console.log(x);
+alert(x);
 
+document.getElementsByClassName("loader-sm")[0].style.display="block";
+document.getElementsByClassName("btn-tarea")[0].disabled = true;
 
-alert(this.nombre_tarea);
-document.getElementById('btn-tarea').disabled = true;
-document.getElementById('carga-tarea').style.display="block";
+//document.getElementById('carga-tarea').style.display="block";
 this.enviar_tarea()
 
 
@@ -296,8 +369,11 @@ axios({
   ).then(function (response) {
 
 
+var item = {proyectos_id:evt.item.id};
+
+
 Proyectos.getListaEspera();
-Proyectos.delete_espera(evt.item.id);
+Proyectos.delete_espera(item);
  location ="/home";
 
 
@@ -377,7 +453,12 @@ axios({
  id: evt.item.id ,
   }}
   ).then(function (response) {
-Proyectos.delete_principal(evt.item.id);
+
+
+var item = {proyectos_id:evt.item.id};
+
+
+Proyectos.delete_principal(item);
 Proyectos.getListaPrincipal();
  location ="/home";
 

@@ -23,6 +23,8 @@ Route::get('/proyecto/create/', 'ProyectoController@create');
 Route::get('/proyecto/tarea/create/', 'ProyectoController@create_tarea');
 
 
+Route::get('/usuario', 'GestionController@User');
+
 
 Route::get('/usuario/create/', 'GestionController@createUser');
 

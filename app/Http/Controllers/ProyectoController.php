@@ -229,11 +229,11 @@ public function create_tarea( Request $request )
 
 
 $tareas = new Tareas();
-$tareas->nombre=  $request->proyecto;
+$tareas->nombre=  $request->nombre_tarea;
 $tareas->tipo=  $request->tipo_tarea;
 $tareas->prioridad=$request->prioridad_tarea;
 $tareas->estado=$request->estado_tarea;
-$tareas->comentario=$request->comentario;
+$tareas->comentario=$request->comentario_tarea;
 $tareas->users_id=$request->empleado_id;
 $tareas->proyectos_id=$request->proyectos_id;
 $tareas->save();
@@ -263,6 +263,7 @@ public function listTareas(  )
 $lista_principal = DB::table('lista_principal')
 ->Join('proyectos', 'lista_principal.proyectos_id', '=', 'proyectos.id')
 ->leftJoin('clientes', 'proyectos.clientes_id', '=', 'clientes.id')
+
 ->select( 
 'lista_principal.id',
 'lista_principal.proyectos_id',     
@@ -276,14 +277,26 @@ $lista_principal = DB::table('lista_principal')
  $listado_tareas = array();
 foreach ($lista_principal as $key => $item) {
 $lista_tareas[$key] = array();
-$tareas = Tareas::where('proyectos_id', $item->proyectos_id )->get();
+//$tareas = Tareas::where('proyectos_id', $item->proyectos_id )->get();
+$tareas = Tareas::where('proyectos_id', $item->proyectos_id )
+->Join('users', 'tareas.users_id', '=', 'users.id')
+->select( 
+'tareas.id',
+'tareas.nombre',     
+'tareas.prioridad',   
+'tareas.estado',  
+'tareas.comentario',    
+'tareas.proyectos_id',    
+'users.name AS nombre_usuario',   
+'users.apellido AS apellido_usuario',
+'users.foto AS foto_usuario', 
+'users.rango AS rango_usuario'
+
+)->orderBy('id', 'asc') ->get();
+
+
+
 foreach ($tareas as $i => $value) {
-/*
-echo "PRINCIPAL:  $key ";  echo " TAREA:  $i";
-echo "<br>";
-echo "$value->proyectos_id";
-echo "<br>";
-*/
 
 $Tarea[$i] = array();
 $Tarea["id"]  =  $value->id;
@@ -292,12 +305,16 @@ $Tarea["prioridad"]  =    $value->prioridad;
 $Tarea["estado"]  = $value->estado;
 $Tarea["comentario"]  =   $value->comentario;
 $Tarea["proyectos_id"]  =   $value->proyectos_id;
+/*USUARIO*/
+$Tarea["nombre_usuario"]  =   $value->nombre_usuario;
+$Tarea["apellido_usuario"]  =   $value->apellido_usuario;
+$Tarea["foto_usuario"]  =   $value->foto_usuario;
+$Tarea["rango_usuario"]  =   $value->rango_usuario;
+
 
 $lista_tareas[$key][$i] = $Tarea ;
 }
-
 $listado_tareas = $lista_tareas;
-
 }
 
 
@@ -339,7 +356,6 @@ public function listEspera( Request $request )
 $lista_espera = DB::table('lista_espera')
 
 ->Join('proyectos', 'lista_espera.proyectos_id', '=', 'proyectos.id')
-
 ->Join('clientes', 'proyectos.clientes_id', '=', 'clientes.id')
 ->select( 
 'lista_espera.id',

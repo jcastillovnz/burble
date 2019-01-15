@@ -125,10 +125,6 @@ border-radius: 50%;
       }
 
 
-   .tarea {
-
-     margin:auto;
-                  }
 
 
             .full-height {
@@ -183,11 +179,7 @@ border-radius: 50%;
             	margin-top: none;
             	padding-top: none;
             }
-            .tarea {
-
-            	margin-bottom: 0px;
-            	padding-bottom: none;
-            }
+        
 
                   .comentarios-proyecto{
 
@@ -205,15 +197,67 @@ border-radius: 50%;
 font-size: 15px;
 }
 
-.tarea{
-  margin-bottom: 1px;
-  border-radius: 20px;
+
+
+ .amarilo{
+color:  #ffad43;
+}
+ .azul{
+color:  #ffad43;
+}
+
+ .rojo{
+color:  #E60026;
+}
+
+ .verde{
+color:  #2d572c;
+}
+
+
+
+.ALTA {
+margin-bottom: 1px;
+border-radius: 20px;
 border-top: 1px solid #D3D3D3;
 border-right: 1px solid #D3D3D3;
 border-bottom: 1px solid #D3D3D3;
-border-left: 6px solid #ff9999;
+border-left: 6px solid #E60026;
 font-size: 13px;
+margin:auto;
+margin-bottom: 0px;
+padding-bottom: none;
 }
+
+.MEDIA{
+margin-bottom: 1px;
+border-radius: 20px;
+border-top: 1px solid #D3D3D3;
+border-right: 1px solid #D3D3D3;
+border-bottom: 1px solid #D3D3D3;
+border-left: 6px solid #ffad43;
+font-size: 13px;
+margin:auto;
+margin-bottom: 0px;
+padding-bottom: none;
+}
+
+.BAJA{
+margin-bottom: 1px;
+border-radius: 20px;
+border-top: 1px solid #D3D3D3;
+border-right: 1px solid #D3D3D3;
+border-bottom: 1px solid #D3D3D3;
+border-left: 6px solid #008001;
+font-size: 13px;
+margin:auto;
+margin-bottom: 0px;
+padding-bottom: none;
+}
+
+
+
+
 
 .margin-none{
   padding-left: 4px;

@@ -10,8 +10,9 @@
 <template id="listas">
 
 <div  class="col-sm-12">
-<strong  class="float-left"> 
+<strong  style="font-size: 17px;" class="float-left text-info"> 
 <i class="fas fa-globe-americas"></i>
+
   Proyectos en proceso   
 
 </strong> </h3>
@@ -58,9 +59,12 @@
 <div   class="container-fluid      borde-burble border bg-light">
 <p>
 <h4 class="proyecto-min" align="left"> 
+
 <strong  >  
      @{{item.nombre_proyecto}}
 </strong>   
+
+
 <small class="comentarios-proyecto float-right" aling="right">     
  @{{item.comentario}} ...
 </small> 
@@ -79,8 +83,8 @@
 <template v-if="lista_tareas[index]==false" >
 <p    class="border  tarea container-fluid"  align="left">
 
-<p align="center" class="alert-warning">
-<i class="fas fa-exclamation-circle"></i>
+<p align="center" class="">
+<i class="fas fa-exclamation-circle text-warning"></i>
 No existen tareas registradas
 </p>
 
@@ -96,25 +100,31 @@ No existen tareas registradas
 
 <template   v-for="(item, i) in lista_tareas[index]" >
 
-  <!--  
-<p    class="border  tarea container-fluid "  align="left">
 
-</p>
--->
-<div    class="tarea "> 
+<div    :class="item.prioridad"> 
+
 
 
 <div class="row">
 <div class="col">
   @{{item.nombre_tarea}} 
 </div>
-<div class="col">
+<div class="col ">
 
-<i class="fas fa-circle text-danger iconos"  title="Estado"></i>  
+<div  class="btn-group">
 
-<i class="far fa-user-circle text-info iconos"></i> 
 
-<i class="far fa-image iconos"></i>
+
+
+<i style="margin-left: 4%; margin-right: 4%;" :class="' fas fa-circle  iconos '+item.estado"  title="Estado"></i>  
+
+<img style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" class=""  width="15" height="15" src="img/user.png">
+
+
+<i style="   margin-left: 4%; margin-right: 4%; " class=" far fa-image iconos"></i>
+</div>
+
+
 
 </div>
 <div class="col">
@@ -132,28 +142,27 @@ No existen tareas registradas
 
 <hr>
 <div class="btn-group float-right" >
-<div class="button-collapse btn-sm"   id="button-collapse" data-toggle="collapse" v-bind:href="'#collapseExample'+ item.id"  aria-expanded="false" aria-controls="collapseExample" role="button">
+<div title="Imagenes" class="button-collapse btn-sm"   id="button-collapse" data-toggle="collapse" v-bind:href="'#collapseExample'+ item.id"  aria-expanded="false" aria-controls="collapseExample" role="button">
 <i style="font-size: 12px" class="fas fa-chevron-down" ></i>
 </div>
 
 
-<div class="  btn-sm" aria-expanded="false" id="button-collapse">
+<div title="Editar" class=" btn-sm" aria-expanded="false" id="button-collapse">
 <i  style="font-size: 12px" class="fas fa-pen-square"></i>
 </div>
 
 
 
-<div class="button-collapse btn-sm " aria-expanded="false"  id="button-collapse"  data-toggle="modal"
+<div title="Nueva tarea" class="button-collapse btn-sm " aria-expanded="false"  id="button-collapse"  data-toggle="modal"
 
 :data-target="'#modal_'+item.proyectos_id"  role="button">
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>
 </div>
 
-<div v-on:click="delete_principal(item.proyectos_id)"   class=" btn-sm " aria-expanded="false" id="button-collapse">
+
+<div title="Eliminar" v-on:click="confirmar_delete_principal(item)"   class=" btn-sm " aria-expanded="false" id="button-collapse">
 <i  style="font-size: 12px" class="fas fa-trash"></i>
 </div>
-
-
 
 </div>
 
@@ -171,16 +180,6 @@ No existen tareas registradas
 
 </div>
 </div>
-
-
-
-
-
-ID :  @{{item.proyectos_id}}
-
-
-
-
 
 
 </template>
@@ -210,7 +209,8 @@ ID :  @{{item.proyectos_id}}
 
 <div  class="col-sm-12">
 <hr>
-<p align="left" ><strong>
+<p class="text-info" style="font-size: 17px;" align="left" ><strong>
+
 <i class="fas fa-globe-americas"></i>
  Proyectos en espera</strong></p>
 <hr>
@@ -272,7 +272,7 @@ Tareas
 </div>
 
 <div class="btn-group float-right button-absolute " >
-<div v-on:click="delete_espera(item.proyectos_id)"  class="button-collapse btn-sm  float-right"  >
+<div v-on:click="confirmar_delete_espera(item)"  class="button-collapse btn-sm  float-right"  >
 <i class="fas fa-trash"></i>
 </div>
 </div>
@@ -287,9 +287,6 @@ Tareas
 
 
 <!-- TARJETA -->
-
-
-
 
 
 </template>
@@ -406,7 +403,7 @@ Registrar un nuevo proyecto
 
 <template v-for="(item, index) in lista_principal">
 <!-- MODAL NUEVA TAREA -->
- @{{item.proyectos_id}}
+
 <div   class="modal fade nuevaTarea"  v-bind:id="'modal_'+ item.proyectos_id"    tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-sm-8">
 <div  id="AppProyectos"   class="modal-content">
@@ -442,31 +439,20 @@ Registrar un nueva tarea
 <option value="Cambio">Cambio</option>
 </select>
 </div>
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="far fa-chart-bar"></i>  </span>
 </div>
 <select required="" v-model="prioridad_tarea"  class="form-control">
   <option selected="" value="" > Seleccione prioridad  </option>
-
-
-<option>Prioridad</option>
-<option>Alta / Rojo</option>
-<option>Media / Amarillo</option>
-<option>Baja / Verde</option>
+<option value="ALTA">Alta / Rojo</option>
+<option value="MEDIA">Media / Amarillo</option>
+<option value="BAJA">Baja / Verde</option>
 </select>
 </div>
- <div class="input-group col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text">
-<i class="fas fa-cog"></i> 
-</span>
-</div> 
-<input type="text" class="form-control" v-model="estado_tarea"   placeholder="Estado">
 
-
-
-</div>
  <div class="input-group col-sm-12"  >
 <div class="input-group-prepend"   >
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-shield"></i>  </span>
@@ -492,11 +478,11 @@ Registrar un nueva tarea
 </div>
 <div class="modal-footer">
 <div class="btn btn-group  ">
-<div  id="carga-tarea" class="loader loader-sm"></div>
+<div  :id="'loader_'+item.proyectos_id"   class="loader loader-sm loader-tarea"></div>
 <button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>
-<button type="submit"  id="btn-tarea"   class="btn btn-success btn-sm" type="button"  >
+<button type="submit"  :id="'btn-tarea_'+item.proyectos_id"   class="btn btn-success btn-sm btn-tarea" type="button"  >
 <i class="fas fa-save "></i>
 </button>
 </form>

@@ -40,6 +40,15 @@ return  $usuario;
 }
 
 
+public function User(Request $request)
+    {
+ 
+$user = User::where('id', $request->id)->first();
+
+return response()->json($user); 
+
+}
+
 
 
 
@@ -54,14 +63,10 @@ return $usuarios;
 
 
 
-   public function monitor(Request $request)
+public function monitor(Request $request)
     {
 
-
 $mail = User::where('email', $request->mail)->first();
-
-
-
 
 if ($mail == true){
 
