@@ -182,6 +182,7 @@ const file = event.target.files[0];
 this.preview = URL.createObjectURL(file);
 //Convertir en archivo antes de enviar
 this.foto = file.name;
+
 }
 
 }

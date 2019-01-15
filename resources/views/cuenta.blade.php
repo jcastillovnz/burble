@@ -39,10 +39,11 @@ Mi cuenta
 <div style="margin-top: 5%; " class="">
 
 <center>
-<img width="180" class="" src="img/user.png" alt="Card image cap">
+<img width="180" height="180" class=""  :src="preview" alt="Card image cap">
+<input ref="fileInput" type="file"  @change="cargar_foto(this)" value="" class="invisible"  name="">
 </center>
 
-<button class="btn btn-info btn-sm"><i class="fas fa-upload"></i> Subir fotografia</button>
+<button @click="$refs.fileInput.click()"  class="btn btn-info btn-sm"><i class="fas fa-upload"></i> Subir fotografia</button>
 
 <p class="text-primary">Sube una nueva foto de perfil</p>
 </div>
