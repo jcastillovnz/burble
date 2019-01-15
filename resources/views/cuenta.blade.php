@@ -40,7 +40,7 @@ Mi cuenta
 <center>
 
 
-<img  v-if="usuario.foto"   width="180" height="180" class="border rounded-circle"  :src="'img/'+foto" alt="Card image cap">
+<img  v-if="usuario.foto"   width="180" height="180" class="border rounded-circle"  :src="preview" alt="Card image cap">
 <img  v-else   width="180" height="180" class="border rounded-circle"  :src="preview" alt="Card image cap">
 
 
