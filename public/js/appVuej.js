@@ -26,8 +26,6 @@ this.getUsers();
         presupuesto: '',
         comentario: '',
 
-
-
         nombre_tarea: '',
         tipo_tarea: '',
         prioridad_tarea: '',

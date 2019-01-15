@@ -7,21 +7,19 @@
 var Mi_cuenta = new Vue({ 
     el: '#Mi_cuenta',
   mounted(){
-    console.log(this.usuario);
-
 this.getUser();
-
     },
 
     data: {
 
   
      usuario: null,
+     state: 0,
      preview: 'img/user.png' ,
-     nombre: '',
+     foto:null,
+     nombre:'',
      apellido: '',
      email: '',
-     password: '',
      alias: '',
      fecha_nacimiento: '',
      rango: '',
@@ -30,7 +28,7 @@ this.getUser();
      obra_social: '',
      servicio_ambulancia: '',
      contacto_ambulancia: '',
-     id: '',
+     id: user_id,
 
 
     },
@@ -56,51 +54,28 @@ axios({
  }
 ,
 
-editar: function(dato)  {
-
-
-alert("EDITAR")
+enviar_data: function(e) {
 
 
 
- }
-,
-
-eliminar: function(dato)  {
-
-
-axios({
-  url: '/api/usuarios/delete/',
-  method: 'get',
-  params: {
- id: dato.id
-  }
-}).then(function (response) {
-
-Gestionusuarios.getUsers();
-
-  })
- }
-,
-read: function(e) {
-
-var url = '/api/usuario/create/' ;
+var url = '/api/usuario/update/' ;
 
 axios.get( url, {
-  params: {
+     params: {
+
+     foto:this.foto,
      nombre: this.nombre,
      apellido: this.apellido,
-     email: this.email,
-     password: this.password,
      alias:this.alias,
      fecha_nacimiento:this.fecha_nacimiento,
-     rango: this.rango,
      cuit: this.cuit,
      direccion: this.direccion,
      obra_social: this.obra_social,
      servicio_ambulancia: this.servicio_ambulancia,
      contacto_ambulancia: this.contacto_ambulancia,
-  },
+     id: this.id,
+
+       },
 validateStatus: (status) => {
         return true; // I'm always returning true, you may want to do it depending on the status received
       },
@@ -109,29 +84,23 @@ validateStatus: (status) => {
     }).then(response => {
 
 if (response.data == "true") {
+document.getElementById('btn-user').disabled = false;
+document.getElementById('loader-user').style.display="none"
 
-document.getElementById('loader-sm').style.display="none"
-$('.nuevoUsuario').modal('hide')
-document.getElementById('btn-proyecto').disabled = false;
+
+this.state= 0;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-this.getUsers();
-//document.getElementById("formulario_proyecto").reset();      
-
-
+this.getUser();
 
 
 }
 else
 {
-
-document.getElementById('loader-sm').style.display="none"
-$('.nuevoUsuario').modal('hide')
-document.getElementById('btn-proyecto').disabled = false;
-
+document.getElementById('btn-user').disabled = false;
+document.getElementById('loader-user').style.display="none"
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
 
-   
-
+  
 
 }
    // this is now called!
@@ -139,40 +108,11 @@ document.getElementById('btn-proyecto').disabled = false;
 
   },
 
+sumbit_datos: function(e) {
+document.getElementById('btn-user').disabled = true;
+document.getElementById('loader-user').style.display="block"
+this.enviar_data()
 
-
-monitor: function(e) {
-
-
-axios({
-  url: '/api/usuario/consulta_mail/',
-  method: 'get',
-  params: {
-  mail: this.email
-  }
-}).then(function (response) {
-
-
-if (response.data =="true") {
-var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Email ya existe </strong> </center>');
-
-document.getElementById("email").value = "";
-// To prevent the form from submitting
-
-}
-
-
-  })
-
- }
-,
-
-enviar: function(e) {
-
-
-document.getElementById('btn-proyecto').disabled = true;
-document.getElementById('loader-sm').style.display="block"
-this.read()
 
 }
 ,
@@ -182,6 +122,9 @@ const file = event.target.files[0];
 this.preview = URL.createObjectURL(file);
 //Convertir en archivo antes de enviar
 this.foto = file.name;
+
+
+
 
 }
 

@@ -472,6 +472,8 @@ Datos de contacto
 {{ Auth::user()->name }}  {{ Auth::user()->apellido }}  
 
 <input type="hidden"  class="hidden" id="user_id"  value="{{ Auth::user()->id}} " name="">
+
+
 </strong>
 </span>
 

@@ -63,6 +63,48 @@ return $usuarios;
 
 
 
+
+
+public function User_update(Request $request)
+{
+
+//dd($request->all());
+
+$user = User::where('id', $request->id)->first();
+$user->foto = $request->foto;
+$user->name = $request->nombre;
+$user->apellido = $request->apellido;
+$user->cuit= $request->cuit;
+$user->direccion= $request->direccion;
+
+$user->alias = $request->alias;
+$user->fecha_nacimiento = $request->fecha_nacimiento;
+$user->obra_social = $request->obra_social;
+$user->servicio_ambulancia = $request->servicio_ambulancia;
+$user->contacto_ambulancia = $request->contacto_ambulancia;
+
+$user->save();
+
+
+if ($user->save()==true) {
+$data = "true";
+return response()->json($data); 
+}
+
+else {
+
+$data = "false";
+return response()->json($data); 
+
+}
+
+
+}
+
+
+
+
+
 public function monitor(Request $request)
     {
 
