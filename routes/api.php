@@ -28,7 +28,6 @@ Route::get('/usuario', 'GestionController@User');
 Route::get('/usuario/update/', 'GestionController@User_update');
 
 
-Route::post('/send_foto/', 'GestionController@foto');
 
 
 Route::get('/usuario/create/', 'GestionController@createUser');

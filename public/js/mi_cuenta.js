@@ -4,7 +4,7 @@
 
 /*GESTIONAR USUARIOS*/
 
-var Mi_cuenta = new Vue({ 
+var cuenta = new Vue({ 
     el: '#Mi_cuenta',
   mounted(){
 this.getUser();
@@ -64,7 +64,7 @@ axios.get( url, {
 
      params: {
 
-     foto:data_foto,
+
      nombre: this.nombre,
      apellido: this.apellido,
      alias:this.alias,
@@ -118,30 +118,25 @@ this.enviar_data()
 }
 ,
 
-enviar_foto: function(event)  {
+enviar_foto: function(file)  {
 
+const formData = new FormData()
+formData.append('foto', file, file.name)
 
+axios.post('/send_foto/'+this.id, formData).then(function(response){
 
-axios({
-    method: 'post',
-    url: 'api/send_foto/',
-    data: {
-        title: 'Fred',
-        lastName: 'Flintstone',
-    },
-    headers: {
-        'Content-Type': 'text/plain;charset=utf-8',
-    },
-}).then(function (response) {
-    console.log(response);
-}).catch(function (error) {
-    console.log(error);
+    var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+  console.log('SUCCESS!!');
+cuenta.getUser();
+
+})
+.catch(function(error){
+var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+  console.log('FAILURE LA CARGA!!');
 });
 
 
 
-
-console.log("hola");
 
 
 
@@ -156,16 +151,9 @@ const file = event.target.files[0];
 this.preview = URL.createObjectURL(file);
 //Convertir en archivo antes de enviar
 this.foto = file;
+this.enviar_foto(file);
 
-//Creamos el formData
-var  data_foto = new  FormData();
-//Añadimos la imagen seleccionada
-data_foto.append('foto', this.foto);
-//Añadimos el método PUT dentro del formData
-// Como lo hacíamos desde un formulario simple _(no ajax)_
-data_foto.append('_method', 'POST');
-            
-this.enviar_foto();
+
 
 }
 

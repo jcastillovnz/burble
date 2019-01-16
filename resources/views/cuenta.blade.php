@@ -31,8 +31,7 @@ Mi cuenta
 
 
 
-
-<form method="POST" class="container-fluid" role="form"  v-on:submit.prevent="sumbit_datos()"  >
+<form method="GET" class="container-fluid" role="form"  v-on:submit.prevent="sumbit_datos()"  >
 
 <div class="row">
 <div class="col-sm-4 ">
@@ -41,8 +40,9 @@ Mi cuenta
 <center>
 
 
+<img  v-if="usuario.foto"   width="180" height="180" class="border rounded-circle "  :src="'/img/users/fotos/'+usuario.foto" alt="Card image cap">
 
-<img  v-if="usuario.foto"   width="180" height="180" class="border rounded-circle "  :src="preview" alt="Card image cap">
+
 <img  v-else   width="180" height="180" class="border rounded-circle "  :src="preview" alt="Card image cap">
 
 

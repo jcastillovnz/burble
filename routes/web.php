@@ -29,6 +29,7 @@ Route::get('/nuevo_cliente', 'ClienteController@create');
 Route::get('/nuevo_cliente', 'ClienteController@create');
 
 
+Route::post('/send_foto/{id}', 'GestionController@foto');
 
 
 // your routes here

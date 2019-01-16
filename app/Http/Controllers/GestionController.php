@@ -64,16 +64,42 @@ return $usuarios;
 
 
 
-public function foto(Request $request)
+public function foto($id, Request $request)
 {
 
 
-dd($request->all());
 
-$foto_user = 'user_picture'.time().'.'.$file->getClientOriginalExtension();
-$path = public_path().'/img/fotos_usuarios/';
+$user = User::where('id', $id)->first();
+
+if ($request->hasFile('foto')===true ){
+$file = $request->file('foto');
+$foto_user = 'user_picture_'.time().'.'.$file->getClientOriginalExtension();
+
+$path = public_path().'/img/users/fotos/';
 $file->move($path,$foto_user );
+
 $user->foto =$foto_user  ;
+$user->save();
+if ($user->save()==true) {
+$data = "true";
+return response()->json($data); 
+}
+
+else {
+
+$data = "false";
+return response()->json($data); 
+
+}
+
+
+
+
+}
+
+
+
+
 
 
 
@@ -93,16 +119,7 @@ public function User_update(Request $request)
 $user = User::where('id', $request->id)->first();
 
 
-$file  = $request->foto;
 
-
-
-
-
-
-
-
-$user->foto = $request->foto;
 $user->name = $request->nombre;
 $user->apellido = $request->apellido;
 $user->cuit= $request->cuit;
