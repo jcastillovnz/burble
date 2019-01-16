@@ -467,7 +467,18 @@ Datos de contacto
  @guest
   @else
 <span class="navbar-brand text-info" href="{{ url('/') }}">
-<img src="img/user.png" width="40">
+
+
+
+
+@if(   Auth::user()->foto!=null )
+<img    width="40" height="40" class="border rounded-circle "  src="/img/users/fotos/{{ Auth::user()->foto }}" alt="Foto de perfil">
+@else
+
+<img    width="40" height="40" class="border rounded-circle "  src="/img/user.png" alt="Foto de perfil">
+@endif
+
+
 <strong style="font-size: 15px;"> 
 {{ Auth::user()->name }}  {{ Auth::user()->apellido }}  
 

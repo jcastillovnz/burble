@@ -120,8 +120,6 @@ No existen tareas registradas
 
 <img style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" class=""  width="15" height="15" src="img/user.png">
 
-
-<i style="   margin-left: 4%; margin-right: 4%; " class=" far fa-image iconos"></i>
 </div>
 
 

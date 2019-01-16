@@ -271,7 +271,7 @@ $lista_principal = DB::table('lista_principal')
 'proyectos.fecha_entrega' , 
 'clientes.nombre AS nombre_empresa' , 
 'proyectos.comentario'
-)->orderBy('id', 'asc') ->get();
+)->get();
 
 
  $listado_tareas = array();
@@ -292,7 +292,7 @@ $tareas = Tareas::where('proyectos_id', $item->proyectos_id )
 'users.foto AS foto_usuario', 
 'users.rango AS rango_usuario'
 
-)->orderBy('id', 'asc') ->get();
+)->orderBy('id', 'desc')->get();
 
 
 
