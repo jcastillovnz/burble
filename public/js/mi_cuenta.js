@@ -56,14 +56,15 @@ axios({
 
 enviar_data: function(e) {
 
-
-
 var url = '/api/usuario/update/' ;
 
 axios.get( url, {
+
+
+
      params: {
 
-     foto:this.foto,
+     foto:data_foto,
      nombre: this.nombre,
      apellido: this.apellido,
      alias:this.alias,
@@ -116,15 +117,55 @@ this.enviar_data()
 
 }
 ,
+
+enviar_foto: function(event)  {
+
+
+
+axios({
+    method: 'post',
+    url: 'api/send_foto/',
+    data: {
+        title: 'Fred',
+        lastName: 'Flintstone',
+    },
+    headers: {
+        'Content-Type': 'text/plain;charset=utf-8',
+    },
+}).then(function (response) {
+    console.log(response);
+}).catch(function (error) {
+    console.log(error);
+});
+
+
+
+
+console.log("hola");
+
+
+
+
+ }
+,
+
+
 cargar_foto: function(e) {
 
 const file = event.target.files[0];
 this.preview = URL.createObjectURL(file);
 //Convertir en archivo antes de enviar
-this.foto = file.name;
+this.foto = file;
 
-
-
+//Creamos el formData
+var  data_foto = new  FormData();
+//Añadimos la imagen seleccionada
+data_foto.append('foto', this.foto);
+//Añadimos el método PUT dentro del formData
+// Como lo hacíamos desde un formulario simple _(no ajax)_
+data_foto.append('_method', 'POST');
+            
+this.enviar_foto();
 
 }
 

@@ -30,8 +30,9 @@ Mi cuenta
 <div    class="col-sm-12">
 
 
-<form method="GET" class="hidden" role="form"  v-on:submit.prevent="sumbit_datos()"  >
 
+
+<form method="POST" class="container-fluid" role="form"  v-on:submit.prevent="sumbit_datos()"  >
 
 <div class="row">
 <div class="col-sm-4 ">
@@ -40,8 +41,9 @@ Mi cuenta
 <center>
 
 
-<img  v-if="usuario.foto"   width="180" height="180" class="border rounded-circle"  :src="preview" alt="Card image cap">
-<img  v-else   width="180" height="180" class="border rounded-circle"  :src="preview" alt="Card image cap">
+
+<img  v-if="usuario.foto"   width="180" height="180" class="border rounded-circle "  :src="preview" alt="Card image cap">
+<img  v-else   width="180" height="180" class="border rounded-circle "  :src="preview" alt="Card image cap">
 
 
 
@@ -49,12 +51,15 @@ Mi cuenta
 <input ref="foto_perfil" type="file"  @change="cargar_foto(this)" value="" class="invisible"  name="">
 </center>
 
-<button type="button" :disabled="state == 0"   @click="$refs.foto_perfil.click()"  class="btn btn-info btn-sm"><i class="fas fa-upload"></i> Subir fotografia</button>
+<div  class="card-img-overlay float-right">
 
-<p class="text-primary">Sube una nueva foto de perfil</p>
+<button  type="button"  @click="$refs.foto_perfil.click()"  class="btn btn-info btn-sm rounded-circle boton-overlay"><i class="fas fa-sync"></i>
+</button>
+
+
 </div>
 </div>
-
+</div>
 
 
 
@@ -215,8 +220,8 @@ Mi cuenta
 
 
 
-</div>
 
+</div>
 
 </form>
 

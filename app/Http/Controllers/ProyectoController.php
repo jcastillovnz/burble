@@ -34,7 +34,7 @@ $proyecto->save();
 $lista_espera = Lista_espera::all();
 $count = count($lista_espera);
 
-if ($count>=0 AND $count<=5 )
+if ($count>=0 AND $count<=7 )
 {
 $lista_espera = new Lista_espera();
 $lista_espera->proyectos_id = $proyecto->id;
@@ -42,11 +42,11 @@ $lista_espera->save();
 }
 
 
-if ($count==6 )
+if ($count==8 )
 {
 foreach ($lista_espera as $key => $value) {
 
-	if ($key ==5) {
+	if ($key ==7) {
 		$value->proyectos_id=$proyecto->id;
         $value->save();
 
@@ -156,17 +156,17 @@ if (isset($monitor)==false) {
 $lista_espera = Lista_espera::all();
 $count = count($lista_espera);
 
-if ($count>=0 AND $count<=5 )
+if ($count>=0 AND $count<=7 )
 {
 $lista_espera = new Lista_espera();
 $lista_espera->proyectos_id = $request->id;
 $lista_espera->save();
 }
-if ($count==6 )
+if ($count==8 )
 {
 foreach ($lista_espera as $key => $value) {
 
-	if ($key ==5) {
+	if ($key ==7) {
 		$value->proyectos_id=$request->id;
         $value->save();
 

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
-
+use Image;
+use Carbon\Carbon;
 use App\File;
 use App\lista_principal;
 use App\lista_espera;
@@ -63,6 +64,22 @@ return $usuarios;
 
 
 
+public function foto(Request $request)
+{
+
+
+dd($request->all());
+
+$foto_user = 'user_picture'.time().'.'.$file->getClientOriginalExtension();
+$path = public_path().'/img/fotos_usuarios/';
+$file->move($path,$foto_user );
+$user->foto =$foto_user  ;
+
+
+
+
+}
+
 
 
 public function User_update(Request $request)
@@ -70,7 +87,21 @@ public function User_update(Request $request)
 
 //dd($request->all());
 
+
+
+
 $user = User::where('id', $request->id)->first();
+
+
+$file  = $request->foto;
+
+
+
+
+
+
+
+
 $user->foto = $request->foto;
 $user->name = $request->nombre;
 $user->apellido = $request->apellido;

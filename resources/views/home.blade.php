@@ -243,7 +243,7 @@ No existen tareas registradas
 
 
 <template   v-sortable="{ onUpdate: onUpdate }">
-<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"    v-for="item in lista_espera"   class="col-sm-2 item_espera">
+<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"    v-for="item in lista_espera"   class="col-sm item_espera">
 
  
 <div class="card borde-burble bg-light item " >
