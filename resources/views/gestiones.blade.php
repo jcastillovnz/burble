@@ -96,10 +96,10 @@
       <td>
 
    
-<img   v-if="item.foto"  width="35" class=" rounded-circle "  :src="'/img/users/fotos/'+item.foto" alt="Card image cap">
+<img   v-if="item.foto"  width="35" height="35" class=" rounded-circle "  :src="'/img/users/fotos/'+item.foto" alt="Card image cap">
 
 
-<img   v-else  width="35" class="border rounded-circle "  src="img/user.png" alt="Card image cap">
+<img   v-else  width="35" height="35" class="border rounded-circle "  src="img/user.png" alt="Card image cap">
 
 
 
@@ -134,11 +134,30 @@
 
 
 <div class="col-sm-12 text-primary">
+
+  <center>
+
+<span style="margin-left:80px;">
 <i class="fas fa-info-circle"></i>
 <strong>
 Informacion de usuario
 </strong>
-<button type="button" class="close float-right" data-dismiss="modal">&times;</button>
+</span>
+
+<button   type="button" class="close float-right" data-dismiss="modal">
+<i class="fas fa-times"></i>
+</button>
+
+<button   v-on:click="state=1" type="button"   class="close float-right" >
+<i class="fas fa-pen-square"></i>
+</button>
+
+</center>
+
+
+
+
+
 </div>
 </div>
 <div class="modal-body">
@@ -180,7 +199,7 @@ Informacion de usuario
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i></span>
 </div>
-<input required="" type="text" class="form-control"  v-model="nombre = item.name"    placeholder="Nombre">
+<input required="" type="text" class="form-control" :disabled="state == 0"  v-model="nombre = item.name"    placeholder="Nombre">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -188,7 +207,7 @@ Informacion de usuario
 <i class="fas fa-user-plus"></i>
 </span>
 </div>
-<input required="" type="text" class="form-control" v-model="nombre = item.apellido"    placeholder="Apellido">
+<input required="" type="text" class="form-control" :disabled="state == 0"  v-model="nombre = item.apellido"    placeholder="Apellido">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -196,7 +215,7 @@ Informacion de usuario
 <i class="fas fa-envelope"></i>
 </span>
 </div>
-<input required="" autocomplete="off" value="" class="form-control" v-model="email = item.email"  v-on:keyup="monitor(this)"   type="email"    placeholder="Email">
+<input required="" autocomplete="off" :disabled="state == 0" class="form-control" v-model="email = item.email"  v-on:keyup="monitor(this)"   type="email"    placeholder="Email">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -204,7 +223,7 @@ Informacion de usuario
 <i class="fas fa-lock"></i>
 </span>
 </div>
-<input required=""  autocomplete="new-password"  v-model="password" class="form-control" type="password" name="password" value=""  placeholder="Contraseña">
+<input required=""  autocomplete="new-password" :disabled="state == 0"  v-model="password" class="form-control" type="password" name="password" value=""  placeholder="Contraseña">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -212,7 +231,7 @@ Informacion de usuario
 <i class="fas fa-cog"></i> 
 </span>
 </div>
-<input type="text" class="form-control" placeholder="Alias" v-model="alias = item.alias" >
+<input type="text" class="form-control" :disabled="state == 0"  placeholder="Alias" v-model="alias = item.alias" >
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -221,9 +240,9 @@ Informacion de usuario
 </span>
 </div>
 
-<input  v-if="item.fecha_nacimiento==null"  type="date" class="form-control"  v-model="fecha_nacimiento = item.fecha_nacimiento" placeholder="Fecha nacimiento">
+<input  :disabled="state == 0" v-if="item.fecha_nacimiento==null"  type="date" class="form-control"  v-model="fecha_nacimiento = item.fecha_nacimiento" placeholder="Fecha nacimiento">
 
-<input  v-else=""  type="" class="form-control"  v-model="fecha_nacimiento = item.fecha_nacimiento" placeholder="Fecha nacimiento">
+<input  v-else=""  type="" class="form-control"  :disabled="state == 0" v-model="fecha_nacimiento = item.fecha_nacimiento" placeholder="Fecha nacimiento">
 
 
 
@@ -234,7 +253,7 @@ Informacion de usuario
 <i class="fas fa-user-shield"></i>
 </span>
 </div>
-<select   required="" name="rango"     class="form-control">
+<select :disabled="state == 0"  required="" name="rango"     class="form-control">
 
 
 <option value="" selected="">Rango</option>
@@ -249,39 +268,37 @@ Informacion de usuario
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
 </div>
-<input required="" value="" class="form-control" type="text" v-model="cuit = item.cuit"  name="cuit" placeholder="CUIT">
+<input required="" value="" class="form-control" :disabled="state == 0" type="text" v-model="cuit = item.cuit"  name="cuit" placeholder="CUIT">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
 </div>
-<input class="form-control" type="text" value=""  v-model="direccion = item.direccion" placeholder="Direccion">
+<input class="form-control" type="text" value="" :disabled="state == 0"  v-model="direccion = item.direccion" placeholder="Direccion">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i>  </span>
 </div>
-<input value="" class="form-control" type="text"  v-model="obra_social = item.obra_social"  placeholder="Obra social">
+<input value="" class="form-control" type="text"  :disabled="state == 0" v-model="obra_social = item.obra_social"  placeholder="Obra social">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
 </div>
-<input class="form-control" type="text"  v-model="servicio_ambulancia = item.servicio_ambulancia"   placeholder="servicio de ambulancia">
+<input class="form-control" type="text"  :disabled="state == 0" v-model="servicio_ambulancia = item.servicio_ambulancia"   placeholder="servicio de ambulancia">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
 </div>
-<input class="form-control" type="text" v-model="contacto_ambulancia = item.contacto_ambulancia"    placeholder="Contacto de ambulancia">
+<input class="form-control" type="text" :disabled="state == 0"  v-model="contacto_ambulancia = item.contacto_ambulancia"    placeholder="Contacto de ambulancia">
 </div>
  </div>
 <div class="modal-footer">
 <div class="btn btn-group  ">
 <div  class="loader loader-sm "></div>
-<button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
-<i class="fas fa-times-circle"></i>
-</button>
+
 <button   type="submit"  class="btn btn-success btn-sm"     >
 <i class="fas fa-save"></i> 
 </button>
@@ -334,7 +351,7 @@ Registrar un nuevo usuario
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i></span>
 </div>
-<input required="" type="text" class="form-control"  v-model="nombre"   placeholder="Nombre">
+<input required="" type="text" class="form-control"  v-model="n_nombre"   placeholder="Nombre">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -342,7 +359,7 @@ Registrar un nuevo usuario
 <i class="fas fa-user-plus"></i>
 </span>
 </div>
-<input required="" type="text" class="form-control" v-model="apellido" placeholder="Apellido">
+<input required="" type="text" class="form-control" v-model="n_apellido" placeholder="Apellido">
 </div>
 
 <div class="input-group col-sm-12">
@@ -351,7 +368,7 @@ Registrar un nuevo usuario
 <i class="fas fa-envelope"></i>
 </span>
 </div>
-<input required="" autocomplete="off" value="" class="form-control" id="email" v-on:keyup="monitor(this)"   type="email" name="email" v-model="email"   placeholder="Email">
+<input required="" autocomplete="off" value="" class="form-control"  v-on:keyup="monitor(this)"   type="email" name="email" v-model="n_email"   placeholder="Email">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -367,7 +384,7 @@ Registrar un nuevo usuario
 <i class="fas fa-cog"></i> 
 </span>
 </div>
-<input type="text" class="form-control" v-model="alias" placeholder="Alias">
+<input type="text" class="form-control" v-model="n_alias" placeholder="Alias">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -375,7 +392,7 @@ Registrar un nuevo usuario
 <i class="fas fa-clock"></i>
 </span>
 </div>
-<input type="date" class="form-control" v-model="fecha_nacimiento" value=""  placeholder="Fecha nacimiento">
+<input type="date" class="form-control" v-model="n_fecha_nacimiento" value=""  placeholder="Fecha nacimiento">
 </div>
 
 
@@ -400,7 +417,7 @@ Registrar un nuevo usuario
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
 </div>
 
-<input required="" value="" class="form-control" type="text" value="" name="cuit" v-model="cuit" placeholder="CUIT">
+<input required="" value="" class="form-control" type="text" value="" name="cuit" v-model="n_cuit" placeholder="CUIT">
   </div>
 
  <div class="input-group col-sm-12">
@@ -408,7 +425,7 @@ Registrar un nuevo usuario
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
     </div>
 
-<input class="form-control" type="text" value=""  v-model="direccion"   name="" placeholder="Direccion">
+<input class="form-control" type="text" value=""  v-model="n_direccion"   name="" placeholder="Direccion">
 
 
   </div>
@@ -418,7 +435,7 @@ Registrar un nuevo usuario
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i>  </span>
     </div>
 
-<input value="" class="form-control" type="text" name="obra_social" v-model="obra_social"   placeholder="Obra social">
+<input value="" class="form-control" type="text" name="obra_social" v-model="n_obra_social"   placeholder="Obra social">
 
 
   </div>
@@ -431,7 +448,7 @@ Registrar un nuevo usuario
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
     </div>
 
-<input class="form-control" type="text" value="" name="servicio_ambulancia" v-model="servicio_ambulancia"   placeholder="servicio de ambulancia">
+<input class="form-control" type="text" value="" name="servicio_ambulancia" v-model="n_servicio_ambulancia"   placeholder="servicio de ambulancia">
 
 
   </div>
@@ -443,7 +460,7 @@ Registrar un nuevo usuario
       <span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
     </div>
 
-<input class="form-control" type="text" value=""  name="contacto_ambulancia"  v-model="contacto_ambulancia" placeholder="Contacto de ambulancia">
+<input class="form-control" type="text" value=""  name="contacto_ambulancia"  v-model="n_contacto_ambulancia" placeholder="Contacto de ambulancia">
 
 
   </div>

@@ -643,6 +643,28 @@ this.getUsers();
      preview: 'img/user.png' ,
      foto:null,
 
+
+
+
+     n_nombre: '',
+     n_apellido: '',
+     n_email: '',
+     n_password: '',
+     n_alias: '',
+     n_fecha_nacimiento: '',
+     n_rango: '',
+     n_cuit: '',
+     n_direccion: '',
+     n_obra_social: '',
+     n_servicio_ambulancia: '',
+     n_contacto_ambulancia: '',
+
+
+
+
+
+
+
      nombre: '',
      apellido: '',
      email: '',
@@ -655,7 +677,11 @@ this.getUsers();
      obra_social: '',
      servicio_ambulancia: '',
      contacto_ambulancia: '',
-     id: '',
+     id:'',
+
+  
+
+
 
 
     },
@@ -718,18 +744,18 @@ var url = '/api/usuario/create/' ;
 
 axios.get( url, {
   params: {
-     nombre: this.nombre,
-     apellido: this.apellido,
-     email: this.email,
-     password: this.password,
-     alias:this.alias,
-     fecha_nacimiento:this.fecha_nacimiento,
-     rango: this.rango,
-     cuit: this.cuit,
-     direccion: this.direccion,
-     obra_social: this.obra_social,
-     servicio_ambulancia: this.servicio_ambulancia,
-     contacto_ambulancia: this.contacto_ambulancia,
+     nombre: this.n_nombre,
+     apellido: this.n_apellido,
+     email: this.n_email,
+     password: this.n_password,
+     alias:this.n_alias,
+     fecha_nacimiento:this.n_fecha_nacimiento,
+     rango: this.n_rango,
+     cuit: this.n_cuit,
+     direccion: this.n_direccion,
+     obra_social: this.n_obra_social,
+     servicio_ambulancia: this.n_servicio_ambulancia,
+     contacto_ambulancia: this.n_contacto_ambulancia,
   },
 validateStatus: (status) => {
         return true; // I'm always returning true, you may want to do it depending on the status received
@@ -771,12 +797,11 @@ document.getElementById('btn-proyecto').disabled = false;
 
 monitor: function(e) {
 
-
 axios({
   url: '/api/usuario/consulta_mail/',
   method: 'get',
   params: {
-  mail: this.email
+  mail: this.n_email
   }
 }).then(function (response) {
 
@@ -796,8 +821,6 @@ document.getElementById("email").value = "";
 ,
 
 enviar: function(e) {
-
-
 document.getElementById('btn-proyecto').disabled = true;
 document.getElementById('loader-sm').style.display="block"
 this.read()
@@ -808,6 +831,9 @@ this.read()
 carga_input: function(e) {
 var input =  this.$refs['foto_'+e.id]  ;
 document.getElementById("foto_"+e.id).click();
+this.id = e.id;
+
+
 }
 ,
 enviar_foto: function(file, id)  {
@@ -819,7 +845,7 @@ axios.post('/send_foto/'+this.id, formData).then(function(response){
 
     var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
   console.log('SUCCESS!!');
-cuenta.getUser();
+Gestionusuarios.getUsers();
 
 })
 .catch(function(error){
