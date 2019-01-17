@@ -680,17 +680,40 @@ alert("EDITAR")
 eliminar: function(dato)  {
 
 
+
+alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar al usuario ' +dato.name+ ' '+dato.apellido+' del sistema?' 
+  ,() => {
+    
+
 axios({
   url: '/api/usuarios/delete/',
   method: 'get',
   params: {
- id: dato.id
-  }
+ id: dato.id}
 }).then(function (response) {
-
 Gestionusuarios.getUsers();
+})
 
-  })
+    }, 
+function()
+{ 
+
+ ///CODIGO AL CANCELAR
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
  }
 ,
 read: function(e) {

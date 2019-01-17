@@ -277,9 +277,9 @@ $lista_principal = DB::table('lista_principal')
  $listado_tareas = array();
 foreach ($lista_principal as $key => $item) {
 $lista_tareas[$key] = array();
-//$tareas = Tareas::where('proyectos_id', $item->proyectos_id )->get();
+
 $tareas = Tareas::where('proyectos_id', $item->proyectos_id )
-->Join('users', 'tareas.users_id', '=', 'users.id')
+->leftJoin('users', 'tareas.users_id', '=', 'users.id')
 ->select( 
 'tareas.id',
 'tareas.nombre',     

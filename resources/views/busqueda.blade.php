@@ -12,8 +12,8 @@
 
 <div class="col-sm-12">
 <div style="padding-left: 1%; " align="left" class="text-info">
-<h5><i class="fas fa-user-cog"></i>
-Mi cuenta
+<h5><i class="fas fa-search"></i> 
+Busqueda
 </h5>
 
 
@@ -44,6 +44,10 @@ Mi cuenta
 
 
 <img  v-else   width="180" height="180" class="border rounded-circle "  :src="preview" alt="Card image cap">
+
+
+
+
 <input ref="foto_perfil" type="file"  @change="cargar_foto(this)" value="" class="invisible"  name="">
 </center>
 

@@ -118,7 +118,17 @@ No existen tareas registradas
 
 <i style="margin-left: 4%; margin-right: 4%;" :class="' fas fa-circle  iconos '+item.estado"  title="Estado"></i>  
 
-<img style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" class=""  width="15" height="15" src="img/user.png">
+
+
+
+<img  style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" v-if="item.foto_usuario"   width="15" height="15" class=" rounded-circle "  :src="'/img/users/fotos/'+item.foto_usuario" alt="Card image cap">
+
+
+<img style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;"  v-else   width="15" height="15" class="border rounded-circle "  src="img/user.png" alt="Card image cap">
+
+
+
+
 
 </div>
 
@@ -129,6 +139,9 @@ No existen tareas registradas
 
 @{{item.comentario }} ...
 
+
+
+<i style="margin-top: 2%;  margin-left: 4%; margin-right: 4%;"  class="fas fa-cog float-right"></i>
 </div>
 </div>
 </div>
@@ -460,7 +473,6 @@ Registrar un nueva tarea
 <select required=""   v-model="empleado_id" class="form-control">
 
 <option selected="" value="" > Seleccione empleado  </option>
-
 <option v-for="item in lista_users"  :value="item.id"  > @{{item.name }}  @{{item.apellido}} 
 
 
@@ -470,9 +482,9 @@ Registrar un nueva tarea
 </div>
 <div class="input-group col-sm-12">
 <div  class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-comment"></i>   </span>
 </div>
-<textarea required="" v-model="comentario_tarea" class="form-control"  placeholder="comentarios"></textarea>
+<textarea  v-model="comentario_tarea" class="form-control"  placeholder="comentarios"></textarea>
 </div>
 <div class="modal-footer">
 <div class="btn btn-group  ">

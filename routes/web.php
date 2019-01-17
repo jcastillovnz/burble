@@ -27,9 +27,12 @@ Route::get('/gestiones', 'GestionController@index')->name('gestiones');
 Route::get('/nuevo_cliente', 'ClienteController@create');
 
 Route::get('/nuevo_cliente', 'ClienteController@create');
-
-
 Route::post('/send_foto/{id}', 'GestionController@foto');
+
+
+Route::get('/busqueda', 'BusquedaController@index');
+
+
 
 
 // your routes here
