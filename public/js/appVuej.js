@@ -639,7 +639,10 @@ this.getUsers();
 
      lists: [],
      list: [],
+    state: 0,
      preview: 'img/user.png' ,
+     foto:null,
+
      nombre: '',
      apellido: '',
      email: '',
@@ -707,13 +710,6 @@ function()
 
 
 
-
-
-
-
-
-
-
  }
 ,
 read: function(e) {
@@ -750,8 +746,6 @@ document.getElementById('btn-proyecto').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 this.getUsers();
 //document.getElementById("formulario_proyecto").reset();      
-
-
 
 
 }
@@ -809,14 +803,44 @@ document.getElementById('loader-sm').style.display="block"
 this.read()
 
 }
+
+,
+carga_input: function(e) {
+var input =  this.$refs['foto_'+e.id]  ;
+document.getElementById("foto_"+e.id).click();
+}
+,
+enviar_foto: function(file, id)  {
+
+const formData = new FormData()
+formData.append('foto', file, file.name)
+
+axios.post('/send_foto/'+this.id, formData).then(function(response){
+
+    var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+  console.log('SUCCESS!!');
+cuenta.getUser();
+
+})
+.catch(function(error){
+var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+  console.log('FAILURE LA CARGA!!');
+});
+ }
+
+
+
 ,
 cargar_foto: function(e) {
 
 const file = event.target.files[0];
 this.preview = URL.createObjectURL(file);
 //Convertir en archivo antes de enviar
-this.foto = file.name;
+this.foto = file;
+this.enviar_foto(file, e);
 }
+
+
 
 }
 

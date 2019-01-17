@@ -152,16 +152,17 @@ Informacion de usuario
 
 
 <center>
-<img  v-if="item.foto"   width="150"  class="border rounded-circle "  :src="'/img/users/fotos/'+item.foto" alt="Card image cap">
-<img  v-else  width="150" class="border rounded-circle "   alt="Card image cap">
+<img  v-if="item.foto"   width="150" height="150"  class="border rounded-circle "  :src="'/img/users/fotos/'+item.foto" alt="Card image cap">
+
+<img  v-else  width="150" height="150" class="border rounded-circle " :src="preview"  alt="Card image cap">
 
 </center>
-<input  ref="'foto_'+item.id"   type="file"   @change="alert('hola')" class="invisible"  name="">
+<input  :ref="'foto_'+item.id" :id="'foto_'+item.id"   type="file"   @change="cargar_foto(this)" class="invisible"  name="">
 
 
 <div  class="card-img-overlay ">
 
-<button style="margin-top: 25% ;margin-left:20%;"  @click="displayRef('foto_' + item.id)"   type="button" class="btn btn-info btn-sm rounded-circle button-overlay2"><i class="fas fa-sync"></i>
+<button style="margin-top: 25% ;margin-left:20%;"  @click="carga_input(item)"   type="button" class="btn btn-info btn-sm rounded-circle button-overlay2"><i class="fas fa-sync"></i>
 </button>
 
 
