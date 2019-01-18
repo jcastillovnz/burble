@@ -655,10 +655,12 @@ this.getUsers();
      n_obra_social: '',
      n_servicio_ambulancia: '',
      n_contacto_ambulancia: '',
-     edicion: [],
-     nombre: '',
+
+
+
+     nombre:'',
      apellido: '',
-     email: '',
+     email:'',
      password: '',
      alias: '',
      fecha_nacimiento: '',
