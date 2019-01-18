@@ -77,86 +77,61 @@
 
 
 <div    class="table table-responsive" >
-
 <table   class="table table-borderless table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#   </th>
-    <th scope="col" >  Foto    </th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellido</th>
-      <th scope="col">Rango</th>
-       <th scope="col">Accion</th>
-
-    </tr>
-  </thead>
-  <tbody >
-    <tr v-for="item in lists"   >
-      <th scope="row"   > @{{item.id}} </th> 
-      <td>
-
-   
+<thead>
+<tr>
+<th scope="col">#  </th>
+<th scope="col" >  Foto    </th>
+<th scope="col">Nombre</th>
+<th scope="col">Apellido</th>
+<th scope="col">Rango</th>
+<th scope="col">Accion</th>
+</tr>
+</thead>
+<tbody >
+<tr v-for="(item, key) in lists"   >
+<th scope="row"   > @{{item.id}} </th> 
+<td> 
 <img   v-if="item.foto"  width="35" height="35" class=" rounded-circle "  :src="'/img/users/fotos/'+item.foto" alt="Card image cap">
-
-
 <img   v-else  width="35" height="35" class="border rounded-circle "  src="img/user.png" alt="Card image cap">
-
-
-
-        </td>
-      <td>@{{item.name}}</td>
-      <td>@{{item.apellido}}</td>
-      <td>@{{item.rango}}</td>
-         <td>
-
-       <div class="dropdown">
-  <button class="btn btn-light btn-sm " type="button" id="dropdownMenuButton" data-toggle="dropdown"  >
-  <i class="fas fa-cogs"></i>
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-     <a class="dropdown-item" aria-expanded="false"   data-toggle="modal"
-
+</td>
+<td>@{{item.name}}</td>
+<td>@{{item.apellido}}</td>
+<td>@{{item.rango}}</td>
+<td>
+<div class="dropdown">
+<button class="btn btn-light btn-sm " type="button" id="dropdownMenuButton" data-toggle="dropdown"  >
+<i class="fas fa-cogs"></i>
+</button>
+<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+<a class="dropdown-item" aria-expanded="false"   data-toggle="modal"
 :data-target="'#modal_'+item.id"  role="button"  >Detalles</a>
-    <a class="dropdown-item"   v-on:click="eliminar(item)" > Eliminar</a>
-  </div>
+<a class="dropdown-item"   v-on:click="eliminar(item)" > Eliminar</a>
 </div>
-
+</div>
 
 <!-- MODAL EDITAR -->
 <div  class="modal fade "  :id="'modal_'+item.id"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div  class="modal-dialog modal-sm-12">
 <div class="modal-content">
-<form   autocomplete="off"    method="GET" class="hidden"  @submit.prevent="enviar(this)" >
+<form   autocomplete="off"    method="GET" class="hidden"  @submit.prevent="sumbit__edicion(item)" >
 <div class="modal-header ">
 
-
-
-
-
 <div class="col-sm-12 text-primary">
-
-  <center>
-
+<center>
 <span style="margin-left:80px;">
 <i class="fas fa-info-circle"></i>
 <strong>
 Informacion de usuario
 </strong>
 </span>
-
-<button   type="button" class="close float-right" data-dismiss="modal">
+<button   type="button" class="close float-right"   v-on:click="close_modal(item)"  >
 <i class="fas fa-times"></i>
 </button>
-
-<button   v-on:click="state=1" type="button"   class="close float-right" >
+<button   v-on:click="edicion(item)" type="button"   class="close float-right" >
 <i class="fas fa-pen-square"></i>
 </button>
-
 </center>
-
-
-
-
 
 </div>
 </div>
@@ -207,7 +182,9 @@ Informacion de usuario
 <i class="fas fa-user-plus"></i>
 </span>
 </div>
-<input required="" type="text" class="form-control" :disabled="state == 0"  v-model="nombre = item.apellido"    placeholder="Apellido">
+
+
+<input required=""  class="form-control" :disabled="state == 0"  v-model="apellido= item.apellido"    placeholder="Apellido">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -223,7 +200,7 @@ Informacion de usuario
 <i class="fas fa-lock"></i>
 </span>
 </div>
-<input required=""  autocomplete="new-password" :disabled="state == 0"  v-model="password" class="form-control" type="password" name="password" value=""  placeholder="Contraseña">
+<input   autocomplete="new-password" :disabled="state == 0"  v-model="password" class="form-control" type="password" name="password" value=""  placeholder="Contraseña">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -268,7 +245,7 @@ Informacion de usuario
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
 </div>
-<input required="" value="" class="form-control" :disabled="state == 0" type="text" v-model="cuit = item.cuit"  name="cuit" placeholder="CUIT">
+<input  value="" class="form-control" :disabled="state == 0" type="text" v-model="cuit = item.cuit"  name="cuit" placeholder="CUIT">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -297,9 +274,9 @@ Informacion de usuario
  </div>
 <div class="modal-footer">
 <div class="btn btn-group  ">
-<div  class="loader loader-sm "></div>
+<div  :id="'loader-user_'+item.id"  class="loader loader-sm"></div>
 
-<button   type="submit"  class="btn btn-success btn-sm"     >
+<button  :id="'btn-user_'+item.id" type="submit"  class="btn btn-success btn-sm"     >
 <i class="fas fa-save"></i> 
 </button>
 </form>
