@@ -17,219 +17,70 @@ Busqueda
 </h5>
 
 
-<input v-model="id=usuario.id" value="" class="invisible"  name="">
-
-
 </div>
 </div>
 
 
 
+<div    class="row">
+<div class="col-sm-3">
+<i class="fas fa-filter"></i> Filtros
 
-
-<div    class="col-sm-12">
-
-
-
-<form method="GET" class="container-fluid" role="form"  v-on:submit.prevent="sumbit_datos()"  >
-
-<div class="row">
-<div class="col-sm-4 ">
-<div style="margin-top: 5%; " class="">
-
-<center>
-
-
-<img  v-if="usuario.foto"   width="180" height="180" class="border rounded-circle "  :src="'/img/users/fotos/'+usuario.foto" alt="Card image cap">
-
-
-<img  v-else   width="180" height="180" class="border rounded-circle "  :src="preview" alt="Card image cap">
-
-
-
-
-<input ref="foto_perfil" type="file"  @change="cargar_foto(this)" value="" class="invisible"  name="">
-</center>
-
-<div  class="card-img-overlay float-right">
-
-<button  type="button"  @click="$refs.foto_perfil.click()"  class="btn btn-info btn-sm rounded-circle boton-overlay"><i class="fas fa-sync"></i>
-</button>
-
-
+<div style="height: 50px;" class="card">
+Proyectos terminados
 </div>
+<div style="height: 50px;" class="card">
+Proyectos en espera
 </div>
+<div style="height: 50px;" class="card">
+Proyectos en espera
 </div>
-
-
-
-<div class="col-sm-4">
-<div class="input-group mb-3">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text">
-<i class="fas fa-user"></i>
-</span>
-</div>
-<input type="text" :disabled="state == 0"  class="form-control input-sm"   v-model="nombre=usuario.name" placeholder="Nombre">
-</div>
-
-
-
-
- <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text">
- <i class="fas fa-user"></i>
-         </span>
-    </div>
-    <input type="text"  :disabled="state == 0"  class="form-control input-sm input" v-model="apellido=usuario.apellido"  placeholder="Apellido">
-  </div>
-
-
-
- <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text">
- <i class="fas fa-user"></i>
-         </span>
-    </div>
-    <input type="text"  :disabled="state == 0"  class="form-control input-sm" v-model="alias=usuario.alias"  placeholder="Alias">
-  </div>
-
-
- <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text">
-<i class="fas fa-clock"></i>
-         </span>
-    </div>
-    <input title="Fecha nacimiento" type="text" :disabled="state == 0"   v-model="fecha_nacimiento=usuario.fecha_nacimiento"  class="form-control input-sm input" placeholder="Fecha de nacimiento">
-  </div>
-
-
-
- <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text ">
- <i class="fas fa-user"></i>
-         </span>
-    </div>
-   
-
-
-<input readonly=""  type="" :disabled="state == 0"  v-model="rango=usuario.rango"  class="form-control input-sm" placeholder="Rango" name="">
-
-
-
-  </div>
-
-
-
-  
-</div>
-
-
-
-
-
-<div class="col-sm-4 ">
-
-
-
-
-
- <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text">
- <i class="fas fa-user"></i>
-         </span>
-    </div>
-    <input type="text" class="form-control input-sm" :disabled="state == 0"   v-model="cuit=usuario.cuit"  placeholder="Cuit">
-  </div>
-
-
-
- <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text">
- <i class="fas fa-user"></i>
-         </span>
-    </div>
-    <input type="text" :disabled="state == 0" v-model="direccion=usuario.direccion"  class="form-control input-sm" placeholder="Direccion">
-  </div>
-
-
- <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text">
-<i class="fas fa-clock"></i>
-         </span>
-    </div>
-    <input title="Obra social" type="text" :disabled="state == 0" class="form-control input-sm" v-model="obra_social=usuario.obra_social" placeholder="Obra social">
-  </div>
-
-
-
- <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text">
-<i class="fas fa-clock"></i>
-         </span>
-    </div>
-    <input title="Fecha nacimiento" type="text" v-model="servicio_ambulancia=usuario.servicio_ambulancia"  class="form-control input-sm" :disabled="state == 0" placeholder="Servicio de ambulancia">
-  </div>
-
-
- <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text">
- <i class="fas fa-user"></i>
-         </span>
-    </div>
-
-
-  <input type="text" class="form-control input-sm " :disabled="state == 0"  v-model="contacto_ambulancia=usuario.contacto_ambulancia"   placeholder="Telefono servicio ambulancia">
-  </div>
-
-
-  
-</div>
-
-
-
-
-
-
-
-
-<div class="col-sm-12">
-<div class="btn-group float-right">
-<div  id="loader-user"   class="loader loader-sm loader-tarea"></div>
-<button type="button" v-on:click="state=1"  title="Editar" class="btn btn-light  btn-sm float-right" >
-  <i class="fas fa-pen-square"></i>
-</button>
-
-<button type="submit" id="btn-user" :disabled="state == 0"  title="Guardar" class="btn btn-success  btn-sm" >
-<i class="fas fa-save"></i>
-</button>
-</div>
-</div>
-
 
 </div>
 
 
+<div class="col-sm-9">
+  <p class="primary"><i class="fas fa-poll-h"></i> Resultados de la busqueda</p>            
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th>Empresa</th>
+        <th>Proyecto</th>
+        <th>Nº tareas</th>
+        <th>Fecha entrega</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+           <td>john@example.com</td>
+        <td>
+<div class="dropdown">
+<button class="btn btn-light btn-sm " type="button" id="dropdownMenuButton" data-toggle="dropdown">
+<i class="fas fa-cogs"></i></button>
+<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+<a class="dropdown-item"    >Detalles</a>
+<a class="dropdown-item"    > Eliminar</a>
+</div>
+</div>  
+</td>
+</tr>
 
+</tbody>
+</table>
+<hr>
 
 </div>
 
-</form>
+
+</div>
+@include('layouts.projects.edit')
 
 
 </div>
-
-
-
 
 
 

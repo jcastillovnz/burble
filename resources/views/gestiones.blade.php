@@ -133,7 +133,7 @@
 Informacion de usuario
 </strong>
 </span>
-<button   type="button" class="close float-right"   v-on:click="close_modal()"  >
+<button   type="button" class="close float-right"   v-on:click="close_modal(rellenar)"  >
 <i class="fas fa-times"></i>
 </button>
 <button   v-on:click="edicion(rellenar)" type="button"   class="close float-right" >
@@ -166,7 +166,7 @@ Informacion de usuario
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i></span>
 </div>
-<input required="" type="text" class="form-control"  v-model="nombre"   placeholder="Nombre">
+<input required="" type="text" class="form-control" :disabled="state == 0"  v-model="rellenar.nombre"   placeholder="Nombre">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -174,7 +174,7 @@ Informacion de usuario
 <i class="fas fa-user-plus"></i>
 </span>
 </div>
-<input required="" type="text" class="form-control" v-model="apellido" placeholder="Apellido">
+<input required="" type="text" class="form-control" :disabled="state == 0" v-model="rellenar.apellido" placeholder="Apellido">
 </div>
 
 
@@ -184,23 +184,18 @@ Informacion de usuario
 <i class="fas fa-envelope"></i>
 </span>
 </div>
-<input required="" autocomplete="off" value="" class="form-control"  v-on:keyup="monitor(this)"   type="email" name="email" v-model="email"   placeholder="Email">
+<input required="" autocomplete="off" value="" class="form-control" :disabled="state == 0"  v-on:keyup="monitor(this)"   type="email" name="email" v-model="rellenar.email"   placeholder="Email">
 </div>
-<div class="input-group col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text">
-<i class="fas fa-lock"></i>
-</span>
-</div>
-<input required=""  autocomplete="new-password"  class="form-control" type="password" name="password" value="" v-model="password" placeholder="Contraseña">
-</div>
+
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text">
 <i class="fas fa-cog"></i> 
 </span>
 </div>
-<input type="text" class="form-control" v-model="alias" placeholder="Alias">
+<input type="text" class="form-control" :disabled="state == 0" v-model="rellenar.alias" placeholder="Alias">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -208,7 +203,7 @@ Informacion de usuario
 <i class="fas fa-clock"></i>
 </span>
 </div>
-<input type="date" class="form-control" v-model="fecha_nacimiento" value=""  placeholder="Fecha nacimiento">
+<input type="date" class="form-control" :disabled="state == 0" v-model="rellenar.fecha_nacimiento" value=""  placeholder="Fecha nacimiento">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -216,7 +211,7 @@ Informacion de usuario
 <i class="fas fa-user-shield"></i>
 </span>
 </div>
-<select   required="" name="rango" v-model="rango"    class="form-control">
+<select  :disabled="state == 0" required="" name="rango" v-model="rellenar.rango"    class="form-control">
 <option value="" selected="">Rango</option>
 <option value="Empleado">Empleado</option>
 <option value="Freelance">Freelance</option>
@@ -227,20 +222,20 @@ Informacion de usuario
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
 </div>
-<input required="" value="" class="form-control" type="text" value="" name="cuit" v-model="cuit" placeholder="CUIT">
+<input required="" :disabled="state == 0" class="form-control" type="text" value="" name="cuit" v-model="rellenar.cuit" placeholder="CUIT">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
 </div>
-<input class="form-control" type="text" value=""  v-model="direccion"   name="" placeholder="Direccion">
+<input class="form-control" type="text" :disabled="state == 0" v-model="rellenar.direccion"   placeholder="Direccion">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i>  </span>
 </div>
 
-<input value="" class="form-control" type="text" name="obra_social" v-model="obra_social"   placeholder="Obra social">
+<input :disabled="state == 0"class="form-control" type="text"  v-model="rellenar.obra_social"   placeholder="Obra social">
 </div>
 
 
@@ -248,14 +243,13 @@ Informacion de usuario
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
 </div>
-<input class="form-control" type="text" value="" name="servicio_ambulancia" v-model="servicio_ambulancia"   placeholder="servicio de ambulancia">
+<input class="form-control" type="text" :disabled="state == 0"  v-model="rellenar.servicio_ambulancia"   placeholder="servicio de ambulancia">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
 </div>
-<input class="form-control" type="text" value=""  name="contacto_ambulancia"  v-model="contacto_ambulancia" placeholder="Contacto de ambulancia">
-
+<input class="form-control" type="text" :disabled="state == 0"   v-model="rellenar.contacto_ambulancia" placeholder="Contacto de ambulancia">
 </div>
 </div>
 
@@ -264,7 +258,6 @@ Informacion de usuario
 <div class="modal-footer">
 <div class="btn btn-group  ">
 <div  id="loader-edicion"  class="loader loader-sm"></div>
-
 <button  id="btn-edicion" type="submit"  class="btn btn-success btn-sm"     >
 <i class="fas fa-save"></i> 
 </button>
@@ -288,7 +281,7 @@ Informacion de usuario
 <div  class="modal-dialog modal-sm-8">
  <div class="modal-content">
 
-<form  autocomplete="off"    method="GET" class="hidden"  @submit.prevent="enviar(this)" >
+<form  autocomplete="off"    method="GET" class="hidden"  @submit.prevent="create(this)" >
  <div class="modal-header ">
     
 <div class="col-sm-12 text-primary">
@@ -297,7 +290,7 @@ Informacion de usuario
 Registrar un nuevo usuario
 
 </strong>
-<button type="button" class="close float-right" data-dismiss="modal">&times;</button>
+<button type="button" class="close float-right"  data-dismiss="modal"  v-on:click="close_modal(rellenar)" >&times;</button>
 </div>
 </div>
 <div class="modal-body">
@@ -306,7 +299,7 @@ Registrar un nuevo usuario
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i></span>
 </div>
-<input required="" type="text" class="form-control"  v-model="nombre"   placeholder="Nombre">
+<input required="" type="text" class="form-control"  v-model="rellenar.nombre"   placeholder="Nombre">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -314,7 +307,7 @@ Registrar un nuevo usuario
 <i class="fas fa-user-plus"></i>
 </span>
 </div>
-<input required="" type="text" class="form-control" v-model="apellido" placeholder="Apellido">
+<input required="" type="text" class="form-control" v-model="rellenar.apellido" placeholder="Apellido">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -322,7 +315,7 @@ Registrar un nuevo usuario
 <i class="fas fa-envelope"></i>
 </span>
 </div>
-<input required="" autocomplete="off" value="" class="form-control"  v-on:keyup="monitor(this)"   type="email" name="email" v-model="email"   placeholder="Email">
+<input required="" autocomplete="off" value="" class="form-control"  v-on:keyup="monitor(this)"   type="email" v-model="rellenar.email"   placeholder="Email">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -330,7 +323,7 @@ Registrar un nuevo usuario
 <i class="fas fa-lock"></i>
 </span>
 </div>
-<input required=""  autocomplete="new-password"  class="form-control" type="password" name="password" value="" v-model="password" placeholder="Contraseña">
+<input required=""  autocomplete="new-password"  class="form-control" type="password"  v-model="rellenar.password" placeholder="Contraseña">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -338,7 +331,7 @@ Registrar un nuevo usuario
 <i class="fas fa-cog"></i> 
 </span>
 </div>
-<input type="text" class="form-control" v-model="alias" placeholder="Alias">
+<input type="text" class="form-control" v-model="rellenar.alias" placeholder="Alias">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -346,7 +339,7 @@ Registrar un nuevo usuario
 <i class="fas fa-clock"></i>
 </span>
 </div>
-<input type="date" class="form-control" v-model="fecha_nacimiento" value=""  placeholder="Fecha nacimiento">
+<input type="date" class="form-control" v-model="rellenar.fecha_nacimiento" value=""  placeholder="Fecha nacimiento">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -354,7 +347,7 @@ Registrar un nuevo usuario
 <i class="fas fa-user-shield"></i>
 </span>
 </div>
-<select   required="" name="rango" v-model="rango"    class="form-control">
+<select   required="" v-model="rellenar.rango"    class="form-control">
 <option value="" selected="">Rango</option>
 <option value="Empleado">Empleado</option>
 <option value="Freelance">Freelance</option>
@@ -365,20 +358,20 @@ Registrar un nuevo usuario
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
 </div>
-<input required="" value="" class="form-control" type="text" value="" name="cuit" v-model="cuit" placeholder="CUIT">
+<input required="" value="" class="form-control" type="text"  v-model="rellenar.cuit" placeholder="CUIT">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
 </div>
-<input class="form-control" type="text" value=""  v-model="direccion"   name="" placeholder="Direccion">
+<input class="form-control" type="text" value=""  v-model="rellenar.direccion"   name="" placeholder="Direccion">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i>  </span>
 </div>
 
-<input value="" class="form-control" type="text" name="obra_social" v-model="obra_social"   placeholder="Obra social">
+<input value="" class="form-control" type="text" v-model="rellenar.obra_social"   placeholder="Obra social">
 </div>
 
 
@@ -386,29 +379,23 @@ Registrar un nuevo usuario
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
 </div>
-<input class="form-control" type="text" value="" name="servicio_ambulancia" v-model="servicio_ambulancia"   placeholder="servicio de ambulancia">
+<input class="form-control" type="text" v-model="rellenar.servicio_ambulancia"   placeholder="servicio de ambulancia">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
 </div>
-<input class="form-control" type="text" value=""  name="contacto_ambulancia"  v-model="contacto_ambulancia" placeholder="Contacto de ambulancia">
+<input class="form-control" type="text"   v-model="rellenar.contacto_ambulancia" placeholder="Contacto de ambulancia">
 
-
-  </div>
-
-
-
-
-
- </div>
+</div>
+</div>
 
 
 <div class="modal-footer">
 
 
 <div class="btn btn-group  ">
-<div id="loader-sm" class="loader loader-sm "></div>
+<div id="loader-create" class="loader loader-sm "></div>
 
 <button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
@@ -416,7 +403,7 @@ Registrar un nuevo usuario
 
 
 
-<button  id="btn-proyecto" type="submit"  class="btn btn-success btn-sm"     >
+<button  id="btn-create" type="submit"  class="btn btn-success btn-sm"     >
 <i class="fas fa-save"></i> 
 </button>
 

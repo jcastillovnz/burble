@@ -81,7 +81,7 @@ $file->move($path,$foto_user );
 $user->foto =$foto_user  ;
 $user->save();
 if ($user->save()==true) {
-$data = "true";
+$data = $foto_user ;
 return response()->json($data); 
 }
 
@@ -111,26 +111,21 @@ return response()->json($data);
 public function User_update(Request $request)
 {
 
-//dd($request->all());
-
-
 
 
 $user = User::where('id', $request->id)->first();
-
 
 
 $user->name = $request->nombre;
 $user->apellido = $request->apellido;
 $user->cuit= $request->cuit;
 $user->direccion= $request->direccion;
-
+$user->email= $request->email;
 $user->alias = $request->alias;
 $user->fecha_nacimiento = $request->fecha_nacimiento;
 $user->obra_social = $request->obra_social;
 $user->servicio_ambulancia = $request->servicio_ambulancia;
 $user->contacto_ambulancia = $request->contacto_ambulancia;
-
 $user->save();
 
 

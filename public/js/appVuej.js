@@ -625,7 +625,6 @@ document.getElementById('btn-clientes').disabled = false;
 
 
 /*GESTIONAR USUARIOS*/
-
 var Gestionusuarios = new Vue({ 
     el: '#AppUsuarios',
   mounted(){
@@ -647,6 +646,7 @@ this.getUsers();
     'foto':'', 
     'nombre':'',
     'apellido':'',
+    'password':'',
     'email':'',
     'password':'',
     'alias':'',
@@ -659,19 +659,7 @@ this.getUsers();
     'contacto_ambulancia':''
    },
 
-     nombre:'',
-     apellido: '',
-     email:'',
-     password: '',
-     alias: '',
-     fecha_nacimiento: '',
-     rango: '',
-     cuit: '',
-     direccion: '',
-     obra_social: '',
-     servicio_ambulancia: '',
-     contacto_ambulancia: '',
-     id:'',
+     id:''
 
   },
 
@@ -682,37 +670,40 @@ axios.get(urlUsers).then(response => {
 this.lists = response.data
 });
 },
+
 eliminar: function(dato)  {
 alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar al usuario ' +dato.name+ ' '+dato.apellido+' del sistema?' 
-  ,() => {
+,() => {
 axios({
   url: '/api/usuarios/delete/',
   method: 'get',
   params: {
- id: dato.id}
+ id: dato.id
+}
 }).then(function (response) {
 Gestionusuarios.getUsers();
-})}, 
-function()
-{ 
- ///CODIGO AL CANCELAR
+})}, function(){ });
 
-read: function(e) {
+
+},
+create: function(e) {
+document.getElementById('btn-create').disabled = true;
+document.getElementById('loader-create').style.display="block";
 var url = '/api/usuario/create/' ;
 axios.get( url, {
 params: {
-nombre: this.nombre,
-apellido: this.apellido,
-email: this.email,
-password: this.password,
-alias:this.n_alias,
-fecha_nacimiento:this.fecha_nacimiento,
-rango: this.rango,
-cuit: this.cuit,
-direccion: this.direccion,
-obra_social: this.obra_social,
-servicio_ambulancia: this.servicio_ambulancia,
-contacto_ambulancia: this.contacto_ambulancia,
+nombre: this.rellenar.nombre,
+apellido: this.rellenar.apellido,
+email: this.rellenar.email,
+password: this.rellenar.password,
+alias:this.rellenar.alias,
+fecha_nacimiento:this.rellenar.fecha_nacimiento,
+rango: this.rellenar.rango,
+cuit: this.rellenar.cuit,
+direccion: this.rellenar.direccion,
+obra_social: this.rellenar.obra_social,
+servicio_ambulancia: this.rellenar.servicio_ambulancia,
+contacto_ambulancia: this.rellenar.contacto_ambulancia,
   },
 validateStatus: (status) => {
 return true; // I'm always returning true, you may want to do it depending on the status received
@@ -720,12 +711,13 @@ return true; // I'm always returning true, you may want to do it depending on th
 }).catch(error => {
 }).then(response => {
 if (response.data == "true") {
-document.getElementById('loader-sm').style.display="none"
+document.getElementById('loader-create').style.display="none";
+document.getElementById('btn-create').disabled = false;
 $('.nuevoUsuario').modal('hide')
-document.getElementById('btn-proyecto').disabled = false;
+
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 this.getUsers();
-//document.getElementById("formulario_proyecto").reset();      
+this.clear(); 
 }
 else{
 document.getElementById('loader-sm').style.display="none"
@@ -746,8 +738,18 @@ document.getElementById('loader-edicion').style.display="block"
 var url = '/api/usuario/update/' ;
 axios.get( url, {
 params: {
-nombre: this.rellenar.nombre,
 id: this.rellenar.id,
+nombre: this.rellenar.nombre,
+apellido: this.rellenar.apellido,
+email: this.rellenar.email,
+alias:this.rellenar.alias,
+fecha_nacimiento:this.rellenar.fecha_nacimiento,
+rango: this.rellenar.rango,
+cuit: this.rellenar.cuit,
+direccion: this.rellenar.direccion,
+obra_social: this.rellenar.obra_social,
+servicio_ambulancia: this.rellenar.servicio_ambulancia,
+contacto_ambulancia: this.rellenar.contacto_ambulancia,
 },
 validateStatus: (status) => {
 return true; // I'm always returning true, you may want to do it depending on the status received
@@ -761,7 +763,7 @@ this.state= 0;
 
 
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-this.getUser();
+this.getUsers();
 }
 else
 {
@@ -774,11 +776,41 @@ document.getElementById('loader-edicion').style.display="none"
 
 mostrar: function(item) {
 $('#editar').modal('show');
+
 this.rellenar.id = item.id;
 this.rellenar.foto = item.foto;
 this.rellenar.nombre = item.name;
-console.log(this.rellenar.nombre);
+this.rellenar.apellido = item.apellido;
+this.rellenar.email = item.email;
+this.rellenar.alias = item.alias;
+this.rellenar.fecha_nacimiento = item.fecha_nacimiento;
+this.rellenar.rango = item.rango;
+this.rellenar.cuit = item.cuit;
+this.rellenar.direccion = item.direccion;
+this.rellenar.obra_social = item.obra_social;
+this.rellenar.servicio_ambulancia = item.servicio_ambulancia;
+this.rellenar.contacto_ambulancia = item.contacto_ambulancia;
+
 },
+
+clear: function(item) {
+this.rellenar.id = '';
+this.rellenar.foto = '';
+this.rellenar.nombre = '';
+this.rellenar.apellido = '';
+this.rellenar.password = '';
+this.rellenar.email = '';
+this.rellenar.alias = '';
+this.rellenar.fecha_nacimiento = '';
+this.rellenar.rango = '';
+this.rellenar.cuit ='';
+this.rellenar.direccion ='';
+this.rellenar.obra_social = '';
+this.rellenar.servicio_ambulancia ='';
+this.rellenar.contacto_ambulancia ='';
+},
+
+
 monitor: function(e) {
 axios({
 url: '/api/usuario/consulta_mail/',
@@ -794,11 +826,8 @@ document.getElementById("email").value = "";
 })
 }
 ,
-enviar: function(e) {
-document.getElementById('btn-proyecto').disabled = true;
-document.getElementById('loader-sm').style.display="block"
-this.read()
-},
+
+
 carga_input: function(e) {
 var input =this.$refs['foto_update']  ;
 document.getElementById("foto_update").click();
@@ -830,16 +859,15 @@ this.state = 1;
 console.log(this.state);
   } else{
 this.state = 0;
-console.log(this.state);
 }
 },
 
 
-close_modal: function(e) {
+close_modal: function(item) {
 
 
 $('#editar').modal('hide');
-
+this.clear(item);
 if (this.state == 1) {
 this.state = 0;
 } 

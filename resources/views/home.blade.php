@@ -486,6 +486,17 @@ Registrar un nueva tarea
 </div>
 <textarea  v-model="comentario_tarea" class="form-control"  placeholder="comentarios"></textarea>
 </div>
+
+<div class="col-sm-12">
+<center>
+<img width="500" height="500"  class="img-thumbnail" src="img/img.png">
+</center>
+<p class="text-info">Sube una imagen sobre esta tarea</p>
+</div>
+
+
+
+
 <div class="modal-footer">
 <div class="btn btn-group  ">
 <div  :id="'loader_'+item.proyectos_id"   class="loader loader-sm loader-tarea"></div>
