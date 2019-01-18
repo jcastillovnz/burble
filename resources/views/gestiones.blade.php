@@ -104,19 +104,27 @@
 <i class="fas fa-cogs"></i>
 </button>
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-<a class="dropdown-item" aria-expanded="false"   data-toggle="modal"
-:data-target="'#modal_'+item.id"  role="button"  >Detalles</a>
-<a class="dropdown-item"   v-on:click="eliminar(item)" > Eliminar</a>
+<a class="dropdown-item"  v-on:click.prevent="mostrar(item)"   >Detalles</a>
+<a class="dropdown-item"   v-on:click.prevent="eliminar(item)" > Eliminar</a>
 </div>
 </div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
 
 <!-- MODAL EDITAR -->
-<div  class="modal fade "  :id="'modal_'+item.id"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div  class="modal fade "  id="editar"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div  class="modal-dialog modal-sm-12">
 <div class="modal-content">
-<form   autocomplete="off"    method="GET" class="hidden"  @submit.prevent="sumbit__edicion(item)" >
+<form   autocomplete="off"    method="GET" class="hidden"  @submit.prevent="update(rellenar.id)" >
 <div class="modal-header ">
-
 <div class="col-sm-12 text-primary">
 <center>
 <span style="margin-left:80px;">
@@ -125,10 +133,10 @@
 Informacion de usuario
 </strong>
 </span>
-<button   type="button" class="close float-right"   v-on:click="close_modal(item)"  >
+<button   type="button" class="close float-right"   v-on:click="close_modal()"  >
 <i class="fas fa-times"></i>
 </button>
-<button   v-on:click="edicion(item)" type="button"   class="close float-right" >
+<button   v-on:click="edicion(rellenar)" type="button"   class="close float-right" >
 <i class="fas fa-pen-square"></i>
 </button>
 </center>
@@ -136,45 +144,29 @@ Informacion de usuario
 </div>
 </div>
 <div class="modal-body">
-
-
-
 <div class="col-sm-12">
-
 <div  class="">
-
-
-
 <center>
-<img  v-if="item.foto"   width="150" height="150"  class="border rounded-circle "  :src="'/img/users/fotos/'+item.foto" alt="Card image cap">
-
+<img  v-if="rellenar.foto"   width="150" height="150" id="img_edit"  class="border rounded-circle"  :src="'/img/users/fotos/'+rellenar.foto" alt="Card image cap">
 <img  v-else  width="150" height="150" class="border rounded-circle " :src="preview"  alt="Card image cap">
-
 </center>
-<input  :ref="'foto_'+item.id" :id="'foto_'+item.id"   type="file"   @change="cargar_foto(this)" class="invisible"  name="">
-
+<input :ref="'foto_update'" type="file"  @change="enviar_foto(this, rellenar)" class="invisible" >
 
 <div  class="card-img-overlay ">
 
-<button style="margin-top: 25% ;margin-left:20%;"  @click="carga_input(item)"   type="button" class="btn btn-info btn-sm rounded-circle button-overlay2"><i class="fas fa-sync"></i>
+<button style="margin-top: 25% ;margin-left:20%;"  @click="$refs.foto_update.click()"   type="button" class="btn btn-info btn-sm rounded-circle button-overlay2"><i class="fas fa-sync"></i>
 </button>
 
 
 </div>
 </div>
-
-
-
 </div>
 
-
-
-
-<div class="input-group  col-sm-12">
+<div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i></span>
 </div>
-<input required="" type="text" class="form-control" :disabled="state == 0"  v-model="nombre = item.name"    placeholder="Nombre">
+<input required="" type="text" class="form-control"  v-model="nombre"   placeholder="Nombre">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -182,17 +174,17 @@ Informacion de usuario
 <i class="fas fa-user-plus"></i>
 </span>
 </div>
-
-
-<input required=""  class="form-control" :disabled="state == 0"  v-model="apellido= item.apellido"    placeholder="Apellido">
+<input required="" type="text" class="form-control" v-model="apellido" placeholder="Apellido">
 </div>
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text">
 <i class="fas fa-envelope"></i>
 </span>
 </div>
-<input required="" autocomplete="off" :disabled="state == 0" class="form-control" v-model="email = item.email"  v-on:keyup="monitor(this)"   type="email"    placeholder="Email">
+<input required="" autocomplete="off" value="" class="form-control"  v-on:keyup="monitor(this)"   type="email" name="email" v-model="email"   placeholder="Email">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -200,7 +192,7 @@ Informacion de usuario
 <i class="fas fa-lock"></i>
 </span>
 </div>
-<input   autocomplete="new-password" :disabled="state == 0"  v-model="password" class="form-control" type="password" name="password" value=""  placeholder="Contraseña">
+<input required=""  autocomplete="new-password"  class="form-control" type="password" name="password" value="" v-model="password" placeholder="Contraseña">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -208,7 +200,7 @@ Informacion de usuario
 <i class="fas fa-cog"></i> 
 </span>
 </div>
-<input type="text" class="form-control" :disabled="state == 0"  placeholder="Alias" v-model="alias = item.alias" >
+<input type="text" class="form-control" v-model="alias" placeholder="Alias">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -216,13 +208,7 @@ Informacion de usuario
 <i class="fas fa-clock"></i>
 </span>
 </div>
-
-<input  :disabled="state == 0" v-if="item.fecha_nacimiento==null"  type="date" class="form-control"  v-model="fecha_nacimiento = item.fecha_nacimiento" placeholder="Fecha nacimiento">
-
-<input  v-else=""  type="" class="form-control"  :disabled="state == 0" v-model="fecha_nacimiento = item.fecha_nacimiento" placeholder="Fecha nacimiento">
-
-
-
+<input type="date" class="form-control" v-model="fecha_nacimiento" value=""  placeholder="Fecha nacimiento">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -230,53 +216,56 @@ Informacion de usuario
 <i class="fas fa-user-shield"></i>
 </span>
 </div>
-<select :disabled="state == 0"  required="" name="rango"     class="form-control">
-
-
+<select   required="" name="rango" v-model="rango"    class="form-control">
 <option value="" selected="">Rango</option>
 <option value="Empleado">Empleado</option>
 <option value="Freelance">Freelance</option>
 <option value="Administrador">Administrador</option>
-
-
 </select>
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
 </div>
-<input  value="" class="form-control" :disabled="state == 0" type="text" v-model="cuit = item.cuit"  name="cuit" placeholder="CUIT">
+<input required="" value="" class="form-control" type="text" value="" name="cuit" v-model="cuit" placeholder="CUIT">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
 </div>
-<input class="form-control" type="text" value="" :disabled="state == 0"  v-model="direccion = item.direccion" placeholder="Direccion">
+<input class="form-control" type="text" value=""  v-model="direccion"   name="" placeholder="Direccion">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i>  </span>
 </div>
-<input value="" class="form-control" type="text"  :disabled="state == 0" v-model="obra_social = item.obra_social"  placeholder="Obra social">
+
+<input value="" class="form-control" type="text" name="obra_social" v-model="obra_social"   placeholder="Obra social">
+</div>
+
+
+<div class="input-group col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
+</div>
+<input class="form-control" type="text" value="" name="servicio_ambulancia" v-model="servicio_ambulancia"   placeholder="servicio de ambulancia">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
 </div>
-<input class="form-control" type="text"  :disabled="state == 0" v-model="servicio_ambulancia = item.servicio_ambulancia"   placeholder="servicio de ambulancia">
+<input class="form-control" type="text" value=""  name="contacto_ambulancia"  v-model="contacto_ambulancia" placeholder="Contacto de ambulancia">
+
 </div>
-<div class="input-group col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
 </div>
-<input class="form-control" type="text" :disabled="state == 0"  v-model="contacto_ambulancia = item.contacto_ambulancia"    placeholder="Contacto de ambulancia">
-</div>
- </div>
+
+
+
 <div class="modal-footer">
 <div class="btn btn-group  ">
-<div  :id="'loader-user_'+item.id"  class="loader loader-sm"></div>
+<div  id="loader-edicion"  class="loader loader-sm"></div>
 
-<button  :id="'btn-user_'+item.id" type="submit"  class="btn btn-success btn-sm"     >
+<button  id="btn-edicion" type="submit"  class="btn btn-success btn-sm"     >
 <i class="fas fa-save"></i> 
 </button>
 </form>
@@ -290,27 +279,16 @@ Informacion de usuario
 
 
 
-</td>
-
-
-
-
-
-
-    </tr>
-  </tbody>
-</table>
-
 
 
 
 
 <!-- MODAL NUEVO USUARIO -->
-<div  class="modal fade nuevoUsuario" tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div  class="modal fade nuevoUsuario" tabindex="3" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div  class="modal-dialog modal-sm-8">
  <div class="modal-content">
 
-<form id="formulario_usuario"  autocomplete="off"    method="GET" class="hidden"  @submit.prevent="enviar(this)" >
+<form  autocomplete="off"    method="GET" class="hidden"  @submit.prevent="enviar(this)" >
  <div class="modal-header ">
     
 <div class="col-sm-12 text-primary">
@@ -328,7 +306,7 @@ Registrar un nuevo usuario
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i></span>
 </div>
-<input required="" type="text" class="form-control"  v-model="n_nombre"   placeholder="Nombre">
+<input required="" type="text" class="form-control"  v-model="nombre"   placeholder="Nombre">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -336,16 +314,15 @@ Registrar un nuevo usuario
 <i class="fas fa-user-plus"></i>
 </span>
 </div>
-<input required="" type="text" class="form-control" v-model="n_apellido" placeholder="Apellido">
+<input required="" type="text" class="form-control" v-model="apellido" placeholder="Apellido">
 </div>
-
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text">
 <i class="fas fa-envelope"></i>
 </span>
 </div>
-<input required="" autocomplete="off" value="" class="form-control"  v-on:keyup="monitor(this)"   type="email" name="email" v-model="n_email"   placeholder="Email">
+<input required="" autocomplete="off" value="" class="form-control"  v-on:keyup="monitor(this)"   type="email" name="email" v-model="email"   placeholder="Email">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -361,7 +338,7 @@ Registrar un nuevo usuario
 <i class="fas fa-cog"></i> 
 </span>
 </div>
-<input type="text" class="form-control" v-model="n_alias" placeholder="Alias">
+<input type="text" class="form-control" v-model="alias" placeholder="Alias">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -369,12 +346,8 @@ Registrar un nuevo usuario
 <i class="fas fa-clock"></i>
 </span>
 </div>
-<input type="date" class="form-control" v-model="n_fecha_nacimiento" value=""  placeholder="Fecha nacimiento">
+<input type="date" class="form-control" v-model="fecha_nacimiento" value=""  placeholder="Fecha nacimiento">
 </div>
-
-
-
-
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text">
@@ -388,56 +361,38 @@ Registrar un nuevo usuario
 <option value="Administrador">Administrador</option>
 </select>
 </div>
-
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
 </div>
+<input required="" value="" class="form-control" type="text" value="" name="cuit" v-model="cuit" placeholder="CUIT">
+</div>
+<div class="input-group col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
+</div>
+<input class="form-control" type="text" value=""  v-model="direccion"   name="" placeholder="Direccion">
+</div>
+<div class="input-group col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i>  </span>
+</div>
 
-<input required="" value="" class="form-control" type="text" value="" name="cuit" v-model="n_cuit" placeholder="CUIT">
-  </div>
+<input value="" class="form-control" type="text" name="obra_social" v-model="obra_social"   placeholder="Obra social">
+</div>
 
- <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i> </span>
-    </div>
-
-<input class="form-control" type="text" value=""  v-model="n_direccion"   name="" placeholder="Direccion">
-
-
-  </div>
 
 <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-plus"></i>  </span>
-    </div>
-
-<input value="" class="form-control" type="text" name="obra_social" v-model="n_obra_social"   placeholder="Obra social">
-
-
-  </div>
-
-
-
-
-  <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
-    </div>
-
-<input class="form-control" type="text" value="" name="servicio_ambulancia" v-model="n_servicio_ambulancia"   placeholder="servicio de ambulancia">
-
-
-  </div>
-
-
-
-  <div class="input-group col-sm-12">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
-    </div>
-
-<input class="form-control" type="text" value=""  name="contacto_ambulancia"  v-model="n_contacto_ambulancia" placeholder="Contacto de ambulancia">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
+</div>
+<input class="form-control" type="text" value="" name="servicio_ambulancia" v-model="servicio_ambulancia"   placeholder="servicio de ambulancia">
+</div>
+<div class="input-group col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-ambulance"></i> </span>
+</div>
+<input class="form-control" type="text" value=""  name="contacto_ambulancia"  v-model="contacto_ambulancia" placeholder="Contacto de ambulancia">
 
 
   </div>

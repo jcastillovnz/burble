@@ -643,20 +643,22 @@ this.getUsers();
      preview: 'img/user.png' ,
      foto:null,
 
-     n_nombre: '',
-     n_apellido: '',
-     n_email: '',
-     n_password: '',
-     n_alias: '',
-     n_fecha_nacimiento: '',
-     n_rango: '',
-     n_cuit: '',
-     n_direccion: '',
-     n_obra_social: '',
-     n_servicio_ambulancia: '',
-     n_contacto_ambulancia: '',
-
-
+     rellenar: { 
+    'id':'',
+    'foto':'', 
+    'nombre':'',
+    'apellido':'',
+    'email':'',
+    'password':'',
+    'alias':'',
+    'fecha_nacimiento':'',
+    'rango':'',
+    'cuit':'',
+    'direccion':'',
+    'obra_social':'',
+    'servicio_ambulancia':'',
+    'contacto_ambulancia':''
+   },
 
      nombre:'',
      apellido: '',
@@ -701,18 +703,18 @@ read: function(e) {
 var url = '/api/usuario/create/' ;
 axios.get( url, {
 params: {
-nombre: this.n_nombre,
-apellido: this.n_apellido,
-email: this.n_email,
-password: this.n_password,
+nombre: this.nombre,
+apellido: this.apellido,
+email: this.email,
+password: this.password,
 alias:this.n_alias,
-fecha_nacimiento:this.n_fecha_nacimiento,
-rango: this.n_rango,
-cuit: this.n_cuit,
-direccion: this.n_direccion,
-obra_social: this.n_obra_social,
-servicio_ambulancia: this.n_servicio_ambulancia,
-contacto_ambulancia: this.n_contacto_ambulancia,
+fecha_nacimiento:this.fecha_nacimiento,
+rango: this.rango,
+cuit: this.cuit,
+direccion: this.direccion,
+obra_social: this.obra_social,
+servicio_ambulancia: this.servicio_ambulancia,
+contacto_ambulancia: this.contacto_ambulancia,
   },
 validateStatus: (status) => {
 return true; // I'm always returning true, you may want to do it depending on the status received
@@ -737,20 +739,17 @@ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i
 },
 
 
-enviar_data: function(e) {
+update: function(e) {
 console.log("AQUI ENVIAR");
+
+document.getElementById('btn-edicion').disabled = true;
+document.getElementById('loader-edicion').style.display="block"
 
 var url = '/api/usuario/update/' ;
 axios.get( url, {
 params: {
-
-
-nombre: this.nombre,
-apellido: this.apellido,
-
-id: e.id,
-
-
+nombre: this.rellenar.nombre,
+id: this.rellenar.id,
 },
 validateStatus: (status) => {
 return true; // I'm always returning true, you may want to do it depending on the status received
@@ -758,28 +757,29 @@ return true; // I'm always returning true, you may want to do it depending on th
 }).catch(error => {
 }).then(response => {
 if (response.data == "true") {
-document.getElementById('btn-user_'+e.id).disabled = false;
-document.getElementById('loader-user_'+e.id).style.display="none"
+document.getElementById('btn-edicion').disabled = false;
+document.getElementById('loader-edicion').style.display="none"
 this.state= 0;
+
+
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 this.getUser();
 }
 else
 {
-document.getElementById('btn-user_'+e.id).disabled = false;
-document.getElementById('loader-user_'+e.id).style.display="none"
+document.getElementById('btn-edicion').disabled = false;
+document.getElementById('loader-edicion').style.display="none"
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
 }
 });
 },
-sumbit__edicion: function(e) {
 
-
-document.getElementById('btn-user_'+e.id).disabled = true;
-document.getElementById('loader-user_'+e.id).style.display="block"
-this.enviar_data(e)
-
-
+mostrar: function(item) {
+$('#editar').modal('show');
+this.rellenar.id = item.id;
+this.rellenar.foto = item.foto;
+this.rellenar.nombre = item.name;
+console.log(this.rellenar.nombre);
 },
 monitor: function(e) {
 axios({
@@ -802,31 +802,30 @@ document.getElementById('loader-sm').style.display="block"
 this.read()
 },
 carga_input: function(e) {
-var input =  this.$refs['foto_'+e.id]  ;
-document.getElementById("foto_"+e.id).click();
-this.id = e.id;
+var input =this.$refs['foto_update']  ;
+document.getElementById("foto_update").click();
 }
 ,
-enviar_foto: function(file, id)  {
+enviar_foto: function(e)  {
+
+const file = event.target.files[0];
+this.preview = URL.createObjectURL(file);
+//Convertir en archivo antes de enviar
 const formData = new FormData()
 formData.append('foto', file, file.name)
-axios.post('/send_foto/'+this.id, formData).then(function(response){
+axios.post('/send_foto/'+this.rellenar.id, formData).then(function(response){
+img = response.data;
+document.getElementById('img_edit').src = '/img/users/fotos/'+img;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-console.log('SUCCESS!!');
 Gestionusuarios.getUsers();
+
 })
 .catch(function(error){
 var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
 console.log('FAILURE LA CARGA!!');
 });
  },
-cargar_foto: function(e) {
-const file = event.target.files[0];
-this.preview = URL.createObjectURL(file);
-//Convertir en archivo antes de enviar
-this.foto = file;
-this.enviar_foto(file, e);
-},
+
 edicion: function(e) {
 if (this.state == 0) {
 this.state = 1;
@@ -836,11 +835,19 @@ this.state = 0;
 console.log(this.state);
 }
 },
+
+
 close_modal: function(e) {
-$('#modal_'+e.id).modal('hide');
+
+
+$('#editar').modal('hide');
+
 if (this.state == 1) {
 this.state = 0;
 } 
+
+
+
 }
 }
 });
