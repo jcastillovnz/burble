@@ -306,7 +306,6 @@ document.getElementsByClassName("btn-tarea")[0].disabled = true;
 //document.getElementById('carga-tarea').style.display="block";
 this.enviar_tarea()
 
-
 },
 
 
@@ -730,13 +729,7 @@ function()
  ///CODIGO AL CANCELAR
 
 
-});
-
-
-
-
-
- }
+});}
 ,
 read: function(e) {
 
