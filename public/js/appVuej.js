@@ -639,12 +639,9 @@ this.getUsers();
 
      lists: [],
      list: [],
-    state: 0,
+     state: 0,
      preview: 'img/user.png' ,
      foto:null,
-
-
-
 
      n_nombre: '',
      n_apellido: '',
@@ -658,13 +655,7 @@ this.getUsers();
      n_obra_social: '',
      n_servicio_ambulancia: '',
      n_contacto_ambulancia: '',
-
-
-
-
-
-
-
+     edicion: [],
      nombre: '',
      apellido: '',
      email: '',
@@ -679,41 +670,18 @@ this.getUsers();
      contacto_ambulancia: '',
      id:'',
 
-  
-
-
-
-
-    },
+  },
 
 methods: {
-
 getUsers: function(dato)  {
- var urlUsers = '/api/usuarios/consulta/';
-  axios.get(urlUsers).then(response => {
-  this.lists = response.data
+var urlUsers = '/api/usuarios/consulta/';
+axios.get(urlUsers).then(response => {
+this.lists = response.data
 });
- }
-,
-
-editar: function(dato)  {
-
-
-alert("EDITAR")
-
-
-
- }
-,
-
+},
 eliminar: function(dato)  {
-
-
-
 alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar al usuario ' +dato.name+ ' '+dato.apellido+' del sistema?' 
   ,() => {
-    
-
 axios({
   url: '/api/usuarios/delete/',
   method: 'get',
@@ -721,156 +689,158 @@ axios({
  id: dato.id}
 }).then(function (response) {
 Gestionusuarios.getUsers();
-})
-
-    }, 
+})}, 
 function()
 { 
-
  ///CODIGO AL CANCELAR
-
-
 });
-
-
-
-
-
- }
-,
+},
 read: function(e) {
-
 var url = '/api/usuario/create/' ;
-
 axios.get( url, {
-  params: {
-     nombre: this.n_nombre,
-     apellido: this.n_apellido,
-     email: this.n_email,
-     password: this.n_password,
-     alias:this.n_alias,
-     fecha_nacimiento:this.n_fecha_nacimiento,
-     rango: this.n_rango,
-     cuit: this.n_cuit,
-     direccion: this.n_direccion,
-     obra_social: this.n_obra_social,
-     servicio_ambulancia: this.n_servicio_ambulancia,
-     contacto_ambulancia: this.n_contacto_ambulancia,
+params: {
+nombre: this.n_nombre,
+apellido: this.n_apellido,
+email: this.n_email,
+password: this.n_password,
+alias:this.n_alias,
+fecha_nacimiento:this.n_fecha_nacimiento,
+rango: this.n_rango,
+cuit: this.n_cuit,
+direccion: this.n_direccion,
+obra_social: this.n_obra_social,
+servicio_ambulancia: this.n_servicio_ambulancia,
+contacto_ambulancia: this.n_contacto_ambulancia,
   },
 validateStatus: (status) => {
-        return true; // I'm always returning true, you may want to do it depending on the status received
-      },
-    }).catch(error => {
-
-    }).then(response => {
-
+return true; // I'm always returning true, you may want to do it depending on the status received
+},
+}).catch(error => {
+}).then(response => {
 if (response.data == "true") {
-
 document.getElementById('loader-sm').style.display="none"
 $('.nuevoUsuario').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 this.getUsers();
 //document.getElementById("formulario_proyecto").reset();      
-
-
 }
-else
-{
-
+else{
 document.getElementById('loader-sm').style.display="none"
 $('.nuevoUsuario').modal('hide')
 document.getElementById('btn-proyecto').disabled = false;
-
- var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
-
-   
-
-
+var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
 }
-   // this is now called!
-    });
-
-  },
+});
+},
 
 
+enviar_data: function(e) {
+console.log("AQUI ENVIAR");
 
+var url = '/api/usuario/update/' ;
+axios.get( url, {
+params: {
+
+
+nombre: this.nombre,
+apellido: this.apellido,
+
+id: e.id,
+
+
+},
+validateStatus: (status) => {
+return true; // I'm always returning true, you may want to do it depending on the status received
+},
+}).catch(error => {
+}).then(response => {
+if (response.data == "true") {
+document.getElementById('btn-user_'+e.id).disabled = false;
+document.getElementById('loader-user_'+e.id).style.display="none"
+this.state= 0;
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+this.getUser();
+}
+else
+{
+document.getElementById('btn-user_'+e.id).disabled = false;
+document.getElementById('loader-user_'+e.id).style.display="none"
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+}
+});
+},
+sumbit__edicion: function(e) {
+
+
+document.getElementById('btn-user_'+e.id).disabled = true;
+document.getElementById('loader-user_'+e.id).style.display="block"
+this.enviar_data(e)
+
+
+},
 monitor: function(e) {
-
 axios({
-  url: '/api/usuario/consulta_mail/',
-  method: 'get',
-  params: {
-  mail: this.n_email
-  }
+url: '/api/usuario/consulta_mail/',
+method: 'get',
+params: {
+mail: this.n_email
+}
 }).then(function (response) {
-
-
 if (response.data =="true") {
 var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Email ya existe </strong> </center>');
-
 document.getElementById("email").value = "";
-// To prevent the form from submitting
-
 }
-
-
-  })
-
- }
+})
+}
 ,
-
 enviar: function(e) {
 document.getElementById('btn-proyecto').disabled = true;
 document.getElementById('loader-sm').style.display="block"
 this.read()
-
-}
-
-,
+},
 carga_input: function(e) {
 var input =  this.$refs['foto_'+e.id]  ;
 document.getElementById("foto_"+e.id).click();
 this.id = e.id;
-
-
 }
 ,
 enviar_foto: function(file, id)  {
-
 const formData = new FormData()
 formData.append('foto', file, file.name)
-
 axios.post('/send_foto/'+this.id, formData).then(function(response){
-
-    var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-  console.log('SUCCESS!!');
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+console.log('SUCCESS!!');
 Gestionusuarios.getUsers();
-
 })
 .catch(function(error){
 var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
-  console.log('FAILURE LA CARGA!!');
+console.log('FAILURE LA CARGA!!');
 });
- }
-
-
-
-,
+ },
 cargar_foto: function(e) {
-
 const file = event.target.files[0];
 this.preview = URL.createObjectURL(file);
 //Convertir en archivo antes de enviar
 this.foto = file;
 this.enviar_foto(file, e);
+},
+edicion: function(e) {
+if (this.state == 0) {
+this.state = 1;
+console.log(this.state);
+  } else{
+this.state = 0;
+console.log(this.state);
 }
-
-
-
+},
+close_modal: function(e) {
+$('#modal_'+e.id).modal('hide');
+if (this.state == 1) {
+this.state = 0;
+} 
 }
-
-
+}
 });
 
 
