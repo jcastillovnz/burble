@@ -10,8 +10,8 @@
 <div    >
 
 <div class="col-sm-12">
-<div style="padding-left: 1%; " align="left" class="text-info">
-<h5><i class="fas fa-search"></i> 
+<div style="padding-left: 1%; " align="left" class="">
+<h5><i class="fas fa-search text-info"></i> 
 Busqueda
 </h5>
 
@@ -24,7 +24,7 @@ Busqueda
 
 <div    class="row">
 <div class="col-sm-3">
-<i class="fas fa-filter"></i> Filtros
+<i class="fas fa-filter text-info"></i> Filtros
 <!--  
 <div style="height: 50px;" class="card">
 Proyectos terminados
@@ -40,12 +40,18 @@ Proyectos en espera
 
 
 <div id="buscar"  class="col-sm-9">
-  <p class="primary"><i class="fas fa-poll-h"></i> Resultados de la busqueda</p>       <div >    
+  <p class="font-weight-normal"><i class="fas fa-poll-h text-info"></i> Resultados de la busqueda</p>
+<div >    
+
+
+
+
   <table class="table table-borderless">
     <thead>
       <tr  >
-        <th>Empresa</th>
+  
         <th>Proyecto</th>
+        <th>Empresa</th>
         <th>Nº tareas</th>
         <th>Fecha entrega</th>
         <th>Accion</th>
@@ -54,8 +60,9 @@ Proyectos en espera
     <tbody>
 
       <tr v-for="proyecto  in resultados" >
-        <td>@{{proyecto.clientes.nombre}} </td>
-        <td>@{{proyecto.nombre}}</td>
+   
+        <td>@{{proyecto.nombre}} </td>
+        <td> @{{proyecto.clientes.nombre}}  </td>
         <td>@{{proyecto.tareas.length}}</td>
         <td>@{{proyecto.fecha_entrega}}</td>
         <td>
@@ -78,6 +85,11 @@ Proyectos en espera
 
 
 
+</div> 
+
+<hr>
+
+
 <nav aria-label="Page navigation example ">
   
 <ul class="pagination pagination-sm justify-content-center">
@@ -86,7 +98,7 @@ Proyectos en espera
 </li>
 
 
-<li v-for="page in  pagesNumber"  v-bind:class="[ page == isActived ?  'active': '' ]"    >  
+<li v-for="page in  pagesNumber"  v-bind:class="'page-item '+[page== isActived ?  'active': '' ]  "    >  
 <a @click.prevent="changePage(page)"    class="page-link"  href="">
 @{{page}}
 </a>
@@ -104,8 +116,8 @@ Proyectos en espera
 
 </nav>
 
-</div> 
-<hr>
+
+
 
 </div>
 
