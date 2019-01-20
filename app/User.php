@@ -19,6 +19,14 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+
+public function tareas()
+{
+    return $this->belongsTo('App\Tareas');
+}
+
+
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -28,3 +36,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 }
+
+
+

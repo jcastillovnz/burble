@@ -19,6 +19,14 @@ Route::get('/', function () {
 Auth::routes();
 Route::group( ['middleware' => 'auth' ], function()
 {
+
+Route::get('/busqueda/', 'busquedaController@index')->name('busqueda');
+
+Route::get('/consulta/busqueda/', 'busquedaController@busqueda');
+
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 

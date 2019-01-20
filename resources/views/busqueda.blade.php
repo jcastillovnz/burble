@@ -2,13 +2,12 @@
 
 @section('content')
 
-<script src="{{ asset('js/mi_cuenta.js') }}" defer></script>
-
+<script src="{{ asset('js/busqueda.js') }}" defer></script>
 
   
 
 
-<div  id="Mi_cuenta"  class="content">
+<div    >
 
 <div class="col-sm-12">
 <div style="padding-left: 1%; " align="left" class="text-info">
@@ -22,10 +21,11 @@ Busqueda
 
 
 
+
 <div    class="row">
 <div class="col-sm-3">
 <i class="fas fa-filter"></i> Filtros
-
+<!--  
 <div style="height: 50px;" class="card">
 Proyectos terminados
 </div>
@@ -35,15 +35,15 @@ Proyectos en espera
 <div style="height: 50px;" class="card">
 Proyectos en espera
 </div>
-
+-->
 </div>
 
 
-<div class="col-sm-9">
-  <p class="primary"><i class="fas fa-poll-h"></i> Resultados de la busqueda</p>            
+<div id="buscar"  class="col-sm-9">
+  <p class="primary"><i class="fas fa-poll-h"></i> Resultados de la busqueda</p>       <div >    
   <table class="table table-borderless">
     <thead>
-      <tr>
+      <tr  >
         <th>Empresa</th>
         <th>Proyecto</th>
         <th>Nº tareas</th>
@@ -52,25 +52,59 @@ Proyectos en espera
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-           <td>john@example.com</td>
+
+      <tr v-for="proyecto  in resultados" >
+        <td>@{{proyecto.clientes.nombre}} </td>
+        <td>@{{proyecto.nombre}}</td>
+        <td>@{{proyecto.tareas.length}}</td>
+        <td>@{{proyecto.fecha_entrega}}</td>
         <td>
 <div class="dropdown">
 <button class="btn btn-light btn-sm " type="button" id="dropdownMenuButton" data-toggle="dropdown">
 <i class="fas fa-cogs"></i></button>
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-<a class="dropdown-item"    >Detalles</a>
-<a class="dropdown-item"    > Eliminar</a>
+<a class="dropdown-item"   >Detalles</a>
+<a class="dropdown-item"   > Eliminar</a>
 </div>
 </div>  
 </td>
 </tr>
 
+
+
 </tbody>
 </table>
+
+
+
+
+<nav aria-label="Page navigation example ">
+  
+<ul class="pagination pagination-sm justify-content-center">
+<li v-if="pagination.current_page >1"  class="page-item ">  
+<a  @click.prevent="changePage(pagination.current_page - 1)"  class="page-link"  href=""><i class="fas fa-chevron-left"></i></a>
+</li>
+
+
+<li v-for="page in  pagesNumber"  v-bind:class="[ page == isActived ?  'active': '' ]"    >  
+<a @click.prevent="changePage(page)"    class="page-link"  href="">
+@{{page}}
+</a>
+</li>
+
+
+
+<li v-if="pagination.current_page <pagination.last_page"   class="page-item">  
+<a @click.prevent="changePage(pagination.current_page + 1)"   class="page-link"  href=""><i class="fas fa-chevron-right"></i></a>
+</li>
+
+
+</ul>
+
+
+</nav>
+
+</div> 
 <hr>
 
 </div>

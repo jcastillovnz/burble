@@ -6,52 +6,40 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-
     <title>{{ config('app.name', 'Laravel') }}</title>
+ 
 
-    <!-- Scripts -->
-  
+<script src="{{ asset('js/vue.js') }}" defer="" ></script>
 
-    <!-- Fonts -->
-           <!-- Fonts -->
-        <!-- Fonts -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
-          <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
     
-          <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" >
-           <link href="css/app.css" rel="stylesheet" type="text/css">
-           <link href="{{ asset('css/alertify.css') }}" rel="stylesheet" type="text/css">
-      <link href="{{ asset('css/loader.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" >
+<link href="css/app.css" rel="stylesheet" type="text/css">
+<link href="{{ asset('css/alertify.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('css/loader.css') }}" rel="stylesheet" type="text/css">
  
              
 
 
 
+
+
 <script src="{{ asset('js/axios.min.js') }} " defer></script>
-
-
-<script    type="text/javascript" src="{{ asset('js/jQuery.js') }}"   ></script>
-
+<script  type="text/javascript" src="{{ asset('js/jQuery.js') }}"   ></script>
 <script  type="text/javascript" src="{{ asset('js/alertify.min.js') }}" ></script>
-
 <script src=" {{ asset('js/popper.min.js') }}"></script>
-
-
 <script src="{{ asset('js/bootstrap.min.js') }}"  ></script>
-  <!-- Sortable.js -->
-<!-- CDNJS :: Sortable (https://cdnjs.com/) -->
 
 <script src="{{ asset('js/sortable.js') }}"></script>
-
-
-
 <script src="{{ asset('js/app.js') }}" defer></script>
 
 
-<nav class="navbar navbar-expand-lg navbar-light border-bottom ">
+<script src="{{ asset('js/appVuej.js') }}" defer></script>
+
+
+<nav  class="navbar navbar-expand-lg navbar-light border-bottom ">
     <a class="navbar-brand text-primary" href="{{ url('/home') }}">
 <strong>              {{ config('app.name', 'Laravel') }}
 </strong>
@@ -62,10 +50,16 @@
 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 <ul class="navbar-nav mr-auto mt-2 my-lg-0">
 </ul>
-<form class="form-inline my-2 my-lg-0">
-<input class="form-control mr-sm-2" type="search" placeholder="Proyecto / Tarea">
+
+<form  class="form-inline my-2 my-lg-0"  action="{{ url('/busqueda') }}"  method="GET" >
+{{ csrf_field() }}
+<input required="" class="form-control  mr-sm-2" name="busqueda" type="search" placeholder="Proyecto / Tarea">
+
 <button class="btn btn-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>  Buscar</button>
 </form>
+
+
+
    <ul class="navbar-nav  my-lg-0">
  @guest
 
@@ -75,16 +69,15 @@
       </li>
  @else
 
-      <li class="nav-item">
+    <li class="nav-item">
      <a class="nav-link" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                   <i class="fas fa-sign-out-alt"></i> Salir
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+     onclick="event.preventDefault();
+     document.getElementById('logout-form').submit();">
+    <i class="fas fa-sign-out-alt"></i> Salir
+    </a>
+     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+      @csrf
+     </form>
 </li>
 
 
@@ -92,8 +85,6 @@
    
 </ul>
 </nav>
-<script src="{{ asset('js/vue.js') }}" defer></script>
-<script src="{{ asset('js/appVuej.js') }}" defer></script>
 
 
 </head>
@@ -103,7 +94,6 @@
 <div  id="loader" class="loader loader-lg" ></div>
 
 <body   class="col-sm-12  ">
-
 
 
 
@@ -550,65 +540,6 @@ Datos de contacto
 
 
 
-
-
-
-
-<!--  
-
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                  
-                    <ul class="navbar-nav ml-auto">
-       
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                @endif
-                            </li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    -->
  @yield('content')
 
 
@@ -621,7 +552,7 @@ Datos de contacto
 <center>
   <br>
 <p>
-  
+
 © 2018  Burble para Achelier Studio - <i class="fas fa-code"></i> Desarrollado por Jose Castillo 
 
 </p>
