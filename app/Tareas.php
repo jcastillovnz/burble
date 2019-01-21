@@ -26,12 +26,14 @@ public function proyectos()
 
 
 
-
 public function users()
 {
-    return $this->hasOne('App\User');
-
+    return $this->belongsTo('App\User');
 }
+
+
+
+
 
 
 

@@ -24,7 +24,9 @@ Busqueda
 
 <div    class="row">
 <div class="col-sm-3">
+  <p align="center">
 <i class="fas fa-filter text-info"></i> Filtros
+</p>
 <!--  
 <div style="height: 50px;" class="card">
 Proyectos terminados
@@ -38,9 +40,16 @@ Proyectos en espera
 -->
 </div>
 
+<hr>
+<div id="buscar"  class="col-sm-9 ">
 
-<div id="buscar"  class="col-sm-9">
-  <p class="font-weight-normal"><i class="fas fa-poll-h text-info"></i> Resultados de la busqueda</p>
+<div  id="loader-busqueda"   class="loader loader-sm float-left"></div>
+
+  
+
+
+<p class="font-weight-normal" align="center">
+<i class="fas fa-poll-h text-info"></i> Resultados de la busqueda</p>
 <div >    
 
 
@@ -70,8 +79,9 @@ Proyectos en espera
 <button class="btn btn-light btn-sm " type="button" id="dropdownMenuButton" data-toggle="dropdown">
 <i class="fas fa-cogs"></i></button>
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-<a class="dropdown-item"   >Detalles</a>
-<a class="dropdown-item"   > Eliminar</a>
+<a class="dropdown-item" v-on:click="add_espera(proyecto)"  >Enviar a espera</a>
+<a class="dropdown-item" v-on:click="show(proyecto)"  >Detalles</a>
+<a class="dropdown-item"  v-on:click="eliminar(proyecto)"  > Eliminar</a>
 </div>
 </div>  
 </td>
@@ -117,13 +127,13 @@ Proyectos en espera
 </nav>
 
 
-
-
-</div>
-
-
-</div>
 @include('layouts.projects.edit')
+
+</div>
+
+
+</div>
+
 
 
 </div>

@@ -5,6 +5,12 @@ var Proyectos = new Vue({
     el: '#AppProyectos',
      mounted(){
 
+this.paginarTareas();
+
+
+
+
+
 this.getListaPrincipal();
 
 this.getListaTareas();
@@ -15,11 +21,12 @@ this.getUsers();
 
     },
     data: {
+
+        state: 0 ,
         lista_principal:[],
         lista_espera: [],
         lista_tareas: [],
         lista_users: [],
-
         cliente: '',
         proyecto: '',
         fecha_entrega: '',
@@ -33,6 +40,44 @@ this.getUsers();
         empleado_id: '',
         proyectos_id: '',
         comentario_tarea: '',
+ proyecto: { 
+    'id':'',
+    'nombre_proyecto':'',
+    'fecha_recepcion':'',
+    'fecha_entrega':'',
+    'presupuesto':'',
+    'Ntareas':'',
+    'comentario':'',
+    ////////////////
+    'nombre_cliente':''
+   },
+
+tarea: { 
+    'id':'',
+    'foto':'', 
+    'nombre_tarea':'',
+    'tipo_tarea':'',
+    'fecha_inicio':'',
+    'fecha_termino':'',
+    'tipo_tarea':'',
+    'presupuesto':'',
+    'Ntareas':'',
+    'comentario':'',
+    ////////////////
+    'nombre_cliente':''
+   },
+
+pagination:{
+'total': 0,
+'current_page': 0,
+'per_page': 0,
+'last_page': 0,
+'from': 0,
+'to': 0
+}
+
+
+
 
 
       },
@@ -71,7 +116,32 @@ this.lista_tareas = response.data
  }
 ,
 
+paginarTareas: function(dato)  {
 
+ //proyecto_id = document.getElementById('proyecto_id').value;  
+
+
+
+
+
+ }
+,
+
+
+
+
+
+edicion: function(item) {
+
+if (this.state == 0) {
+this.state = 1;
+console.log(this.state);
+  } else{
+this.state = 0;
+}
+
+}
+,
 
 
 getListaEspera: function(dato)  {
@@ -730,8 +800,6 @@ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i
 
 
 update: function(e) {
-console.log("AQUI ENVIAR");
-
 document.getElementById('btn-edicion').disabled = true;
 document.getElementById('loader-edicion').style.display="block"
 
@@ -768,7 +836,7 @@ this.getUsers();
 else
 {
 document.getElementById('btn-edicion').disabled = false;
-document.getElementById('loader-edicion').style.display="none"
+document.getElementById('loader-edicion').style.display="none";
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
 }
 });

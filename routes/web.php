@@ -25,20 +25,20 @@ Route::get('/busqueda/', 'busquedaController@index')->name('busqueda');
 Route::get('/consulta/busqueda/', 'busquedaController@busqueda');
 
 
-
-
 Route::get('/home', 'HomeController@index')->name('home');
-
-
 Route::get('/mi-cuenta', 'CuentaController@index')->name('cuenta');
 Route::get('/gestiones', 'GestionController@index')->name('gestiones');
 Route::get('/nuevo_cliente', 'ClienteController@create');
-
 Route::get('/nuevo_cliente', 'ClienteController@create');
 Route::post('/send_foto/{id}', 'GestionController@foto');
 
 
 Route::get('/busqueda', 'BusquedaController@index');
+
+
+Route::get('/detalle/{id}', 'ProyectoController@detalle');
+Route::get('/proyecto/', 'ProyectoController@proyecto');
+Route::get('/proyecto/paginar/tareas/', 'ProyectoController@proyectoTareas');
 
 
 

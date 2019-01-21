@@ -16,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
     
 <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" >
-<link href="css/app.css" rel="stylesheet" type="text/css">
+<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/alertify.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/loader.css') }}" rel="stylesheet" type="text/css">
  
@@ -94,8 +94,6 @@
 <div  id="loader" class="loader loader-lg" ></div>
 
 <body   class="col-sm-12  ">
-
-
 
 
 

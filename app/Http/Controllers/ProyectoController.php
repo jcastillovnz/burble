@@ -57,8 +57,33 @@ foreach ($lista_espera as $key => $value) {
 }
 
 
+if ($proyecto->save()==true) {
+$data = "true";
+return response()->json($data); 
+}
+else {
+$data = "false";
+return response()->json($data); 
+}
+
+}
+
+public function update(Request $request)
+{
 
 
+$proyecto= Proyectos::where('id', $request->id)->first();
+
+
+$proyecto->nombre=  $request->nombre;
+$proyecto->fecha_entrega=$request->fecha_entrega;
+
+if (isset($request->presupuesto)) {
+$proyecto->presupuesto=$request->presupuesto;
+}
+$proyecto->comentario=$request->comentario;
+
+$proyecto->save();
 
 
 
@@ -75,6 +100,67 @@ return response()->json($data);
 
 
 }
+
+
+
+
+ public function detalle(Request $request)
+{ 
+
+
+$proyecto= Proyectos::where('id', $request->id)->with('clientes')  ->first();
+
+return view('detalle', compact('proyecto'));
+
+
+}
+
+
+
+ public function proyecto(Request $request)
+{ 
+
+
+$proyecto = Proyectos::where('id', $request->id)->with('clientes')->first();
+return response()->json($proyecto); 
+
+
+}
+
+
+ public function proyectoTareas(Request $request)
+{ 
+
+
+$tareas = Tareas::where('proyectos_id', $request->id)->with('users')
+->orderBy('id', 'desc')->paginate(5);
+
+
+
+
+return [
+'pagination'=> [
+'total'=> $tareas->total(),
+'current_page'=> $tareas->currentPage(),
+'per_page'=> $tareas->perPage(),
+'last_page'=> $tareas->lastPage(),
+'from'=> $tareas->firstItem(),
+'to'=> $tareas->lastPage(),
+],
+'tareas'=> $tareas
+];
+
+
+
+}
+
+
+
+
+
+
+
+
 
  public function deleteListaEspera(Request $request)
 {
@@ -106,6 +192,9 @@ return  $lista_principal;
  public function AddListaPrincipal(Request $request)
 { 
 
+
+
+
 $monitor = Lista_principal::where('proyectos_id', $request->id)->first();
 
 if (isset($monitor)==false) {
@@ -132,6 +221,7 @@ foreach ($lista_principal as $key => $value) {
 }
 
 
+$clear = Lista_espera::where('proyectos_id', $request->id)->delete();
 
 
 
@@ -176,16 +266,9 @@ foreach ($lista_espera as $key => $value) {
 
 
 }
-
-
+$clear = Lista_principal::where('proyectos_id', $request->id)->delete();
 
 }
-
-
-
-
-
-
 
 
  public function UpdateListaEspera(Request $request)
@@ -226,8 +309,6 @@ return response()->json($lista_principal);
 public function create_tarea( Request $request )
     {
 
-
-
 $tareas = new Tareas();
 $tareas->nombre=  $request->nombre_tarea;
 $tareas->tipo=  $request->tipo_tarea;
@@ -237,10 +318,6 @@ $tareas->comentario=$request->comentario_tarea;
 $tareas->users_id=$request->empleado_id;
 $tareas->proyectos_id=$request->proyectos_id;
 $tareas->save();
-
-
-
-
 
 if ($tareas->save()==true) {
 $data = "true";
@@ -382,6 +459,16 @@ return response()->json($lista_espera);
 
 
 
+ public function delete_proyecto(Request $request)
+{
+
+
+$proyecto = Proyectos::where('id',$request->id)->delete();
+return  $proyecto;
+
+
+
+}
 
 
 

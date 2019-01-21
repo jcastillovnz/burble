@@ -19,7 +19,20 @@ use Illuminate\Http\Request;
 */
 
 
+/////////////////PROYECTOS C0NTROLLER//////////////////////
 Route::get('/proyecto/create/', 'ProyectoController@create');
+Route::post('/proyectos/update/', 'ProyectoController@update');
+Route::get('/proyectos/delete/', 'ProyectoController@delete_proyecto');
+Route::get('/consulta/proyecto/', 'ProyectoController@proyecto');
+
+
+
+
+
+
+
+
+
 Route::get('/proyecto/tarea/create/', 'ProyectoController@create_tarea');
 
 

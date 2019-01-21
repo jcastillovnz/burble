@@ -22,7 +22,8 @@ class User extends Authenticatable
 
 public function tareas()
 {
-    return $this->belongsTo('App\Tareas');
+    return $this->hasOne('App\Tareas');
+
 }
 
 
