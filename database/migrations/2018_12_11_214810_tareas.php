@@ -18,18 +18,17 @@ class Tareas extends Migration
 
  Schema::create('tareas', function (Blueprint $table) {
              $table->increments('id');
+             $table->string('imagen')->nullable();      
              $table->string('nombre')->nullable();
-              $table->string('objetivo')->nullable();
+             $table->string('objetivo')->nullable();
              $table->string('fecha_inicio')->nullable();
-            $table->string('fecha_termino')->nullable();
+             $table->string('fecha_termino')->nullable();
              $table->string('tipo')->nullable();
              $table->string('prioridad')->nullable();
-            $table->string('estado')->nullable();
-            $table->longText('comentario')->nullable();
-
-
- $table->integer('proyectos_id')->unsigned()->nullable() ;
-$table->foreign('proyectos_id')->references('id')->on('proyectos')  ->onupdate('cascade') ->onDelete('cascade')   ;
+             $table->string('estado')->nullable();
+             $table->longText('comentario')->nullable();
+             $table->integer('proyectos_id')->unsigned()->nullable() ;
+             $table->foreign('proyectos_id')->references('id')->on('proyectos')  ->onupdate('cascade') ->onDelete('cascade')   ;
 
 
 

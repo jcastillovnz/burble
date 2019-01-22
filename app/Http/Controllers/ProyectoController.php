@@ -304,6 +304,41 @@ return response()->json($lista_principal);
 
 
 
+public function update_tarea( Request $request )
+    {
+
+
+
+
+$tareas =Tareas::where('id', $request->id)->first();
+
+
+$tareas->nombre=  $request->nombre;
+$tareas->tipo=  $request->tipo;
+$tareas->prioridad=$request->prioridad;
+$tareas->estado=$request->estado;
+$tareas->fecha_inicio=$request->fecha_inicio;
+$tareas->fecha_termino=$request->fecha_termino;
+$tareas->comentario=$request->comentario;
+
+$tareas->save();
+
+if ($tareas->save()==true) {
+$data = "true";
+return response()->json($data); 
+}
+else {
+$data = "false";
+return response()->json($data); 
+}
+
+
+    }
+
+
+
+
+
 
 
 public function create_tarea( Request $request )
@@ -337,62 +372,56 @@ public function listTareas(  )
     {
 
 
-$lista_principal = DB::table('lista_principal')
-->Join('proyectos', 'lista_principal.proyectos_id', '=', 'proyectos.id')
-->leftJoin('clientes', 'proyectos.clientes_id', '=', 'clientes.id')
+$lista_principal = Lista_principal::all();
 
-->select( 
-'lista_principal.id',
-'lista_principal.proyectos_id',     
-'proyectos.nombre AS nombre_proyecto' , 
-'proyectos.fecha_entrega' , 
-'clientes.nombre AS nombre_empresa' , 
-'proyectos.comentario'
-)->get();
 
 
  $listado_tareas = array();
+
+
 foreach ($lista_principal as $key => $item) {
 $lista_tareas[$key] = array();
 
+
+
+
 $tareas = Tareas::where('proyectos_id', $item->proyectos_id )
-->leftJoin('users', 'tareas.users_id', '=', 'users.id')
-->select( 
-'tareas.id',
-'tareas.nombre',     
-'tareas.prioridad',   
-'tareas.estado',  
-'tareas.comentario',    
-'tareas.proyectos_id',    
-'users.name AS nombre_usuario',   
-'users.apellido AS apellido_usuario',
-'users.foto AS foto_usuario', 
-'users.rango AS rango_usuario'
+->with('users')
 
-)->orderBy('id', 'desc')->get();
+->orderBy('id', 'desc')->paginate(5);
 
-
-
-foreach ($tareas as $i => $value) {
-
-$Tarea[$i] = array();
-$Tarea["id"]  =  $value->id;
-$Tarea["nombre_tarea"]  =  $value->nombre;
-$Tarea["prioridad"]  =    $value->prioridad;
-$Tarea["estado"]  = $value->estado;
-$Tarea["comentario"]  =   $value->comentario;
-$Tarea["proyectos_id"]  =   $value->proyectos_id;
-/*USUARIO*/
-$Tarea["nombre_usuario"]  =   $value->nombre_usuario;
-$Tarea["apellido_usuario"]  =   $value->apellido_usuario;
-$Tarea["foto_usuario"]  =   $value->foto_usuario;
-$Tarea["rango_usuario"]  =   $value->rango_usuario;
+$paginate = [
+'pagination'=> [
+'total'=> $tareas->total(),
+'current_page'=> $tareas->currentPage(),
+'per_page'=> $tareas->perPage(),
+'last_page'=> $tareas->lastPage(),
+'from'=> $tareas->firstItem(),
+'to'=> $tareas->lastPage(),
+],
+'tareas'=> $tareas
+];
 
 
-$lista_tareas[$key][$i] = $Tarea ;
+
+
+foreach ($tareas as $i => $item) {
+
+
+$tarea[$i] = array();
+
+$tarea =  $item;
+
+
+$lista_tareas[$key][$i] = $tarea ;
+
+
 }
 $listado_tareas = $lista_tareas;
+
+
 }
+
 
 
 return response()->json($listado_tareas );
@@ -401,6 +430,32 @@ return response()->json($listado_tareas );
     }
 
 
+public function tarea_imagen($id, Request $request)
+{
+
+
+$tarea = Tareas::where('id', $id)->first();
+
+if ($request->hasFile('imagen')===true ){
+$file = $request->file('imagen');
+$img = 'img_'.time().'.'.$file->getClientOriginalExtension();
+
+$path = public_path().'/img/tareas/fotos/';
+$file->move($path,$img );
+
+$tarea->imagen =$img  ;
+$tarea->save();
+
+if ($tarea->save()==true) {
+$data = $tarea->imagen;
+return response()->json($data); 
+}
+
+
+
+
+}
+}
 
 
 
@@ -454,6 +509,25 @@ $lista_espera = DB::table('lista_espera')
 return response()->json($lista_espera); 
 
     }
+
+
+
+
+
+
+
+ public function delete_tarea(Request $request)
+{
+
+
+$tareas = Tareas::where('id',$request->id)->delete();
+return  $tareas;
+
+
+
+}
+
+
 
 
 

@@ -5,12 +5,6 @@ var Proyectos = new Vue({
     el: '#AppProyectos',
      mounted(){
 
-this.paginarTareas();
-
-
-
-
-
 this.getListaPrincipal();
 
 this.getListaTareas();
@@ -151,6 +145,8 @@ var urlEspera = '/api/proyectos/espera';
 axios.get(urlEspera).then(response => {
 this.lista_espera = response.data
 });
+
+
 
 
 

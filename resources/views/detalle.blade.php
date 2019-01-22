@@ -34,7 +34,7 @@ Detalle de proyecto
 
 
 
-<div class="col-sm-5">
+<div class="col-sm-4">
 <div class="input-group mb-3">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text">
@@ -44,10 +44,6 @@ Detalle de proyecto
 <input type="text" disabled=""  class="form-control input-sm"  
 v-model="cliente"   placeholder="Cliente">
 </div>
-
-
-
-
 
 
 <div class="input-group mb-3">
@@ -120,40 +116,56 @@ v-model="cliente"   placeholder="Cliente">
 
 
 
-<div class="col-sm-6 ">
-<p align="left"  class="text-center">
-Tareas 
-</p>
+<div class="col-sm-8 ">
 
+
+<div class="table-responsive">
 
 
   <table class="table table-borderless">
     <thead>
       <tr  >
-  
+        <th>#</th>
+        <th>Imagen</th>
         <th>Tareas</th>
         <th>Tipo</th>
         <th>Prioridad</th>
-        <th>Estado</th>
         <th>Empleado</th>
+        
+
       </tr>
     </thead>
     <tbody>
 
 
       <tr v-for="tarea  in tareas" >
-        <td> @{{tarea.nombre}} </td>
-        <td>  @{{tarea.tipo}}    </td>
-         <td> @{{tarea.prioridad}}     </td>
-        <td>     </td>
+        <td> @{{tarea.id}}        </td>
+         <td>  
+
+       
+
+<img  v-if="tarea.imagen" class="zoom" width="50" height="50"   :src="'{{url ('/img/tareas/fotos/')}}'+'/' +tarea.imagen" alt="Card image cap">
+
+
+<img width="50" height="50" v-else class="zoom" src="{{url ('img/pieza.png')}} " alt="Card image cap">
+</td>
+
+        <td> @{{tarea.nombre}}    </td>
+        <td>  @{{tarea.tipo}}     </td>
+        <td> @{{tarea.prioridad}} </td>
+         <td> @{{tarea.users.name }} </td>
+        
         <td>
 <div class="dropdown">
 <button class="btn btn-light btn-sm " type="button" id="dropdownMenuButton" data-toggle="dropdown">
 <i class="fas fa-cogs"></i></button>
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-<a class="dropdown-item" v-on:click="add_espera(proyecto)"  >Enviar a espera</a>
-<a class="dropdown-item" v-on:click="show(proyecto)"  >Detalles</a>
-<a class="dropdown-item"  v-on:click="eliminar(proyecto)"  > Eliminar</a>
+
+
+<a class="dropdown-item"   v-on:click="show(tarea)"  >Detalle</a>
+
+<a class="dropdown-item"  v-on:click="eliminar(tarea)"  > Eliminar</a>
+
 </div>
 </div>  
 </td>
@@ -163,9 +175,37 @@ Tareas
 
 </tbody>
 </table>
+</div>
+
+<hr>
+ 
 
 
 
+<nav aria-label="Page navigation example ">
+  
+<ul class="pagination pagination-sm justify-content-center">
+<li v-if="pagination.current_page >1"  class="page-item ">  
+<a  @click.prevent="changePage(pagination.current_page - 1)"  class="page-link"  href=""><i class="fas fa-chevron-left"></i></a>
+</li>
+
+
+<li v-for="page in  pagesNumber"  v-bind:class="'page-item '+[page== isActived ?  'active': '' ]  "    >  
+<a @click.prevent="changePage(page)"    class="page-link"  href="">
+@{{page}}
+</a>
+</li>
+
+
+<li v-if="pagination.current_page <pagination.last_page"   class="page-item">  
+<a @click.prevent="changePage(pagination.current_page + 1)"   class="page-link"  href=""><i class="fas fa-chevron-right"></i></a>
+</li>
+
+
+</ul>
+
+
+</nav>
 
 
 
@@ -209,6 +249,7 @@ Tareas
 
 
 </form>
+@include('layouts.tareas.edit')
 
 
 </div>

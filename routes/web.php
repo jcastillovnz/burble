@@ -33,7 +33,13 @@ Route::get('/nuevo_cliente', 'ClienteController@create');
 Route::post('/send_foto/{id}', 'GestionController@foto');
 
 
+
+
+
+
 Route::get('/busqueda', 'BusquedaController@index');
+
+Route::post('/detalle/tarea/send_imagen/{id}','ProyectoController@tarea_imagen');
 
 
 Route::get('/detalle/{id}', 'ProyectoController@detalle');

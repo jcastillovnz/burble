@@ -28,12 +28,18 @@ Route::get('/consulta/proyecto/', 'ProyectoController@proyecto');
 
 
 
-
-
-
-
-
+Route::get('/tareas/delete/', 'ProyectoController@delete_tarea');
+Route::post('/tareas/update/', 'ProyectoController@update_tarea');
 Route::get('/proyecto/tarea/create/', 'ProyectoController@create_tarea');
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/usuario', 'GestionController@User');

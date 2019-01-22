@@ -109,7 +109,7 @@ Informacion de proyecto
       </span>
         </div>
 
-<textarea :disabled="state == 0" v-model="rellenar.comentario"  class="form-control" rows="2" id="comment"></textarea>
+<textarea :disabled="state == 0" v-model="rellenar.comentario"  :src="preview" class="form-control" rows="2" id="comment"></textarea>
 
       </div>
   </div>
