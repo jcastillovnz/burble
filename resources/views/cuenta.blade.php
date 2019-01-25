@@ -11,10 +11,10 @@
 <div  id="Mi_cuenta"  class="content">
 
 <div class="col-sm-12">
-<div style="padding-left: 1%; " align="left" class="text-info">
-<h5><i class="fas fa-user-cog"></i>
+<div style="padding-left: 1%; font-size: 17px; " align="left" class="">
+<i class="fas fa-user-cog text-info"></i>
 Mi cuenta
-</h5>
+
 
 
 <input v-model="id=usuario.id" value="" class="invisible"  name="">

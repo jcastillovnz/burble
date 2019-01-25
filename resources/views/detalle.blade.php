@@ -9,34 +9,40 @@
 <div  id="DetalleProyecto"  class="content">
 
 <div class="col-sm-12">
-<div style="padding-left: 1%; " align="left" class="text-info">
-<h5><i class="fas fa-user-cog"></i>
-Detalle de proyecto
-</h5>
+<div style="padding-left: 1%;  font-size: 17px;" align="left" class="">
+<i class="fas fa-user-cog text-info"></i>
+Datos de proyecto
+
+
+<button title="Nueva tarea" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevaTarea"> <i class="fas fa-plus"></i> </button>
+
 
 <input value="{{$proyecto->id}}"  id="proyecto_id" class="invisible" >
 
 </div>
+
+
+
+
+
+
 </div>
-
-
-
 
 
 <div    class="col-sm-12">
 
 
 
-<form method="GET" class="container-fluid" role="form"  v-on:submit.prevent="sumbit_datos()"  >
+<form method="GET" class="container-fluid" role="form"  v-on:submit.prevent="update_proyecto()"  >
 
 <div class="row">
-
-
-
 
 <div class="col-sm-4">
 <div class="input-group mb-3">
 <div class="input-group-prepend">
+
+
+
 <span style="width: 35px"  class="input-group-text">
 <i class="fas fa-user"></i>
 </span>
@@ -54,7 +60,7 @@ v-model="cliente"   placeholder="Cliente">
 </div>
 
 
-<input type="text" :disabled="state == 0"  v-model="proyecto.nombre"  class="form-control input-sm"   placeholder="Nombre">
+<input type="text" :disabled="state == 0"  v-model="Rproyecto.nombre_proyecto"  class="form-control input-sm"   placeholder="Nombre">
 </div>
 
 
@@ -64,7 +70,7 @@ v-model="cliente"   placeholder="Cliente">
  <i class="fas fa-user"></i>
          </span>
     </div>
-    <input type="text" :disabled="state == 0"   v-model="proyecto.fecha_recepcion"  class="form-control input-sm input"   placeholder="fecha recepcion" >
+    <input type="text" :disabled="state == 0"   v-model="Rproyecto.fecha_recepcion"  class="form-control input-sm input"   placeholder="fecha recepcion" >
   </div>
 
 
@@ -75,7 +81,7 @@ v-model="cliente"   placeholder="Cliente">
  <i class="fas fa-user"></i>
          </span>
     </div>
-    <input type="text" :disabled="state == 0"  v-model="proyecto.fecha_entrega"  class="form-control input-sm"   placeholder="fecha entrega">
+    <input type="text" :disabled="state == 0"  v-model="Rproyecto.fecha_entrega"  class="form-control input-sm"   placeholder="fecha entrega">
   </div>
 
 
@@ -85,7 +91,7 @@ v-model="cliente"   placeholder="Cliente">
 <i class="fas fa-clock"></i>
          </span>
     </div>
-    <input  :disabled="state == 0"   v-model="proyecto.presupuesto"   title="Presupuesto" type="text"     class="form-control input-sm input" placeholder="Presupuesto">
+    <input  :disabled="state == 0"   v-model="Rproyecto.presupuesto"   title="Presupuesto" type="text"     class="form-control input-sm input" placeholder="Presupuesto">
 
 
   </div>
@@ -101,14 +107,39 @@ v-model="cliente"   placeholder="Cliente">
    
 
 
-<textarea   :disabled="state == 0" v-model="proyecto.comentario"   placeholder="Comentario" class="form-control" rows="5"></textarea>
+<textarea   :disabled="state == 0" v-model="Rproyecto.comentario"   placeholder="Comentario" class="form-control" rows="5"></textarea>
 
 
   </div>
 
 
 
-  
+
+
+<div class="col-sm-12">
+<div class="btn-group float-right">
+
+<div  id="loader-details-proyecto"   class="loader loader-sm loader-tarea"></div>
+
+
+<button type="button" v-on:click="edicion()"  title="Editar" class="btn btn-light  btn-sm float-right" >
+<i class="fas fa-pen-square"></i>
+</button>
+
+
+
+<button type="submit" id="btn-details-proyecto" :disabled="state == 0"    title="Guardar" class="btn btn-success  btn-sm" >
+<i class="fas fa-save"></i>
+</button>
+
+
+
+</div>
+</div>
+
+
+
+
 </div>
 
 
@@ -119,10 +150,32 @@ v-model="cliente"   placeholder="Cliente">
 <div class="col-sm-8 ">
 
 
+
+
+
+
+
+
+
 <div class="table-responsive">
+<template   v-if="tareas==''">
+
+<center>
+<i class="fas fa-exclamation-circle text-warning"></i>
+<strong>
+No existen tareas en este proyecto !
+
+</strong>
+</center>
+
+</template>
 
 
-  <table class="table table-borderless">
+<template   v-else >
+
+
+
+  <table  class="table table-borderless">
     <thead>
       <tr  >
         <th>#</th>
@@ -135,7 +188,13 @@ v-model="cliente"   placeholder="Cliente">
 
       </tr>
     </thead>
+
+
+
+
     <tbody>
+
+
 
 
       <tr v-for="tarea  in tareas" >
@@ -175,6 +234,9 @@ v-model="cliente"   placeholder="Cliente">
 
 </tbody>
 </table>
+
+
+
 </div>
 
 <hr>
@@ -207,35 +269,15 @@ v-model="cliente"   placeholder="Cliente">
 
 </nav>
 
-
-
-
-
-</div>
-
-
-
-
-<div class="col-sm-12">
-<div class="btn-group float-right">
-
-<div  id="loader-user"   class="loader loader-sm loader-tarea"></div>
-
-
-<button type="button" v-on:click="edicion()"  title="Editar" class="btn btn-light  btn-sm float-right" >
-<i class="fas fa-pen-square"></i>
-</button>
-
-
-
-<button type="submit" id="btn-user" :disabled="state == 0"    title="Guardar" class="btn btn-success  btn-sm" >
-<i class="fas fa-save"></i>
-</button>
+</template>
 
 
 
 </div>
-</div>
+
+
+
+
 
 
 </div>
@@ -252,10 +294,13 @@ v-model="cliente"   placeholder="Cliente">
 @include('layouts.tareas.edit')
 
 
+
+
 </div>
 
 
 
+@include('layouts.tareas.create')
 
 
 

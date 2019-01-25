@@ -6,49 +6,51 @@
   
 
 
-<div class="row content">
+<div class="row content ">
 
 
-  <div class="col-sm-3 ">
- <h5 >
-
-  <strong ><i class="fas fa-chart-line"></i> Productividad</strong>   
-
-   </h5>
-
-<div  class="card table-responsive">
+  <div class="col-sm-4 container-fluid">
 
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellido</th>
-      <th scope="col">Tareas</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
+<p style="font-size: 17px;" align="left">
+  <strong ><i class="fas fa-cogs text-info"></i>  Clientes</strong>   
+</p>
+<div    class="table  table-responsive" >
+<table   class="table table-lg table-borderless table-hover">
+<thead>
+<tr>
+<th scope="col">#  </th>
+<th scope="col" >Nombre</th>
+<th scope="col">Ciudad</th>
+<th scope="col">Pais</th>
+<th scope="col">Accion</th>
+
+</tr>
+</thead>
+<tbody >
+<tr   >
+<th scope="row"   >  </th> 
+<td> 
+Nombre
+</td>
+<td>Ciudad</td>
+<td>Pais</td>
+
+<td>
+<div class="dropdown">
+<button class="btn btn-light btn-sm " type="button" id="dropdownMenuButton" data-toggle="dropdown"  >
+<i class="fas fa-cogs"></i>
+</button>
+<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+<a class="dropdown-item"  v-on:click.prevent="mostrar(item)"   >Detalles</a>
+<a class="dropdown-item"   v-on:click.prevent="eliminar(item)" > Eliminar</a>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
 </table>
+
 
 
 </div>
@@ -66,18 +68,29 @@
 
 
 
-  <div  id="AppUsuarios"  class=" col-sm-9 ">
+  <div  id="AppUsuarios"  class="col-sm-8">
 
-<h5 ><strong ><i class="fas fa-cogs"></i> Gestion de usuarios</strong>   
+
+
+
+
+<h5 >  
+
+
 <small>
 <button  title="Nuevo usuario"  class="btn btn-light  btn-sm rounded-circle float-right" data-toggle="modal"data-target=".nuevoUsuario"><i class="fas fa-plus"></i> </button>
 </small>
-   </h5>
+</h5>
 
 
 
-<div    class="table table-responsive" >
-<table   class="table table-borderless table-hover">
+<div    class="table  table-responsive" >
+
+
+
+
+
+<table   class="table table-lg table-borderless table-hover">
 <thead>
 <tr>
 <th scope="col">#  </th>
@@ -86,6 +99,8 @@
 <th scope="col">Apellido</th>
 <th scope="col">Rango</th>
 <th scope="col">Accion</th>
+
+
 </tr>
 </thead>
 <tbody >

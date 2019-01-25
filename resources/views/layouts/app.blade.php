@@ -467,7 +467,7 @@ Datos de contacto
 @endif
 
 
-<strong style="font-size: 15px;"> 
+<strong style="font-size: 17px;"> 
 {{ Auth::user()->name }}  {{ Auth::user()->apellido }}  
 
 <input type="hidden"  class="hidden" id="user_id"  value="{{ Auth::user()->id}} " name="">

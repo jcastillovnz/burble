@@ -76,6 +76,10 @@ $proyecto= Proyectos::where('id', $request->id)->first();
 
 
 $proyecto->nombre=  $request->nombre;
+
+
+$proyecto->fecha_recepcion=$request->fecha_recepcion;
+
 $proyecto->fecha_entrega=$request->fecha_entrega;
 
 if (isset($request->presupuesto)) {
@@ -95,9 +99,6 @@ else {
 $data = "false";
 return response()->json($data); 
 }
-
-
-
 
 }
 
@@ -347,6 +348,9 @@ public function create_tarea( Request $request )
 $tareas = new Tareas();
 $tareas->nombre=  $request->nombre_tarea;
 $tareas->tipo=  $request->tipo_tarea;
+$tareas->objetivo=  $request->objetivo_tarea;
+$tareas->fecha_inicio=  $request->fecha_inicio;
+$tareas->fecha_termino=  $request->fecha_termino;
 $tareas->prioridad=$request->prioridad_tarea;
 $tareas->estado=$request->estado_tarea;
 $tareas->comentario=$request->comentario_tarea;
@@ -388,7 +392,7 @@ $lista_tareas[$key] = array();
 $tareas = Tareas::where('proyectos_id', $item->proyectos_id )
 ->with('users')
 
-->orderBy('id', 'desc')->paginate(5);
+->orderBy('id', 'desc')->paginate(4);
 
 $paginate = [
 'pagination'=> [

@@ -59,11 +59,11 @@
 <div   class="container-fluid      borde-burble border bg-light">
 <p>
 <h4 class="proyecto-min" align="left"> 
-
+<a :href="'{{url('detalle/')}}'+'/'+ item.proyectos_id " >
 <strong  >  
      @{{item.nombre_proyecto}}
 </strong>   
-
+</a>
 
 <small class="comentarios-proyecto float-right" aling="right">     
  @{{item.comentario}} ...
@@ -107,7 +107,10 @@ No existen tareas registradas
 
 <div class="row">
 <div class="col">
-  @{{item.nombre_tarea}} 
+
+ @{{item.nombre}} 
+
+
 </div>
 <div class="col ">
 
@@ -120,8 +123,7 @@ No existen tareas registradas
 
 
 
-
-<img  style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" v-if="item.foto_usuario"   width="15" height="15" class=" rounded-circle "  :src="'/img/users/fotos/'+item.foto_usuario" alt="Card image cap">
+<img  style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" v-if="item.users.foto"   width="15" height="15" class=" rounded-circle "  :src="'/img/users/fotos/'+item.users.foto" alt="Card image cap">
 
 
 <img style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;"  v-else   width="15" height="15" class="border rounded-circle "  src="img/user.png" alt="Card image cap">
@@ -141,13 +143,13 @@ No existen tareas registradas
 
 
 
-<i style="margin-top: 2%;  margin-left: 4%; margin-right: 4%;"  class="fas fa-cog float-right"></i>
+<i  @click="show_tarea(item)" style="margin-top: 2%;  margin-left: 4%; margin-right: 4%;"  class="fas fa-pen-square float-right"></i>
 </div>
 </div>
 </div>
-
 
 </template>
+
 
 
 
@@ -158,9 +160,7 @@ No existen tareas registradas
 </div>
 
 
-<div title="Editar" class=" btn-sm" aria-expanded="false" id="button-collapse">
-<i  style="font-size: 12px" class="fas fa-pen-square"></i>
-</div>
+
 
 
 
@@ -182,12 +182,24 @@ No existen tareas registradas
 
 <div class="collapse " v-bind:id="'collapseExample'+ item.id">
 <div class="col-sm-12 img-group">
+
+
+
+
 <div class="text-center">
-<img width="120"  src="img/pieza.png" class="img-fluid" alt="...">
-<img width="120"  src="img/pieza.png" class="img-fluid" alt="...">
-<img width="120"  src="img/pieza.png" class="img-fluid" alt="...">
-<img width="120"  src="img/pieza.png" class="img-fluid" alt="...">
+<template   v-for="(item, i) in lista_tareas[index]" >
+
+
+<img width="120" v-if="item.imagen"   :src="'{{url ('/img/tareas/fotos/')}}'+'/' +item.imagen"  class="img-fluid zoom-panel">
+
+<img width="120" v-else  src="img/pieza.png"  class="img-fluid zoom-panel" alt="...">
+
+
+
+
+</template>
 </div>
+
 
 </div>
 </div>
@@ -262,18 +274,34 @@ No existen tareas registradas
 <p align="left">
 
 <strong class="proyecto-min ">
- @{{item.nombre_proyecto}}   
+
+<a :href="'{{url('detalle/')}}'+'/'+ item.proyectos_id " >
+<strong  >  
+     @{{item.nombre_proyecto}}
+</strong>   
+</a>
+
+
+
+
 </strong>
 
 
 <p class="empresa-min" align="left">
+
+
  <strong> @{{item.nombre_empresa}} </strong> 
+
+
+
+
 </p>
+
+
+
 </p>
 </div>
-<div class="container" align="left ">
-Tareas
-</div>
+
 <div class="container" >
 <p class="" align="right">
 <small>
@@ -336,12 +364,11 @@ Registrar un nuevo proyecto
       <span style="width: 35px"  class="input-group-text"><i  class="fas fa-briefcase"></i> </span>
     </div>
  
-<select required="" autocomplete="off"  v-model="cliente" class="form-control">
+<select required="" autocomplete="off"  v-model="Rproyecto.cliente_id" class="form-control">
 
 <option value="" selected="">Cliente / Empresa</option>
 
 @if ( isset($clientes)==true   )
-
 @foreach( $clientes as $cliente)
 <option value="{{$cliente->id}}"  > {{$cliente->nombre}}</option>
 @endforeach
@@ -356,28 +383,41 @@ Registrar un nuevo proyecto
 </select>
 
 </div>
+
+
+
  <div class="input-group  col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
 </div>
-<input  autocomplete="off" required="" v-model="proyecto" type="text" class="form-control" placeholder="Nombre de proyecto">
+<input  autocomplete="off" required="" v-model="Rproyecto.nombre_proyecto" type="text" class="form-control" placeholder="Nombre de proyecto">
 </div>
-
 
 
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-clock"></i>  </span>
 </div>
-<input  autocomplete="off" required="" v-model="fecha_entrega" type="date" class="form-control" placeholder="Fecha de entrega">
+<input  autocomplete="off" title="Fecha recepcion" required="" v-model="Rproyecto.fecha_recepcion" type="date" class="form-control" placeholder="Fecha de entrega">
 </div>
+
+
+
+<div class="input-group col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fab fa-font-awesome-flag"></i>  </span>
+</div>
+<input  autocomplete="off"  title="Fecha entrega"   required="" v-model="Rproyecto.fecha_entrega" type="date" class="form-control" placeholder="Fecha de entrega">
+</div>
+
+
 
 
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
 </div>
-<input  autocomplete="off" required="" v-model="presupuesto" type="number" min="100" max="5000000"   class="form-control" placeholder="Presupuesto">
+<input  autocomplete="off" required="" v-model="Rproyecto.presupuesto" type="number" min="100" max="5000000"   class="form-control" placeholder="Presupuesto">
 </div>
 
 
@@ -385,7 +425,9 @@ Registrar un nuevo proyecto
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text"><i class="fas fa-comments"></i> </span>
 </div>
-<textarea autocomplete="off" required="" v-model="comentario" class="form-control" placeholder="Comentarios..."></textarea>
+
+
+<textarea autocomplete="off" required="" v-model="Rproyecto.comentario" class="form-control" placeholder="Comentarios..."></textarea>
 </div>
  </div>
 
@@ -412,6 +454,11 @@ Registrar un nuevo proyecto
 
 
 
+
+
+
+
+
 <template v-for="(item, index) in lista_principal">
 <!-- MODAL NUEVA TAREA -->
 
@@ -433,8 +480,35 @@ Registrar un nueva tarea
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
 </div>
-<input required="" type="text" v-model="nombre_tarea"   class="form-control" placeholder="Nombre de tarea">
+<input required="" type="text" v-model="Rtarea.nombre_tarea"   class="form-control" placeholder="Nombre de tarea">
 </div>
+
+
+<div class="input-group  col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-vector-square"></i></span>
+</div>
+<input  title="ObJETIVO"   type="text" v-model="Rtarea.objetivo_tarea"   class="form-control" placeholder="Objetivo">
+</div>
+
+
+
+<div class="input-group  col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-clock"></i></span>
+</div>
+<input required=""  title="Fecha inicio"   type="date" v-model="Rtarea.fecha_inicio"   class="form-control" placeholder="Fecha inicio">
+</div>
+
+
+<div class="input-group  col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas fa-flag-checkered"></i></span>
+</div>
+<input required="" title="Fecha termino"   type="date" v-model="Rtarea.fecha_termino"   class="form-control" placeholder="Fecha termino">
+</div>
+
+
 
 
 <div class="input-group col-sm-12">
@@ -443,7 +517,7 @@ Registrar un nueva tarea
 <i class="fas fa-project-diagram"></i>
 </span>
 </div>
-<select required=""  v-model="tipo_tarea" class="form-control">
+<select required="" v-model="Rtarea.tipo_tarea" class="form-control">
 <option selected="" value="">Tipo de tarea</option>
 <option value="Imagen">Imagen</option>
 <option value="Proceso">Proceso</option>
@@ -456,7 +530,7 @@ Registrar un nueva tarea
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="far fa-chart-bar"></i>  </span>
 </div>
-<select required="" v-model="prioridad_tarea"  class="form-control">
+<select required="" v-model="Rtarea.prioridad_tarea"  class="form-control">
   <option selected="" value="" > Seleccione prioridad  </option>
 <option value="ALTA">Alta / Rojo</option>
 <option value="MEDIA">Media / Amarillo</option>
@@ -470,7 +544,7 @@ Registrar un nueva tarea
 </div>
 
 
-<select required=""   v-model="empleado_id" class="form-control">
+<select required=""   v-model="Rtarea.empleado_id" class="form-control">
 
 <option selected="" value="" > Seleccione empleado  </option>
 <option v-for="item in lista_users"  :value="item.id"  > @{{item.name }}  @{{item.apellido}} 
@@ -484,19 +558,16 @@ Registrar un nueva tarea
 <div  class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-comment"></i>   </span>
 </div>
-<textarea  v-model="comentario_tarea" class="form-control"  placeholder="comentarios"></textarea>
+<textarea  v-model="Rtarea.comentario" class="form-control"  placeholder="comentarios"></textarea>
 </div>
-
+<!--  
 <div class="col-sm-12">
 <center>
 <img width="500" height="500"  class="img-thumbnail" src="img/img.png">
 </center>
 <p class="text-info">Sube una imagen sobre esta tarea</p>
 </div>
-
-
-
-
+-->
 <div class="modal-footer">
 <div class="btn btn-group  ">
 <div  :id="'loader_'+item.proyectos_id"   class="loader loader-sm loader-tarea"></div>
@@ -516,6 +587,247 @@ Registrar un nueva tarea
 <!-- MODAL NUEVA TAREA -->
 
 </template>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- MODAL EDITAR TAREA-->
+<div  class="modal fade "  id="edit_tarea"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div  class="modal-dialog ">
+<div class="modal-content ">
+<form   autocomplete="off" method="GET" class="hidden"   @submit.prevent="updateTarea(Rtarea.id)"  >
+<div class="modal-header ">
+<div class="col-sm-12 text-primary">
+<center>
+<span style="margin-left:80px;">
+<i class="fas fa-info-circle"></i>
+<strong>
+Informacion de tarea
+</strong>
+</span>
+<button   type="button" class="close float-right"   v-on:click="close()"  >
+<i class="fas fa-times"></i>
+</button>
+<button    v-on:click="edit_tarea()"  type="button"   class="close float-right" >
+<i class="fas fa-pen-square"></i>
+</button>
+</center>
+</div>
+</div>
+<div class="modal-body">
+<div class="row">
+<div class="col-sm-12 ">
+<div style="margin-top: 5%; " class="">
+
+<center>
+
+
+
+<img  v-if="Rtarea.empleado_foto" class="border rounded-circle "  width="120" height="120" class=""  :src="'/img/users/fotos/' +Rtarea.empleado_foto" alt="Card image cap">
+
+
+
+
+<img v-else  src="{{ url('img/user.png') }} "    width="120" height="120" class="border rounded-circle " >
+
+
+
+</center>
+
+<div  class="text-center">
+<p>
+
+Empleado encargado:
+@{{Rtarea.empleado_nombre}}  @{{Rtarea.empleado_apellido}}
+ 
+
+
+</p>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+  <div class="col-sm-6   form-group">
+  <strong>Nombre</strong> 
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" >
+          <i class="fas fa-briefcase"></i>
+      </span>
+        </div>
+        <input :disabled="state_tarea == 0" v-model="Rtarea.nombre" type="text" class="form-control" id="validationDefaultUsername" placeholder="Nombre proyecto"  required>
+      </div>
+  </div>
+
+
+  <div class="col-sm-6   form-group">
+ <strong>Tipo</strong> 
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" >
+<i class="fas fa-sort-numeric-up"></i>
+      </span>
+        </div>
+        <input :disabled="state_tarea  == 0" v-model="Rtarea.tipo" type="text" class="form-control"  placeholder="Tipo" required>
+      </div>
+  </div>
+
+
+  <div class="col-sm-6   form-group">
+   <strong>Fecha inicio</strong> 
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" >
+  <i class="fas fa-clock"></i>
+      </span>
+        </div>
+
+    <input v-if="Rtarea.fecha_inicio"  :disabled="state_tarea  == 0" v-model="Rtarea.fecha_inicio" type="text" class="form-control" id="validationDefaultUsername" placeholder="Fecha entrega"  required>
+
+    
+
+    <input v-else  :disabled="state_tarea  == 0" v-model="Rtarea.fecha_inicio" type="date" class="form-control" placeholder="Fecha entrega" aria-describedby="inputGroupPrepend2" >
+
+
+
+      </div>
+  </div>
+
+
+  <div class="col-sm-6   form-group">
+ <strong>Fecha termino</strong> 
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+  <i class="fas fa-clock"></i>
+      </span>
+        </div>
+
+
+       <input v-if="Rtarea.fecha_termino"  :disabled="state_tarea  == 0" v-model="Rtarea.fecha_inicio" type="text" class="form-control" id="validationDefaultUsername" placeholder="Fecha entrega">
+
+    
+
+    <input v-else  :disabled="state_tarea  == 0" v-model="Rtarea.fecha_termino" type="date" class="form-control" id="validationDefaultUsername" placeholder="Fecha entrega" required>
+
+
+
+
+
+      </div>
+  </div>
+
+
+  <div class="col-sm-6   form-group">
+ <strong>Prioridad</strong> 
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupPrepend2">
+  <i class="fas fa-clock"></i>
+      </span>
+        </div>
+        <input :disabled="state_tarea  == 0" v-model="Rtarea.prioridad" type="text" class="form-control" id="validationDefaultUsername" placeholder="Prioridad" required>
+      </div>
+  </div>
+
+
+  <div class="col-sm-6   form-group">
+ <strong>Estado</strong> 
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupPrepend2">
+  <i class="fas fa-clock"></i>
+      </span>
+        </div>
+        <input :disabled="state_tarea  == 0" v-model="Rtarea.estado" type="text" class="form-control"  placeholder="Estado"required>
+      </div>
+  </div>
+
+<div class="col-sm-12   form-group">
+ <strong>Comentario</strong> 
+<div class="input-group">
+<div class="input-group-prepend">
+<span class="input-group-text" >
+<i class="fas fa-comment"></i>
+</span>
+</div>
+
+<textarea :disabled="state_tarea  == 0" v-model="Rtarea.comentario"  class="form-control" rows="2" id="comment"></textarea>
+</div>
+</div>
+
+
+<div class="col-sm-12 ">
+<div with="300" class="">
+
+<center>
+
+
+
+<img  v-if="Rtarea.imagen_tarea"  class="col-sm"  :src="'{{url ('/img/tareas/fotos/')}}'+'/' +Rtarea.imagen_tarea" >
+
+
+
+<img v-else class="col-sm"  src="{{url ('img/pieza.png')}} " >
+
+
+
+
+
+<input ref="imagen" type="file"  value="" class="invisible" @change="cargar_imagen_tarea(this)"   name="">
+</center>
+
+<div  class="card-img-overlay float-right">
+
+<button  @click="$refs.imagen.click()"    title="Actualizar imagen" style="margin-top: 75%; margin-left: 90%;"  type="button"    class="btn btn-info btn-sm rounded-circle boton-overlay"><i class="fas fa-sync"></i>
+</button>
+
+
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+
+<div class="modal-footer">
+<div class="btn btn-group  ">
+<div  id="loader-details-tarea"  class="loader loader-sm"></div>
+<button  id="btn-details-tarea" :disabled="state_tarea  == 0"  type="submit"  class="btn btn-success btn-sm"     >
+<i class="fas fa-save"></i> 
+</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- MODAL EDITAR TAREA-->
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -11,15 +11,19 @@
 |
 */
 
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+
 
 Auth::routes();
 Route::group( ['middleware' => 'auth' ], function()
 {
 
+
+Route::get('/', 'HomeController@index')->name('/' ) ;
 Route::get('/busqueda/', 'busquedaController@index')->name('busqueda');
 
 Route::get('/consulta/busqueda/', 'busquedaController@busqueda');

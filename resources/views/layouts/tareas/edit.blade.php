@@ -12,7 +12,7 @@
 <span style="margin-left:80px;">
 <i class="fas fa-info-circle"></i>
 <strong>
-Informacion de tareas
+Informacion de tarea
 </strong>
 </span>
 <button   type="button" class="close float-right"   v-on:click="close()"  >

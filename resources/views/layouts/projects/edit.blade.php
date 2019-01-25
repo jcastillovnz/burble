@@ -1,7 +1,7 @@
 
 
 
-<!-- MODAL EDITAR -->
+<!-- MODAL EDITAR PROYECTO-->
 <div  class="modal fade "  id="edit_item"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div  class="modal-dialog ">
 <div class="modal-content ">
@@ -145,4 +145,4 @@ Informacion de proyecto
 </div>
 </div>
 </div>
-<!-- MODAL EDITAR USUARIO -->
+<!-- MODAL EDITAR PROYECTO-->

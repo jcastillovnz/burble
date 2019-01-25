@@ -17,6 +17,7 @@ this.getUsers();
     data: {
 
         state: 0 ,
+        state_tarea : 0,
         lista_principal:[],
         lista_espera: [],
         lista_tareas: [],
@@ -34,7 +35,7 @@ this.getUsers();
         empleado_id: '',
         proyectos_id: '',
         comentario_tarea: '',
- proyecto: { 
+ Rproyecto: { 
     'id':'',
     'nombre_proyecto':'',
     'fecha_recepcion':'',
@@ -43,13 +44,16 @@ this.getUsers();
     'Ntareas':'',
     'comentario':'',
     ////////////////
-    'nombre_cliente':''
+    'nombre_cliente':'',
+    'cliente_id':''
    },
 
-tarea: { 
+Rtarea: { 
     'id':'',
     'foto':'', 
     'nombre_tarea':'',
+    'objetivo_tarea':'',
+    'prioridad_tarea':'',
     'tipo_tarea':'',
     'fecha_inicio':'',
     'fecha_termino':'',
@@ -58,7 +62,8 @@ tarea: {
     'Ntareas':'',
     'comentario':'',
     ////////////////
-    'nombre_cliente':''
+    'nombre_cliente':'',
+    'empleado_id':''
    },
 
 pagination:{
@@ -70,11 +75,7 @@ pagination:{
 'to': 0
 }
 
-
-
-
-
-      },
+},
 
 methods: {
 
@@ -110,23 +111,133 @@ this.lista_tareas = response.data
  }
 ,
 
-paginarTareas: function(dato)  {
 
- //proyecto_id = document.getElementById('proyecto_id').value;  
-
-
+show_tarea: function(tarea) {
+this.getListaTareas();
 
 
+$('#edit_tarea').modal('show');
+this.Rtarea.id = tarea.id;
+this.Rtarea.nombre = tarea.nombre;
+this.Rtarea.imagen_tarea = tarea.imagen;
+this.Rtarea.tipo = tarea.tipo;
+this.Rtarea.prioridad = tarea.prioridad;
+this.Rtarea.estado = tarea.estado;
+this.Rtarea.fecha_inicio = tarea.fecha_inicio;
+this.Rtarea.fecha_termino = tarea.fecha_termino;
+this.Rtarea.presupuesto = tarea.presupuesto;
+this.Rtarea.comentario = tarea.comentario;
+this.Rtarea.empleado_nombre = tarea.users.name;
+this.Rtarea.empleado_apellido = tarea.users.apellido;
+this.Rtarea.empleado_foto = tarea.users.foto;
 
- }
+
+}
+,
+
+close: function() {
+
+$('#edit_tarea').modal('hide');
+this.clear_tarea(this.Rtarea);
+if (this.state_tarea == 1) {
+this.state_tarea = 0;
+} 
+}
+,
+clear_tarea: function(tarea) {
+
+this.Rtarea.id = '';
+this.Rtarea.nombre = '';
+this.Rtarea.imagen_tarea = '';
+this.Rtarea.tipo = '';
+this.Rtarea.objetivo_tareas = '';
+this.Rtarea.prioridad = '';
+this.Rtarea.estado = '';
+this.Rtarea.fecha_inicio = '';
+this.Rtarea.fecha_termino = '';
+this.Rtarea.presupuesto = '';
+this.Rtarea.comentario = '';
+this.Rtarea.empleado_nombre = '';
+this.Rtarea.empleado_apellido = '';
+this.Rtarea.empleado_foto = '';
+this.Rtarea.empleado_id = '';
+
+}
 ,
 
 
 
+updateTarea: function(status) {
+document.getElementById('btn-details-tarea').disabled = true;
+document.getElementById('loader-details-tarea').style.display="block";
+var url = '/api/tareas/update' ;
+axios.post( url, {
+id:this.Rtarea.id,
+nombre: this.Rtarea.nombre,
+imagen_tarea: this.Rtarea.imagen_tarea,
+tipo: this.Rtarea.tipo,
+prioridad: this.Rtarea.prioridad,
+estado: this.Rtarea.estado,
+fecha_inicio: this.Rtarea.fecha_inicio,
+fecha_termino: this.Rtarea.fecha_termino,
+comentario: this.Rtarea.comentario,
+empleado_nombre: this.Rtarea.empleado_nombre,
+empleado_apellido: this.Rtarea.empleado_apellido,
+empleado_foto: this.Rtarea.empleado_foto,
 
+validateStatus: (status) => {
+return true; // I'm always returning true, you may want to do it depending on the status received
+},
+}).catch(error => {
+}).then(response => {
+if (response.data == "true") {
+
+document.getElementById('btn-details-tarea').disabled = false;
+document.getElementById('loader-details-tarea').style.display="none";
+this.state_tarea= 0;
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+this.mounted();
+
+}
+else
+{
+document.getElementById('btn-details-tarea').disabled = false;
+document.getElementById('loader-details-tarea').style.display="none";
+
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+}
+});
+
+
+},
+
+enviar_foto_tarea: function(file)  {
+const formData = new FormData()
+formData.append('imagen', file, file.name)
+axios.post('/detalle/tarea/send_imagen/'+this.Rtarea.id, formData).then(function(response){
+Proyectos.Rtarea.imagen_tarea=response.data  ;
+//Rtarea.imagen_tarea
+console.log(Proyectos.Rtarea.imagen_tarea);
+Proyectos.getListaTareas();
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+
+})
+.catch(function(error){
+var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+
+});
+}
+,
+cargar_imagen_tarea: function(e) {
+const file = event.target.files[0];
+//this.preview = URL.createObjectURL(file);
+//Convertir en archivo antes de enviar
+this.foto = file;
+this.enviar_foto_tarea(file);
+},
 
 edicion: function(item) {
-
 if (this.state == 0) {
 this.state = 1;
 console.log(this.state);
@@ -137,6 +248,18 @@ this.state = 0;
 }
 ,
 
+edit_tarea: function(item) {
+if (this.state_tarea  == 0) {
+this.state_tarea  = 1;
+console.log(this.state_tarea );
+  } else{
+this.state_tarea  = 0;
+}
+
+}
+,
+
+
 
 getListaEspera: function(dato)  {
 
@@ -145,9 +268,6 @@ var urlEspera = '/api/proyectos/espera';
 axios.get(urlEspera).then(response => {
 this.lista_espera = response.data
 });
-
-
-
 
 
  }
@@ -169,12 +289,6 @@ axios({
   ).then(function (response) {
 Proyectos.getListaPrincipal();
 })
-
-
-
-
-
-
 
 }
 ,
@@ -259,11 +373,18 @@ sendData: function(e) {
 var url = '/api/proyecto/create/' ;
 axios.get( url, {
   params: {
-cliente: this.cliente,
-proyecto: this.proyecto,
-fecha_entrega: this.fecha_entrega,
-presupuesto: this.presupuesto,
-comentario: this.comentario,
+cliente: this.Rproyecto.cliente_id,
+proyecto: this.Rproyecto.nombre_proyecto,
+fecha_recepcion: this.Rproyecto.fecha_recepcion,
+fecha_entrega: this.Rproyecto.fecha_entrega,
+presupuesto: this.Rproyecto.presupuesto,
+comentario: this.Rproyecto.comentario,
+
+
+ 
+
+
+
 
 }
   ,
@@ -305,13 +426,19 @@ document.getElementById('btn-tarea_'+e).disabled = true;
 var url = '/api/proyecto/tarea/create/' ;
 axios.get( url, {
   params: {
-nombre_tarea: this.nombre_tarea,
-tipo_tarea: this.tipo_tarea,
+
+nombre_tarea: this.Rtarea.nombre_tarea,
+objetivo_tarea: this.Rtarea.objetivo_tarea,
+tipo_tarea: this.Rtarea.tipo_tarea,
+fecha_inicio: this.Rtarea.fecha_inicio,
+fecha_termino: this.Rtarea.fecha_termino,
 estado_tarea: 'amarilo',
-prioridad_tarea: this.prioridad_tarea,
-empleado_id: this.empleado_id,
+prioridad_tarea: this.Rtarea.prioridad_tarea,
+empleado_id: this.Rtarea.empleado_id,
 proyectos_id: e,
-comentario_tarea: this.comentario_tarea,
+comentario_tarea: this.Rtarea.comentario,
+
+
 
 }
 ,
@@ -476,6 +603,9 @@ axios({
 
   }}
   ).then(function (response) {
+
+
+
    
 //var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 

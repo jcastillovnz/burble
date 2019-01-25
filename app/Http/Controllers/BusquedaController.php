@@ -45,10 +45,6 @@ $proyectos = Proyectos::with('tareas')->with('clientes')->whereHas('clientes', f
 $query->where('nombre', 'like', '%'.$buscar.'%');
   })->orWhere('nombre','like', '%'.$buscar.'%')->orderBy('id', 'desc')->paginate(2);
 
-//return response()->json($proyectos); 
-
-
-
 return [
 'pagination'=> [
 'total'=> $proyectos->total(),

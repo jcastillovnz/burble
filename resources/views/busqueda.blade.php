@@ -52,7 +52,7 @@ Proyectos en espera
 <i class="fas fa-poll-h text-info"></i> Resultados de la busqueda</p>
 <div >    
 
-
+<div class="table table-responsive">
 
 
   <table class="table table-borderless">
@@ -92,7 +92,7 @@ Proyectos en espera
 </tbody>
 </table>
 
-
+</div>
 
 
 </div> 

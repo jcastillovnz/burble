@@ -225,6 +225,21 @@ color:  #2d572c;
 
 
 
+.zoom-panel {
+transition: transform .2s;
+z-index: 1000;
+}
+
+.zoom-panel:hover {
+  z-index: 2000;
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5); 
+}
+
+
+
+
 .zoom {
 transition: transform .2s;
 
