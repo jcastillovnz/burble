@@ -59,13 +59,10 @@
 </form>
 
 
-
-   <ul class="navbar-nav  my-lg-0">
- @guest
-
-
-      <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fas fa-user"></i> Iniciar session <span class="sr-only">(current)</span></a>
+<ul class="navbar-nav  my-lg-0">
+@guest
+<li class="nav-item active">
+<a class="nav-link" href="#"><i class="fas fa-user"></i> Iniciar session <span class="sr-only">(current)</span></a>
       </li>
  @else
 
@@ -179,6 +176,12 @@
 @endguest
 </div>
 </nav>
+
+
+
+
+
+
     
  @yield('content')
 </div>
@@ -186,12 +189,6 @@
 
 
 
-
-
-
-
-
-@include('layouts.clientes.create')
 
 
 

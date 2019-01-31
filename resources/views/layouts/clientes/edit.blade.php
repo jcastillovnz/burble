@@ -311,7 +311,7 @@ Informacion de cliente
 
 
 <div class="input-group  col-sm-12">
-<a href="" class="float-right">
+<a :href="'/cliente/'+cliente.id" class="float-right">
 Ver mas detalles
 </a>
 </div>

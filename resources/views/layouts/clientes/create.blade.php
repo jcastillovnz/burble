@@ -14,8 +14,7 @@
 <i class="fas fa-suitcase"></i>
 
 <strong>
-Registrar un nuevo Cliente   @{{state}}
-</strong>
+Registrar un nuevo Cliente   
 
 <button type="button" class="close float-right" data-dismiss="modal">&times;</button></p>
 </div>

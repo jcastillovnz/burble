@@ -32,10 +32,13 @@ Route::get('/consulta/busqueda/', 'busquedaController@busqueda');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/mi-cuenta', 'CuentaController@index')->name('cuenta');
 Route::get('/gestiones', 'GestionController@index')->name('gestiones');
-Route::get('/nuevo_cliente', 'ClienteController@create');
-Route::get('/nuevo_cliente', 'ClienteController@create');
+
 Route::post('/send_foto/{id}', 'GestionController@foto');
 
+
+Route::get('/nuevo_cliente', 'ClienteController@create');
+
+Route::get('/cliente/{id}', 'ClienteController@detalle');
 
 
 

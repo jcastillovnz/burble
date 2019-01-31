@@ -88,6 +88,8 @@
 
 @include('layouts.clientes.edit')
 
+@include('layouts.clientes.create')
+
   </div>
 
 
@@ -502,10 +504,6 @@ Registrar un nuevo usuario
 
 
 </div>
-<!-- MODAL NUEVO USUARIO -->
-
-
-
 
 
 

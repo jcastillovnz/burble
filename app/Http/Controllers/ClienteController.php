@@ -27,6 +27,26 @@ class ClienteController extends Controller
     }
 
 
+   public function detalle(Request $request)
+    {
+    
+
+
+
+
+$cliente= Clientes::where('id', $request->id)->with('contactos')  ->first();
+
+return view('layouts.clientes.cliente', compact('cliente'));
+
+
+
+    }
+
+
+
+
+
+
     public function GetClientes()
     {
 
