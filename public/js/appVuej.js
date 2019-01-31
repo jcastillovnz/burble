@@ -975,10 +975,10 @@ pais: this.cliente.pais,
 telefono: this.cliente.telefono,
 
 
-nombre_contacto: this.nombre_contacto,
-apellido_contacto: this.apellido_contacto,
-telefono_contacto: this.telefono_contacto,
-email_contacto: this.email_contacto,
+nombre_contacto: this.contacto.nombre,
+apellido_contacto: this.contacto.apellido,
+telefono_contacto: this.contacto.telefono,
+email_contacto: this.contacto.email,
 
   },
 validateStatus: (status) => {
