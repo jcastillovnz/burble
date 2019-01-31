@@ -24,20 +24,20 @@ Registrar un nuevo Cliente
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
 </div>
-<input required="" type="text" class="form-control" v-model="cliente.nombre" placeholder="Nombre de empresa">
+<input required="" type="text" class="form-control" v-model="nuevo.nombre" placeholder="Nombre de empresa">
 </div>
 
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>  </span>
 </div>
-<input v-model="cliente.sitio_web"   type="text" class="form-control" placeholder="Sitio web">
+<input v-model="nuevo.sitio_web"   type="text" class="form-control" placeholder="Sitio web">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-map-marker-alt"></i></i> </span>
 </div>
-<input  v-model="cliente.ciudad"  class="form-control" type="" name="" placeholder="Ciudad">
+<input  v-model="nuevo.ciudad"  class="form-control" type="" name="" placeholder="Ciudad">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -45,7 +45,7 @@ Registrar un nuevo Cliente
 <i class="fas fa-globe-americas"></i>
 </span>
 </div>
-<select  class="form-control"  v-model="cliente.pais">
+<select  class="form-control"  v-model="nuevo.pais">
 <option value="" selected="">Pais</option>
 <option value="Afganistán" id="AF">Afganistán</option>
 <option value="Albania" id="AL">Albania</option>
@@ -292,7 +292,7 @@ Registrar un nuevo Cliente
 <i class="fas fa-phone-square"></i>
 </span>
 </div>
-<input   type="" class="form-control" v-model="cliente.telefono" placeholder="Telefono">
+<input   type="" class="form-control" v-model="nuevo.telefono" placeholder="Telefono">
 </div>
 <br>
 <p align="center"  class="text-primary">
@@ -307,7 +307,7 @@ Datos de contacto
 <i class="fas fa-user"></i>
 </span>
 </div>
-<input required=""  type="" class="form-control" v-model="contacto.nombre" placeholder="Nombre">
+<input required=""  type="" class="form-control" v-model="nuevo.nombre_contacto" placeholder="Nombre">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -315,14 +315,14 @@ Datos de contacto
 <i class="fas fa-user"></i>
 </span>
 </div>
-<input type="" class="form-control" v-model="contacto.apellido" placeholder="Apellido">
+<input type="" class="form-control" v-model="nuevo.apellido_contacto" placeholder="Apellido">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text">
 <i class="fas fa-phone-square"></i></span>
 </div>
-<input required="" type="" class="form-control" v-model="contacto.telefono" placeholder="Telefono">
+<input required="" type="" class="form-control" v-model="nuevo.telefono_contacto" placeholder="Telefono">
 </div>
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
@@ -330,7 +330,7 @@ Datos de contacto
 <i class="fas fa-mail-bulk"></i>
 </span>
 </div>
-<input  required=""  type="email" class="form-control" v-model="contacto.email" placeholder="Email">
+<input  required=""  type="email" class="form-control" v-model="nuevo.email_contacto" placeholder="Email">
 </div>
 </div>
 <div class="modal-footer">

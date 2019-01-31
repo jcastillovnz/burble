@@ -40,16 +40,14 @@ Route::get('/proyecto/tarea/create/', 'ProyectoController@create_tarea');
 
 Route::get('/usuario', 'GestionController@User');
 Route::get('/usuario/update/', 'GestionController@User_update');
-
-
-
-
 Route::get('/usuario/create/', 'GestionController@createUser');
+
+
 
 
 Route::get('/clientes/borrar/', 'ClienteController@Borrar');
 Route::get('/clientes/update/', 'ClienteController@update');
-
+Route::get('/cliente/ ', 'ClienteController@GetCliente');
 
 
 

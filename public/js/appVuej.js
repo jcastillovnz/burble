@@ -729,10 +729,29 @@ el: '#AppClientes',
 
 this.getClientes();
 
+this.getCliente();
+
     },
 data: {
 
  state: 0,
+
+
+nuevo: { 
+    'id':'',
+    'nombre':'', 
+    'sitio_web':'',
+    'ciudad':'',
+    'pais':'',
+    'telefono':'',
+    'nombre_contacto':'', 
+    'apellido_contacto':'',
+    'telefono_contacto':'',
+    'email_contacto':''
+   },
+
+
+
      cliente: { 
     'id':'',
     'nombre':'', 
@@ -743,27 +762,18 @@ data: {
    },
   contacto: { 
     'id':'',
-    'nombre':'', 
-    'apellido':'',
-    'telefono':'',
-    'email':''
+    'nombre_contacto':'', 
+    'apellido_contacto':'',
+    'telefono_contacto':'',
+    'email_contacto':''
    },
 
 
 
-empresa: null,
-sitio_web: null,
-ciudad: null,
-pais: '',
-telefono: null,
-
-
-nombre_contacto: null,
-apellido_contacto: null,
-telefono_contacto: null,
-email_contacto: null,
 
 clientes: [],
+contactos: [],
+
  lists: [],
 
 pagination:{
@@ -832,7 +842,7 @@ this.pagination=  response.data.pagination;
 getCliente: function(dato)  {
 id = document.getElementById('cliente_id').value;
 axios({
-url: '/cliente/',
+url: '/consulta/cliente/',
 method: 'get',
 params: {
 id: id
@@ -841,18 +851,9 @@ id: id
 
 
 
-this.proyecto = response.data;
-this.Rproyecto.id = this.proyecto.id;
-this.Rproyecto.nombre_proyecto = this.proyecto.nombre;
-this.Rproyecto.fecha_recepcion = this.proyecto.fecha_recepcion;
-this.Rproyecto.fecha_entrega = this.proyecto.fecha_entrega;
-this.Rproyecto.presupuesto = this.proyecto.presupuesto;
-this.Rproyecto.comentario = this.proyecto.comentario;
-this.cliente =  this.proyecto.clientes.nombre;
+this.cliente = response.data.cliente;
 
-
-
-
+this.contactos = response.data.contactos;
 
 
 });
@@ -1006,17 +1007,17 @@ var url = '/api/clientes/create/' ;
 
 axios.get( url, {
 params: {
-nombre: this.cliente.nombre,
-sitio_web: this.cliente.sitio_web,
-ciudad: this.cliente.ciudad,
-pais: this.cliente.pais,
-telefono: this.cliente.telefono,
+nombre: this.nuevo.nombre,
+sitio_web: this.nuevo.sitio_web,
+ciudad: this.nuevo.ciudad,
+pais: this.nuevo.pais,
+telefono: this.nuevo.telefono,
 
 
-nombre_contacto: this.contacto.nombre,
-apellido_contacto: this.contacto.apellido,
-telefono_contacto: this.contacto.telefono,
-email_contacto: this.contacto.email,
+nombre_contacto: this.nuevo.nombre_contacto,
+apellido_contacto: this.nuevo.apellido_contacto,
+telefono_contacto: this.nuevo.telefono_contacto,
+email_contacto: this.nuevo.email_contacto,
 
   },
 validateStatus: (status) => {

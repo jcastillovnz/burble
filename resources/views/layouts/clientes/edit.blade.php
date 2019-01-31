@@ -43,12 +43,16 @@ Informacion de cliente
 </div>
 <input v-model="cliente.sitio_web"  :disabled="state == 0"  type="text" class="form-control" placeholder="Sitio web">
 </div>
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-map-marker-alt"></i></i> </span>
 </div>
 <input  :disabled="state == 0" v-model="cliente.ciudad"  class="form-control"  placeholder="Ciudad">
 </div>
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text">
@@ -57,9 +61,9 @@ Informacion de cliente
 </div>
 
 
-<input v-if="cliente.pais"  :disabled="state == 0" v-model="cliente.ciudad"  class="form-control"  placeholder="Ciudad">
+<input v-if="cliente.pais"  :disabled="state == 0"   class="form-control" v-model="cliente.pais"  placeholder="Pais">
 
-<select v-else class="form-control" :disabled="state == 0"  v-model="pais">
+<select v-else class="form-control" :disabled="state == 0"  v-model="cliente.pais">
 <option value="" selected="">Pais</option>
 <option value="Afganistán" id="AF">Afganistán</option>
 <option value="Albania" id="AL">Albania</option>
@@ -299,7 +303,14 @@ Informacion de cliente
 <option value="Zambia" id="ZM">Zambia</option>
 <option value="Zimbabue" id="ZW">Zimbabue</option>
 </select>
+
+
 </div>
+
+
+
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text">

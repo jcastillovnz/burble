@@ -7,10 +7,9 @@
 
 
 <div  id="AppClientes"  class="content">
-
-@include('layouts.clientes.edit')
-
 @include('layouts.clientes.create')
+
+
 
 
 <div class="col-sm-12">
@@ -38,7 +37,7 @@ Datos de cliente
 
 
 
-<form method="GET" class="container-fluid" role="form"  v-on:submit.prevent="update_proyecto()"  >
+<form method="GET" class="container-fluid" role="form"  v-on:submit.prevent="update()"  >
 
 <div class="row">
 
@@ -52,8 +51,8 @@ Datos de cliente
 </span>
 </div>
 
-
-<input type="text" :disabled="state == 0"    class="form-control input-sm"   placeholder="Nombre empresa">
+ 
+<input type="text" :disabled="state == 0"  v-model="cliente.nombre"  class="form-control input-sm"   placeholder="Nombre empresa">
 </div>
 
 
@@ -63,7 +62,7 @@ Datos de cliente
  <i class="fas fa-user"></i>
          </span>
     </div>
-    <input type="text" :disabled="state == 0"    class="form-control input-sm input"   placeholder="Sitio web" >
+    <input type="text" :disabled="state == 0"  v-model="cliente.sitio_web"   class="form-control input-sm input"   placeholder="Sitio web" >
   </div>
 
 
@@ -74,7 +73,7 @@ Datos de cliente
  <i class="fas fa-user"></i>
          </span>
     </div>
-    <input type="text" :disabled="state == 0"    class="form-control input-sm"   placeholder="Ciudad">
+    <input type="text" :disabled="state == 0"   v-model="cliente.ciudad"     class="form-control input-sm"   placeholder="Ciudad">
   </div>
 
 
@@ -84,7 +83,7 @@ Datos de cliente
 <i class="fas fa-clock"></i>
          </span>
     </div>
-    <input  :disabled="state == 0"      title="Presupuesto" type="text"     class="form-control input-sm input" placeholder="Pais">
+    <input  :disabled="state == 0"      title="Presupuesto" type="text"   v-model="cliente.pais"      class="form-control input-sm input" placeholder="Pais">
 
 
   </div>
@@ -98,9 +97,7 @@ Datos de cliente
 </span>
 </div>
    
-  <input  :disabled="state == 0"      title="Presupuesto" type="text"     class="form-control input-sm input" placeholder="Telefono">
-
-
+  <input  :disabled="state == 0"      title="Presupuesto" type="text"   v-model="cliente.telefono"   class="form-control input-sm input" placeholder="Telefono">
   </div>
 
 
@@ -110,7 +107,9 @@ Datos de cliente
 <div class="col-sm-12">
 <div class="btn-group float-right">
 
-<div  id="loader-details-proyecto"   class="loader loader-sm loader-tarea"></div>
+<div  id="loader-edicion-cliente"   class="loader loader-sm "></div>
+
+
 
 
 <button type="button" v-on:click="edicion()"  title="Editar" class="btn btn-light  btn-sm float-right" >
@@ -119,7 +118,8 @@ Datos de cliente
 
 
 
-<button type="submit" id="btn-details-proyecto" :disabled="state == 0"    title="Guardar" class="btn btn-success  btn-sm" >
+
+<button type="submit" id="btn-edicion-cliente" :disabled="state == 0"    title="Guardar" class="btn btn-success  btn-sm" >
 <i class="fas fa-save"></i>
 </button>
 
@@ -149,7 +149,7 @@ Datos de cliente
 
 
 <div class="table-responsive">
-<template   >
+<template  v-if="contactos.length == 0"   >
 
 <center>
 <i class="fas fa-exclamation-circle text-warning"></i>
@@ -164,17 +164,17 @@ No existen contactos en este cliente!
 
 <template   v-else >
 
-
+<p> <i class="fas fa-phone-square text-primary"></i> Datos de Contactos  </p>
 
   <table  class="table table-borderless">
     <thead>
       <tr  >
         <th>#</th>
-        <th>Imagen</th>
-        <th>Tareas</th>
-        <th>Tipo</th>
-        <th>Prioridad</th>
-        <th>Empleado</th>
+      
+        <th> Nombre</th>
+        <th>Apellido</th>
+        <th>Telefono</th>
+        <th>Email</th>
         
 
       </tr>
@@ -188,22 +188,16 @@ No existen contactos en este cliente!
 
 
 
-      <tr  >
-        <td> ID       </td>
-         <td>  
+      <tr v-for="(item, key) in contactos"   >
+        <td>  @{{item.id}}     </td>
+    
 
-       
+        <td>  @{{item.nombre}}   </td>
+        <td>  @{{item.apellido}}    </td>
+        <td> @{{item.telefono}}</td>
+         <td> @{{item.email}}</td>
 
-<img  v-if="tarea.imagen" class="zoom" width="50" height="50"   :src="'{{url ('/img/tareas/fotos/')}}'+'/' +tarea.imagen" alt="Card image cap">
 
-
-<img width="50" height="50" v-else class="zoom" src="{{url ('img/pieza.png')}} " alt="Card image cap">
-</td>
-
-        <td>  NOMBRE   </td>
-        <td>  NOMBRE     </td>
-        <td> NOMBRE </td>
-         <td> NOMBRE </td>
         
         <td>
 <div class="dropdown">
@@ -269,6 +263,7 @@ No existen contactos en este cliente!
 
 
 </div>
+
 
 
 

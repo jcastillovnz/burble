@@ -40,6 +40,7 @@ Route::get('/nuevo_cliente', 'ClienteController@create');
 
 Route::get('/cliente/{id}', 'ClienteController@detalle');
 
+Route::get('/consulta/cliente/', 'ClienteController@GetCliente');
 
 
 
