@@ -1,7 +1,4 @@
 
-
-
-<!-- MODAL EDITAR -->
 <div  class="modal fade "  id="edit_item"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div  class="modal-dialog ">
 <div class="modal-content ">
@@ -52,8 +49,7 @@ Informacion de tarea
 </center>
 
 <div  class="text-center">
-	<p>
-
+<p>
 
 Empleado encargado:
 @{{rellenar.empleado_nombre}}  @{{rellenar.empleado_apellido}}
@@ -239,4 +235,3 @@ Empleado encargado:
 </div>
 </div>
 </div>
-<!-- MODAL EDITAR USUARIO -->

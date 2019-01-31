@@ -38,18 +38,20 @@ Route::get('/proyecto/tarea/create/', 'ProyectoController@create_tarea');
 
 
 
-
-
-
-
 Route::get('/usuario', 'GestionController@User');
-
 Route::get('/usuario/update/', 'GestionController@User_update');
 
 
 
 
 Route::get('/usuario/create/', 'GestionController@createUser');
+
+
+Route::get('/clientes/borrar/', 'ClienteController@Borrar');
+Route::get('/clientes/update/', 'ClienteController@update');
+
+
+
 
 Route::get('/usuario/consulta_mail/', 'GestionController@monitor');
 
@@ -58,7 +60,13 @@ Route::get('/usuarios/consulta/', 'GestionController@list');
 Route::get('/usuarios/delete/', 'GestionController@delete');
 
 
+
+
+
+
 Route::get('/clientes/create/', 'ClienteController@create');
+Route::get('/clientes/', 'ClienteController@GetClientes');
+
 
 
 
@@ -70,7 +78,12 @@ Route::get('/proyectos/', 'ProyectoController@list');
 
 
 Route::get('/proyectos/principal', 'ProyectoController@listPrincipal');
+
+
 Route::get('/proyectos/espera', 'ProyectoController@listEspera');
+
+
+
 Route::get('/proyectos/tareas', 'ProyectoController@listTareas'); 
 
 

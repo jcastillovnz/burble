@@ -27,12 +27,51 @@ class ClienteController extends Controller
     }
 
 
+    public function GetClientes()
+    {
+
+
+  $clientes = Clientes::orderBy('id', 'desc')->paginate(10);
+
+return [
+'pagination'=> [
+'total'=> $clientes->total(),
+'current_page'=> $clientes->currentPage(),
+'per_page'=> $clientes->perPage(),
+'last_page'=> $clientes->lastPage(),
+'from'=> $clientes->firstItem(),
+'to'=> $clientes->lastPage(),
+],
+'clientes'=> $clientes
+];
+
+}
+
+
+
+    public function borrar(Request $request)
+    {
+    
+
+$cliente =Clientes::destroy($request->id);
+
+return  $cliente;
+
+
+
+    }
+
+
+
+
+
+
    public function create( Request $request )
     {
 
 
 $cliente = new clientes();
-$cliente->nombre=  $request->empresa;
+$cliente->nombre=  $request->nombre;
 $cliente->ciudad=$request->ciudad;
 $cliente->sitio_web=$request->sitio_web;
 $cliente->pais=$request->pais;
@@ -63,13 +102,46 @@ $data = "false";
 return response()->json($data); 
 
 }
+}
+
+
+
+   public function update( Request $request )
+    {
 
 
 
 
 
 
-    }
+$cliente = clientes::where('id', $request->id)->first();
+$cliente->nombre=  $request->nombre;
+$cliente->ciudad=$request->ciudad;
+$cliente->sitio_web=$request->sitio_web;
+$cliente->pais=$request->pais;
+$cliente->telefono=$request->telefono;
+$cliente->save();
+
+
+
+if ($cliente->save()==true) {
+$data = "true";
+return response()->json($data); 
+
+}
+
+
+else {
+
+$data = "false";
+return response()->json($data); 
+
+}
+}
+
+
+
+
 
 
 

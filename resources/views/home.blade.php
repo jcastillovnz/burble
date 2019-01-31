@@ -1,6 +1,10 @@
+
 @extends('layouts.app')
 
 @section('content')
+
+
+
 
 
 
@@ -20,6 +24,7 @@
 <button title="Nuevo proyecto" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
 </p>
 </div>
+
 
 
 
@@ -476,6 +481,9 @@ Registrar un nueva tarea
 </div>
 </div>
 <div class="modal-body">
+
+
+  
 <div class="input-group  col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
@@ -832,6 +840,7 @@ Empleado encargado:
 
 
 </div>
+
 
 
 

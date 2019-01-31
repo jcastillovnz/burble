@@ -118,7 +118,10 @@ Informacion de proyecto
 <p class="text-right">
 <a :href="'/detalle/'+rellenar.id"  >
 <i class="fas fa-caret-right"></i>
- Ampliar detalles
+<a href="">
+Ver mas detalles
+</a>
+
 </a>
 </p>
 </div>

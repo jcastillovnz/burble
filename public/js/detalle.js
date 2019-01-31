@@ -304,7 +304,6 @@ this.state_edit = 0;
 }
 ,
 paginar: function (page) {
-
 axios({
   url: '/proyecto/paginar/tareas?page='+page,
   method: 'get',
@@ -314,9 +313,11 @@ id: this.proyecto.id
 }).then(response => {
   this.tareas = response.data.tareas.data
   this.pagination=  response.data.pagination
-
 });
 },
+
+
+
 edicion: function(item) {
 
 if (this.state == 0) {

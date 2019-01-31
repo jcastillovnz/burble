@@ -83,11 +83,11 @@ getUsers: function(dato)  {
  var urlUsers = '/api/usuarios/consulta/';
   axios.get(urlUsers).then(response => {
   this.lista_users = response.data
-
-
 });
  }
 ,
+
+
 getListaPrincipal: function(dato)  {
   document.getElementById("loader").style.display = "none";;
 
@@ -368,8 +368,6 @@ function()
 
 sendData: function(e) {
 
-
-
 var url = '/api/proyecto/create/' ;
 axios.get( url, {
   params: {
@@ -380,14 +378,8 @@ fecha_entrega: this.Rproyecto.fecha_entrega,
 presupuesto: this.Rproyecto.presupuesto,
 comentario: this.Rproyecto.comentario,
 
-
- 
-
-
-
-
 }
-  ,
+ ,
 validateStatus: (status) => {
         return true; // I'm always returning true, you may want to do it depending on the status received
       },
@@ -733,29 +725,241 @@ var notification = alertify.notify(' <center> <strong style="color:white;"> <i c
 
 var AppClientes = new Vue({
 el: '#AppClientes',
+  mounted(){
+
+this.getClientes();
+
+    },
 data: {
+
+ state: 0,
+     cliente: { 
+    'id':'',
+    'nombre':'', 
+    'sitio_web':'',
+    'ciudad':'',
+    'pais':'',
+    'telefono':''
+   },
+  contacto: { 
+    'id':'',
+    'nombre':'', 
+    'apellido':'',
+    'telefono':'',
+    'email':''
+   },
+
+
+
 empresa: null,
 sitio_web: null,
 ciudad: null,
 pais: '',
 telefono: null,
+
+
 nombre_contacto: null,
 apellido_contacto: null,
 telefono_contacto: null,
 email_contacto: null,
 
+clientes: [],
+ lists: [],
+
+pagination:{
+'total': 0,
+'current_page': 0,
+'per_page': 0,
+'last_page': 0,
+'from': 0,
+'to': 0
+}
+
+
+
   },
-  methods: {
-    enviar: function (event) {
-     document.getElementById('btn-clientes').disabled = true;
+
+computed:{
+isActived: function () {
+
+ return  this.pagination.current_page;
+},
+
+pagesNumber: function () {
+
+if (!this.pagination.to) {
+return [];
+}
+
+var from = this.pagination.current_page - 2;
+
+if (from <1) {
+  from=1;
+}
+
+var to = from + (2*2 );
+if (to >=this.pagination.last_page) {
+
+to =this.pagination.last_page
+
+}
+
+var pagesArray = [];
+
+while ( from <= to){
+pagesArray.push(from);
+from++;
+}
+return pagesArray;
+
+}
+
+}
+,
+methods: {
+
+getClientes: function(dato)  {
+var urlClientes = '/api/clientes/';
+axios.get(urlClientes).then(response => {
+this.lists= response.data.clientes.data;
+
+this.pagination=  response.data.pagination;
+
+});
+},
+
+paginar: function (page) {
+axios({
+  url: '/api/clientes?page='+page,
+  method: 'get',
+}).then(response => {
+this.lists= response.data.clientes.data;
+this.pagination=  response.data.pagination;
+
+});
+},
+changePage: function (page) {
+this.pagination.current_page=page;
+this.paginar(page);
+}
+,
+
+mostrar: function (item) {
+
+$('.clienteEdit').modal('show');
+
+this.cliente.id = item.id;
+this.cliente.nombre = item.nombre;
+this.cliente.sitio_web = item.sitio_web;
+this.cliente.ciudad = item.ciudad;
+this.cliente.pais = item.pais;
+this.cliente.telefono = item.telefono;
+},
+
+update: function(e) {
+
+
+
+
+
+document.getElementById('btn-edicion-cliente').disabled = true;
+document.getElementById('loader-edicion-cliente').style.display="block"
+
+var url = '/api/clientes/update/' ;
+axios.get( url, {
+params: {
+id: this.cliente.id,
+nombre: this.cliente.nombre,
+sitio_web: this.cliente.sitio_web,
+ciudad: this.cliente.ciudad,
+pais: this.cliente.pais,
+telefono: this.cliente.telefono,
+
+},
+validateStatus: (status) => {
+return true; // I'm always returning true, you may want to do it depending on the status received
+},
+}).then(response => {
+
+
+document.getElementById('btn-edicion-cliente').disabled = false;
+document.getElementById('loader-edicion-cliente').style.display="none"
+this.state= 0;
+
+
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+this.getClientes();
+
+
+
+})
+
+
+
+;
+
+
+
+
+
+
+},
+
+
+edicion: function(cliente) {
+if (this.state == 0) {
+this.state = 1;
+console.log(this.state);
+  } else{
+this.state = 0;
+}
+},
+
+borrar: function(cliente) {
+
+
+alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar al usuario ' +cliente.nombre+ '  del sistema?' 
+,() => {
+axios({
+  url: '/api/clientes/borrar/',
+  method: 'get',
+  params: {
+ id: cliente.id
+}
+}).then(function (response) {
+
+AppClientes.getClientes();
+
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Eliminado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+
+
+})}, function(){ });
+
+
+
+
+
+
+
+},
+
+
+close: function(item) {
+$('.clienteEdit').modal('hide');
+this.clear(item);
+if (this.state == 1) {
+this.state = 0;
+} 
+} 
+,
+
+
+ enviar: function (event) {
+document.getElementById('btn-clientes').disabled = true;
 document.getElementById('loader-sm').style.display="block"
 this.read()
-
-
-
-
-
-    },
+},
 
 
 read: function(e) {
@@ -763,16 +967,19 @@ read: function(e) {
 var url = '/api/clientes/create/' ;
 
 axios.get( url, {
-  params: {
- empresa: this.empresa,
-sitio_web: this.sitio_web,
-ciudad: this.ciudad,
-pais: this.pais,
-telefono: this.telefono,
+params: {
+nombre: this.cliente.nombre,
+sitio_web: this.cliente.sitio_web,
+ciudad: this.cliente.ciudad,
+pais: this.cliente.pais,
+telefono: this.cliente.telefono,
+
+
 nombre_contacto: this.nombre_contacto,
 apellido_contacto: this.apellido_contacto,
 telefono_contacto: this.telefono_contacto,
 email_contacto: this.email_contacto,
+
   },
 validateStatus: (status) => {
         return true; // I'm always returning true, you may want to do it depending on the status received
@@ -820,6 +1027,11 @@ document.getElementById('btn-clientes').disabled = false;
 
 
 
+
+
+
+
+
 /*GESTIONAR USUARIOS*/
 var Gestionusuarios = new Vue({ 
     el: '#AppUsuarios',
@@ -855,17 +1067,88 @@ this.getUsers();
     'contacto_ambulancia':''
    },
 
-     id:''
+     id:'',
 
-  },
+pagination:{
+'total': 0,
+'current_page': 0,
+'per_page': 0,
+'last_page': 0,
+'from': 0,
+'to': 0
+}
+
+},
+
+
+computed:{
+isActived: function () {
+
+ return  this.pagination.current_page;
+},
+
+pagesNumber: function () {
+
+if (!this.pagination.to) {
+return [];
+}
+
+var from = this.pagination.current_page - 2;
+
+if (from <1) {
+  from=1;
+}
+
+var to = from + (2*2 );
+if (to >=this.pagination.last_page) {
+
+to =this.pagination.last_page
+
+}
+
+var pagesArray = [];
+
+while ( from <= to){
+pagesArray.push(from);
+from++;
+}
+return pagesArray;
+
+}
+
+}
+,
+
+
+
 
 methods: {
 getUsers: function(dato)  {
 var urlUsers = '/api/usuarios/consulta/';
 axios.get(urlUsers).then(response => {
-this.lists = response.data
+
+this.lists= response.data.usuarios.data;
+this.pagination=  response.data.pagination;
+
 });
 },
+
+
+paginar: function (page) {
+axios({
+  url: '/api/usuarios/consulta?page='+page,
+  method: 'get',
+}).then(response => {
+this.lists= response.data.usuarios.data;
+this.pagination=  response.data.pagination;
+
+});
+},
+changePage: function (page) {
+this.pagination.current_page=page;
+this.paginar(page);
+}
+,
 
 eliminar: function(dato)  {
 alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar al usuario ' +dato.name+ ' '+dato.apellido+' del sistema?' 
@@ -967,6 +1250,8 @@ document.getElementById('loader-edicion').style.display="none";
 }
 });
 },
+
+
 
 mostrar: function(item) {
 $('#editar').modal('show');

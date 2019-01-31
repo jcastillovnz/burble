@@ -10,7 +10,9 @@ use Carbon\Carbon;
 use App\File;
 use App\lista_principal;
 use App\lista_espera;
-
+use Session;
+use Auth;
+use DB;
 class GestionController extends Controller
 {
     //
@@ -57,8 +59,27 @@ return response()->json($user);
 public function list(Request $request)
 {
 
-$usuarios=User::all();
-return $usuarios;
+
+$usuarios = User::orderBy('id', 'desc')->paginate(8);
+
+return [
+'pagination'=> [
+'total'=> $usuarios->total(),
+'current_page'=> $usuarios->currentPage(),
+'per_page'=> $usuarios->perPage(),
+'last_page'=> $usuarios->lastPage(),
+'from'=> $usuarios->firstItem(),
+'to'=> $usuarios->lastPage(),
+],
+'usuarios'=> $usuarios
+];
+
+
+
+
+
+
+
 
 }
 
