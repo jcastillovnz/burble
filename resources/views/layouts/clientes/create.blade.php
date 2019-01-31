@@ -1,10 +1,10 @@
 
 
 
-
+<div id="AppClientes">
 
 <!-- MODAL NUEVO CLIENTE -->
-<div  id="AppClientes"   class="modal fade nuevoCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div     class="modal fade nuevoCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-sm-8">
  <div  id="AppClientes" class="modal-content">
 <form  v-on:submit.prevent="enviar(this)"    method="GET" class="hidden" role="form"     >
@@ -14,7 +14,7 @@
 <i class="fas fa-suitcase"></i>
 
 <strong>
-Registrar un nuevo Cliente
+Registrar un nuevo Cliente   @{{state}}
 </strong>
 
 <button type="button" class="close float-right" data-dismiss="modal">&times;</button></p>
@@ -352,3 +352,4 @@ Datos de contacto
 </div>
 </div>
 <!-- MODAL NUEVO CLIENTE -->
+</div>

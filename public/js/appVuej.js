@@ -859,9 +859,6 @@ this.cliente.telefono = item.telefono;
 update: function(e) {
 
 
-
-
-
 document.getElementById('btn-edicion-cliente').disabled = true;
 document.getElementById('loader-edicion-cliente').style.display="block"
 
@@ -947,7 +944,9 @@ var notification = alertify.notify(' <center> <strong style="color:white;"> <i c
 
 close: function(item) {
 $('.clienteEdit').modal('hide');
-this.clear(item);
+
+
+
 if (this.state == 1) {
 this.state = 0;
 } 

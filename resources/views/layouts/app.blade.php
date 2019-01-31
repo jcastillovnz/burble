@@ -185,6 +185,12 @@
 </body>
 
 
+
+
+
+
+
+
 @include('layouts.clientes.create')
 
 
