@@ -1,25 +1,45 @@
 
 
 
-<div id="AppClientes">
+
 
 <!-- MODAL NUEVO CLIENTE -->
 <div     class="modal fade nuevoCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-sm-8">
- <div  id="AppClientes" class="modal-content">
+<div   class="modal-content">
 <form  v-on:submit.prevent="enviar(this)"    method="GET" class="hidden" role="form"     >
 <div class="modal-header ">
-<div class="col-sm-12 ">
-<p align="center" class="text-primary">
+
+
+
+<div class="col-sm-12 text-primary">
+
+
+
 <i class="fas fa-suitcase"></i>
 
 <strong>
 Registrar un nuevo Cliente   
 
-<button type="button" class="close float-right" data-dismiss="modal">&times;</button></p>
+<button type="button" class="close float-right" data-dismiss="modal">&times;</button>
+
+</strong>
+
+
+
+
+
+
+
 </div>
 </div>
+
+
 <div   class="modal-body">
+<!--  -->
+
+
+
 <div class="input-group  col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
@@ -27,24 +47,39 @@ Registrar un nuevo Cliente
 <input required="" type="text" class="form-control" v-model="nuevo.nombre" placeholder="Nombre de empresa">
 </div>
 
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>  </span>
 </div>
 <input v-model="nuevo.sitio_web"   type="text" class="form-control" placeholder="Sitio web">
 </div>
+
+
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-map-marker-alt"></i></i> </span>
 </div>
-<input  v-model="nuevo.ciudad"  class="form-control" type="" name="" placeholder="Ciudad">
+<input  v-model="nuevo.ciudad"  class="form-control" type=""  placeholder="Ciudad">
 </div>
+
+
+
+
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text">
 <i class="fas fa-globe-americas"></i>
 </span>
 </div>
+
+
+
 <select  class="form-control"  v-model="nuevo.pais">
 <option value="" selected="">Pais</option>
 <option value="Afganistán" id="AF">Afganistán</option>
@@ -286,6 +321,11 @@ Registrar un nuevo Cliente
 <option value="Zimbabue" id="ZW">Zimbabue</option>
 </select>
 </div>
+
+
+
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text">
@@ -295,12 +335,17 @@ Registrar un nuevo Cliente
 <input   type="" class="form-control" v-model="nuevo.telefono" placeholder="Telefono">
 </div>
 <br>
+
+
 <p align="center"  class="text-primary">
 <i class="fas fa-phone-square"></i>
 <strong>
 Datos de contacto
 </strong>
 </p>
+
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text">
@@ -309,6 +354,9 @@ Datos de contacto
 </div>
 <input required=""  type="" class="form-control" v-model="nuevo.nombre_contacto" placeholder="Nombre">
 </div>
+
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text">
@@ -317,6 +365,9 @@ Datos de contacto
 </div>
 <input type="" class="form-control" v-model="nuevo.apellido_contacto" placeholder="Apellido">
 </div>
+
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text">
@@ -324,6 +375,10 @@ Datos de contacto
 </div>
 <input required="" type="" class="form-control" v-model="nuevo.telefono_contacto" placeholder="Telefono">
 </div>
+
+
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"   class="input-group-text">
@@ -332,7 +387,24 @@ Datos de contacto
 </div>
 <input  required=""  type="email" class="form-control" v-model="nuevo.email_contacto" placeholder="Email">
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  -->
 </div>
+
+
 <div class="modal-footer">
 <div class="btn btn-group  ">
 <div id="loader-sm" class="loader loader-sm "></div>
@@ -351,4 +423,3 @@ Datos de contacto
 </div>
 </div>
 <!-- MODAL NUEVO CLIENTE -->
-</div>

@@ -10,7 +10,15 @@
 
  <div  id="AppClientes"  class="col-sm-4">
 
- 
+
+
+@include('layouts.clientes.edit')
+@include('layouts.clientes.create')
+
+
+
+
+
 <p style="font-size: 17px;" align="left">
   <strong ><i class="fas fa-cogs text-info"></i>  Clientes</strong>   
 </p>
@@ -84,11 +92,11 @@
 
 
 
+
+
 </div>
 
-@include('layouts.clientes.edit')
 
-@include('layouts.clientes.create')
 
   </div>
 

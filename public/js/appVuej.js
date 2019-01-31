@@ -840,7 +840,11 @@ this.pagination=  response.data.pagination;
 
 
 getCliente: function(dato)  {
+
+  
 id = document.getElementById('cliente_id').value;
+
+
 axios({
 url: '/consulta/cliente/',
 method: 'get',
