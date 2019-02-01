@@ -1026,12 +1026,12 @@ $('.edit_Contacto').modal('show');
 
 
 
-
+console.log(contacto.nom);
 this.contacto.id = '';
-this.contacto.nombre = this.contacto.nombre;
-this.contacto.apellido = this.contacto.apellido;
-this.contacto.telefono = this.contacto.telefono;
-this.contacto.email = this.contacto.email;
+this.contacto.nombre = contacto.nombre;
+this.contacto.apellido = contacto.apellido;
+this.contacto.telefono = contacto.telefono;
+this.contacto.email = contacto.email;
 
 
 

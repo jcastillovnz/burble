@@ -44,7 +44,7 @@ Informacion de contacto
 </div>
 <input required=""  type="" class="form-control" v-model="contacto.nombre" placeholder="Nombre">
 </div>
-
+@{{contacto.nombre }}
 
 
 <div class="input-group col-sm-12">
