@@ -28,7 +28,6 @@
 <tr >
 <th scope="col"># </th>
 <th scope="col" >Cliente</th>
-<th scope="col">Ciudad</th>
 <th scope="col">Pais</th>
 <th scope="col">Accion</th>
 
@@ -43,9 +42,7 @@
 <td> 
 @{{item.nombre}}
 </td>
-<td>
-@{{item.ciudad}}
-</td>
+
 <td>
 @{{item.pais}}
 </td>

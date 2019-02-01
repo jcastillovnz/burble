@@ -142,8 +142,6 @@
 
 
 
-
-
 <ul class="navbar-nav  my-lg-0">
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('/home') }}"><i class="fas fa-home"></i> Inicio <span class="sr-only">(current)</span></a>

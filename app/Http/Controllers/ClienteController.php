@@ -125,6 +125,8 @@ $contacto->nombre=  $request->nombre_contacto;
 $contacto->apellido=  $request->apellido_contacto;
 $contacto->telefono=  $request->telefono_contacto;
 $contacto->email=  $request->email_contacto;
+$contacto->clientes_id=  $cliente->id;
+
 $contacto->save();
 
 

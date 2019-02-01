@@ -51,6 +51,13 @@ Route::get('/cliente/ ', 'ClienteController@GetCliente');
 
 
 
+Route::get('/contactos/create/', 'ContactoController@create');
+Route::get('/contactos/borrar/', 'ContactoController@delete');
+
+
+
+
+
 Route::get('/usuario/consulta_mail/', 'GestionController@monitor');
 
 Route::get('/usuarios/consulta/', 'GestionController@list');

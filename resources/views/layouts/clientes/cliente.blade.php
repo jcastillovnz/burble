@@ -11,14 +11,11 @@
 
 
 
-
 <div class="col-sm-12">
 <div style="padding-left: 1%;  font-size: 17px;" align="left" class="">
-<i class="fas fa-user-cog text-info"></i>
-Datos de cliente
 
 
-<button title="Nueva tarea" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevaTarea"> <i class="fas fa-plus"></i> </button>
+
 
 
 <input value="{{$cliente->id}}"  id="cliente_id" class="invisible" >
@@ -42,6 +39,15 @@ Datos de cliente
 <div class="row">
 
 <div class="col-sm-4">
+
+
+
+<center>
+<i class="fas fa-user-cog text-info"></i>
+Datos de cliente
+</center>
+
+
 
 
 <div class="input-group mb-3">
@@ -146,8 +152,6 @@ Datos de cliente
 
 
 
-
-
 <div class="table-responsive">
 <template  v-if="contactos.length == 0"   >
 
@@ -164,7 +168,15 @@ No existen contactos en este cliente!
 
 <template   v-else >
 
-<p> <i class="fas fa-phone-square text-primary"></i> Datos de Contactos  </p>
+<p> <i class="fas fa-phone-square text-info"></i> Datos de Contactos  
+
+
+
+<button title="Nuevo contacto" type="button" @click="nuevoContacto(cliente)"   class="btn btn-light  rounded-circle float-right " > <i class="fas fa-plus"></i></button>
+
+
+
+</p>
 
   <table  class="table table-borderless">
     <thead>
@@ -190,8 +202,6 @@ No existen contactos en este cliente!
 
       <tr v-for="(item, key) in contactos"   >
         <td>  @{{item.id}}     </td>
-    
-
         <td>  @{{item.nombre}}   </td>
         <td>  @{{item.apellido}}    </td>
         <td> @{{item.telefono}}</td>
@@ -206,9 +216,9 @@ No existen contactos en este cliente!
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
 
-<a class="dropdown-item"   v-on:click="show(tarea)"  >Detalle</a>
+<a class="dropdown-item"   v-on:click="show_Contacto(item)"  >Detalle</a>
 
-<a class="dropdown-item"  v-on:click="eliminar(tarea)"  > Eliminar</a>
+<a class="dropdown-item"  v-on:click="eliminar_contacto(item)"  > Eliminar</a>
 
 </div>
 </div>  
@@ -260,6 +270,9 @@ No existen contactos en este cliente!
 
 
 </form>
+@include('layouts.clientes.contactos.create')
+@include('layouts.clientes.contactos.edit')
+
 
 
 </div>

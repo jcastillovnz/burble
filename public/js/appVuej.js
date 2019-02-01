@@ -815,7 +815,6 @@ to =this.pagination.last_page
 }
 
 var pagesArray = [];
-
 while ( from <= to){
 pagesArray.push(from);
 from++;
@@ -841,7 +840,7 @@ this.pagination=  response.data.pagination;
 
 getCliente: function(dato)  {
 
-  
+
 id = document.getElementById('cliente_id').value;
 
 
@@ -961,8 +960,6 @@ this.state = 0;
 },
 
 borrar: function(cliente) {
-
-
 alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar al usuario ' +cliente.nombre+ '  del sistema?' 
 ,() => {
 axios({
@@ -984,6 +981,100 @@ var notification = alertify.notify(' <center> <strong style="color:white;"> <i c
 
 },
 
+nuevoContacto: function(cliente) {
+
+
+$('.nuevoContacto').modal('show');
+this.nuevo.id = cliente.id
+
+
+
+} 
+,
+
+eliminar_contacto: function(contacto) {
+alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar al usuario ' +contacto.nombre+ '  del sistema?' 
+,() => {
+axios({
+
+
+
+  url: '/api/contactos/borrar/',
+  method: 'get',
+  params: {
+ id: contacto.id
+}
+}).then(function (response) {
+
+AppClientes.getCliente();
+
+
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Eliminado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+
+
+})}, function(){ });
+
+},
+
+
+show_Contacto: function(contacto) {
+
+
+
+$('.edit_Contacto').modal('show');
+
+
+
+
+this.contacto.id = '';
+this.contacto.nombre = this.contacto.nombre;
+this.contacto.apellido = this.contacto.apellido;
+this.contacto.telefono = this.contacto.telefono;
+this.contacto.email = this.contacto.email;
+
+
+
+
+
+
+} 
+,
+
+
+close_contacto: function(item) {
+$('.nuevoContacto').modal('hide');
+
+
+
+this.nuevo.id = '';
+this.nuevo.nombre_contacto = '';
+this.nuevo.apellido_contacto = '';
+this.nuevo.telefono_contacto = '';
+this.nuevo.email_contacto = '';
+
+
+
+
+this.contacto.id = '';
+this.contacto.nombre = '';
+this.contacto.apellido = '';
+this.contacto.telefono = '';
+this.contacto.email = '';
+
+
+
+
+
+} 
+,
+
+
+
+
+
+
+
 
 close: function(item) {
 $('.clienteEdit').modal('hide');
@@ -1003,6 +1094,70 @@ document.getElementById('btn-clientes').disabled = true;
 document.getElementById('loader-sm').style.display="block"
 this.create()
 },
+
+
+create_contacto: function(e) {
+
+
+
+var url = '/api/contactos/create/' ;
+
+axios.get( url, {
+params: {
+id: this.nuevo.id,
+nombre_contacto: this.nuevo.nombre_contacto,
+apellido_contacto: this.nuevo.apellido_contacto,
+telefono_contacto: this.nuevo.telefono_contacto,
+email_contacto: this.nuevo.email_contacto,
+
+  },
+validateStatus: (status) => {
+        return true; // I'm always returning true, you may want to do it depending on the status received
+      },
+    }).then(response => {
+
+
+
+document.getElementById('loadercreate-contacto').style.display="none"
+$('.nuevoCliente').modal('hide')
+document.getElementById('btncreate-contacto').disabled = false;
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+ //location ="/home";
+
+AppClientes.getCliente();
+AppClientes.close_contacto();
+    
+
+ }).catch(error => {
+
+
+
+document.getElementById('loadercreate-contacto').style.display="none"
+$('.nuevoCliente').modal('hide')
+document.getElementById('btncreate-contacto').disabled = false;
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+
+
+AppClientes.getCliente();
+AppClientes.close_contacto();
+
+
+
+   })
+
+    ;
+
+
+
+  }
+,
+
+
+
+
+
+
+
 
 
 create: function(e) {
