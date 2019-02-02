@@ -13,18 +13,8 @@
 
 <div class="col-sm-12">
 <div style="padding-left: 1%;  font-size: 17px;" align="left" class="">
-
-
-
-
-
 <input value="{{$cliente->id}}"  id="cliente_id" class="invisible" >
-
 </div>
-
-
-
-
 
 
 </div>
@@ -42,11 +32,9 @@
 
 
 
-<center>
-<i class="fas fa-user-cog text-info"></i>
-Datos de cliente
-</center>
-
+<p style="font-size: 18px;">
+<strong>Informacion de cliente</strong>
+</p>
 
 
 
@@ -155,10 +143,26 @@ Datos de cliente
 <div class="table-responsive">
 <template  v-if="contactos.length == 0"   >
 
+
+<p style="font-size: 18px;"> <strong> Contactos</strong>
+
+
+
+<button title="Nuevo contacto" type="button" @click="nuevoContacto(cliente)"   class="btn btn-light  rounded-circle float-right " > <i class="fas fa-plus"></i></button>
+
+
+
+</p>
+
+
 <center>
 <i class="fas fa-exclamation-circle text-warning"></i>
 <strong>
 No existen contactos en este cliente!
+
+
+
+
 
 </strong>
 </center>
@@ -168,7 +172,7 @@ No existen contactos en este cliente!
 
 <template   v-else >
 
-<p> <i class="fas fa-phone-square text-info"></i> Datos de Contactos  
+<p> <strong> Contactos</strong>
 
 
 
@@ -186,7 +190,7 @@ No existen contactos en este cliente!
         <th> Nombre</th>
         <th>Apellido</th>
         <th>Telefono</th>
-        <th>Email</th>
+      
         
 
       </tr>
@@ -205,7 +209,7 @@ No existen contactos en este cliente!
         <td>  @{{item.nombre}}   </td>
         <td>  @{{item.apellido}}    </td>
         <td> @{{item.telefono}}</td>
-         <td> @{{item.email}}</td>
+       
 
 
         
@@ -216,7 +220,7 @@ No existen contactos en este cliente!
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
 
-<a class="dropdown-item"   v-on:click="show_Contacto(item)"  >Detalle</a>
+<a class="dropdown-item"   v-on:click="mostrar_Contacto(item)"  >Detalle</a>
 
 <a class="dropdown-item"  v-on:click="eliminar_contacto(item)"  > Eliminar</a>
 
@@ -270,7 +274,13 @@ No existen contactos en este cliente!
 
 
 </form>
+
+
+
 @include('layouts.clientes.contactos.create')
+
+
+
 @include('layouts.clientes.contactos.edit')
 
 

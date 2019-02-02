@@ -10,6 +10,19 @@
 
  <div  id="AppClientes"  class="col-sm-4">
 
+<div class="container">
+<p align="center">
+
+
+ <strong  style="font-size: 18px;"> Clientes</strong>   
+
+
+ <button  title="Nuevo usuario"  class="btn btn-light  btn-sm rounded-circle float-right" data-toggle="modal"data-target=".nuevoCliente"><i class="fas fa-plus"></i> </button>
+
+</p>
+
+
+</div>
 
 
 @include('layouts.clientes.edit')
@@ -19,9 +32,12 @@
 
 
 
-<p style="font-size: 17px;" align="left">
-  <strong ><i class="fas fa-cogs text-info"></i>  Clientes</strong>   
-</p>
+
+
+
+
+
+
 <div    class="table  table-responsive" >
 <table   class="table table-lg table-borderless table-hover">
 <thead>
@@ -65,7 +81,7 @@
 
 
 
-
+<hr>
 
 
 <nav aria-label="Page navigation example ">
@@ -92,10 +108,7 @@
 
 
 </div>
-
-
-
-  </div>
+</div>
 
 
 
@@ -108,17 +121,15 @@
 
   <div  id="AppUsuarios"  class="col-sm-8">
 
+<p align="center">
+ <strong style="font-size: 18px;">    Usuarios</strong>   
 
 
+ <button  title="Nuevo usuario"  class="btn btn-light  btn-sm rounded-circle float-right" data-toggle="modal"data-target=".nuevoUsuario"><i class="fas fa-plus"></i> </button>
+
+</p>
 
 
-<h5 >  
-
-
-<small>
-<button  title="Nuevo usuario"  class="btn btn-light  btn-sm rounded-circle float-right" data-toggle="modal"data-target=".nuevoUsuario"><i class="fas fa-plus"></i> </button>
-</small>
-</h5>
 
 
 

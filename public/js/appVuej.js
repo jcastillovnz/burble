@@ -735,7 +735,7 @@ this.getCliente();
 data: {
 
  state: 0,
-
+state_contacto:0,
 
 nuevo: { 
     'id':'',
@@ -774,7 +774,7 @@ nuevo: {
 clientes: [],
 contactos: [],
 
- lists: [],
+lists: [],
 
 pagination:{
 'total': 0,
@@ -981,6 +981,62 @@ var notification = alertify.notify(' <center> <strong style="color:white;"> <i c
 
 },
 
+
+
+update_contacto: function(e) {
+document.getElementById('btn-edicion-contacto').disabled = true;
+document.getElementById('loader-edicion-contacto').style.display="block"
+
+var url = '/api/contacto/update/' ;
+axios.get( url, {
+params: {
+id: this.contacto.id,
+nombre: this.contacto.nombre_contacto,
+apellido: this.contacto.apellido_contacto,
+email: this.contacto.email_contacto,
+telefono: this.contacto.telefono_contacto,
+
+
+
+},
+validateStatus: (status) => {
+return true; // I'm always returning true, you may want to do it depending on the status received
+},
+}).catch(error => {
+
+document.getElementById('btn-edicion-contacto').disabled = false;
+document.getElementById('loader-edicion-contacto').style.display="none";
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+
+
+}).then(response => {
+if (response.data == "true") {
+
+
+  AppClientes.getCliente();
+document.getElementById('btn-edicion-contacto').disabled = false;
+document.getElementById('loader-edicion-contacto').style.display="none"
+this.state_contacto= 0;
+
+
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+
+
+}
+else
+{
+document.getElementById('btn-edicion-contacto').disabled = false;
+document.getElementById('loader-edicion-contacto').style.display="none";
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+}
+});
+},
+
+
+
+
+
 nuevoContacto: function(cliente) {
 
 
@@ -991,6 +1047,22 @@ this.nuevo.id = cliente.id
 
 } 
 ,
+
+edicion_contacto: function() {
+
+
+if (this.state_contacto == 0) {
+this.state_contacto = 1;
+
+  } else{
+this.state_contacto = 0;
+}
+
+
+},
+
+
+
 
 eliminar_contacto: function(contacto) {
 alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar al usuario ' +contacto.nombre+ '  del sistema?' 
@@ -1018,20 +1090,16 @@ var notification = alertify.notify(' <center> <strong style="color:white;"> <i c
 },
 
 
-show_Contacto: function(contacto) {
-
-
+mostrar_Contacto: function(item) {
 
 $('.edit_Contacto').modal('show');
 
 
-
-console.log(contacto.nom);
-this.contacto.id = '';
-this.contacto.nombre = contacto.nombre;
-this.contacto.apellido = contacto.apellido;
-this.contacto.telefono = contacto.telefono;
-this.contacto.email = contacto.email;
+this.contacto.id = item.id;
+this.contacto.nombre_contacto = item.nombre;
+this.contacto.apellido_contacto = item.apellido;
+this.contacto.telefono_contacto = item.telefono;
+this.contacto.email_contacto = item.email;
 
 
 
@@ -1044,7 +1112,7 @@ this.contacto.email = contacto.email;
 
 close_contacto: function(item) {
 $('.nuevoContacto').modal('hide');
-
+$('.edit_Contacto').modal('hide');
 
 
 this.nuevo.id = '';
@@ -1057,10 +1125,10 @@ this.nuevo.email_contacto = '';
 
 
 this.contacto.id = '';
-this.contacto.nombre = '';
-this.contacto.apellido = '';
-this.contacto.telefono = '';
-this.contacto.email = '';
+this.contacto.nombre_contacto = '';
+this.contacto.apellido_contacto = '';
+this.contacto.telefono_contacto = '';
+this.contacto.email_contacto = '';
 
 
 
@@ -1098,6 +1166,8 @@ this.create()
 
 create_contacto: function(e) {
 
+document.getElementById('loader-create-contacto').style.display="block";
+document.getElementById('btn-create-contacto').disabled = true;
 
 
 var url = '/api/contactos/create/' ;
@@ -1118,9 +1188,9 @@ validateStatus: (status) => {
 
 
 
-document.getElementById('loadercreate-contacto').style.display="none"
+document.getElementById('loader-create-contacto').style.display="none"
 $('.nuevoCliente').modal('hide')
-document.getElementById('btncreate-contacto').disabled = false;
+document.getElementById('btn-create-contacto').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
  //location ="/home";
 
@@ -1131,10 +1201,9 @@ AppClientes.close_contacto();
  }).catch(error => {
 
 
-
-document.getElementById('loadercreate-contacto').style.display="none"
+document.getElementById('loader-create-contacto').style.display="none"
 $('.nuevoCliente').modal('hide')
-document.getElementById('btncreate-contacto').disabled = false;
+document.getElementById('btn-create-contacto').disabled = false;
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
 
 
@@ -1143,21 +1212,12 @@ AppClientes.close_contacto();
 
 
 
-   })
-
-    ;
+   });
 
 
 
   }
 ,
-
-
-
-
-
-
-
 
 
 create: function(e) {

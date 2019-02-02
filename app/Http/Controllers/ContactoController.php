@@ -42,6 +42,46 @@ return response()->json($data);
 
 
 
+   public function update( Request $request )
+    {
+
+
+
+
+$contacto = contactos::where('id', $request->id )->first();
+
+
+$contacto->nombre=  $request->nombre;
+$contacto->apellido=  $request->apellido;
+$contacto->telefono=  $request->telefono;
+$contacto->email=  $request->email;
+
+
+$contacto->save();
+
+if ($contacto->save()==true) {
+$data = "true" ;
+return response()->json($data); 
+}
+
+else {
+
+$data = "false";
+return response()->json($data); 
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+
 
     public function delete(Request $request)
     {

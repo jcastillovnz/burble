@@ -103,15 +103,15 @@ Registrar un nuevo Contacto
 <div class="btn btn-group  ">
 
 
-<div id="loadercreate-contacto" class="loader loader-sm "></div>
+<div id="loader-create-contacto" class="loader loader-sm "></div>
 
 
-<button class="btn btn-light btn-sm " title="Cancelar" type="button" class="close" data-dismiss="modal" aria-label="Close">
+<button  class="btn btn-light btn-sm " title="Cancelar" type="button" class="close" data-dismiss="modal" aria-label="Close">
 <i class="fas fa-times-circle"></i>
 </button>
 
 
-<button type="submit"  id="btncreate-contacto" class="btn btn-success btn-sm"     >
+<button type="submit"  id="btn-create-contacto" class="btn btn-success btn-sm"     >
 <i class="fas fa-save"></i> 
 </button>
 

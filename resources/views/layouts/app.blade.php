@@ -164,7 +164,7 @@
   <ul class="dropdown-menu ">
     <li class="dropdown-item"><a class="dropdown-item nav-link" href="{{ url('/mi-cuenta') }}"><i class="fas fa-user-alt "></i>  Mi cuenta</a></li>
     <li class="dropdown-item"><a class="dropdown-item nav-link" href="{{ url('/gestiones') }}"><i class="fas fa-users-cog "></i>  Gestiones</a></li>
-    <li class="dropdown-item"><a  class="dropdown-item nav-link" href="#"><i class="fas fa-lock "></i>  Salir</a></li>
+  
   </ul>
 </div>
 
