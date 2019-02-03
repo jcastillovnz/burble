@@ -90,11 +90,12 @@ Registrar un nueva tarea
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-shield"></i>  </span>
 </div>
 
+@{{lista_users}}
 
 <select required=""   v-model="Rtarea.empleado_id" class="form-control">
 
 <option selected="" value="" > Seleccione empleado  </option>
-<option v-for="item in lista_users"  :value="item.id"  > @{{item.name }}  @{{item.apellido}} 
+<option v-for="item in lista_users"  :value="item.id"  > @{{item.name }}    @{{item.apellido}} 
 
 
 </select>

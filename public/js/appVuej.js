@@ -11,7 +11,7 @@ this.getListaTareas();
 
 this.getListaEspera();
 
-this.getUsers();
+
 
     },
     data: {
@@ -79,10 +79,15 @@ pagination:{
 
 methods: {
 
+
 getUsers: function(dato)  {
  var urlUsers = '/api/usuarios/consulta/';
   axios.get(urlUsers).then(response => {
-  this.lista_users = response.data
+
+ 
+  this.lista_users   = response.data.usuarios.data;
+
+
 });
  }
 ,
@@ -90,7 +95,7 @@ getUsers: function(dato)  {
 
 getListaPrincipal: function(dato)  {
   document.getElementById("loader").style.display = "none";;
-
+this.getUsers();
 
 var urlPrincipal = '/api/proyectos/principal';
 axios.get(urlPrincipal).then(response => {

@@ -9,10 +9,9 @@
 <div  id="DetalleProyecto"  class="content">
 
 <div class="col-sm-12">
-<div style="padding-left: 1%;  font-size: 17px;" align="left" class="">
-<i class="fas fa-user-cog text-info"></i>
-Datos de proyecto
+<div style="padding-left: 1%;  font-size: 18px;" align="left" class="">
 
+Informacion  proyecto
 
 <button title="Nueva tarea" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevaTarea"> <i class="fas fa-plus"></i> </button>
 
