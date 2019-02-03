@@ -186,7 +186,7 @@
      onclick="event.preventDefault();
      document.getElementById('logout-form').submit();">
   <i class="fas fa-lock"></i> Salir
-  
+
     </a>
      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
       @csrf
@@ -224,11 +224,10 @@
 
 <footer class="col-sm-12 margin-bottom-none" >
 <center>
-  <br>
+<br>
 <p>
 
 © 2018  Burble para Achelier Studio -   <a target="blank" href="https://github.com/jcastillovnz"> <i class="fas fa-code"></i> Desarrollado por Jose Castillo </a> 
-
 </p>
 </center>
 

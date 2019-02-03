@@ -3,10 +3,10 @@
 
 @section('content')
 
+<div id="AppClientes"    class="content col-sm-12 " >
+@include('layouts.clientes.create')
 
-
-
-
+</div>
 
 
 
@@ -274,7 +274,7 @@ No existen tareas registradas
 <div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"    v-for="item in lista_espera"   class="col-sm item_espera">
 
  
-<div class="card borde-burble bg-light item " >
+<div style="max-width: 150px; margin-right: none;" class="card borde-burble bg-light item " >
 <div class="container titulo-espera" >
 <p align="left">
 
@@ -282,6 +282,7 @@ No existen tareas registradas
 
 <a :href="'{{url('detalle/')}}'+'/'+ item.proyectos_id " >
 <strong  >  
+<i class="fas fa-angle-double-right"></i>
      @{{item.nombre_proyecto}}
 </strong>   
 </a>
@@ -295,7 +296,7 @@ No existen tareas registradas
 <p class="empresa-min" align="left">
 
 
- <strong> @{{item.nombre_empresa}} </strong> 
+ <strong>   @{{item.nombre_empresa}} </strong> 
 
 
 
@@ -308,17 +309,23 @@ No existen tareas registradas
 </div>
 
 <div class="container" >
-<p class="" align="right">
-<small>
- <strong>  @{{item.fecha_entrega}}  </strong> 
-</small>
-</p>
+
 </div>
 
-<div class="btn-group float-right button-absolute " >
-<div v-on:click="confirmar_delete_espera(item)"  class="button-collapse btn-sm  float-right"  >
-<i class="fas fa-trash"></i>
+<div class="container" >
+
+ <strong class="float-left" style="font-size:12px; margin: 0px;"> @{{item.fecha_entrega}} </strong> 
+
+<div  style=" margin-left: 90%;" v-on:click="confirmar_delete_espera(item)"  class=" btn-sm  "  >
+
+
+<i class="fas fa-trash "></i>
+
+
 </div>
+
+
+
 </div>
 
 
