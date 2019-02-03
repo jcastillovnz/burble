@@ -10,7 +10,7 @@
 
 
 
-<div id="AppProyectos"    class="content " >
+<div id="AppProyectos"    class="content col-sm-12 " >
 <template id="listas">
 
 <div  class="col-sm-12">

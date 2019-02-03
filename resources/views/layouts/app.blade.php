@@ -51,21 +51,28 @@
 <ul class="navbar-nav mr-auto mt-2 my-lg-0">
 </ul>
 
-<form  class="form-inline my-2 my-lg-0"  action="{{ url('/busqueda') }}"  method="GET" >
-{{ csrf_field() }}
-<input required="" class="form-control  mr-sm-2" name="busqueda" type="search" placeholder="Proyecto / Tarea">
 
-<button class="btn btn-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>  Buscar</button>
-</form>
 
 
 <ul class="navbar-nav  my-lg-0">
 @guest
+<!-- 
 <li class="nav-item active">
 <a class="nav-link" href="#"><i class="fas fa-user"></i> Iniciar session <span class="sr-only">(current)</span></a>
-      </li>
+</li>
+
+ -->
  @else
 
+<form  class="form-inline my-2 my-lg-0"  action="{{ url('/busqueda') }}"  method="GET" >
+{{ csrf_field() }}
+<input required="" class="form-control  mr-sm-2" name="busqueda" type="search" placeholder="Realiza una busqueda">
+
+<button class="btn btn-succes my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>  Buscar</button>
+</form>
+
+
+<!-- 
     <li class="nav-item">
      <a class="nav-link" href="{{ route('logout') }}"
      onclick="event.preventDefault();
@@ -75,8 +82,10 @@
      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
       @csrf
      </form>
+
 </li>
 
+      -->
 
 @endguest
    
@@ -127,9 +136,6 @@
 </span>
 
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
@@ -146,6 +152,13 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('/home') }}"><i class="fas fa-home"></i> Inicio <span class="sr-only">(current)</span></a>
 </li>
+
+
+<li class="nav-item">
+        <a class="nav-link" href="#"  ><i class="fas fa-database"></i> Archivo </a>
+</li>
+
+
 
 <li class="nav-item">
         <a class="nav-link" href="#"  data-toggle="modal" data-target=".nuevoCliente"><i class="fas fa-suitcase"></i> Registrar cliente</a>
@@ -164,6 +177,25 @@
   <ul class="dropdown-menu ">
     <li class="dropdown-item"><a class="dropdown-item nav-link" href="{{ url('/mi-cuenta') }}"><i class="fas fa-user-alt "></i>  Mi cuenta</a></li>
     <li class="dropdown-item"><a class="dropdown-item nav-link" href="{{ url('/gestiones') }}"><i class="fas fa-users-cog "></i>  Gestiones</a></li>
+  
+
+
+
+   <li class="dropdown-item">
+     <a class="nav-link " href="{{ route('logout') }}"
+     onclick="event.preventDefault();
+     document.getElementById('logout-form').submit();">
+  <i class="fas fa-lock"></i> Salir
+  
+    </a>
+     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+      @csrf
+     </form>
+
+</li>
+
+
+
   
   </ul>
 </div>
@@ -195,7 +227,7 @@
   <br>
 <p>
 
-© 2018  Burble para Achelier Studio - <i class="fas fa-code"></i> Desarrollado por Jose Castillo 
+© 2018  Burble para Achelier Studio -   <a target="blank" href="https://github.com/jcastillovnz"> <i class="fas fa-code"></i> Desarrollado por Jose Castillo </a> 
 
 </p>
 </center>

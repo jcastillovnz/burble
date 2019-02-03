@@ -13,7 +13,7 @@
 
 .login{
 margin: auto;
-max-width: 65%;
+max-width: 62%;
 }
 
 
@@ -60,6 +60,8 @@ padding-top: 30%;
 
 
 <div class="login">
+
+  
 <p align="center" class="text-info" style="font-size: 25px;">
   <strong>
 BURBLE
@@ -72,7 +74,7 @@ BURBLE
 
 
 
-<div class="input-group  container-fluid">
+<div class="container-fluid">
 
 <input id="email" type="email" placeholder="Email " class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
@@ -84,7 +86,7 @@ BURBLE
  </div>
 
 
-<div class="input-group  container-fluid">
+<div class="  container-fluid">
 
  <input id="password" placeholder="Contraseña" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 @if ($errors->has('password'))
