@@ -27,12 +27,12 @@
 
 
 <script src="{{ asset('js/axios.min.js') }} " defer></script>
-<script  type="text/javascript" src="{{ asset('js/jQuery.js') }}"   ></script>
-<script  type="text/javascript" src="{{ asset('js/alertify.min.js') }}" ></script>
-<script src=" {{ asset('js/popper.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"  ></script>
+<script  type="text/javascript" src="{{ asset('js/jQuery.js') }}"   defer></script>
+<script  type="text/javascript" src="{{ asset('js/alertify.min.js') }}" defer></script>
+<script src=" {{ asset('js/popper.min.js') }}" defer></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"  defer></script>
 
-<script src="{{ asset('js/sortable.js') }}"></script>
+<script src="{{ asset('js/sortable.js') }}" defer></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
 
 

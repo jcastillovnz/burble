@@ -128,13 +128,16 @@ No existen tareas registradas
 
 
 
+
+<!--  
+
 <img  style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" v-if="item.users.foto"   width="15" height="15" class=" rounded-circle "  :src="'/img/users/fotos/'+item.users.foto" alt="Card image cap">
 
 
 <img style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;"  v-else   width="15" height="15" class="border rounded-circle "  src="img/user.png" alt="Card image cap">
 
 
-
+-->
 
 
 </div>

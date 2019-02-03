@@ -112,6 +112,10 @@ document.getElementById("loader").style.display = "none";;
 var urlTareas = '/api/proyectos/tareas';
 axios.get(urlTareas).then(response => {
 this.lista_tareas = response.data
+
+
+console.log("HOLA");
+
 });
  }
 ,
@@ -728,13 +732,15 @@ var notification = alertify.notify(' <center> <strong style="color:white;"> <i c
 /*COMPONENTE CLIENTES*/
 
 
+
+
 var AppClientes = new Vue({
 el: '#AppClientes',
   mounted(){
 
 this.getClientes();
 
-this.getCliente();
+
 
     },
 data: {
@@ -831,6 +837,18 @@ return pagesArray;
 }
 ,
 methods: {
+
+
+  created(){
+
+
+  
+
+
+
+  }
+,
+
 
 getClientes: function(dato)  {
 var urlClientes = '/api/clientes/';
@@ -1017,8 +1035,9 @@ document.getElementById('loader-edicion-contacto').style.display="none";
 }).then(response => {
 if (response.data == "true") {
 
+AppClientes.getCliente();
 
-  AppClientes.getCliente();
+
 document.getElementById('btn-edicion-contacto').disabled = false;
 document.getElementById('loader-edicion-contacto').style.display="none"
 this.state_contacto= 0;
@@ -1287,6 +1306,9 @@ document.getElementById('btn-clientes').disabled = false;
 
   }
 })
+
+
+
 
 
 /*GESTIONAR CLIENTES*/

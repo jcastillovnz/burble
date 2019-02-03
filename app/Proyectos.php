@@ -24,6 +24,11 @@ public function tareas()
 
 }
 
+public function lista_principal()
+{
+    return $this->hasOne('App\Lista_principal');
+
+}
 
 
 

@@ -393,7 +393,6 @@ $tareas = Tareas::where('proyectos_id', $item->proyectos_id )
 ->with('users')
 
 ->orderBy('id', 'desc')->paginate(4);
-
 $paginate = [
 'pagination'=> [
 'total'=> $tareas->total(),
@@ -466,7 +465,7 @@ return response()->json($data);
 public function listPrincipal( Request $request )
     {
 
-
+/*
 $lista_principal = DB::table('lista_principal')
 ->Join('proyectos', 'lista_principal.proyectos_id', '=', 'proyectos.id')
 ->leftJoin('clientes', 'proyectos.clientes_id', '=', 'clientes.id')
@@ -480,6 +479,18 @@ $lista_principal = DB::table('lista_principal')
 )->orderBy('id', 'asc') ->get();
 return response()->json($lista_principal); 
  
+*/
+
+
+$lista_principal = Lista_principal::with('proyectos')->orderBy('id', 'asc') ->get();
+return response()->json($lista_principal); 
+
+
+
+
+
+
+
  
 
 

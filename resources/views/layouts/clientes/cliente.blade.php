@@ -13,7 +13,7 @@
 
 <div class="col-sm-12">
 <div style="padding-left: 1%;  font-size: 17px;" align="left" class="">
-<input value="{{$cliente->id}}"  id="cliente_id" class="invisible" >
+<input value="{{$cliente->id}}"  :onload="getCliente()" id="cliente_id" class="invisible" >
 </div>
 
 
