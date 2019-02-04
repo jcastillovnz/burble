@@ -7,8 +7,6 @@ var Proyectos = new Vue({
 
 this.getListaPrincipal();
 
-this.getListaTareas();
-
 this.getListaEspera();
 
 
@@ -18,7 +16,11 @@ this.getListaEspera();
 
         state: 0 ,
         state_tarea : 0,
-        lista_principal:[],
+
+
+
+
+        lista_principal:{},
         lista_espera: [],
         lista_tareas: [],
         lista_users: [],
@@ -114,7 +116,6 @@ axios.get(urlTareas).then(response => {
 this.lista_tareas = response.data
 
 
-console.log("HOLA");
 
 });
  }
@@ -122,7 +123,6 @@ console.log("HOLA");
 
 
 show_tarea: function(tarea) {
-this.getListaTareas();
 
 
 $('#edit_tarea').modal('show');
@@ -205,7 +205,9 @@ document.getElementById('btn-details-tarea').disabled = false;
 document.getElementById('loader-details-tarea').style.display="none";
 this.state_tarea= 0;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-this.mounted();
+
+
+Proyectos.getListaPrincipal();
 
 }
 else
@@ -227,7 +229,11 @@ axios.post('/detalle/tarea/send_imagen/'+this.Rtarea.id, formData).then(function
 Proyectos.Rtarea.imagen_tarea=response.data  ;
 //Rtarea.imagen_tarea
 console.log(Proyectos.Rtarea.imagen_tarea);
-Proyectos.getListaTareas();
+
+
+Proyectos.getListaPrincipal();
+
+
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 
 

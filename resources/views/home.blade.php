@@ -64,14 +64,14 @@
 <div   class="container-fluid      borde-burble border bg-light">
 <p>
 <h4 class="proyecto-min" align="left"> 
-<a :href="'{{url('detalle/')}}'+'/'+ item.proyectos_id " >
+<a :href="'{{url('detalle/')}}'+'/'+ item.proyectos.id " >
 <strong  >  
-     @{{item.nombre_proyecto}}
+     @{{item.proyectos.nombre}}
 </strong>   
 </a>
 
 <small class="comentarios-proyecto float-right" aling="right">     
- @{{item.comentario}} ...
+  @{{item.proyectos.comentario}} ...
 </small> 
 </h4>
 
@@ -79,13 +79,13 @@
 
 
 </p>
-<h6 class="empresa-min" align="left"><strong>  @{{item.nombre_empresa}}  </strong> <small class="float-right text-info" aling="right"> <strong>  @{{item.fecha_entrega}}  </strong></small></h6>
+<h6 class="empresa-min" align="left"><strong>  @{{item.proyectos.clientes.nombre}}  </strong> <small class="float-right text-info" aling="right"> <strong>  @{{item.proyectos.fecha_entrega}}  </strong></small></h6>
 
 
 
 
 
-<template v-if="lista_tareas[index]==false" >
+<template v-if="item.proyectos.tareas ==false" >
 <p    class="border  tarea container-fluid"  align="left">
 
 <p align="center" class="">
@@ -103,17 +103,17 @@ No existen tareas registradas
 
 
 
-<template   v-for="(item, i) in lista_tareas[index]" >
+<template   v-for="(tarea, i) in item.proyectos.tareas" >
 
 
-<div    :class="item.prioridad"> 
+<div    :class="tarea.prioridad"> 
 
 
 
 <div class="row">
 <div class="col">
 
- @{{item.nombre}} 
+ @{{tarea.nombre}} 
 
 
 </div>
@@ -124,20 +124,26 @@ No existen tareas registradas
 
 
 
-<i style="margin-left: 4%; margin-right: 4%;" :class="' fas fa-circle  iconos '+item.estado"  title="Estado"></i>  
+<i style="margin-left: 4%; margin-right: 4%;" :class="' fas fa-circle  iconos '+tarea.estado"  title="Estado"></i>  
+
+
+
+
+
+
 
 
 
 
 <!--  
 
-<img  style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" v-if="item.users.foto"   width="15" height="15" class=" rounded-circle "  :src="'/img/users/fotos/'+item.users.foto" alt="Card image cap">
+<img  style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" v-if="tarea.users.foto"   width="15" height="15" class=" rounded-circle "  :src="'/img/users/fotos/'+ tarea.users.foto " data-img="img/superbox/superbox-full-3.jpg"  alt="Card image cap">
 
 
 <img style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;"  v-else   width="15" height="15" class="border rounded-circle "  src="img/user.png" alt="Card image cap">
 
-
 -->
+
 
 
 </div>
@@ -147,11 +153,11 @@ No existen tareas registradas
 </div>
 <div class="col">
 
-@{{item.comentario }} ...
+@{{tarea.comentario }} ...
 
 
 
-<i  @click="show_tarea(item)" style="margin-top: 2%;  margin-left: 4%; margin-right: 4%;"  class="fas fa-pen-square float-right"></i>
+<i  @click="show_tarea(tarea)" style="margin-top: 2%;  margin-left: 4%; margin-right: 4%;"  class="fas fa-pen-square float-right"></i>
 </div>
 </div>
 </div>
@@ -195,10 +201,10 @@ No existen tareas registradas
 
 
 <div class="text-center">
-<template   v-for="(item, i) in lista_tareas[index]" >
+<template   v-for="(tarea, i) in item.proyectos.tareas" >
 
 
-<img width="120" v-if="item.imagen"   :src="'{{url ('/img/tareas/fotos/')}}'+'/' +item.imagen"  class="img-fluid zoom-panel">
+<img width="120" v-if="tarea.imagen"   :src="'{{url ('/img/tareas/fotos/')}}'+'/' +tarea.imagen"  class="img-fluid zoom-panel">
 
 <img width="120" v-else  src="img/pieza.png"  class="img-fluid zoom-panel" alt="...">
 

@@ -479,10 +479,24 @@ $lista_principal = DB::table('lista_principal')
 )->orderBy('id', 'asc') ->get();
 return response()->json($lista_principal); 
  
+
+
+ $lista_principal = Lista_principal::with('proyectos.clientes')
+->with('proyectos.tareas')   ->orderBy('id', 'asc') ->get();
+
+
 */
 
 
-$lista_principal = Lista_principal::with('proyectos')->orderBy('id', 'asc') ->get();
+
+$lista_principal = Lista_principal::with(['proyectos', 'proyectos.clientes'])
+->with(['proyectos.tareas', 'proyectos.tareas.users'])->get();
+
+
+
+
+
+
 return response()->json($lista_principal); 
 
 
