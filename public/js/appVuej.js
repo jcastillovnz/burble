@@ -20,10 +20,11 @@ this.getListaEspera();
 
 
 
-        lista_principal:{},
+        lista_principal:[],
         lista_espera: [],
         lista_tareas: [],
         lista_users: [],
+        users: [],
         cliente: '',
         proyecto: '',
         fecha_entrega: '',
@@ -101,7 +102,12 @@ this.getUsers();
 
 var urlPrincipal = '/api/proyectos/principal';
 axios.get(urlPrincipal).then(response => {
-this.lista_principal = response.data
+this.lista_principal = response.data.lista_principal
+
+this.users = response.data.users
+
+console.log(this.users);
+
 });
  }
 ,
@@ -122,7 +128,7 @@ this.lista_tareas = response.data
 ,
 
 
-show_tarea: function(tarea) {
+show_tarea: function(tarea, user) {
 
 
 $('#edit_tarea').modal('show');
@@ -136,9 +142,11 @@ this.Rtarea.fecha_inicio = tarea.fecha_inicio;
 this.Rtarea.fecha_termino = tarea.fecha_termino;
 this.Rtarea.presupuesto = tarea.presupuesto;
 this.Rtarea.comentario = tarea.comentario;
-this.Rtarea.empleado_nombre = tarea.users.name;
-this.Rtarea.empleado_apellido = tarea.users.apellido;
-this.Rtarea.empleado_foto = tarea.users.foto;
+
+
+this.Rtarea.empleado_nombre = user.name;
+this.Rtarea.empleado_apellido = user.apellido;
+this.Rtarea.empleado_foto = user.foto;
 
 
 }
@@ -577,13 +585,39 @@ Proyectos.delete_espera(item);
 
 })
 },
+
+
+onEnd: function (/**Event*/evt) {
+    var itemEl = evt.item;  // dragged HTMLElement
+    evt.to;    // target list
+    evt.from;  // previous list
+    evt.oldIndex;  // element's old index within old parent
+    evt.newIndex;  // element's new index within new parent
+
+
+    document.getElementById('loader-lista-principal').style.display="none";
+  },
+
+
+
+
+
+
 // Called by any change to the list (add / update / remove)
 onSort: function (/**Event*/evt) {
     // same properties as onEnd
 
 
   },
+// Element dragging started
+  onStart: function (/**Event*/evt) {
+    evt.oldIndex;  // element index within parent
 
+
+document.getElementById('loader-lista-principal').style.display="block"
+
+
+  },
 
 // Element is removed from the list into another list
   onRemove: function (/**Event*/evt) {
@@ -644,6 +678,22 @@ animation: 150, // ms, animation speed
 
 
   },
+
+onEnd: function (/**Event*/evt) {
+    var itemEl = evt.item;  // dragged HTMLElement
+    evt.to;    // target list
+    evt.from;  // previous list
+    evt.oldIndex;  // element's old index within old parent
+    evt.newIndex;  // element's new index within new parent
+
+
+    document.getElementById('loader-lista-espera').style.display="none";
+  },
+
+
+
+
+
   onAdd: function (/**Event*/evt) {
 
 axios({ 
@@ -676,6 +726,11 @@ console.log(evt);
 // Element dragging started
   onStart: function (/**Event*/evt) {
     evt.oldIndex;  // element index within parent
+
+
+document.getElementById('loader-lista-espera').style.display="block"
+
+
   },
 
 onClone: function (/**Event*/evt) {
@@ -696,7 +751,10 @@ nuevoOrden: Neworden,
 }}).then(function (response) { 
 console.log(Neworden);
 
-var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+document.getElementById('loader-lista-espera').style.display="none";
+
+//var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Reordenado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 })
 
 // the current dragged HTMLElement

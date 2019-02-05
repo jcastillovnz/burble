@@ -14,12 +14,19 @@
 <template id="listas">
 
 <div  class="col-sm-12">
-<strong  style="font-size: 17px;" class="float-left text-info"> 
+
+
+
+
+<strong  style="font-size: 16px;" class="float-left text-info"> 
 <i class="fas fa-globe-americas"></i>
 
   Proyectos en proceso   
 
 </strong> </h3>
+
+
+<div  id="loader-lista-principal" class="loader loader-sm float-right"></div>
 
 <button title="Nuevo proyecto" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
 </p>
@@ -51,8 +58,6 @@
 </div>
 <!-- TARJETA -->
 
-
-
 </template>
 
 
@@ -60,7 +65,7 @@
 
 <template   v-sortable="{ onUpdate: onUpdate }">
 
-<div   :id="item.proyectos_id"  v-for="(item, index) in lista_principal"  class="col-sm-6 item_proceso">
+<div   :id="item.proyectos_id"  v-for="(item, A) in lista_principal"  class="col-sm-6 item_proceso">
 <div   class="container-fluid      borde-burble border bg-light">
 <p>
 <h4 class="proyecto-min" align="left"> 
@@ -74,8 +79,6 @@
   @{{item.proyectos.comentario}} ...
 </small> 
 </h4>
-
-
 
 
 </p>
@@ -103,12 +106,10 @@ No existen tareas registradas
 
 
 
-<template   v-for="(tarea, i) in item.proyectos.tareas" >
+<template   v-for="(tarea, B) in item.proyectos.tareas" >
 
 
 <div    :class="tarea.prioridad"> 
-
-
 
 <div class="row">
 <div class="col">
@@ -121,28 +122,17 @@ No existen tareas registradas
 
 <div  class="btn-group">
 
-
-
-
 <i style="margin-left: 4%; margin-right: 4%;" :class="' fas fa-circle  iconos '+tarea.estado"  title="Estado"></i>  
 
 
 
 
 
-
-
-
-
-
-<!--  
-
-<img  style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" v-if="tarea.users.foto"   width="15" height="15" class=" rounded-circle "  :src="'/img/users/fotos/'+ tarea.users.foto " data-img="img/superbox/superbox-full-3.jpg"  alt="Card image cap">
+<img  style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" v-if="users[A][B].foto"   width="15" height="15" class=" rounded-circle "  :src="'/img/users/fotos/'+ users[A][B].foto "   alt="Card image cap">
 
 
 <img style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;"  v-else   width="15" height="15" class="border rounded-circle "  src="img/user.png" alt="Card image cap">
 
--->
 
 
 
@@ -157,7 +147,7 @@ No existen tareas registradas
 
 
 
-<i  @click="show_tarea(tarea)" style="margin-top: 2%;  margin-left: 4%; margin-right: 4%;"  class="fas fa-pen-square float-right"></i>
+<i  @click="show_tarea(tarea ,users[A][B])" style="margin-top: 2%;  margin-left: 4%; margin-right: 4%;"  class="fas fa-pen-square float-right"></i>
 </div>
 </div>
 </div>
@@ -204,6 +194,7 @@ No existen tareas registradas
 <template   v-for="(tarea, i) in item.proyectos.tareas" >
 
 
+
 <img width="120" v-if="tarea.imagen"   :src="'{{url ('/img/tareas/fotos/')}}'+'/' +tarea.imagen"  class="img-fluid zoom-panel">
 
 <img width="120" v-else  src="img/pieza.png"  class="img-fluid zoom-panel" alt="...">
@@ -246,11 +237,16 @@ No existen tareas registradas
 
 <div  class="col-sm-12">
 <hr>
-<p class="text-info" style="font-size: 17px;" align="left" ><strong>
+
+<div  id="loader-lista-espera" class="loader loader-sm float-right"></div>
+<p class="text-info"  style="font-size: 16px;" align="left" ><strong>
 
 <i class="fas fa-globe-americas"></i>
- Proyectos en espera</strong></p>
-<hr>
+ Proyectos en espera    </strong>         
+<hr>   
+
+
+</p>   
 </div>
 
 
@@ -290,7 +286,7 @@ No existen tareas registradas
 <strong class="proyecto-min ">
 
 <a :href="'{{url('detalle/')}}'+'/'+ item.proyectos_id " >
-<strong  >  
+<strong style="font-size: 11px;"  >  
 <i class="fas fa-angle-double-right"></i>
      @{{item.nombre_proyecto}}
 </strong>   
@@ -302,18 +298,9 @@ No existen tareas registradas
 </strong>
 
 
-<p class="empresa-min" align="left">
-
-
+<p style="font-size: 10px;"  class="empresa-min" align="left">
  <strong>   @{{item.nombre_empresa}} </strong> 
-
-
-
-
 </p>
-
-
-
 </p>
 </div>
 
@@ -323,7 +310,7 @@ No existen tareas registradas
 
 <div class="container" >
 
- <strong class="float-left" style="font-size:12px; margin: 0px;"> @{{item.fecha_entrega}} </strong> 
+ <strong class="float-left" style="font-size:10px; margin: 0px;"> @{{item.fecha_entrega}} </strong> 
 
 <div  style=" margin-left: 90%;" v-on:click="confirmar_delete_espera(item)"  class=" btn-sm  "  >
 
@@ -333,11 +320,7 @@ No existen tareas registradas
 
 </div>
 
-
-
 </div>
-
-
 
 </div>
 

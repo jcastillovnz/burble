@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
     /**
      * The attributes that are mass assignable.
      *
@@ -18,6 +18,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
+
+
+
 
 
 public function tareas()

@@ -119,10 +119,10 @@
 
 
 @if(   Auth::user()->foto!=null )
-<img    width="40" height="40" class="border rounded-circle "  src="/img/users/fotos/{{ Auth::user()->foto }}" alt="Foto de perfil">
+<img    width="40" height="40" class="border rounded-circle "  src="/img/users/fotos/{{ Auth::user()->foto }}" alt="Usuario">
 @else
 
-<img    width="40" height="40" class="border rounded-circle "  src="/img/user.png" alt="Foto de perfil">
+<img    width="40" height="40" class="border rounded-circle "  src="/img/user.png" alt="Usuario">
 @endif
 
 
@@ -222,10 +222,21 @@
 
 
 
-<footer class="col-sm-12 margin-bottom-none" >
+<footer  class="col-sm-12 margin-bottom-none" >
+
+
+
+
+
+
+
+
+
+
+
 <center>
 <br>
-<p>
+<p style="font-size: 13px;">
 
 © 2018  Burble para Achelier Studio -   <a target="blank" href="https://github.com/jcastillovnz"> <i class="fas fa-code"></i> Desarrollado por Jose Castillo </a> 
 </p>

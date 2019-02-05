@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lista_principal extends Model
 {
     //
-
+use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 public $table = "lista_principal";
 
 

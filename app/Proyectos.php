@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Proyectos extends Model
 {
     //
-
+use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
 
 

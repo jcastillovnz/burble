@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Clientes;
 use App\Contactos;
 use App\Proyectos;
+use App\User;
+
 use App\Tareas;
 use Session;
 
@@ -388,26 +390,6 @@ $lista_tareas[$key] = array();
 
 
 
-
-$tareas = Tareas::where('proyectos_id', $item->proyectos_id )
-->with('users')
-
-->orderBy('id', 'desc')->paginate(4);
-$paginate = [
-'pagination'=> [
-'total'=> $tareas->total(),
-'current_page'=> $tareas->currentPage(),
-'per_page'=> $tareas->perPage(),
-'last_page'=> $tareas->lastPage(),
-'from'=> $tareas->firstItem(),
-'to'=> $tareas->lastPage(),
-],
-'tareas'=> $tareas
-];
-
-
-
-
 foreach ($tareas as $i => $item) {
 
 
@@ -465,39 +447,47 @@ return response()->json($data);
 public function listPrincipal( Request $request )
     {
 
-/*
-$lista_principal = DB::table('lista_principal')
-->Join('proyectos', 'lista_principal.proyectos_id', '=', 'proyectos.id')
-->leftJoin('clientes', 'proyectos.clientes_id', '=', 'clientes.id')
-->select( 
-'lista_principal.id',
-'lista_principal.proyectos_id',     
-'proyectos.nombre AS nombre_proyecto' , 
-'proyectos.fecha_entrega' , 
-'clientes.nombre AS nombre_empresa' , 
-'proyectos.comentario'
-)->orderBy('id', 'asc') ->get();
-return response()->json($lista_principal); 
- 
 
-
- $lista_principal = Lista_principal::with('proyectos.clientes')
-->with('proyectos.tareas')   ->orderBy('id', 'asc') ->get();
-
-
-*/
 
 
 
 $lista_principal = Lista_principal::with(['proyectos', 'proyectos.clientes'])
-->with(['proyectos.tareas', 'proyectos.tareas.users'])->get();
+->with(['proyectos.tareas' => function ($query) {
+$query->latest()->limit(4);
+}]) ->get() ;
 
 
 
 
 
+$data_users = array();
 
-return response()->json($lista_principal); 
+foreach ($lista_principal  as $key => $lista) {
+
+$data_user[$key] = array();
+
+foreach ($lista->proyectos->tareas  as $i => $tarea) {
+
+
+$users = User::where('id', $tarea->users_id)
+ ->first() ;
+
+ $data_user[$key][$i] = $users ;
+/*
+ echo "$users->name "; 
+*/
+}
+
+$data_users = $data_user;
+
+}
+
+
+
+
+ 
+return response()->json (['lista_principal'=> $lista_principal ,
+'users'=> $data_users ]) ;
 
 
 
