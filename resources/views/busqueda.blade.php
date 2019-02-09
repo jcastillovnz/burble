@@ -17,9 +17,23 @@
 
 <div class="col-sm-12">
 <div style="padding-left: 1%; " align="left" class="">
-<h5><i class="fas fa-search text-info"></i> 
+
+
+
+
+
+@if( $state=="archivo"   )
+<h5 style="font-size: 16px;"><i class="fas fa-database text-info"></i>
+Archivo
+</h5>
+@else
+<h5 style="font-size: 16px;"><i class="fas fa-search text-info"></i> 
 Busqueda
 </h5>
+@endif
+
+
+
 
 
 </div>
@@ -53,17 +67,9 @@ Busqueda
 <div  id="loader-busqueda"   class="loader loader-sm float-left"></div>
 
 
-<p class="font-weight-normal" align="center">
-
-@if( $state=="archivo"   )
-
-<i class="fas fa-database text-info"></i>  Proyectos archivados @{{pagination.total}}  </p>
-
-@else
-<i class="fas fa-poll-h text-info"></i> Resultados de la busqueda</p>
 
 
-@endif
+
 <div >    
 
 <div class="table table-responsive">

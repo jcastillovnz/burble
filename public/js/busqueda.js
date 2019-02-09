@@ -179,9 +179,14 @@ axios.post( url, {
 
 id:this.rellenar.id,
 nombre: this.rellenar.nombre_proyecto,
+fecha_recepcion: this.rellenar.fecha_recepcion,
 fecha_entrega: this.rellenar.fecha_entrega,
 presupuesto: this.rellenar.presupuesto,
 comentario:this.rellenar.comentario,
+
+
+
+
 
 validateStatus: (status) => {
 return true; // I'm always returning true, you may want to do it depending on the status received

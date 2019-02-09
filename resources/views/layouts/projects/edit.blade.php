@@ -28,7 +28,7 @@ Informacion de proyecto
 <div class="modal-body">
 
 
-<span class="text-primary">
+<span align="left" class="text-primary">
 <strong>
  Cliente:  @{{rellenar.nombre_cliente}} 
 </strong>
@@ -64,9 +64,9 @@ Informacion de proyecto
         </div>
 
 
-@{{rellenar.fecha_recepcion}}
 
-  <date-picker  title="Fecha de entrega" :disabled="state == 0" autocomplete="off"    v-model="rellenar.fecha_recepcion"   class="form-control"  :config="options"></date-picker>
+
+  <input  title="Fecha de entrega" :disabled="state == 0" autocomplete="off"    v-model="rellenar.fecha_recepcion"   class="form-control"  :config="options"></input >
 
 
 
@@ -89,7 +89,7 @@ Informacion de proyecto
 
 
 
-  <fechaProyecto title="Fecha de entrega" :disabled="state == 0" autocomplete="off"    v-model="rellenar.fecha_entrega"   class="form-control"  :config="options"></fechaProyecto>
+  <input  title="Fecha de entrega" :disabled="state == 0" autocomplete="off"    v-model="rellenar.fecha_entrega"   class="form-control"  :config="options"></input >
 
 
 

@@ -321,11 +321,17 @@ Informacion de cliente
 </div>
 
 
-<div class="input-group  col-sm-12">
-<a :href="'/cliente/'+cliente.id" class="float-right">
+
+
+<div class="col-sm-12">
+<p align="right">
+<a :href="'/cliente/'+cliente.id" >
 Ver mas detalles
 </a>
+</p>
 </div>
+
+
 
 
 
