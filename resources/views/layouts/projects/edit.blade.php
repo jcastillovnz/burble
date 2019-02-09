@@ -5,7 +5,7 @@
 <div  class="modal fade "  id="edit_item"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div  class="modal-dialog ">
 <div class="modal-content ">
-<form   autocomplete="off"      method="GET" class="hidden"   @submit.prevent="update(rellenar.id)"  >
+<form   autocomplete="off"      method="GET" class="hidden"   @submit.prevent="update_proyecto(rellenar.id)"  >
 <div class="modal-header ">
 <div class="col-sm-12 text-primary">
 <center>
@@ -48,10 +48,32 @@ Informacion de proyecto
           <i class="fas fa-briefcase"></i>
       </span>
         </div>
-        <input :disabled="state == 0" v-model="rellenar.nombre_proyecto" type="text" class="form-control" id="validationDefaultUsername" placeholder="Nombre proyecto" aria-describedby="inputGroupPrepend2" required>
+        <input :disabled="state == 0" v-model="rellenar.nombre_proyecto" type="text" class="form-control input-sm" id="validationDefaultUsername" placeholder="Nombre proyecto" aria-describedby="inputGroupPrepend2" required>
       </div>
   </div>
 
+
+
+  <div class="col-sm-6   form-group">
+   <strong>Fecha recepcion</strong> 
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" >
+  <i class="fas fa-clock"></i>
+      </span>
+        </div>
+
+
+@{{rellenar.fecha_recepcion}}
+
+  <date-picker  title="Fecha de entrega" :disabled="state == 0" autocomplete="off"    v-model="rellenar.fecha_recepcion"   class="form-control"  :config="options"></date-picker>
+
+
+
+
+
+      </div>
+  </div>
 
 
 
@@ -61,10 +83,19 @@ Informacion de proyecto
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroupPrepend2">
-  <i class="fas fa-clock"></i>
+<i class="fas fa-flag-checkered"></i>
       </span>
         </div>
-        <input :disabled="state == 0" v-model="rellenar.fecha_entrega" type="text" class="form-control" id="validationDefaultUsername" placeholder="Fecha entrega" aria-describedby="inputGroupPrepend2" required>
+
+
+@{{ rellenar.fecha_entrega}}
+
+  <fechaProyecto title="Fecha de entrega" :disabled="state == 0" autocomplete="off"    v-model="rellenar.fecha_entrega"   class="form-control"  :config="options"></fechaProyecto>
+
+
+
+
+
       </div>
   </div>
 
@@ -74,10 +105,10 @@ Informacion de proyecto
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroupPrepend2">
-  <i class="fas fa-clock"></i>
+<i class="fas fa-dollar-sign"></i>
       </span>
         </div>
-        <input :disabled="state == 0" v-model="rellenar.presupuesto" type="text" class="form-control" id="validationDefaultUsername" placeholder="Presupuesto" aria-describedby="inputGroupPrepend2" required>
+        <input :disabled="state == 0" v-model="rellenar.presupuesto" type="text" class="form-control input-sm" id="validationDefaultUsername" placeholder="Presupuesto"  required>
       </div>
   </div>
 
@@ -90,7 +121,7 @@ Informacion de proyecto
 <i class="fas fa-sort-numeric-up"></i>
       </span>
         </div>
-        <input disabled="" v-model="rellenar.Ntareas" type="text" class="form-control" id="validationDefaultUsername" placeholder="Presupuesto" aria-describedby="inputGroupPrepend2" required>
+        <input disabled="" v-model="rellenar.Ntareas" type="text" class="form-control input-sm" id="validationDefaultUsername" placeholder="Presupuesto"  required>
       </div>
   </div>
 
@@ -104,12 +135,12 @@ Informacion de proyecto
  <strong>Comentario</strong> 
       <div class="input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupPrepend2">
+          <span class="input-group-text" >
 <i class="fas fa-comment"></i>
       </span>
         </div>
 
-<textarea :disabled="state == 0" v-model="rellenar.comentario"  :src="preview" class="form-control" rows="2" id="comment"></textarea>
+<textarea :disabled="state == 0" v-model="rellenar.comentario"   class="form-control input-sm" rows="2" id="comment"></textarea>
 
       </div>
   </div>
@@ -118,7 +149,7 @@ Informacion de proyecto
 <p class="text-right">
 <a :href="'/detalle/'+rellenar.id"  >
 <i class="fas fa-caret-right"></i>
-<a href="">
+
 Ver mas detalles
 </a>
 

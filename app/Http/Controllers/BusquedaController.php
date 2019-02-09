@@ -30,7 +30,7 @@ $buscar =$request->busqueda;
 
 
 
-return view('busqueda');
+return view('busqueda')->with('state', 'busqueda');
 }
 
 
@@ -43,7 +43,10 @@ $buscar =$request->busqueda;
 
 $proyectos = Proyectos::with('tareas')->with('clientes')->whereHas('clientes', function ($query) use ($buscar) {
 $query->where('nombre', 'like', '%'.$buscar.'%');
-  })->orWhere('nombre','like', '%'.$buscar.'%')->orderBy('id', 'desc')->paginate(2);
+  })->orWhere('nombre','like', '%'.$buscar.'%')->orderBy('id', 'desc')->paginate(10);
+
+
+
 
 return [
 'pagination'=> [

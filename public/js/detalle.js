@@ -1,15 +1,40 @@
 
+
+
+
+
 var Detalle_proyecto = new Vue({ 
     el: '#DetalleProyecto',
      mounted(){
 this.getProyecto();
 this.getUsers();
 
+
+fecha = new Date();
+dia = fecha.getDate();
+mes = fecha.getMonth()+1;// +1 porque los meses empiezan en 0
+anio = fecha.getFullYear();
+this.Rproyecto.fecha_recepcion = +anio+'/'+mes+'/'+dia;
+this.Rtarea.fecha_inicio = +anio+'/'+mes+'/'+dia;
+
 },
     data: {
 
+    options: {
+      // https://momentjs.com/docs/#/displaying/
+      format: 'YYYY/MM/DD ',
+      useCurrent: false,
+      showClear: true,
+      showClose: true,
+    }
+,
+
+
+
  preview: '' ,
   cliente: '',
+  todos_users : [],
+
   state: 0 ,
   state_tarea:0,
   state_edit: 0,
@@ -30,6 +55,7 @@ rellenar: {
     'empleado_apellido':'',
     'empleado_foto':'',
    },
+
 Rtarea: { 
     'id':'',
     'foto':'', 
@@ -45,7 +71,10 @@ Rtarea: {
     'comentario':'',
     ////////////////
     'nombre_cliente':'',
-    'empleado_id':''
+    'empleado_id':'',
+    'empleado_nombre':'',
+    'empleado_apellido':'',
+    'empleado_foto':''
    },
 
 
@@ -114,29 +143,41 @@ return pagesArray;
 methods: {
 
 getUsers: function(dato)  {
- var urlUsers = '/api/usuarios/consulta/';
+
+
+
+ var urlUsers = '/api/usuarios/';
   axios.get(urlUsers).then(response => {
-  this.lista_users = response.data
+
+ 
+  this.todos_users   = response.data;
+
+
 });
  }
 ,
-updateTarea: function(status) {
-document.getElementById('btn-tarea').disabled = true;
-document.getElementById('loader-tarea').style.display="block";
-var url = '/api/tareas/update' ;
+
+
+
+
+update_proyecto: function(status) {
+document.getElementById('btn-details-proyecto').disabled = true;
+document.getElementById('loader-details-proyecto').style.display="block";
+
+
+var url = '/api/proyectos/update' ;
 axios.post( url, {
-id:this.Rtarea.id,
-nombre: this.Rtarea.nombre,
-imagen_tarea: this.Rtarea.imagen_tarea,
-tipo: this.Rtarea.tipo,
-prioridad: this.Rtarea.prioridad,
-estado: this.Rtarea.estado,
-fecha_inicio: this.Rtarea.fecha_inicio,
-fecha_termino: this.Rtarea.fecha_termino,
-comentario: this.Rtarea.comentario,
-empleado_nombre: this.Rtarea.empleado_nombre,
-empleado_apellido: this.Rtarea.empleado_apellido,
-empleado_foto: this.Rtarea.empleado_foto,
+
+id:this.Rproyecto.id,
+nombre: this.Rproyecto.nombre_proyecto,
+fecha_entrega: this.Rproyecto.fecha_entrega,
+presupuesto: this.Rproyecto.presupuesto,
+comentario:this.Rproyecto.comentario,
+
+
+
+
+
 
 validateStatus: (status) => {
 return true; // I'm always returning true, you may want to do it depending on the status received
@@ -145,17 +186,17 @@ return true; // I'm always returning true, you may want to do it depending on th
 }).then(response => {
 if (response.data == "true") {
 
-document.getElementById('btn-tarea').disabled = false;
-document.getElementById('loader-tarea').style.display="none";
-this.state_tarea= 0;
+document.getElementById('btn-details-proyecto').disabled = false;
+document.getElementById('loader-details-proyecto').style.display="none";
+this.state= 0;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-this.getListaPrincipal();
-this.getListaTareas();
+this.getProyecto();
+
 }
 else
 {
-document.getElementById('btn-details-tarea').disabled = false;
-document.getElementById('loader-details-tarea').style.display="none";
+document.getElementById('btn-details-proyecto').disabled = false;
+document.getElementById('loader-details-proyecto').style.display="none";
 
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
 }
@@ -167,8 +208,27 @@ document.getElementById('loader-details-tarea').style.display="none";
 
 
 
+fecha_actual: function( ){
 
+fecha = new Date();
+dia = fecha.getDate();
+mes = fecha.getMonth()+1;// +1 porque los meses empiezan en 0
+anio = fecha.getFullYear();
+this.Rproyecto.fecha_recepcion = +anio+'/'+mes+'/'+dia;
+this.Rtarea.fecha_inicio = +anio+'/'+mes+'/'+dia;
+
+
+
+
+}
+
+,
 getProyecto: function(dato)  {
+
+
+
+
+
 id = document.getElementById('proyecto_id').value;
 axios({
 url: '/proyecto/',
@@ -178,7 +238,6 @@ id: id
   }
 }).then(response => {
 this.proyecto = response.data;
-
 this.Rproyecto.id = this.proyecto.id;
 this.Rproyecto.nombre_proyecto = this.proyecto.nombre;
 this.Rproyecto.fecha_recepcion = this.proyecto.fecha_recepcion;
@@ -206,31 +265,70 @@ this.pagination=  response.data.pagination;
 });
 
 },
-show: function(tarea) {
-$('#edit_item').modal('show');
-this.rellenar.id = tarea.id;
-this.rellenar.nombre = tarea.nombre;
-this.rellenar.imagen_tarea = tarea.imagen;
-this.rellenar.tipo = tarea.tipo;
-this.rellenar.prioridad = tarea.prioridad;
-this.rellenar.estado = tarea.estado;
-this.rellenar.fecha_inicio = tarea.fecha_inicio;
-this.rellenar.fecha_termino = tarea.fecha_termino;
-this.rellenar.presupuesto = tarea.presupuesto;
-this.rellenar.comentario = tarea.comentario;
-this.rellenar.empleado_nombre = tarea.users.name;
-this.rellenar.empleado_apellido = tarea.users.apellido;
-this.rellenar.empleado_foto = tarea.users.foto;
+
+
+show_tarea: function(tarea, user) {
+
+console.log( tarea);
+console.log( user);
+
+$('#edit_tarea').modal('show');
+this.Rtarea.id = tarea.id;
+this.Rtarea.nombre_tarea = tarea.nombre;
+this.Rtarea.objetivo_tarea = tarea.objetivo;
+
+this.Rtarea.imagen_tarea = tarea.imagen;
+this.Rtarea.tipo = tarea.tipo;
+this.Rtarea.prioridad = tarea.prioridad;
+this.Rtarea.estado = tarea.estado;
+this.Rtarea.fecha_inicio = tarea.fecha_inicio;
+this.Rtarea.fecha_termino = tarea.fecha_termino;
+this.Rtarea.presupuesto = tarea.presupuesto;
+this.Rtarea.comentario = tarea.comentario;
+
+
+this.Rtarea.empleado_nombre = user.name;
+this.Rtarea.empleado_apellido = user.apellido;
+this.Rtarea.empleado_foto = user.foto;
+this.Rtarea.empleado_id = user.id;
+
 },
 
+
+
+nueva_tarea: function(item) {
+
+fecha = new Date();
+dia = fecha.getDate();
+mes = fecha.getMonth()+1;// +1 porque los meses empiezan en 0
+anio = fecha.getFullYear();
+this.Rproyecto.fecha_recepcion = +anio+'/'+mes+'/'+dia;
+this.Rtarea.fecha_inicio = +anio+'/'+mes+'/'+dia;
+
+
+
+this.Rproyecto.id = this.proyecto.id 
+
+
+
+
+
+$('.nuevaTarea').modal('show');
+
+
+
+
+}
+,
 
 create_tarea: function(tarea) {
 
 
+
+
+
 document.getElementById('loader-create-tarea').style.display="block";
 document.getElementById('btn-create-tarea').disabled = true;
-
-
 var url = '/api/proyecto/tarea/create/' ;
 axios.get( url, {
   params: {
@@ -240,7 +338,7 @@ objetivo_tarea: this.Rtarea.objetivo_tarea,
 tipo_tarea: this.Rtarea.tipo_tarea,
 fecha_inicio: this.Rtarea.fecha_inicio,
 fecha_termino: this.Rtarea.fecha_termino,
-estado_tarea: 'amarilo',
+estado_tarea: 'amarillo',
 prioridad_tarea: this.Rtarea.prioridad_tarea,
 empleado_id: this.Rtarea.empleado_id,
 proyectos_id: this.Rproyecto.id,
@@ -271,23 +369,13 @@ var notification = alertify.notify(' <center> <strong style="color:white;"> <i c
 Detalle_proyecto.getTareas_proyecto();
 Detalle_proyecto.clear();
 
-
-
 }).catch(error => {
 
 document.getElementById('loader-create-tarea').style.display="none"
 $('.nuevaTarea').modal('hide')
 document.getElementById('btn-create-tarea').disabled = false;
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
-
-      
-    })
-
-    ;
-
-
-
-
+});
 }
 ,
 
@@ -355,10 +443,11 @@ this.pagination.current_page=page;
 this.paginar(page);
 }
 ,
-close: function() {
+
+close_tarea: function() {
 $('.nuevaTarea').modal('hide');
 
-$('#edit_item').modal('hide');
+$('#edit_tarea').modal('hide');
 this.clear(this.rellenar);
 if (this.state_edit == 1) {
 this.state_edit = 0;
@@ -384,7 +473,7 @@ this.Rtarea.empleado_foto = '';
 this.Rtarea.empleado_id = '';
 
 },
-cargar_imagen: function(e) {
+cargar_imagen_tarea: function(e) {
 
 const file = event.target.files[0];
 this.preview = URL.createObjectURL(file);
@@ -396,8 +485,8 @@ this.enviar_foto(file);
 enviar_foto: function(file)  {
 const formData = new FormData()
 formData.append('imagen', file, file.name)
-axios.post('/detalle/tarea/send_imagen/'+this.rellenar.id, formData).then(function(response){
-Detalle_proyecto.rellenar.imagen_tarea=response.data   ;
+axios.post('/detalle/tarea/send_imagen/'+this.Rtarea.id, formData).then(function(response){
+Detalle_proyecto.Rtarea.imagen_tarea=response.data   ;
 
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 Detalle_proyecto.getTareas_proyecto();
@@ -413,72 +502,29 @@ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i
  }
 ,
 
-update_proyecto: function(status) {
-document.getElementById('btn-details-proyecto').disabled = true;
-document.getElementById('loader-details-proyecto').style.display="block";
 
-var url = '/api/proyectos/update' ;
-axios.post( url, {
 
-id:this.Rproyecto.id,
-nombre: this.Rproyecto.nombre_proyecto,
-fecha_entrega: this.Rproyecto.fecha_entrega,
-fecha_recepcion: this.Rproyecto.fecha_recepcion,
-presupuesto:this.Rproyecto.presupuesto,
-comentario:this.Rproyecto.comentario,
+update_tarea: function(status) {
 
 
 
-validateStatus: (status) => {
-return true; // I'm always returning true, you may want to do it depending on the status received
-},
-}).then(response => {
-
-
-document.getElementById('btn-details-proyecto').disabled = false;
-document.getElementById('loader-details-proyecto').style.display="none";
-this.state= 0;
-var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-
-this.getProyecto();
-
-
-}).catch(error => {
-
-  
-document.getElementById('btn-details-proyecto').disabled = false;
-document.getElementById('loader-details-proyecto').style.display="none";
-var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
-});
-
-
-},
-
-
-
-
-
-
-
-
-update: function(status) {
-document.getElementById('btn-details-tarea').disabled = true;
-document.getElementById('loader-details-tarea').style.display="block";
+document.getElementById('btn-edit-tarea').disabled = true;
+document.getElementById('loader-edit-tarea').style.display="block";
 var url = '/api/tareas/update' ;
 axios.post( url, {
 
-id:this.rellenar.id,
-nombre: this.rellenar.nombre,
-imagen_tarea: this.rellenar.imagen_tarea,
-tipo: this.rellenar.tipo,
-prioridad: this.rellenar.prioridad,
-estado: this.rellenar.estado,
-fecha_inicio: this.rellenar.fecha_inicio,
-fecha_termino: this.rellenar.fecha_termino,
-comentario: this.rellenar.comentario,
-empleado_nombre: this.rellenar.empleado_nombre,
-empleado_apellido: this.rellenar.empleado_apellido,
-empleado_foto: this.rellenar.empleado_foto,
+
+
+id:this.Rtarea.id,
+nombre: this.Rtarea.nombre_tarea,
+imagen_tarea: this.Rtarea.imagen_tarea,
+tipo: this.Rtarea.tipo,
+prioridad: this.Rtarea.prioridad,
+estado: this.Rtarea.estado,
+fecha_inicio: this.Rtarea.fecha_inicio,
+fecha_termino: this.Rtarea.fecha_termino,
+comentario: this.Rtarea.comentario,
+empleado_id: this.Rtarea.empleado_id,
 
 
 
@@ -487,21 +533,35 @@ return true; // I'm always returning true, you may want to do it depending on th
 },
 }).catch(error => {
 }).then(response => {
-if (response.data == "true") {
 
-document.getElementById('btn-details-tarea').disabled = false;
-document.getElementById('loader-details-tarea').style.display="none";
-this.state= 0;
+
+
+console.log(response.data.tarea);
+
+if (response.data.estado === true) {
+
+
+document.getElementById('btn-edit-tarea').disabled = false;
+document.getElementById('loader-edit-tarea').style.display="none";
+
+this.state_edit= 0;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
-this.buscar();
+Detalle_proyecto.getProyecto();
+
+Detalle_proyecto.show_tarea(response.data.tarea, response.data.tarea.users)
+
 
 }
+
 else
 {
-document.getElementById('btn-details-tarea').disabled = false;
-document.getElementById('loader-details-tarea').style.display="none";
 
- var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+
+console.log(response.data.estado);
+document.getElementById('btn-edit-tarea').disabled = false;
+document.getElementById('loader-edit-tarea').style.display="none";
+var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+
 }
 });
 

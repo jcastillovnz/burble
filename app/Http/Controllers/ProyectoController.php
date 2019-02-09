@@ -120,6 +120,63 @@ return view('detalle', compact('proyecto'));
 
 
 
+
+
+
+
+public function registros(Request $request)
+	{
+	
+
+
+
+return view('busqueda')->with('state', 'archivo');
+}
+
+
+ public function archivo(Request $request)
+{ 
+
+
+$proyectos = Proyectos::with('clientes')->with('tareas')->orderBy('id', 'desc')->paginate(8); ;
+
+
+return [
+'pagination'=> [
+'total'=> $proyectos->total(),
+'current_page'=> $proyectos->currentPage(),
+'per_page'=> $proyectos->perPage(),
+'last_page'=> $proyectos->lastPage(),
+'from'=> $proyectos->firstItem(),
+'to'=> $proyectos->lastPage(),
+],
+'proyectos'=> $proyectos
+];
+
+
+
+}
+
+
+
+
+
+ public function todosProyectos(Request $request)
+{ 
+
+
+$proyectos = Proyectos::all();
+
+
+return response()->json(count($proyectos)  ); 
+
+
+}
+
+
+
+
+
  public function proyecto(Request $request)
 { 
 
@@ -313,26 +370,42 @@ public function update_tarea( Request $request )
 
 
 
-$tareas =Tareas::where('id', $request->id)->first();
+$tarea =Tareas::where('id', $request->id)->with('users')->first();
 
 
-$tareas->nombre=  $request->nombre;
-$tareas->tipo=  $request->tipo;
-$tareas->prioridad=$request->prioridad;
-$tareas->estado=$request->estado;
-$tareas->fecha_inicio=$request->fecha_inicio;
-$tareas->fecha_termino=$request->fecha_termino;
-$tareas->comentario=$request->comentario;
+$tarea->nombre=  $request->nombre;
+$tarea->tipo=  $request->tipo;
+$tarea->prioridad=$request->prioridad;
+$tarea->estado=$request->estado;
+$tarea->fecha_inicio=$request->fecha_inicio;
+$tarea->fecha_termino=$request->fecha_termino;
 
-$tareas->save();
 
-if ($tareas->save()==true) {
-$data = "true";
-return response()->json($data); 
+
+
+$tarea->users_id=$request->empleado_id;
+$tarea->comentario=$request->comentario;
+
+$tarea->save();
+
+if ($tarea->save()==true) {
+
+$tarea =Tareas::where('id',$tarea->id)->with('users')->first();
+
+
+return [
+'tarea'=>$tarea,
+'estado'=>$tarea->save()
+];
+
+
+
 }
 else {
-$data = "false";
-return response()->json($data); 
+return [
+'tarea'=>$tarea,
+'estado'=>$tarea->save()
+];
 }
 
 
@@ -450,7 +523,6 @@ public function listPrincipal( Request $request )
 
 
 
-
 $lista_principal = Lista_principal::with(['proyectos', 'proyectos.clientes'])
 ->with(['proyectos.tareas' => function ($query) {
 $query->latest()->limit(4);
@@ -483,9 +555,6 @@ $data_users = $data_user;
 }
 
 
-
-
- 
 return response()->json (['lista_principal'=> $lista_principal ,
 'users'=> $data_users ]) ;
 
@@ -495,37 +564,34 @@ return response()->json (['lista_principal'=> $lista_principal ,
 
 
 
- 
-
-
     }
 
 
 public function listEspera( Request $request )
     {
 
-$lista_espera = DB::table('lista_espera')
+$lista_espera= Lista_espera::with(['proyectos', 'proyectos.clientes'])
+->with(['proyectos.tareas' => function ($query) {
+$query->latest()->limit(4);
+}]) ->get() ;
 
-->Join('proyectos', 'lista_espera.proyectos_id', '=', 'proyectos.id')
-->Join('clientes', 'proyectos.clientes_id', '=', 'clientes.id')
-->select( 
-'lista_espera.id',
-'lista_espera.proyectos_id',     
-'proyectos.nombre AS nombre_proyecto' , 
-'proyectos.fecha_entrega' , 
-'clientes.nombre AS nombre_empresa' , 
-'proyectos.comentario'
+$data_users = array();
+foreach ($lista_espera as $key => $lista) {
+$data_user[$key] = array();
+foreach ($lista->proyectos->tareas  as $i => $tarea) {
+$users = User::where('id', $tarea->users_id)
+ ->first() ;
+ $data_user[$key][$i] = $users ;
+}
+$data_users = $data_user;
+
+}
+
+return response()->json (['lista_espera'=> $lista_espera ,
+'users'=> $data_users ]) ;
 
 
 
-)->orderBy('id', 'asc')
-
-->get();;
-
-
-
-
-return response()->json($lista_espera); 
 
     }
 

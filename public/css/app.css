@@ -103,7 +103,7 @@ margin-top: 15px;
 }
 
 .proyecto-min {
- font-size: 13px;
+ font-size: 8px;
  margin:auto;
 
 }
@@ -208,11 +208,11 @@ padding-top: 10%;
   margin-top:38%;   margin-left: 35%;
 }
 
- .amarilo{
+ .amarillo{
 color:  #ffad43;
 }
  .azul{
-color:  #ffad43;
+color:  #067de1;
 }
 
  .rojo{
@@ -323,8 +323,8 @@ padding-top: none;
 }
 
 .ghost {
-  opacity: .5;
-  background-color: red;
+  opacity: none;
+
 }
 
 

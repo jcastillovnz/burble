@@ -1,8 +1,10 @@
 
-<div  class="modal fade "  id="edit_item"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div  class="modal fade "  id="edit_tarea"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div  class="modal-dialog ">
 <div class="modal-content ">
-<form   autocomplete="off" method="GET" class="hidden"   @submit.prevent="update(rellenar.id)"  >
+
+<form   autocomplete="off" method="GET" class="hidden"   @submit.prevent="update_tarea()"  >
+
 <div class="modal-header ">
 <div class="col-sm-12 text-primary">
 <center>
@@ -12,7 +14,7 @@
 Informacion de tarea
 </strong>
 </span>
-<button   type="button" class="close float-right"   v-on:click="close()"  >
+<button   type="button" class="close float-right"   v-on:click="close_tarea()"  >
 <i class="fas fa-times"></i>
 </button>
 <button    v-on:click="edit_tarea()"  type="button"   class="close float-right" >
@@ -37,7 +39,7 @@ Informacion de tarea
 
 
 
-<img  v-if="rellenar.empleado_foto" class="border rounded-circle "  width="120" height="120" class=""  :src="'/img/users/fotos/' +rellenar.empleado_foto" alt="Card image cap">
+<img  v-if="Rtarea.empleado_foto" class="border rounded-circle "  width="120" height="120" class=""  :src="'/img/users/fotos/' +Rtarea.empleado_foto" alt="Card image cap">
 
 
 
@@ -52,14 +54,35 @@ Informacion de tarea
 <p>
 
 Empleado encargado:
-@{{rellenar.empleado_nombre}}  @{{rellenar.empleado_apellido}}
- 
 
-<!--  
-<select :disabled="state_edit == 0" v-model="rellenar"   class="form-control">
-<option>Seleccione empleado   </option>
+@{{Rtarea.empleado_nombre}}  @{{Rtarea.empleado_apellido}}
+
+
+
+
+
+<select :disabled="state_edit == 0" v-model="Rtarea.empleado_id"   class="form-control">
+<option value="">   Seleccione empleado   </option>
+
+
+<template v-for="user in todos_users">
+
+
+<option  v-if="user.id==Rtarea.empleado_id"  selected=""  :value="user.id" >@{{user.name}}   @{{user.apellido}} </option>
+
+
+
+<option  v-else  :value="user.id" >  @{{user.name}}   @{{user.apellido}} </option>
+
+
+</template>
+
+
 </select>
--->
+
+
+
+
 </p>
 </div>
 </div>
@@ -75,7 +98,7 @@ Empleado encargado:
           <i class="fas fa-briefcase"></i>
       </span>
         </div>
-        <input :disabled="state_edit == 0" v-model="rellenar.nombre" type="text" class="form-control" id="validationDefaultUsername" placeholder="Nombre proyecto" aria-describedby="inputGroupPrepend2" required>
+        <input :disabled="state_edit == 0" v-model="Rtarea.nombre_tarea" type="text" class="form-control" id="validationDefaultUsername" placeholder="Nombre tareas" aria-describedby="inputGroupPrepend2" required>
       </div>
   </div>
 
@@ -88,7 +111,7 @@ Empleado encargado:
 <i class="fas fa-sort-numeric-up"></i>
       </span>
         </div>
-        <input :disabled="state_edit == 0" v-model="rellenar.tipo" type="text" class="form-control" id="validationDefaultUsername" placeholder="Tipo" aria-describedby="inputGroupPrepend2" required>
+        <input :disabled="state_edit == 0" v-model="Rtarea.tipo" type="text" class="form-control" id="validationDefaultUsername" placeholder="Tipo" aria-describedby="inputGroupPrepend2" required>
       </div>
   </div>
 
@@ -102,11 +125,11 @@ Empleado encargado:
       </span>
         </div>
 
-    <input v-if="rellenar.fecha_inicio"  :disabled="state_edit == 0" v-model="rellenar.fecha_inicio" type="text" class="form-control" id="validationDefaultUsername" placeholder="Fecha entrega" aria-describedby="inputGroupPrepend2" required>
 
     
 
-    <input v-else  :disabled="state_edit == 0" v-model="rellenar.fecha_inicio" type="date" class="form-control" id="validationDefaultUsername" placeholder="Fecha entrega" aria-describedby="inputGroupPrepend2" >
+     <date-picker  title="Fecha de inicio" :disabled="state_edit == 0" v-model="Rtarea.fecha_inicio" class="form-control"  :config="options"></date-picker>
+
 
 
 
@@ -124,11 +147,14 @@ Empleado encargado:
         </div>
 
 
-       <input v-if="rellenar.fecha_termino"  :disabled="state_edit == 0" v-model="rellenar.fecha_inicio" type="text" class="form-control" id="validationDefaultUsername" placeholder="Fecha entrega" aria-describedby="inputGroupPrepend2" >
+      
+
+
+
+    <date-picker-edit-tarea :disabled="state_edit == 0" title="Fecha de entrega"  placeholder="Fecha de entrega"  v-model="Rtarea.fecha_termino" class="form-control"  :config="options"></date-picker-edit-tarea>
 
     
 
-    <input v-else  :disabled="state_edit == 0" v-model="rellenar.fecha_termino" type="date" class="form-control" id="validationDefaultUsername" placeholder="Fecha entrega" aria-describedby="inputGroupPrepend2" required>
 
 
 
@@ -146,7 +172,7 @@ Empleado encargado:
   <i class="fas fa-clock"></i>
       </span>
         </div>
-        <input :disabled="state_edit == 0" v-model="rellenar.prioridad" type="text" class="form-control" id="validationDefaultUsername" placeholder="Prioridad" aria-describedby="inputGroupPrepend2" required>
+        <input :disabled="state_edit == 0" v-model="Rtarea.prioridad" type="text" class="form-control"  placeholder="Prioridad" required>
       </div>
   </div>
 
@@ -159,55 +185,70 @@ Empleado encargado:
   <i class="fas fa-clock"></i>
       </span>
         </div>
-        <input :disabled="state_edit == 0" v-model="rellenar.estado" type="text" class="form-control" id="validationDefaultUsername" placeholder="Estado" aria-describedby="inputGroupPrepend2" required>
+
+
+   
+
+
+
+<select class="form-control" :disabled="state_edit == 0" v-model="Rtarea.estado" >
+  
+<option v-if="Rtarea.estado=='amarillo' " selected=""  value="amarillo"> En proceso - Amarillo </option>
+
+<option v-else  value="amarillo"> En proceso - Amarillo </option>
+
+<option v-if="Rtarea.estado=='rojo' "  selected="" value="rojo"> Detenido - Rojo </option>
+
+<option v-else   value="rojo"> Detenido - Rojo </option>
+
+<option v-if="Rtarea.estado=='azul' " selected=""  value="azul"> Azul - Finalizado </option>
+
+<option v-else   value="azul"> Azul - Finalizado </option>
+
+<option v-if="Rtarea.estado=='verde' " selected=""  value="verde"> Verde - Esperando </option>
+
+<option v-else  value="verde"> Verde - Esperando </option>
+
+</select>
+
+
+
       </div>
   </div>
 
 
-  <div class="col-sm-12   form-group">
+<div class="col-sm-12   form-group">
  <strong>Comentario</strong> 
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupPrepend2">
+<div class="input-group">
+<div class="input-group-prepend">
+<span class="input-group-text" id="inputGroupPrepend2">
 <i class="fas fa-comment"></i>
-      </span>
-        </div>
-
-<textarea :disabled="state_edit == 0" v-model="rellenar.comentario"  class="form-control" rows="2" id="comment"></textarea>
-
-      </div>
-  </div>
+</span>
+</div>
+<textarea :disabled="state_edit == 0" v-model="Rtarea.comentario"  class="form-control" rows="2" id="comment"></textarea>
+</div>
+</div>
 
 
 <div class="col-sm-12 ">
+
+
+
 <div with="300" class="">
 
 <center>
-
-
-
-
-
-<img  v-if="rellenar.imagen_tarea"  class="col-sm"  :src="'{{url ('/img/tareas/fotos/')}}'+'/' +rellenar.imagen_tarea" >
-
-
-
+<img  v-if="Rtarea.imagen_tarea"  class="col-sm"  :src="'{{url ('/img/tareas/fotos/')}}'+'/' +Rtarea.imagen_tarea" >
 <img v-else class="col-sm"  src="{{url ('img/pieza.png')}} " >
-
-
-
-
-
-<input ref="imagen" type="file"  value="" class="invisible" @change="cargar_imagen(this)"   name="">
+<input ref="imagen" type="file"  value="" class="invisible" @change="cargar_imagen_tarea(this)"   name="">
 </center>
 
-<div  class="card-img-overlay float-right">
 
+<div  class="card-img-overlay float-right">
 <button  @click="$refs.imagen.click()"    title="Actualizar imagen" style="margin-top: 75%; margin-left: 90%;"  type="button"    class="btn btn-info btn-sm rounded-circle boton-overlay"><i class="fas fa-sync"></i>
 </button>
-
-
 </div>
+
+
 </div>
 </div>
 
@@ -225,8 +266,8 @@ Empleado encargado:
 
 <div class="modal-footer">
 <div class="btn btn-group  ">
-<div  id="loader-details-tarea"  class="loader loader-sm"></div>
-<button  id="btn-details-tarea" :disabled="state_edit == 0" type="submit"  class="btn btn-success btn-sm"     >
+<div  id="loader-edit-tarea"  class="loader loader-sm"></div>
+<button  id="btn-edit-tarea" :disabled="state_edit == 0" type="submit"  class="btn btn-success btn-sm"     >
 <i class="fas fa-save"></i> 
 </button>
 </form>

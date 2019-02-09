@@ -54,6 +54,24 @@ return response()->json($user);
 
 
 
+public function todosUsuarios(Request $request)
+{
+
+
+$usuarios = User::orderBy('id', 'desc')->get() ;
+
+
+
+return response()->json($usuarios); 
+
+
+
+
+
+}
+
+
+
 
 
 public function list(Request $request)

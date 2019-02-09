@@ -332,7 +332,7 @@ Registrar un nuevo Cliente
 <i class="fas fa-phone-square"></i>
 </span>
 </div>
-<input   type="" class="form-control" v-model="nuevo.telefono" placeholder="Telefono">
+<input   type="" autocomplete="off"   class="form-control" v-model="nuevo.telefono" placeholder="Telefono">
 </div>
 <br>
 
@@ -352,7 +352,7 @@ Datos de contacto
 <i class="fas fa-user"></i>
 </span>
 </div>
-<input required=""  type="" class="form-control" v-model="nuevo.nombre_contacto" placeholder="Nombre">
+<input required=""  type="" autocomplete="off"    class="form-control" v-model="nuevo.nombre_contacto" placeholder="Nombre">
 </div>
 
 
@@ -373,7 +373,7 @@ Datos de contacto
 <span style="width: 35px"   class="input-group-text">
 <i class="fas fa-phone-square"></i></span>
 </div>
-<input required="" type="" class="form-control" v-model="nuevo.telefono_contacto" placeholder="Telefono">
+<input required="" type="" autocomplete="off"   class="form-control" v-model="nuevo.telefono_contacto" placeholder="Telefono">
 </div>
 
 
@@ -385,7 +385,7 @@ Datos de contacto
 <i class="fas fa-mail-bulk"></i>
 </span>
 </div>
-<input  required=""  type="email" class="form-control" v-model="nuevo.email_contacto" placeholder="Email">
+<input  required="" autocomplete="off"    type="email" class="form-control" v-model="nuevo.email_contacto" placeholder="Email">
 </div>
 
 

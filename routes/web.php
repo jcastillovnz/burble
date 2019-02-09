@@ -53,7 +53,7 @@ Route::post('/detalle/tarea/send_imagen/{id}','ProyectoController@tarea_imagen')
 Route::get('/detalle/{id}', 'ProyectoController@detalle');
 Route::get('/proyecto/', 'ProyectoController@proyecto');
 Route::get('/proyecto/paginar/tareas/', 'ProyectoController@proyectoTareas');
-
+Route::get('/proyectos-archivados/', 'ProyectoController@registros');
 
 
 

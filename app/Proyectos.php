@@ -24,6 +24,8 @@ public function tareas()
 
 }
 
+
+
 public function lista_principal()
 {
     return $this->hasOne('App\Lista_principal');
@@ -31,6 +33,14 @@ public function lista_principal()
 }
 
 
+
+/*
+public function lista_espera()
+{
+    return $this->hasOne('App\Lista_espera');
+
+}
+*/
 
 
 public function clientes()

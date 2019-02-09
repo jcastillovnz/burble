@@ -3,17 +3,33 @@
 
 @section('content')
 
-<div id="AppClientes"    class="content col-sm-12 " >
+<div id="AppClientes"    class="content container col-sm-12 " >
 @include('layouts.clientes.create')
+
+</div>
+
+ 
+<div id="AppProyectos"     class="content col-sm-12 " >
+@include('layouts.tareas.create')
 
 </div>
 
 
 
-<div id="AppProyectos"    class="content col-sm-12 " >
+<div id="AppProyectos"   class="content col-sm-12 " >
+
+
+
+
+
+
 <template id="listas">
 
-<div  class="col-sm-12">
+
+
+
+
+<div  style="margin-bottom: 4%;" class="col-sm-12">
 
 
 
@@ -27,21 +43,21 @@
 
 
 <div  id="loader-lista-principal" class="loader loader-sm float-right"></div>
-
-<button title="Nuevo proyecto" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
+<button  id="btn-create-proyecto"   title="Nuevo proyecto" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevoProyecto"> <i class="fas fa-plus"></i>   </button>
 </p>
+</div>
+
 </div>
 
 
 
 
-
-<div   id="lista_proceso"  class="col-sm-12 row ">
+<div  style=" margin-left: 2px;   max-width: 2000px;" id="lista_proceso"  class="row  col-sm-12 ">
 
 
 <template v-if="lista_principal.length <=  0">
 
-<div  class="col-sm-6">
+<div    class="col-sm-6">
 <div class="card borde-burble alert-warning" >
 <div class="container alert ">
 
@@ -63,26 +79,26 @@
 
 
 
-<template   v-sortable="{ onUpdate: onUpdate }">
+<template v-for="(item, A) in lista_principal"  v-sortable="{ onUpdate: onUpdate }">
 
-<div   :id="item.proyectos_id"  v-for="(item, A) in lista_principal"  class="col-sm-6 item_proceso">
-<div   class="container-fluid      borde-burble border bg-light">
-<p>
-<h4 class="proyecto-min" align="left"> 
-<a :href="'{{url('detalle/')}}'+'/'+ item.proyectos.id " >
+<div style="margin-bottom: 2%;  "  :id="item.proyectos_id"    class="col-sm-6 item_proceso">
+<div   class="container-fluid borde-burble border bg-light">
+<p style="margin-top: 3px;  margin-bottom: 1px;"  >
+<h4  style="font-size: 13px;  " class="" align="left"> 
+<a style="margin-bottom: 1px;" :href="'{{url('detalle/')}}'+'/'+ item.proyectos.id " >
 <strong  >  
      @{{item.proyectos.nombre}}
 </strong>   
 </a>
 
-<small class="comentarios-proyecto float-right" aling="right">     
+<small style="font-size: 11px;  margin-bottom: 1px;  " class=" float-right" aling="right">     
   @{{item.proyectos.comentario}} ...
 </small> 
 </h4>
 
 
 </p>
-<h6 class="empresa-min" align="left"><strong>  @{{item.proyectos.clientes.nombre}}  </strong> <small class="float-right text-info" aling="right"> <strong>  @{{item.proyectos.fecha_entrega}}  </strong></small></h6>
+<h6 style="font-size: 12px; margin-top: 3px;  margin-bottom: 1px;" class="" align="left"><strong>  @{{item.proyectos.clientes.nombre}}  </strong> <small class="float-right text-info" aling="right"> <strong>  @{{item.proyectos.fecha_entrega}}  </strong></small></h6>
 
 
 
@@ -113,10 +129,10 @@ No existen tareas registradas
 
 <div class="row">
 <div class="col">
-
+<p style="padding: none; margin-bottom: 0px; margin-left: 3px;  font-size: 11px;" align="left">
  @{{tarea.nombre}} 
 
-
+</p>
 </div>
 <div class="col ">
 
@@ -128,10 +144,14 @@ No existen tareas registradas
 
 
 
-<img  style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" v-if="users[A][B].foto"   width="15" height="15" class=" rounded-circle "  :src="'/img/users/fotos/'+ users[A][B].foto "   alt="Card image cap">
+
+
+<img  style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" v-if="users[A][B].foto!=null"   width="15" height="15" class=" rounded-circle "  :src="'/img/users/fotos/'+ users[A][B].foto "   alt="Card image cap">
 
 
 <img style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;"  v-else   width="15" height="15" class="border rounded-circle "  src="img/user.png" alt="Card image cap">
+
+
 
 
 
@@ -143,11 +163,12 @@ No existen tareas registradas
 </div>
 <div class="col">
 
+<span style="margin-bottom:0px; margin-left: 0px; margin-top: 0px;" align="left">
 @{{tarea.comentario }} ...
+</span>
 
 
-
-<i  @click="show_tarea(tarea ,users[A][B])" style="margin-top: 2%;  margin-left: 4%; margin-right: 4%;"  class="fas fa-pen-square float-right"></i>
+<i  title="Editar" @click="show_tarea(tarea ,users[A][B])" style="margin-top: 2%;  margin-left: 4%; margin-right: 4%;"  class="fas fa-pen-square float-right"></i>
 </div>
 </div>
 </div>
@@ -168,9 +189,7 @@ No existen tareas registradas
 
 
 
-<div title="Nueva tarea" class="button-collapse btn-sm " aria-expanded="false"  id="button-collapse"  data-toggle="modal"
-
-:data-target="'#modal_'+item.proyectos_id"  role="button">
+<div title="Nueva tarea" class="button-collapse btn-sm " v-on:click="nueva_tarea(item)"   id="button-collapse"  role="button">
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>
 </div>
 
@@ -234,25 +253,42 @@ No existen tareas registradas
 
 
 
-
 <div  class="col-sm-12">
 <hr>
 
-<div  id="loader-lista-espera" class="loader loader-sm float-right"></div>
-<p class="text-info"  style="font-size: 16px;" align="left" ><strong>
+<div  style="margin-left: 10px;" id="loader-lista-espera" class="loader loader-sm float-right"></div>
+<p class="text-info"  style="font-size: 16px; " align="left" ><strong>
 
 <i class="fas fa-globe-americas"></i>
- Proyectos en espera    </strong>         
+ Proyectos en espera    </strong>      
+
+
+
+
+
+<a id="archivo" href=" {{ asset('/proyectos-archivados/')  }}  ">
+<span    style="margin:0px; font-size: 15px; " class="float-right">
+  <i class="fas fa-database"></i> Archivados 
+
+
+<span   >  @{{countProyectos}}  </span>
+
+
+</span>
+</a>
+
+       
+
 <hr>   
 
-
+    
 </p>   
 </div>
 
 
 <!-- SUBPROYECTOS -->
+<div  style=" margin-left: 2px;" id="lista_espera"   class="row  col-sm-12 ">
 
-<div   id="lista_espera"  class="row col-sm-12 "   >
 <!-- TARJETA -->
 <template v-if="lista_espera.length <=  0">
 <div  class="col-sm-2">
@@ -275,57 +311,40 @@ No existen tareas registradas
 
 
 
-<template   v-sortable="{ onUpdate: onUpdate }">
-<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"    v-for="item in lista_espera"   class="col-sm item_espera">
+<template   v-for="item in lista_espera"  v-sortable="{ onUpdate: onUpdate }">
 
- 
-<div style="max-width: 150px; margin-right: none;" class="card borde-burble bg-light item " >
+
+
+
+<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"    class="col-sm item_espera ">
+<div style="max-width: 120px; margin-right:auto; margin-left:auto;  " class="card borde-burble bg-light " >
 <div class="container titulo-espera" >
 <p align="left">
-
 <strong class="proyecto-min ">
-
 <a :href="'{{url('detalle/')}}'+'/'+ item.proyectos_id " >
 <strong style="font-size: 11px;"  >  
 <i class="fas fa-angle-double-right"></i>
-     @{{item.nombre_proyecto}}
+@{{item.proyectos.nombre }}
 </strong>   
 </a>
-
-
-
-
 </strong>
-
-
 <p style="font-size: 10px;"  class="empresa-min" align="left">
- <strong>   @{{item.nombre_empresa}} </strong> 
+ <strong>   @{{item.proyectos.clientes.nombre }} </strong> 
 </p>
 </p>
 </div>
-
 <div class="container" >
-
-</div>
-
-<div class="container" >
-
- <strong class="float-left" style="font-size:10px; margin: 0px;"> @{{item.fecha_entrega}} </strong> 
-
+<strong class="float-left" style="font-size:10px; margin: 0px;">  @{{item.proyectos.fecha_entrega }} </strong> 
 <div  style=" margin-left: 90%;" v-on:click="confirmar_delete_espera(item)"  class=" btn-sm  "  >
-
-
 <i class="fas fa-trash "></i>
-
-
 </div>
-
 </div>
-
+</div>
 </div>
 
 
-</div>
+
+
  </template><!--LISTADO TERMINA-->
 
 
@@ -338,264 +357,12 @@ No existen tareas registradas
 
 
 
+@include('layouts.projects.create')
 
 
-
-
-
-
-
-
-
-<!-- MODAL NUEVO PROYECTO  -->
-<div   class="modal fade nuevoProyecto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-
-<div class="modal-dialog modal-sm-8">
-<div id="AppProyectos"   class="modal-content">
-<form method="GET" class="hidden" role="form"  v-on:submit.prevent="submit(this)"  >
-<div class="modal-header ">
-<div class="col-sm-12 text-primary">
-<i class="fas fa-cube"></i>
-<strong>
-Registrar un nuevo proyecto
-</strong>
-<button type="button" class="close float-right" data-dismiss="modal">&times;</button>
+<div id="AppProyectos">
+@include('layouts.tareas.edit')
 </div>
-</div>
-<div  class="modal-body">
- <div class="input-group col-sm-12">
-<div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text"><i  class="fas fa-briefcase"></i> </span>
-    </div>
- 
-<select required="" autocomplete="off"  v-model="Rproyecto.cliente_id" class="form-control">
-
-<option value="" selected="">Cliente / Empresa</option>
-
-@if ( isset($clientes)==true   )
-@foreach( $clientes as $cliente)
-<option value="{{$cliente->id}}"  > {{$cliente->nombre}}</option>
-@endforeach
-
-
-@else
-<option value="">Seleccione un cliente</option>
-
-
-
-@endif
-</select>
-
-</div>
-
-
-
- <div class="input-group  col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
-</div>
-<input  autocomplete="off" required="" v-model="Rproyecto.nombre_proyecto" type="text" class="form-control" placeholder="Nombre de proyecto">
-</div>
-
-
-<div class="input-group col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text"><i class="fas fa-clock"></i>  </span>
-</div>
-<input  autocomplete="off" title="Fecha recepcion" required="" v-model="Rproyecto.fecha_recepcion" type="date" class="form-control" placeholder="Fecha de entrega">
-</div>
-
-
-
-<div class="input-group col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text"><i class="fab fa-font-awesome-flag"></i>  </span>
-</div>
-<input  autocomplete="off"  title="Fecha entrega"   required="" v-model="Rproyecto.fecha_entrega" type="date" class="form-control" placeholder="Fecha de entrega">
-</div>
-
-
-
-
-<div class="input-group col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text"><i class="fas fa-dollar-sign"></i>   </span>
-</div>
-<input  autocomplete="off" required="" v-model="Rproyecto.presupuesto" type="number" min="100" max="5000000"   class="form-control" placeholder="Presupuesto">
-</div>
-
-
-<div class="input-group col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"   class="input-group-text"><i class="fas fa-comments"></i> </span>
-</div>
-
-
-<textarea autocomplete="off" required="" v-model="Rproyecto.comentario" class="form-control" placeholder="Comentarios..."></textarea>
-</div>
- </div>
-
-
-<div  class="modal-footer">
-<div  class="btn btn-group  ">
-<div id="carga-proyecto" class="loader loader-sm "></div>
-<button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
-<i class="fas fa-times-circle"></i>
-</button>
-
-<button id="btn-proyecto"  class="btn btn-success btn-sm"     >
-<i class="fas fa-save"></i> 
-</button>
-
-
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- MODAL NUEVO PROYECTO  -->
-
-
-
-
-
-
-
-
-<template v-for="(item, index) in lista_principal">
-<!-- MODAL NUEVA TAREA -->
-
-<div   class="modal fade nuevaTarea"  v-bind:id="'modal_'+ item.proyectos_id"    tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-sm-8">
-<div  id="AppProyectos"   class="modal-content">
-<form method="GET" class="hidden" role="form"  v-on:submit.prevent="enviar_tarea(item.proyectos_id)"  >
-<div class="modal-header ">
-<div class="col-sm-12 text-primary">
-<i class="fas fa-suitcase"></i>
-<strong>
-Registrar un nueva tarea
-</strong>
-<button type="button" class="close float-right" data-dismiss="modal">&times;</button>
-</div>
-</div>
-<div class="modal-body">
-
-
-  
-<div class="input-group  col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text"><i class="fas fa-cube"></i></span>
-</div>
-<input required="" type="text" v-model="Rtarea.nombre_tarea"   class="form-control" placeholder="Nombre de tarea">
-</div>
-
-
-<div class="input-group  col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text"><i class="fas fa-vector-square"></i></span>
-</div>
-<input  title="ObJETIVO"   type="text" v-model="Rtarea.objetivo_tarea"   class="form-control" placeholder="Objetivo">
-</div>
-
-
-
-<div class="input-group  col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text"><i class="fas fa-clock"></i></span>
-</div>
-<input required=""  title="Fecha inicio"   type="date" v-model="Rtarea.fecha_inicio"   class="form-control" placeholder="Fecha inicio">
-</div>
-
-
-<div class="input-group  col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text"><i class="fas fa-flag-checkered"></i></span>
-</div>
-<input required="" title="Fecha termino"   type="date" v-model="Rtarea.fecha_termino"   class="form-control" placeholder="Fecha termino">
-</div>
-
-
-
-
-<div class="input-group col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text">
-<i class="fas fa-project-diagram"></i>
-</span>
-</div>
-<select required="" v-model="Rtarea.tipo_tarea" class="form-control">
-<option selected="" value="">Tipo de tarea</option>
-<option value="Imagen">Imagen</option>
-<option value="Proceso">Proceso</option>
-<option value="Cambio">Cambio</option>
-</select>
-</div>
-
-
-<div class="input-group col-sm-12">
-<div class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text"><i class="far fa-chart-bar"></i>  </span>
-</div>
-<select required="" v-model="Rtarea.prioridad_tarea"  class="form-control">
-  <option selected="" value="" > Seleccione prioridad  </option>
-<option value="ALTA">Alta / Rojo</option>
-<option value="MEDIA">Media / Amarillo</option>
-<option value="BAJA">Baja / Verde</option>
-</select>
-</div>
-
- <div class="input-group col-sm-12"  >
-<div class="input-group-prepend"   >
-<span style="width: 35px"  class="input-group-text"><i class="fas fa-user-shield"></i>  </span>
-</div>
-
-
-<select required=""   v-model="Rtarea.empleado_id" class="form-control">
-
-<option selected="" value="" > Seleccione empleado  </option>
-<option v-for="item in lista_users"  :value="item.id"  > @{{item.name }}  @{{item.apellido}} 
-
-
-</select>
-
-
-</div>
-<div class="input-group col-sm-12">
-<div  class="input-group-prepend">
-<span style="width: 35px"  class="input-group-text"><i class="fas fa-comment"></i>   </span>
-</div>
-<textarea  v-model="Rtarea.comentario" class="form-control"  placeholder="comentarios"></textarea>
-</div>
-<!--  
-<div class="col-sm-12">
-<center>
-<img width="500" height="500"  class="img-thumbnail" src="img/img.png">
-</center>
-<p class="text-info">Sube una imagen sobre esta tarea</p>
-</div>
--->
-<div class="modal-footer">
-<div class="btn btn-group  ">
-<div  :id="'loader_'+item.proyectos_id"   class="loader loader-sm loader-tarea"></div>
-<button class="btn btn-light btn-sm " type="button" class="close" data-dismiss="modal" aria-label="Close">
-<i class="fas fa-times-circle"></i>
-</button>
-<button type="submit"  :id="'btn-tarea_'+item.proyectos_id"   class="btn btn-success btn-sm btn-tarea" type="button"  >
-<i class="fas fa-save "></i>
-</button>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- MODAL NUEVA TAREA -->
-
-</template>
-
-
 
 
 
@@ -607,6 +374,8 @@ Registrar un nueva tarea
 
 
 <!-- MODAL EDITAR TAREA-->
+
+<!--  
 <div  class="modal fade "  id="edit_tarea"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div  class="modal-dialog ">
 <div class="modal-content ">
@@ -824,44 +593,15 @@ Empleado encargado:
 </div>
 </div>
 </div>
+
+-->
 <!-- MODAL EDITAR TAREA-->
 
 
 
 
 
-
-
-
-
-
-
-
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

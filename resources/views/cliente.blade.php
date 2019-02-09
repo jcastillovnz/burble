@@ -72,7 +72,7 @@ v-model="cliente"   placeholder="Cliente">
  <i class="fas fa-user"></i>
          </span>
     </div>
-    <input type="text" :disabled="state == 0"   v-model="Rproyecto.fecha_recepcion"  class="form-control input-sm input"   placeholder="fecha recepcion" >
+    <input         type="text" :disabled="state == 0"   v-model="Rproyecto.fecha_recepcion"  class="form-control input-sm input"   placeholder="fecha recepcion" >
   </div>
 
 

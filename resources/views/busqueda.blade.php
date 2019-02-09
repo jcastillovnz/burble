@@ -2,9 +2,12 @@
 
 @section('content')
 
-<script src="{{ asset('js/busqueda.js') }}" defer></script>
 
-  
+
+
+
+
+<script src="{{ asset('js/busqueda.js') }}" defer></script>
 
 
 <div    >
@@ -27,35 +30,65 @@ Busqueda
   <p align="center">
 <i class="fas fa-filter text-info"></i> Filtros
 </p>
-<!--  
-<div style="height: 50px;" class="card">
-Proyectos terminados
-</div>
-<div style="height: 50px;" class="card">
-Proyectos en espera
-</div>
-<div style="height: 50px;" class="card">
-Proyectos en espera
-</div>
--->
+
+
+
 </div>
 
 <hr>
+
+
+
+
+
+
 <div id="buscar"  class="col-sm-9 ">
+
+
 
 <div  id="loader-busqueda"   class="loader loader-sm float-left"></div>
 
-  
-
 
 <p class="font-weight-normal" align="center">
+
+@if( $state=="archivo"   )
+
+<i class="fas fa-database text-info"></i>  Proyectos archivados @{{pagination.total}}  </p>
+
+@else
 <i class="fas fa-poll-h text-info"></i> Resultados de la busqueda</p>
+
+
+@endif
 <div >    
 
 <div class="table table-responsive">
 
 
+<template v-if="resultados.length == 0">  
+<div  class="col-sm-12">
+<div class="card borde-burble alert-warning" >
+<div class=" alert content">
+<p align="center" style=" margin-top: 2%;   margin-bottom: 5%;">
+
+  
+<h6> <strong> <i class="fas fa-exclamation-circle"></i> No existen resultados</strong>  </h6>
+
+
+</p>
+</div>
+</div>
+</div>
+</template>
+
+<template v-else>
+
   <table class="table table-borderless">
+
+
+
+
+
     <thead>
       <tr  >
   
@@ -68,6 +101,8 @@ Proyectos en espera
     </thead>
     <tbody>
 
+
+
       <tr v-for="proyecto  in resultados" >
    
         <td>@{{proyecto.nombre}} </td>
@@ -79,8 +114,9 @@ Proyectos en espera
 <button class="btn btn-light btn-sm " type="button" id="dropdownMenuButton" data-toggle="dropdown">
 <i class="fas fa-cogs"></i></button>
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+<a class="dropdown-item" v-on:click="show_proyecto(proyecto)"  >Detalles</a>  
 <a class="dropdown-item" v-on:click="add_espera(proyecto)"  >Enviar a espera</a>
-<a class="dropdown-item" v-on:click="show(proyecto)"  >Detalles</a>
 <a class="dropdown-item"  v-on:click="eliminar(proyecto)"  > Eliminar</a>
 </div>
 </div>  
@@ -127,14 +163,20 @@ Proyectos en espera
 </nav>
 
 
+</template>
+
+<!--  
+
+-->
+
+
+
+</div>
+
+
+</div>
+
 @include('layouts.projects.edit')
-
-</div>
-
-
-</div>
-
-
 
 </div>
 

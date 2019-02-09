@@ -1,5 +1,5 @@
 
-<div  class="modal fade nuevaTarea"    data-dismiss="modal"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div     class="modal fade nuevaTarea"    data-dismiss="modal"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div  class="modal-dialog ">
 <div class="modal-content ">
 <form   autocomplete="off" method="GET" class="hidden"   @submit.prevent="create_tarea()"  >
@@ -9,10 +9,10 @@
 <span style="margin-left:80px;">
 <i class="fas fa-suitcase"></i>
 <strong>
-Registrar un nueva tarea
+Registrar un nueva tarea 
 </strong>
 </span>
-<button   type="button" class="close float-right"   v-on:click="close()"  >
+<button   type="button" class="close float-right"   v-on:click="close_tarea()"  >
 <i class="fas fa-times"></i>
 </button>
 
@@ -35,7 +35,7 @@ Registrar un nueva tarea
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-vector-square"></i></span>
 </div>
-<input  title="ObJETIVO"   type="text" v-model="Rtarea.objetivo_tarea"   class="form-control" placeholder="Objetivo">
+<input  title="Objetivo"   type="text" v-model="Rtarea.objetivo_tarea"   class="form-control" placeholder="Objetivo">
 </div>
 
 
@@ -44,7 +44,12 @@ Registrar un nueva tarea
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-clock"></i></span>
 </div>
-<input required=""  title="Fecha inicio"   type="date" v-model="Rtarea.fecha_inicio"   class="form-control" placeholder="Fecha inicio">
+
+
+   <date-picker  title="Fecha de inicio"  v-model="Rtarea.fecha_inicio" class="form-control"  :config="options"></date-picker>
+
+
+
 </div>
 
 
@@ -52,7 +57,15 @@ Registrar un nueva tarea
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-flag-checkered"></i></span>
 </div>
-<input required="" title="Fecha termino"   type="date" v-model="Rtarea.fecha_termino"   class="form-control" placeholder="Fecha termino">
+
+
+
+    <date-picker title="Fecha de entrega" name="date" placeholder="Fecha de entrega"  v-model="Rtarea.fecha_termino" class="form-control"  :config="options"></date-picker>
+
+    
+
+
+
 </div>
 
 
@@ -90,12 +103,14 @@ Registrar un nueva tarea
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-user-shield"></i>  </span>
 </div>
 
-@{{lista_users}}
+
+
+
 
 <select required=""   v-model="Rtarea.empleado_id" class="form-control">
 
 <option selected="" value="" > Seleccione empleado  </option>
-<option v-for="item in lista_users"  :value="item.id"  > @{{item.name }}    @{{item.apellido}} 
+<option v-for="item in todos_users"  :value="item.id"  > @{{item.name }}    @{{item.apellido}} 
 
 
 </select>

@@ -13,9 +13,6 @@ public $table = "lista_principal";
 
 
 
-
-
-
 public function proyectos()
 {
     return $this->belongsTo('App\Proyectos');

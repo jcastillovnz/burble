@@ -11,7 +11,13 @@ this.getUser();
     },
 
     data: {
-
+ options: {
+      // https://momentjs.com/docs/#/displaying/
+      format: 'YYYY/MM/DD ',
+      useCurrent: false,
+      showClear: true,
+      showClose: true,
+    },
   
      usuario: null,
      state: 0,

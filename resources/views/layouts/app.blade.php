@@ -20,11 +20,9 @@
 <link href="{{ asset('css/alertify.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/loader.css') }}" rel="stylesheet" type="text/css">
  
-             
-
-
-
-
+<link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" type="text/css">
+ 
+                          
 
 <script src="{{ asset('js/axios.min.js') }} " defer></script>
 <script  type="text/javascript" src="{{ asset('js/jQuery.js') }}"   defer></script>
@@ -33,10 +31,12 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"  defer></script>
 
 <script src="{{ asset('js/sortable.js') }}" defer></script>
+<script src="{{ asset('js/appVuej.js') }}" defer></script>
+<script src="{{ asset('js/moment.js') }}" defer></script>
+<script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}" defer></script>
+<script src="{{ asset('js/vue-bootstrap-datetimepicker.js') }}" defer></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
 
-
-<script src="{{ asset('js/appVuej.js') }}" defer></script>
 
 
 <nav  class="navbar navbar-expand-lg navbar-light border-bottom ">
@@ -154,9 +154,6 @@
 </li>
 
 
-<li class="nav-item">
-        <a class="nav-link" href="#"  ><i class="fas fa-database"></i> Archivo </a>
-</li>
 
 
 

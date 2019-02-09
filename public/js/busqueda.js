@@ -4,8 +4,17 @@ var search = new Vue({
 el: '#buscar',
 
   mounted(){
-function getUrl()
-{
+
+if (window.location.pathname=="/proyectos-archivados") {
+
+this.archivo();
+
+}
+
+if (window.location.pathname=="/busqueda") {
+
+function getUrl(){
+
 // capturamos la url
  var loc = window.location.href;
     // si existe el interrogante
@@ -20,19 +29,33 @@ function getUrl()
       var tmp = GET[i].split('=');
     get[tmp[0]] = unescape(decodeURI(tmp[1]));
       }
-        return get;
+      return get;}
     }
-}
 
-var values= getUrl();
+
+
+var values = getUrl();
 //recogemos los valores que nos envia la URL en variables para trabajar con ellas
 buscar = values['busqueda'];
 this.busqueda =buscar;
 this.buscar();
+
+}
+
+
+
 }
 ,
 data: {
 busqueda:'',
+
+ options: {
+      // https://momentjs.com/docs/#/displaying/
+      format: 'YYYY/MM/DD ',
+      useCurrent: false,
+      showClear: true,
+      showClose: true,
+    },
 state: 0,
 resultados: [],
 
@@ -40,6 +63,7 @@ resultados: [],
     'id':'',
     'foto':'', 
     'nombre_proyecto':'',
+     'fecha_recepcion':'',
     'fecha_entrega':'',
     'presupuesto':'',
     'Ntareas':'',
@@ -96,15 +120,19 @@ return pagesArray;
 }
 ,
 methods: {
-show: function(proyecto) {
+show_proyecto: function(proyecto) {
+
 $('#edit_item').modal('show');
-this.rellenar.id = proyecto.id;
+this.rellenar.id              = proyecto.id;
 this.rellenar.nombre_proyecto = proyecto.nombre;
-this.rellenar.fecha_entrega = proyecto.fecha_entrega;
-this.rellenar.presupuesto = proyecto.presupuesto;
-this.rellenar.comentario = proyecto.comentario;
-this.rellenar.nombre_cliente = proyecto.clientes.nombre;
-this.rellenar.Ntareas = proyecto.tareas.length;
+this.rellenar.fecha_recepcion = proyecto.fecha_recepcion;
+this.rellenar.fecha_entrega   = proyecto.fecha_entrega;
+this.rellenar.presupuesto     = proyecto.presupuesto;
+this.rellenar.comentario      = proyecto.comentario;
+this.rellenar.nombre_cliente  = proyecto.clientes.nombre;
+this.rellenar.Ntareas         = proyecto.tareas.length;
+
+console.log(this.rellenar.fecha_recepcion);
 }
 ,
 close: function(proyecto) {
@@ -117,6 +145,20 @@ this.state = 0;
 } 
 }
 ,
+
+archivo: function()  {
+
+
+ var url= '/api/archivo/';
+  axios.get(url).then(response => {
+  this.resultados = response.data.proyectos.data
+  this.pagination=  response.data.pagination
+
+
+
+});
+}
+,
 edicion: function(status) {
 if (this.state == 0) {
 this.state = 1;
@@ -127,7 +169,7 @@ this.state = 0;
 
 }
 ,
-update: function(status) {
+update_proyecto: function(status) {
 document.getElementById('btn-details-proyecto').disabled = true;
 document.getElementById('loader-details-proyecto').style.display="block";
 
@@ -203,12 +245,15 @@ search.buscar();
 
 },
 clear: function() {
+this.rellenar.id = '';
 this.rellenar.nombre_proyecto = '';
+this.rellenar.fecha_recepcion = '';
 this.rellenar.fecha_entrega = '';
 this.rellenar.presupuesto = '';
 this.rellenar.comentario = '';
 this.rellenar.nombre_cliente = '';
 this.rellenar.Ntareas = '';
+
 },
 buscar: function () {
 axios({

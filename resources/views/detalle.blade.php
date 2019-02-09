@@ -8,12 +8,16 @@
 
 <div  id="DetalleProyecto"  class="content">
 
+
+
+
+
 <div class="col-sm-12">
 <div style="padding-left: 1%;  font-size: 18px;" align="left" class="">
 
 Informacion  proyecto
 
-<button title="Nueva tarea" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevaTarea"> <i class="fas fa-plus"></i> </button>
+<button title="Nueva tarea" class="btn btn-light  rounded-circle float-right "    v-on:click="nueva_tarea()" > <i class="fas fa-plus"></i> </button>
 
 
 <input value="{{$proyecto->id}}"  id="proyecto_id" class="invisible" >
@@ -220,7 +224,7 @@ No existen tareas en este proyecto !
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
 
-<a class="dropdown-item"   v-on:click="show(tarea)"  >Detalle</a>
+<a class="dropdown-item"   v-on:click="show_tarea(tarea, tarea.users)"  >Detalle</a>
 
 <a class="dropdown-item"  v-on:click="eliminar(tarea)"  > Eliminar</a>
 
@@ -284,24 +288,32 @@ No existen tareas en este proyecto !
 
 
 
+
+
+
 </div>
 
 
 
 
 </form>
+
+
+
 @include('layouts.tareas.edit')
-
-
 
 
 </div>
 
 
 
-@include('layouts.tareas.create')
 
 
+<div id="DetalleProyecto">
+  
+  @include('layouts.tareas.create')
+
+</div>
 
 
 @endsection

@@ -60,10 +60,10 @@ Route::get('/contacto/update/', 'ContactoController@update');
 
 
 Route::get('/usuario/consulta_mail/', 'GestionController@monitor');
-
 Route::get('/usuarios/consulta/', 'GestionController@list');
-
 Route::get('/usuarios/delete/', 'GestionController@delete');
+Route::get('/usuarios/', 'GestionController@todosUsuarios');
+
 
 
 
@@ -80,7 +80,7 @@ Route::get('/clientes/', 'ClienteController@GetClientes');
 
 
 Route::get('/proyectos/', 'ProyectoController@list');
-
+Route::get('/count-proyectos/', 'ProyectoController@todosProyectos');
 
 
 Route::get('/proyectos/principal', 'ProyectoController@listPrincipal');
@@ -91,8 +91,7 @@ Route::get('/proyectos/espera', 'ProyectoController@listEspera');
 
 
 Route::get('/proyectos/tareas', 'ProyectoController@listTareas'); 
-
-
+Route::get('/archivo/', 'ProyectoController@archivo');
 
 
 
