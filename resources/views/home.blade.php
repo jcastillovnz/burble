@@ -2,10 +2,8 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div id="AppClientes"    class="content container col-sm-12 " >
 @include('layouts.clientes.create')
-
 </div>
 
  
@@ -13,6 +11,7 @@
 @include('layouts.tareas.create')
 
 </div>
+
 
 
 
@@ -366,17 +365,17 @@ No existen tareas registradas
 
 
 
-
-
-
-
-
-
-
-
-
-
 </div>
+
+
+
+
+
+
+
+
+
+
 
 
 

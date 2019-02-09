@@ -4,6 +4,9 @@
 
 <script src="{{ asset('js/mi_cuenta.js') }}" defer></script>
 
+<div id="AppClientes"    class="content container col-sm-12 " >
+@include('layouts.clientes.create')
+</div>
 
   
 
@@ -32,7 +35,7 @@ Mi cuenta
 
 
 
-<form method="GET" class="container-fluid" role="form"  v-on:submit.prevent="sumbit_datos()"  >
+<form method="GET" class="container-fluid" role="form"  v-on:submit.prevent="update_user()"  >
 
 <div class="row">
 <div class="col-sm-4 ">
@@ -124,6 +127,20 @@ Mi cuenta
 
 
 
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span style="width: 35px"  class="input-group-text">
+<i class="fas fa-envelope"></i>
+         </span>
+    </div>
+    <input required="" title="Email" type="text" v-model="email=usuario.email"  class="form-control input-sm" :disabled="state == 0" placeholder="Email">
+  </div>
+
+
+
+
+
+
   
 </div>
 
@@ -192,6 +209,21 @@ Mi cuenta
 
 
   
+
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span style="width: 35px"  class="input-group-text">
+<i class="fas fa-key"></i>
+         </span>
+    </div>
+    <input  title="Contraseña" type="password" v-model="password"  class="form-control input-sm" :disabled="state == 0" placeholder="Contraseña">
+  </div>
+
+
+
+
+
+
 </div>
 
 

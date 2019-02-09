@@ -2,6 +2,9 @@
 
 @section('content')
 
+<div id="AppClientes"    class="content container col-sm-12 " >
+@include('layouts.clientes.create')
+</div>
 
 
 

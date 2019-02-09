@@ -29,6 +29,7 @@ this.getUser();
      alias: '',
      fecha_nacimiento: '',
      rango: '',
+     password: '',
      cuit: '',
      direccion: '',
      obra_social: '',
@@ -52,7 +53,6 @@ axios({
 }).then(response => {
   this.usuario = response.data
 
-
 });
 
 
@@ -60,28 +60,27 @@ axios({
  }
 ,
 
-enviar_data: function(e) {
+update_user: function(e) {
+
+document.getElementById('btn-user').disabled = true;
+document.getElementById('loader-user').style.display="block"
 
 var url = '/api/usuario/update/' ;
-
 axios.get( url, {
-
-
-
      params: {
-
-
      nombre: this.nombre,
      apellido: this.apellido,
      alias:this.alias,
      fecha_nacimiento:this.fecha_nacimiento,
      cuit: this.cuit,
+     rango: this.rango,
+      email: this.email,
+      password: this.password,
      direccion: this.direccion,
      obra_social: this.obra_social,
      servicio_ambulancia: this.servicio_ambulancia,
      contacto_ambulancia: this.contacto_ambulancia,
      id: this.id,
-
        },
 validateStatus: (status) => {
         return true; // I'm always returning true, you may want to do it depending on the status received
@@ -90,16 +89,12 @@ validateStatus: (status) => {
 
     }).then(response => {
 
-if (response.data == "true") {
+if (response.data.estado == "true") {
 document.getElementById('btn-user').disabled = false;
 document.getElementById('loader-user').style.display="none"
-
-
 this.state= 0;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 this.getUser();
-
-
 }
 else
 {
@@ -107,22 +102,13 @@ document.getElementById('btn-user').disabled = false;
 document.getElementById('loader-user').style.display="none"
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
 
-  
-
 }
    // this is now called!
     });
 
   },
 
-sumbit_datos: function(e) {
-document.getElementById('btn-user').disabled = true;
-document.getElementById('loader-user').style.display="block"
-this.enviar_data()
 
-
-}
-,
 
 enviar_foto: function(file)  {
 

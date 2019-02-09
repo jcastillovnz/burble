@@ -158,8 +158,19 @@ $user = User::where('id', $request->id)->first();
 $user->name = $request->nombre;
 $user->apellido = $request->apellido;
 $user->cuit= $request->cuit;
+
+
+if ($request->rango !=null ) {
+$user->rango= $request->rango;
+}
+
 $user->direccion= $request->direccion;
 $user->email= $request->email;
+
+if ($request->password !=null ) {
+$user->password= Hash::make($request->password);
+}
+
 $user->alias = $request->alias;
 $user->fecha_nacimiento = $request->fecha_nacimiento;
 $user->obra_social = $request->obra_social;
@@ -169,15 +180,24 @@ $user->save();
 
 
 if ($user->save()==true) {
-$data = "true";
-return response()->json($data); 
+
+
+
+return [
+'user'=> $user ,
+'estado'=>'true'
+];
+
+
+
 }
 
 else {
 
-$data = "false";
-return response()->json($data); 
-
+return [
+'user'=> $user ,
+'estado'=>'false'
+];
 }
 
 

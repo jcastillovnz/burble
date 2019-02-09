@@ -1660,7 +1660,7 @@ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i
 },
 
 
-update: function(e) {
+update_user: function(e) {
 document.getElementById('btn-edicion').disabled = true;
 document.getElementById('loader-edicion').style.display="block"
 
@@ -1671,6 +1671,7 @@ id: this.rellenar.id,
 nombre: this.rellenar.nombre,
 apellido: this.rellenar.apellido,
 email: this.rellenar.email,
+password: this.rellenar.password,
 alias:this.rellenar.alias,
 fecha_nacimiento:this.rellenar.fecha_nacimiento,
 rango: this.rellenar.rango,
@@ -1685,20 +1686,24 @@ return true; // I'm always returning true, you may want to do it depending on th
 },
 }).catch(error => {
 }).then(response => {
-if (response.data == "true") {
+
+
+if (response.data.estado == "true") {
 document.getElementById('btn-edicion').disabled = false;
 document.getElementById('loader-edicion').style.display="none"
 this.state= 0;
 
-
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 this.getUsers();
+
 }
 else
 {
 document.getElementById('btn-edicion').disabled = false;
 document.getElementById('loader-edicion').style.display="none";
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+this.state= 0;
+
 }
 });
 },
