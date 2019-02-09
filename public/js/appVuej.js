@@ -292,10 +292,6 @@ this.Rtarea.empleado_nombre = user.name;
 this.Rtarea.empleado_apellido = user.apellido;
 this.Rtarea.empleado_foto = user.foto;
 this.Rtarea.empleado_id = user.id;
-
-
-
-
 },
 
 
@@ -310,6 +306,55 @@ this.state_edit = 0;
 $('.nuevaTarea').modal('hide');
 }
 ,
+
+
+close: function() {
+$('#edit_proyecto').modal('hide');
+this.clear();
+
+if (this.state_edit == 1) {
+this.state_edit = 0;
+} 
+$('.nuevoProyecto').modal('hide');
+}
+,
+
+clear: function(tarea) {
+this.Rproyecto.id = '';
+this.Rproyecto.nombre_proyecto = '';
+this.Rproyecto.fecha_recepcion = '';
+this.Rproyecto.fecha_entrega = '';
+this.Rproyecto.presupuesto = '';
+this.Rproyecto.Ntareas = '';
+this.Rproyecto.nombre_cliente = '';
+this.Rproyecto.cliente_id = '';
+this.Rproyecto.comentario = '';
+
+
+this.Rtarea.id = '';
+this.Rtarea.nombre_tarea = '';
+this.Rtarea.objetivo_tarea = '';
+this.Rtarea.imagen_tarea = '';
+this.Rtarea.tipo = '';
+this.Rtarea.objetivo_tareas = '';
+this.Rtarea.prioridad = '';
+this.Rtarea.estado = '';
+
+this.Rtarea.fecha_termino = '';
+this.Rtarea.presupuesto = '';
+this.Rtarea.comentario = '';
+this.Rtarea.empleado_nombre = '';
+this.Rtarea.empleado_apellido = '';
+this.Rtarea.empleado_foto = '';
+this.Rtarea.empleado_id = '';
+
+
+
+},
+
+
+
+
 
 clear_tarea: function(tarea) {
 
@@ -493,7 +538,11 @@ function()
 },
 
 
-sendData: function(e) {
+crear_proyecto: function(e) {
+
+document.getElementById('btn-proyecto').disabled = true;
+document.getElementById('carga-proyecto').style.display="block";
+
 var url = '/api/proyecto/create/' ;
 axios.get( url, {
   params: {
@@ -513,7 +562,7 @@ validateStatus: (status) => {
 
 if (response.data == "true") {
 document.getElementById('carga-proyecto').style.display="none";
-$('.nuevoProyecto').modal('hide')
+this.close();
 document.getElementById('btn-proyecto').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 Proyectos.getListaEspera();
@@ -522,10 +571,10 @@ Proyectos.getListaEspera();
 else
 {
 document.getElementById('loader-sm').style.display="none"
-$('.nuevoProyecto').modal('hide')
+this.close();
 document.getElementById('btn-proyecto').disabled = false;
  var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
- document.getElementById("formulario_proyecto").reset();    
+
 
 }
 
@@ -533,16 +582,6 @@ document.getElementById('btn-proyecto').disabled = false;
 },
 
 
-submit : function(e) {
-
-document.getElementById('btn-proyecto').disabled = true;
-document.getElementById('carga-proyecto').style.display="block";
-this.sendData()
-
-
-}
-
-,
 
 
 additem_principal:function(id){

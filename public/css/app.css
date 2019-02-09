@@ -197,6 +197,15 @@ border-radius: 50%;
 font-size: 15px;
 }
 
+.box-sm{
+
+  max-width: 120px; margin-right:auto; margin-left:auto;  
+}
+
+.box-lg{
+
+  margin-bottom: 2%;
+}
 
 .boton-overlay2{
 padding-top: 10%;
@@ -204,9 +213,25 @@ padding-top: 10%;
 }
 
 .boton-overlay{
-
-  margin-top:38%;   margin-left: 35%;
+  margin-top:150px;   margin-left: 110px;
 }
+
+
+@media screen and (min-width: 1683px) {
+
+
+.boton-overlay{
+  margin-top:150px;   margin-left: -200px;
+}
+
+
+
+
+
+}
+
+
+
 
  .amarillo{
 color:  #ffad43;

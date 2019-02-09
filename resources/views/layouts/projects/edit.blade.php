@@ -88,7 +88,6 @@ Informacion de proyecto
         </div>
 
 
-@{{ rellenar.fecha_entrega}}
 
   <fechaProyecto title="Fecha de entrega" :disabled="state == 0" autocomplete="off"    v-model="rellenar.fecha_entrega"   class="form-control"  :config="options"></fechaProyecto>
 

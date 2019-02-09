@@ -385,7 +385,7 @@ Datos de contacto
 <i class="fas fa-mail-bulk"></i>
 </span>
 </div>
-<input  required="" autocomplete="off"    type="email" class="form-control" v-model="nuevo.email_contacto" placeholder="Email">
+<input   autocomplete="off"    type="email" class="form-control" v-model="nuevo.email_contacto" placeholder="Email">
 </div>
 
 

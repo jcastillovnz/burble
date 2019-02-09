@@ -167,18 +167,12 @@ document.getElementById('loader-details-proyecto').style.display="block";
 
 var url = '/api/proyectos/update' ;
 axios.post( url, {
-
 id:this.Rproyecto.id,
 nombre: this.Rproyecto.nombre_proyecto,
+fecha_recepcion: this.Rproyecto.fecha_recepcion,
 fecha_entrega: this.Rproyecto.fecha_entrega,
 presupuesto: this.Rproyecto.presupuesto,
 comentario:this.Rproyecto.comentario,
-
-
-
-
-
-
 validateStatus: (status) => {
 return true; // I'm always returning true, you may want to do it depending on the status received
 },

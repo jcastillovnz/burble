@@ -25,7 +25,8 @@ Busqueda
 
 
 
-<div    class="row">
+<div    class="content">
+  <!--  
 <div class="col-sm-3">
   <p align="center">
 <i class="fas fa-filter text-info"></i> Filtros
@@ -36,13 +37,13 @@ Busqueda
 </div>
 
 <hr>
+-->
 
 
 
 
 
-
-<div id="buscar"  class="col-sm-9 ">
+<div id="buscar"  class="col-sm-12 ">
 
 
 

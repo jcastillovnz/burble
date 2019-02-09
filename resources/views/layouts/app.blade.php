@@ -66,9 +66,9 @@
 
 <form  class="form-inline my-2 my-lg-0"  action="{{ url('/busqueda') }}"  method="GET" >
 {{ csrf_field() }}
-<input required="" class="form-control  mr-sm-2" name="busqueda" type="search" placeholder="Realiza una busqueda">
+<input required="" class="form-control form-control-sm mr-sm-1" name="busqueda" type="search" placeholder="Realiza una busqueda">
 
-<button class="btn btn-succes my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>  Buscar</button>
+<button class="btn btn-succes my-2 my-sm-0 btn-sm" type="submit"><i class="fas fa-search"></i>  Buscar</button>
 </form>
 
 
@@ -161,10 +161,7 @@
         <a class="nav-link" href="#"  data-toggle="modal" data-target=".nuevoCliente"><i class="fas fa-suitcase"></i> Registrar cliente</a>
 </li>
 
-<li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-chart-area"></i> Estadisticas</a>
-</li>
-  
+
 
 
 
@@ -233,7 +230,7 @@
 
 <center>
 <br>
-<p style="font-size: 13px;">
+<p style="font-size: 12px;" align="center">
 
 © 2018  Burble para Achelier Studio -   <a target="blank" href="https://github.com/jcastillovnz"> <i class="fas fa-code"></i> Desarrollado por Jose Castillo </a> 
 </p>
