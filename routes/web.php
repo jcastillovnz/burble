@@ -24,9 +24,9 @@ Route::group( ['middleware' => 'auth' ], function()
 
 
 Route::get('/', 'HomeController@index')->name('/' ) ;
-Route::get('/busqueda/', 'busquedaController@index')->name('busqueda');
+Route::get('/busqueda/', 'BusquedaController@index')->name('busqueda');
 
-Route::get('/consulta/busqueda/', 'busquedaController@busqueda');
+Route::get('/consulta/busqueda/', 'BusquedaController@busqueda');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

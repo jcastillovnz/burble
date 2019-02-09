@@ -2,12 +2,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="AppClientes"    class="content container col-sm-12 " >
+<div id="AppClientes"  >
 @include('layouts.clientes.create')
 </div>
 
  
-<div id="AppProyectos"     class="content col-sm-12 " >
+<div id="AppProyectos"   >
 @include('layouts.tareas.create')
 
 </div>
@@ -17,28 +17,12 @@
 
 <div id="AppProyectos"   class="content col-sm-12 " >
 
-
-
-
-
-
 <template id="listas">
-
-
-
-
-
 <div  style="margin-bottom: 4%;" class="col-sm-12">
-
-
-
-
 <strong  style="font-size: 16px;" class="float-left text-info"> 
 <i class="fas fa-globe-americas"></i>
-
   Proyectos en proceso   
-
-</strong> </h3>
+</strong> 
 
 
 <div  id="loader-lista-principal" class="loader loader-sm float-right"></div>
@@ -204,45 +188,19 @@ No existen tareas registradas
 
 <div class="collapse " v-bind:id="'collapseExample'+ item.id">
 <div class="col-sm-12 img-group">
-
-
-
-
 <div class="text-center">
 <template   v-for="(tarea, i) in item.proyectos.tareas" >
-
-
-
 <img width="120" v-if="tarea.imagen"   :src="'{{url ('/img/tareas/fotos/')}}'+'/' +tarea.imagen"  class="img-fluid zoom-panel">
-
 <img width="120" v-else  src="img/pieza.png"  class="img-fluid zoom-panel" alt="...">
-
-
-
-
 </template>
 </div>
-
-
 </div>
 </div>
-
-
 </template>
-
-
-
-
 </div>
 
 <!-- CIERRE PROYECTO -->
 <!-- PROYECTO -->
-
-
-
-
-
-
 
 </div>
 
@@ -254,33 +212,17 @@ No existen tareas registradas
 
 <div  class="col-sm-12">
 <hr>
-
 <div  style="margin-left: 10px;" id="loader-lista-espera" class="loader loader-sm float-right"></div>
 <p class="text-info"  style="font-size: 16px; " align="left" ><strong>
-
 <i class="fas fa-globe-americas"></i>
  Proyectos en espera    </strong>      
-
-
-
-
-
 <a id="archivo" href=" {{ asset('/proyectos-archivados/')  }}  ">
 <span    style="margin:0px; font-size: 15px; " class="float-right">
-  <i class="fas fa-database"></i> Archivados 
-
-
+<i class="fas fa-database"></i> Archivados 
 <span   >  @{{countProyectos}}  </span>
-
-
 </span>
 </a>
-
-       
-
 <hr>   
-
-    
 </p>   
 </div>
 
@@ -322,7 +264,7 @@ No existen tareas registradas
 <strong class="proyecto-min ">
 <a :href="'{{url('detalle/')}}'+'/'+ item.proyectos_id " >
 <strong style="font-size: 11px;"  >  
-<i class="fas fa-angle-double-right"></i>
+<i class="fas fa-thumbtack"></i>
 @{{item.proyectos.nombre }}
 </strong>   
 </a>
@@ -334,7 +276,7 @@ No existen tareas registradas
 </div>
 <div class="container" >
 <strong class="float-left" style="font-size:10px; margin: 0px;">  @{{item.proyectos.fecha_entrega }} </strong> 
-<div  style=" margin-left: 90%;" v-on:click="confirmar_delete_espera(item)"  class=" btn-sm  "  >
+<div  style=" margin-left: 90%; font-size: 10px;" v-on:click="confirmar_delete_espera(item)"  class=" btn-sm  "  >
 <i class="fas fa-trash "></i>
 </div>
 </div>

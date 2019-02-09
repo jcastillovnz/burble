@@ -15,17 +15,15 @@
 <div class="col-sm-12 text-primary">
 
 
-
+<center>
 <i class="fas fa-suitcase"></i>
-
 <strong>
-Registrar un nuevo Cliente   
+Registrar un nuevo cliente   
 
 <button type="button" class="close float-right" data-dismiss="modal">&times;</button>
-
 </strong>
 
-
+</center>
 
 
 
