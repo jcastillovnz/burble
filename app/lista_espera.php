@@ -11,13 +11,13 @@ use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 public $table = "lista_espera";
 
 
-
-/*
 public function proyectos()
 {
     return $this->belongsTo('App\Proyectos');
 }
-*/
+
+
+
 
 
 

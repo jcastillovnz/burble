@@ -34,13 +34,13 @@ public function lista_principal()
 
 
 
-/*
+
 public function lista_espera()
 {
     return $this->hasOne('App\Lista_espera');
 
 }
-*/
+
 
 
 public function clientes()

@@ -570,10 +570,15 @@ return response()->json (['lista_principal'=> $lista_principal ,
 public function listEspera( Request $request )
     {
 
-$lista_espera= Lista_espera::with(['proyectos', 'proyectos.clientes'])
+
+
+
+$lista_espera = Lista_espera::with(['proyectos', 'proyectos.clientes'])
 ->with(['proyectos.tareas' => function ($query) {
 $query->latest()->limit(4);
 }]) ->get() ;
+
+
 
 $data_users = array();
 foreach ($lista_espera as $key => $lista) {
@@ -586,9 +591,11 @@ $users = User::where('id', $tarea->users_id)
 $data_users = $data_user;
 
 }
-
 return response()->json (['lista_espera'=> $lista_espera ,
 'users'=> $data_users ]) ;
+
+    
+
 
 
 
