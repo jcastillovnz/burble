@@ -23,13 +23,29 @@
 
 
 @if( $state=="archivo"   )
-<h5 style="font-size: 16px;"><i class="fas fa-database text-info"></i>
+
+
+
+<div class="col-sm-12">
+<div  style="margin-bottom: 4%;" class="col-sm-12">
+<strong  style="font-size: 18px;" class="float-left text-info"> 
+<i class="fas fa-database text-info"></i>
 Archivo
-</h5>
+</strong> 
+</div>
+
 @else
-<h5 style="font-size: 16px;"><i class="fas fa-search text-info"></i> 
+
+
+<div class="col-sm-12">
+<div  style="margin-bottom: 4%;" class="col-sm-12">
+<strong  style="font-size: 18px;" class="float-left text-info"> 
+<i class="fas fa-search text-info"></i> 
 Busqueda
-</h5>
+</strong> 
+</div>
+
+
 @endif
 
 

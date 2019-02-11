@@ -4,23 +4,34 @@
 
 
 
-
-
-<div  id="AppClientes"  class="content">
-@include('layouts.clientes.create')
-
-
-
 <div class="col-sm-12">
+<div  style="margin-bottom: 4%; margin: 0px;  margin-top: 0px;" class="col-sm-12">
+<strong  style="font-size: 18px;" class="float-left text-info"> 
+<i class="fas fa-suitcase"></i>
+Cliente
+</strong> 
+</div>
+
+
+<div  style="margin: 0px;  margin-top: 0px;"  id="AppClientes"  class="content">
+@include('layouts.clientes.create')
+<div class="col-sm-12">
+
 <div style="padding-left: 1%;  font-size: 17px;" align="left" class="">
 <input value="{{$cliente->id}}"  :onload="getCliente()" id="cliente_id" class="invisible" >
 </div>
 
 
+
+
+
+
 </div>
-
-
 <div    class="col-sm-12">
+
+
+
+
 
 
 

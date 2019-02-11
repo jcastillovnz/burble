@@ -3,121 +3,81 @@
 @section('content')
 
 
-  
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Empleado', 'Tareas realizadas'],
+       @foreach ($empleados as $empleado)    
+          ['{{$empleado->name}} {{$empleado->apellido}}', {{count($empleado['tareas']) }} ],
+           @endforeach
+        ]);
+        var options = {
+          title: 'Tareas por empleado'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
 
 
+<script type="text/javascript">
+ google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Mes', 'Empleado', 'Tareas', 'Profit'],
+          
+          ['2014', 1000, 400, 200],
+       
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Company Performance',
+            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+          },
+          bars: 'horizontal' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+  </script>
 
 
-
-
-<div class="row content">
-
-  <div class="col-sm-3 ">
-    
-
-  <div class="card">
-    <img class="card-img-top" src="img/user.png" alt="Card image cap">
-    <p>
-<button class="btn btn-info btn-sm"><i class="fas fa-upload"></i> Cambiar fotografia</button>
-</p>
-    <div class="card-body">
-      <h5 class="card-title">{{ Auth::user()->name }} </h5>
-      <p class="card-text">Desarrollador web.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-
-
-
-
-  </div>
-
-
-
-
-
-
-
-
-
-
-  <div    class=" col-sm-9 ">
-
-<div class="card">
-
-
-<div class="card-header">
-   <h5 > <strong ><i class="fas fa-user-cog"></i> Mi cuenta </strong>   </h5>
+<div style="margin-top: 0px; margin: 0px;" class="col-sm-12">
+<div  style="margin-bottom: 4%;" class="col-sm-12">
+<strong  style="font-size: 18px;" class="float-left text-info"> 
+<i class="fas fa-chart-area"></i>
+Estadisticas
+</strong> 
 </div>
 
 
 
+<div  style="margin-top: 0px; margin: 0px;"  class=" col-sm-12 ">
 
-<div class="col-4 ">
-  <h5>
-  <strong>
-Datos personales
-</strong>
-</h5>
- <div class="input-group ">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text">
- <i class="fas fa-user"></i>
-         </span>
-    </div>
-    <input type="text" class="form-control input-sm" placeholder="Nombre">
-  </div>
-
-
-
-
- <div class="input-group ">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text">
- <i class="fas fa-user"></i>
-         </span>
-    </div>
-    <input type="text" class="form-control input-sm" placeholder="Apellido">
-  </div>
-
-
-
- <div class="input-group ">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text">
- <i class="fas fa-user"></i>
-         </span>
-    </div>
-    <input type="text" class="form-control input-sm" placeholder="Alias">
-  </div>
-
-
- <div class="input-group ">
-    <div class="input-group-prepend">
-      <span style="width: 35px"  class="input-group-text">
-<i class="fas fa-clock"></i>
-         </span>
-    </div>
-    <input title="Fecha nacimiento" type="date" class="form-control input-sm" placeholder="Fecha de nacimiento">
-  </div>
-
+<div class="col-sm-12">
+ <div class="container-fluid"  id="piechart" style="margin-top: 0px; margin: 0px;  width: 100%; height: 80%;">
+ </div>
 
 
 </div>
 
 
+<div class="col-sm-12">
 
-
-
-
-
-
-
-
+<div id="barchart_material" style="width: 1200px; height: 500px;"></div>
+</div>
 
 </div>
+
 
 
 
@@ -134,8 +94,6 @@ Datos personales
 
 
 
-
-</div>
 
 
 

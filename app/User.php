@@ -25,7 +25,7 @@ use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
 public function tareas()
 {
-    return $this->hasOne('App\Tareas');
+    return $this->hasMany('App\Tareas' , 'users_id');
 
 }
 

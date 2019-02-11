@@ -6,10 +6,21 @@
 <script src="{{ asset('js/detalle.js') }}" defer></script>
 
 
+
+
+<div class="col-sm-12">
+<div  style="margin-bottom: 4%;" class="col-sm-12">
+<strong  style="font-size: 18px;" class="float-left text-info"> 
+<i class="fas fa-cube"></i>
+Proyecto
+</strong> 
+</div>
+
+
+
+
+
 <div  id="DetalleProyecto"  class="content">
-
-
-
 
 
 <div class="col-sm-12">

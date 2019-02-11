@@ -19,7 +19,7 @@
 
 <template id="listas">
 <div  style="margin-bottom: 4%;" class="col-sm-12">
-<strong  style="font-size: 16px;" class="float-left text-info"> 
+<strong  style="font-size: 18px;" class="float-left text-info"> 
 <i class="fas fa-globe-americas"></i>
   Proyectos en proceso   
 </strong> 
@@ -129,10 +129,10 @@ No existen tareas registradas
 
 
 
-<img  style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;" v-if="users[A][B].foto!=null"   width="15" height="15" class=" rounded-circle "  :src="'/img/users/fotos/'+ users[A][B].foto "   alt="Card image cap">
+<img  data-toggle="tooltip"  v-bind:title="users[A][B].name+' '+ users[A][B].apellido" style="margin-top: 0px;      margin-left: 4%; margin-right: 4%;" v-if="users[A][B].foto!=null"   width="15" height="15" class=" rounded-circle "  :src="'/img/users/fotos/'+ users[A][B].foto "   alt="Card image cap">
 
 
-<img style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;"  v-else   width="15" height="15" class="border rounded-circle "  src="img/user.png" alt="Card image cap">
+<img data-toggle="tooltip" v-bind:title="users[A][B].name+' '+ users[A][B].apellido"  style="margin-top: 0px;  margin-left: 4%; margin-right: 4%;"  v-else   width="15" height="15" class="border rounded-circle "  src="img/user.png" alt="Card image cap">
 
 
 
@@ -213,7 +213,7 @@ No existen tareas registradas
 <div  class="col-sm-12">
 <hr>
 <div  style="margin-left: 10px;" id="loader-lista-espera" class="loader loader-sm float-right"></div>
-<p class="text-info"  style="font-size: 16px; " align="left" ><strong>
+<p class="text-info"  style="font-size: 18px; " align="left" ><strong>
 <i class="fas fa-globe-americas"></i>
  Proyectos en espera    </strong>      
 <a id="archivo" href=" {{ asset('/proyectos-archivados/')  }}  ">

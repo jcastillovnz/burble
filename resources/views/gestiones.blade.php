@@ -3,17 +3,29 @@
 @section('content')
 
 
+<div class="col-sm-12">
+<div  style="margin-bottom: 4%;" class="col-sm-12">
+<strong  style="font-size: 18px;" class="float-left text-info"> 
+<i class="fas fa-users-cog"></i>
+Gestiones
+</strong> 
+</div>
 
 
 <div class="row content ">
 
 
+
+
+
+
+
  <div  id="AppClientes"  class="col-sm-4">
 
 <div class="container">
+
+
 <p align="center">
-
-
  <strong  style="font-size: 18px;"> Clientes</strong>   
 
 

@@ -45,6 +45,12 @@ Route::get('/consulta/cliente/', 'ClienteController@GetCliente');
 
 
 
+Route::get('/estadisticas', 'EstadisticasController@index');
+
+
+
+
+
 Route::get('/busqueda', 'BusquedaController@index');
 
 Route::post('/detalle/tarea/send_imagen/{id}','ProyectoController@tarea_imagen');

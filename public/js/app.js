@@ -25,3 +25,8 @@ $.extend(true, $.fn.datetimepicker.defaults, {
 
 
 
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+
+
