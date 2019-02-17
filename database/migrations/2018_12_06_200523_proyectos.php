@@ -19,8 +19,8 @@ class Proyectos extends Migration
              $table->increments('id');
              $table->string('nombre')->nullable();
              $table->string('estado')->nullable();
-             $table->string('fecha_recepcion')->nullable();
-             $table->string('fecha_entrega')->nullable();
+             $table->date('fecha_recepcion')->nullable();
+             $table->date('fecha_entrega')->nullable();
              $table->string('presupuesto')->nullable();
              $table->longText('comentario')->nullable();
 

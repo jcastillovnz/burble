@@ -21,8 +21,8 @@ class Tareas extends Migration
              $table->string('imagen')->nullable();      
              $table->string('nombre')->nullable();
              $table->string('objetivo')->nullable();
-             $table->string('fecha_inicio')->nullable();
-             $table->string('fecha_termino')->nullable();
+             $table->date('fecha_inicio')->nullable();
+             $table->date('fecha_termino')->nullable();
              $table->string('tipo')->nullable();
              $table->string('prioridad')->nullable();
              $table->string('estado')->nullable();

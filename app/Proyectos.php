@@ -16,6 +16,20 @@ use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
     ];
 
+/*
+protected $dates = [
+    'fecha_recepcion','fecha_entrega',
+   
+];
+
+
+protected $casts = [
+    'fecha_recepcion' => 'date:Y-m-d',
+    'fecha_entrega' => 'date:Y-m-d',
+
+];
+
+*/
 
 
 public function tareas()

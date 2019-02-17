@@ -20,6 +20,12 @@ use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
     ];
 
 
+/*
+protected $dates = [
+    'fecha_nacimiento'
+];
+*/
+
 
 
 

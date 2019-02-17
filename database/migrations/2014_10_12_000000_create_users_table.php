@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('apellido')->nullable();
             $table->string('alias')->nullable();
-            $table->string('fecha_nacimiento')->nullable();
+            $table->date('fecha_nacimiento')->nullable();
             $table->string('rango')->nullable();
             $table->string('cuit')->nullable();
             $table->string('direccion')->nullable();

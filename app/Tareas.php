@@ -16,6 +16,23 @@ use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
     ];
 
+    /*
+protected $dates = [
+    'fecha_inicio','fecha_termino',
+];
+*/
+
+/*
+protected $casts = [
+    'fecha_termino' => 'date:Y-m-d',
+    'fecha_inicio' => 'date:Y-m-d',
+    'created_at' => 'datetime:Y-m-d h:i',
+    'updated_at' => 'datetime:Y-m-d h:i',
+
+];
+
+*/
+
 
 
 public function proyectos()
