@@ -34,66 +34,107 @@ public function index()
 {
 
 
-//$date = Carbon::now();
-//$date = $date->format('Y-m-d');
-
-
-
-
-//dd($empleados[6]->tareas[0]);
-//$empleados[6]->tareas[0]->fecha_termino->month
-//dd($date);
-//$proyectos = Proyectos::with('tareas')->get();
-
-
-//$empleados = User::with('tareas')->get();
-//dd(now()->month);
-//$empleados = User::whereMonth('created_at', now()->month)->get();
 
 $empleados = User::with(['tareas' => function ($query) {
-$query->whereMonth('fecha_termino', '=', now()->month);
-}])->get();
+
+$query->whereYear('fecha_termino', '=', now()->year)
+      ->whereMonth('fecha_termino', '=', now()->month);
+  }])->get();
 
 
 $proyectos =Proyectos::whereMonth('fecha_entrega', '=', now()->year)->get();
-
-$enero =Proyectos::whereMonth('fecha_entrega', '=', now()->year)->get();
-
-$febrero =Proyectos::whereMonth('fecha_entrega', '=', now()->year)->get();
-
-$marzo =Proyectos::whereMonth('fecha_entrega', '=', now()->year)->get();
-
-$abril =Proyectos::whereMonth('fecha_entrega', '=', now()->year)->get();
-
-
-
-
-//dd($empleados[6]->tareas[0]->fecha_termino);
-
-//dd(now()->year);
-
-
-
-
 
 
 return view('estadisticas')->with(compact('empleados', 'proyectos'));
 
 
-
-
-
-	# code...
 }
 
 
 
-public function DataEmpleado($value='')
+public function empleados(Request $request)
 {
-	# code...
+
+
+
+
+$empleados = User::with(['tareas' => function ($query) use ($request) {
+$query->whereYear('fecha_termino', '=', $request->ano)
+      ->whereMonth('fecha_termino', '=', $request->mes);
+  }])->get();
+
+return $empleados;
+
+
 }
 
 
+public function proyectos(Request $request)
+{
+
+
+
+
+$enero = Proyectos::whereYear('fecha_entrega',$request->ano )
+->whereMonth('fecha_entrega', 1 )->get();
+
+$febrero = Proyectos::whereYear('fecha_entrega',$request->ano )
+->whereMonth('fecha_entrega', 2 )->get();
+
+$marzo = Proyectos::whereYear('fecha_entrega',$request->ano )
+->whereMonth('fecha_entrega', 3 )->get();
+
+
+$abril = Proyectos::whereYear('fecha_entrega',$request->ano )
+->whereMonth('fecha_entrega', 4 )->get();
+
+$mayo = Proyectos::whereYear('fecha_entrega',$request->ano )
+->whereMonth('fecha_entrega', 5 )->get();
+
+$junio = Proyectos::whereYear('fecha_entrega',$request->ano )
+->whereMonth('fecha_entrega', 6 )->get();
+
+$julio = Proyectos::whereYear('fecha_entrega',$request->ano )
+->whereMonth('fecha_entrega', 7 )->get();
+
+$agosto = Proyectos::whereYear('fecha_entrega',$request->ano )
+->whereMonth('fecha_entrega', 8 )->get();
+
+$septiembre= Proyectos::whereYear('fecha_entrega',$request->ano )
+->whereMonth('fecha_entrega', 9 )->get();
+
+
+$octubre= Proyectos::whereYear('fecha_entrega',$request->ano )
+->whereMonth('fecha_entrega', 10 )->get();
+
+$noviembre= Proyectos::whereYear('fecha_entrega',$request->ano )
+->whereMonth('fecha_entrega', 11 )->get();
+
+$diciembre	= Proyectos::whereYear('fecha_entrega',$request->ano )
+->whereMonth('fecha_entrega', 12 )->get();
+
+
+
+return [
+'enero'=> count($enero),
+'febrero'=> count($febrero),
+'marzo'=> count($marzo),
+'abril'=> count($abril),
+'mayo'=> count($mayo),
+'junio'=> count($junio),
+'julio'=> count($julio),
+'agosto'=> count($agosto),
+'septiembre'=> count($septiembre),
+'octubre'=> count($octubre),
+'noviembre'=> count($noviembre),
+'diciembre'=> count($diciembre)
+];
+
+
+
+
+
+}
 
 
 

@@ -19,6 +19,10 @@ use Illuminate\Http\Request;
 */
 
 
+Route::get('/empleados-estadistica/', 'EstadisticasController@empleados');
+Route::get('/proyectos-estadistica/', 'EstadisticasController@proyectos');
+
+
 /////////////////PROYECTOS C0NTROLLER//////////////////////
 Route::get('/proyecto/create/', 'ProyectoController@create');
 Route::post('/proyectos/update/', 'ProyectoController@update');
