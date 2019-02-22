@@ -33,7 +33,10 @@ Estadisticas
 
 <div  class="input-group">
 
-<div class="input-group-prepend">
+<strong>
+Produccion de tareas por empleado
+</strong>
+<div style="margin-left:auto; margin-right:0;"  class="input-group-prepend">
 <div style="width: 34px" class="input-group-text content"><i class="far fa-calendar-alt"></i> 
 </div>
 </div>
@@ -51,7 +54,7 @@ Estadisticas
 
 
 
-<select v-on:change="GetEmpleados"  style="max-width: 110px" title="Mes" v-model="mes"  class="form-control form-control-sm">Seleccione mes
+<select v-on:change="GetEmpleados"  style="max-width: 100px" title="Mes" v-model="mes"  class="form-control form-control-sm">Seleccione mes
             <option value="1">Enero</option>
 
             <option value="2">Febrero</option>
@@ -91,7 +94,7 @@ Estadisticas
 </div>
 
 
-
+  
 
   <div><column-chart :data="empleados"></column-chart> </div>
 
@@ -105,22 +108,25 @@ Estadisticas
 <div  class="col-sm-12">
 
 
-<div  class="input-group">
+<div  align="right" class="input-group ">
+<strong>
+Produccion de proyectos por mes
+</strong>
 
-<div class="input-group-prepend">
-<div style="width: 34px" class="input-group-text content"><i class="far fa-calendar-alt"></i> 
+
+<div  style="margin-left:auto; margin-right:0;" class="input-group-prepend ">
+
+
+<div  style="width: 34px" class="input-group-text content "><i class="far fa-calendar-alt"></i> 
 </div>
 </div>
 
 
 
-<select  v-on:change="GetProyectos" style="max-width: 100px" title="Año"   v-model="consultaProyecto.ano" class="form-control form-control-sm">Seleccione año
+
+<select    v-on:change="GetProyectos" style="max-width: 200px" title="Año"   v-model="consultaProyecto.ano" class="form-control form-control-sm ">Seleccione año
 <option  value="2018">2018</option> 
-
-
 <option  value="2019" >2019</option>
-
-
 </select>
 
 
