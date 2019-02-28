@@ -9,6 +9,46 @@
                 margin: 0;
             }
 
+
+
+#seccion_espera {
+/*clear: both;*/
+position: fixed;
+left: 0 ; right: 0;
+
+  padding-left:62px;
+    padding-right:62px;
+
+bottom:40px;
+margin-top: 0px;
+}
+
+
+
+
+
+
+
+.box{
+
+
+
+
+}
+
+
+#footer {
+clear: both;
+
+   position:fixed;
+   left:0px;
+   bottom:20px;
+   height:30px;
+   width:100%;
+}
+
+
+
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -199,7 +239,8 @@ font-size: 15px;
 
 .box-sm{
 
-  max-width: 120px; margin-right:auto; margin-left:auto;  
+float: left;
+max-width: 110px; ;  
 }
 
 .box-lg{
@@ -411,3 +452,9 @@ padding-top: none;
     animation-duration: 0.5s;
     animation-name: nodeInserted;
 }
+
+
+
+
+
+

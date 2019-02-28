@@ -3,8 +3,6 @@ Vue.prototype.moment = moment;
 
 Vue.use(VueChartkick, {adapter: Chart})
 
-
-
 var appEstadisticas = new Vue({
   el: '#estadisticas',
 
@@ -45,25 +43,10 @@ ano:this.ano,
 
 response.data.forEach(function(empleado, index) {
 
-
 appEstadisticas.empleados.push( [empleado.name+' '+empleado.apellido  , empleado.tareas.length]   )
 
-
 });
-
-
-
-
-
 });
-
-
-
-
-
-
-
-
 
 },
 
@@ -95,9 +78,6 @@ appEstadisticas.proyectos.push(
  ['Diciembre' , response.data.diciembre],
 
     )
-
-
-
 
 
 console.log(this.proyectos)

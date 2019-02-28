@@ -36,7 +36,6 @@ public function index()
 
 
 $empleados = User::with(['tareas' => function ($query) {
-
 $query->whereYear('fecha_termino', '=', now()->year)
       ->whereMonth('fecha_termino', '=', now()->month);
   }])->get();

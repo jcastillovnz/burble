@@ -121,7 +121,7 @@ No existen tareas registradas
 
 <div  class="btn-group">
 
-<i style="margin-left: 4%; margin-right: 4%;" :class="' fas fa-circle  iconos '+tarea.estado"  title="Estado"></i>  
+<i style="margin-left: 4%; margin-right: 4%;" :class="' fas fa-circle  iconos '+tarea.estado"  title="Estado" ></i>  
 
 
 
@@ -210,86 +210,34 @@ No existen tareas registradas
 
 
 
-<div  class="col-sm-12">
-<hr>
-<div  style="margin-left: 10px;" id="loader-lista-espera" class="loader loader-sm float-right"></div>
-<p class="text-info"  style="font-size: 18px; " align="left" ><strong>
-<i class="fas fa-globe-americas"></i>
- Proyectos en espera    </strong>      
+
+
+
+<!-- TABS -->
+<div  id="lista_espera" style=" " style="" class="col-sm-12 container ">  
+
+<div   style="margin.right: 90px;  padding-left:62px;  padding-right:62px;"   id="seccion_espera"  class="col-sm-12">
+ <!-- Nav tabs -->
+
+
 <a id="archivo" href=" {{ asset('/proyectos-archivados/')  }}  ">
-<span    style="margin:0px; font-size: 15px; " class="float-right">
+<span style="margin:0px; font-size: 15px; " class="float-right">
 <i class="fas fa-database"></i> Archivados 
-<span   >  @{{countProyectos}}  </span>
+<span>  @{{countProyectos}}  </span>
 </span>
 </a>
-<hr>   
-</p>   
-</div>
 
-
-<!-- SUBPROYECTOS -->
-<div  style=" margin-left: 2px;" id="lista_espera"   class="row  col-sm-12 ">
-
-<!-- TARJETA -->
-<template v-if="lista_espera.length <=  0">
-<div  class="col-sm-2">
-<div class="card borde-burble alert-warning" >
-<div class="container alert ">
-<p align="center">
-<h6> <strong> <i class="fas fa-exclamation-circle"></i> No hay proyectos en espera </strong>  </h6>
-</p>
-</div>
-</div>
-<div class="btn-group float-right button-absolute " >
-<div    data-toggle="modal" data-target=".nuevoProyecto" class=" btn btn-light border border-dark  rounded-circle"  >
-<i style="font-size: 13px;" class="fas fa-plus-circle"></i>
-</div>
-</div>
-</div>
-<!-- TARJETA -->
-</template>
+<ul class="nav nav-tabs" role="tablist">
 
 
 
-
-<template   v-for="item in lista_espera"  v-sortable="{ onUpdate: onUpdate }">
-
+<template v-for="(item, index ) in lista_espera" >
 
 
+<li class="nav-item ">
+<a class="nav-link " data-toggle="tab" v-bind:href="'#menu'+index"> @{{item.proyectos.clientes.nombre}} x </a> 
+</li>
 
-<div   :id="item.proyectos_id" v-bind:value="item.proyectos_id"    class="col-sm item_espera ">
-<div  class="card borde-burble bg-light box-sm" >
-<div class="container titulo-espera" >
-<p align="left">
-<strong class="proyecto-min ">
-<a :href="'{{url('detalle/')}}'+'/'+ item.proyectos_id " >
-<strong style="font-size: 11px;"  >  
-<i class="fas fa-thumbtack"></i>
-@{{item.proyectos.nombre }}
-</strong>   
-</a>
-</strong>
-<p style="font-size: 10px;"  class="empresa-min" align="left">
- <strong>   @{{item.proyectos.clientes.nombre }} </strong> 
-</p>
-</p>
-</div>
-<div class="container" >
-<strong class="float-left" style="font-size:10px; margin: 0px;">  @{{item.proyectos.fecha_entrega }} </strong> 
-<div  style=" margin-left: 90%; font-size: 10px;" v-on:click="confirmar_delete_espera(item)"  class=" btn-sm  "  >
-<i class="fas fa-trash "></i>
-</div>
-</div>
-</div>
-</div>
-
-
-
-
- </template><!--LISTADO TERMINA-->
-
-
-<!-- TARJETA -->
 
 
 </template>
@@ -297,29 +245,45 @@ No existen tareas registradas
 
 
 
+<li class="nav-item">
 
-@include('layouts.projects.create')
+<button  class="btn btn-light   rounded-circle float-right "> 
+<i class="fas fa-plus"></i>
+</button>
+
+</li>
+
+</ul>
+
+ <!-- Tab panes -->
+ <div    class="tab-content ">
 
 
-<div id="AppProyectos">
-@include('layouts.tareas.edit')
+ 	<template v-for="(item, index ) in lista_espera" >
+
+   <div v-bind:id="'menu'+index" class="container tab-pane fade"><br>
+      <h3>HOME @{{index}} </h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+ </template>
+
+</div>
 </div>
 
+ </div>
+
+<!-- TABS -->
+
+
+
+
+
+
+
+
 
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

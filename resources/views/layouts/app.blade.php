@@ -211,7 +211,7 @@
 
 
 
-<footer  class="col-sm-12 margin-bottom-none" >
+<footer  id="footer" class="col-sm-12 margin-bottom-none footer" >
 
 
 
@@ -223,7 +223,7 @@
 
 
 
-<center>
+<center  >
 <br>
 <p style="font-size: 12px;" align="center">
 
