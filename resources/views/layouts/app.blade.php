@@ -11,6 +11,8 @@
 
 <script src="{{ asset('js/vue.js') }}" defer="" ></script>
 
+
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -31,11 +33,28 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"  defer></script>
 
 <script src="{{ asset('js/sortable.js') }}" defer></script>
+
+<!-- CARRUSEL -->
+<link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.theme.default.min.css" crossorigin="anonymous">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" defer="" ></script>
+<script src="{{ asset('js/carrusel.js') }}" defer></script>
+<!-- CARRUSEL -->
+
+
+
+
+
+
 <script src="{{ asset('js/appVuej.js') }}" defer></script>
 <script src="{{ asset('js/moment.js') }}" defer></script>
 <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}" defer></script>
 <script src="{{ asset('js/vue-bootstrap-datetimepicker.js') }}" defer></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
+
+
+
 
 
 

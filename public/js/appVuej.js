@@ -1,4 +1,8 @@
 
+
+
+
+
 var Proyectos = new Vue({ 
     el: '#AppProyectos',
      mounted(){
@@ -63,7 +67,23 @@ return pagesArray;
 
 
     data: {
+   items: [
+         { message: 'Foo' },
+          { message: 'Bar' },
+          { message: 'Bar2' },
+          { message: 'Bar3' },
 
+
+
+
+
+
+
+
+        ],
+        count: 0,
+    
+  
     options: {
       // https://momentjs.com/docs/#/displaying/
       format: 'YYYY/MM/DD ',
@@ -141,14 +161,32 @@ pagination:{
 
 
 },
+directives: {
+            carousel: {
+                inserted: function (el) {
+                    $(el).owlCarousel({
+                        loop: false,
+                        margin: 15,
+                        nav:false,
+                        rewind:false,
+                        dots:false ,
+                        responsive: {
+                          0: {
+                            items: 1
+                          },
+                          600: {
+                            items: 6
+                          }
+                        }
+                    }).trigger('to.owl.carousel', app.items.length)
+                    console.log("crousel inserted")
+                },
+            }
+        }
+,
+
 
 methods: {
-
-
-
-
-
-
 getUsers: function(e)  {
 
  var urlUsers = '/api/usuarios/';
@@ -179,12 +217,50 @@ archivo: function(dato)  {
 ,
 
 
-show: function(dato)  {
+create_pestana: function(dato)  {
+$('.addPestana').modal('show');
+
+},
+
+create_espera: function(item) {
+
+document.getElementById('loader-create-espera').style.display="block";
+document.getElementById('btn-create-espera').disabled = true;
+axios({ 
+  url: '/api/proyectos/espera/add/',
+  method: 'get',
+  params: {
+ id: Proyectos.Rproyecto.cliente_id,
+  }}
+  ).then(function (response) {
+
+Proyectos.getListaEspera();
+document.getElementById('loader-create-espera').style.display="none";
+document.getElementById('btn-create-espera').disabled = false;
+$('.addPestana').modal('hide');
+
+console.log(response.data.estado);
+
+if (response.data.estado== true) {
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+}
+if (response.data.estado== false) {
+var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+}
+
+if (response.data.estado=="existe") {
+var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Cliente ya esta en la lista </strong> </center>');
+}
 
 
+
+
+})
 
 }
 ,
+
+
 
 
 todosProyectos: function(dato)  {
@@ -201,20 +277,12 @@ todosProyectos: function(dato)  {
 getListaPrincipal: function(dato)  {
 document.getElementById("loader").style.display = "none";;
 this.getUsers();
-
 var urlPrincipal = '/api/proyectos/principal';
 axios.get(urlPrincipal).then(response => {
 this.lista_principal = response.data.lista_principal;
-
 this.users = response.data.users;
-
-
-
-
-
 });
- }
-,
+},
 
 
 
@@ -476,7 +544,8 @@ var urlEspera = '/api/proyectos/espera';
 axios.get(urlEspera).then(response => {
 
 this.lista_espera = response.data.lista_espera
-//this.users_espera = response.data.users
+
+console.log(this.lista_espera.length);
 
 
 
@@ -580,10 +649,6 @@ document.getElementById('btn-proyecto').disabled = false;
 
 });
 },
-
-
-
-
 additem_principal:function(id){
 
 axios({ 
@@ -603,8 +668,6 @@ location ="/home";
 
 
 },
-
-
 additem_espera:function(id){
 
 axios({ 
@@ -614,25 +677,16 @@ axios({
  id: id ,
   }}
   ).then(function (response) {
-
-
 var item = {proyectos_id:id};
-
-
 Proyectos.delete_principal(item);
 Proyectos.getListaEspera();
-
-
  //location ="/home";
-
-
-
 })
 
 
 },
 
-
+  
 
   }
 });

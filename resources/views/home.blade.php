@@ -107,7 +107,6 @@ No existen tareas registradas
 
 <template   v-for="(tarea, B) in item.proyectos.tareas" >
 
-
 <div    :class="tarea.prioridad"> 
 
 <div class="row">
@@ -231,12 +230,79 @@ No existen tareas registradas
 
 
 
-<template v-for="(item, index ) in lista_espera" >
+<template v-if="lista_espera.length==0" >
 
+<li  class="nav-item ">
+<a style="border-radius:4px;"  class="nav-link active"   data-toggle="tab" >Agregar un cliente</a> 
 
-<li class="nav-item ">
-<a class="nav-link " data-toggle="tab" v-bind:href="'#menu'+index"> @{{item.proyectos.clientes.nombre}} x </a> 
 </li>
+
+
+</template>
+
+<template v-for="(item, index ) in lista_espera" >
+<li class="nav-item ">
+<a style="border-radius:4px;" v-if="index == 0"   class="nav-link active"  data-toggle="tab" v-bind:href="'#nav'+index"> @{{item.clientes.nombre}} x </a> 
+
+<a  style="border-radius:10px;"  v-else   class="nav-link "  data-toggle="tab" v-bind:href="'#nav'+index"> @{{item.clientes.nombre}} x </a> 
+</li>
+</template>
+
+
+
+
+<li class="nav-item">
+<button @click="create_pestana()"   class="btn btn-light   rounded-circle float-right "> 
+<i class="fas fa-plus"></i>
+</button>
+</li>
+
+
+
+</ul>
+
+
+
+
+ <!-- Tab panes -->
+<div     class="tab-content "  >
+
+
+
+
+
+
+<template v-if="lista_espera.length==0" >
+<div  style="margin-right: 0px; margin-left: 0px; margin-bottom: 0px;"  class=" tab-pane fade active show">
+<br>
+@include('layouts.carrusel.index')
+</div>
+</template>
+
+
+
+
+
+
+<template v-for="(item, index ) in lista_espera" >
+<div v-bind:id="'nav'+index"  v-if="index==0" style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;"  class=" tab-pane fade active show"   >
+
+
+@include('layouts.carrusel.index')
+
+
+</div>
+
+<div v-bind:id="'nav'+index"   v-else="" style="margin-right: 0px; margin-left: 0px; margin-bottom: 0px;"  class=" tab-pane fade ">
+
+
+@include('layouts.carrusel.index')
+
+
+
+</div>
+
+
 
 
 
@@ -245,27 +311,14 @@ No existen tareas registradas
 
 
 
-<li class="nav-item">
-
-<button  class="btn btn-light   rounded-circle float-right "> 
-<i class="fas fa-plus"></i>
-</button>
-
-</li>
-
-</ul>
-
- <!-- Tab panes -->
- <div    class="tab-content ">
 
 
- 	<template v-for="(item, index ) in lista_espera" >
 
-   <div v-bind:id="'menu'+index" class="container tab-pane fade"><br>
-      <h3>HOME @{{index}} </h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
- </template>
+
+
+
+
+
 
 </div>
 </div>
@@ -277,6 +330,13 @@ No existen tareas registradas
 
 
 
+@include('layouts.projects.create')
+<div id="AppProyectos">
+
+@include('layouts.espera.add')	
+@include('layouts.tareas.edit')
+
+</div>
 
 
 

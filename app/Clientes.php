@@ -26,6 +26,14 @@ public function proyectos()
 }
 
 
+public function lista_espera()
+{
+   return $this->hasOne('App\Lista_espera');
+
+}
+
+
+
 public function contactos()
 {
     return $this->hasMany('App\Contactos');

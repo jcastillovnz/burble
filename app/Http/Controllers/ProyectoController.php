@@ -33,30 +33,8 @@ $proyecto->save();
 
 
 
-$lista_espera = Lista_espera::all();
-$count = count($lista_espera);
-
-if ($count>=0 AND $count<=7 )
-{
-$lista_espera = new Lista_espera();
-$lista_espera->proyectos_id = $proyecto->id;
-$lista_espera->save();
-}
 
 
-if ($count==8 )
-{
-foreach ($lista_espera as $key => $value) {
-
-	if ($key ==7) {
-		$value->proyectos_id=$proyecto->id;
-        $value->save();
-
-	}
-
-}
-
-}
 
 
 if ($proyecto->save()==true) {
@@ -68,7 +46,16 @@ $data = "false";
 return response()->json($data); 
 }
 
+
+
+
 }
+
+
+
+
+
+
 
 public function update(Request $request)
 {
@@ -297,36 +284,29 @@ $clear = Lista_espera::where('proyectos_id', $request->id)->delete();
 { 
 
 
-$monitor = Lista_espera::where('proyectos_id', $request->id)->first();
-
-if (isset($monitor)==false) {
+$monitor = Lista_espera::where('clientes_id', $request->id )->first();
 
 
+if ($monitor == null) {
 
-$lista_espera = Lista_espera::all();
-$count = count($lista_espera);
-
-if ($count>=0 AND $count<=7 )
-{
 $lista_espera = new Lista_espera();
-$lista_espera->proyectos_id = $request->id;
+$lista_espera->clientes_id=  $request->id;
 $lista_espera->save();
-}
-if ($count==8 )
-{
-foreach ($lista_espera as $key => $value) {
 
-	if ($key ==7) {
-		$value->proyectos_id=$request->id;
-        $value->save();
-
-	}
-}
-}
-
+return [
+'estado'=>$lista_espera->save()
+];
 
 }
-$clear = Lista_principal::where('proyectos_id', $request->id)->delete();
+
+else {
+
+return ['estado'=>'existe'];
+
+}
+
+
+
 
 }
 
@@ -571,34 +551,8 @@ public function listEspera( Request $request )
     {
 
 
-
-
-$lista_espera = Lista_espera::with(['proyectos', 'proyectos.clientes'])
-->with(['proyectos.tareas' => function ($query) {
-$query->latest()->limit(4);
-}]) ->get() ;
-
-
-
-$data_users = array();
-foreach ($lista_espera as $key => $lista) {
-$data_user[$key] = array();
-foreach ($lista->proyectos->tareas  as $i => $tarea) {
-$users = User::where('id', $tarea->users_id)
- ->first() ;
- $data_user[$key][$i] = $users ;
-}
-$data_users = $data_user;
-
-}
-return response()->json (['lista_espera'=> $lista_espera ,
-'users'=> $data_users ]) ;
-
-    
-
-
-
-
+$lista_espera = Lista_espera::with(['clientes','clientes.proyectos' ])->get() ;
+return response()->json (['lista_espera'=> $lista_espera]) ;
 
     }
 

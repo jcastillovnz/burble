@@ -11,9 +11,9 @@ use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 public $table = "lista_espera";
 
 
-public function proyectos()
+public function clientes()
 {
-    return $this->belongsTo('App\Proyectos');
+    return $this->belongsTo('App\Clientes');
 }
 
 

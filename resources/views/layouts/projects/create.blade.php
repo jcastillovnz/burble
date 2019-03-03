@@ -29,13 +29,8 @@ Registrar un nuevo proyecto
 @foreach( $clientes as $cliente)
 <option value="{{$cliente->id}}"  > {{$cliente->nombre}}</option>
 @endforeach
-
-
 @else
 <option value="">Seleccione un cliente</option>
-
-
-
 @endif
 </select>
 
