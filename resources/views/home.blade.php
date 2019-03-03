@@ -231,20 +231,30 @@ No existen tareas registradas
 
 
 <template v-if="lista_espera.length==0" >
-
 <li  class="nav-item ">
 <a style="border-radius:4px;"  class="nav-link active"   data-toggle="tab" >Agregar un cliente</a> 
-
 </li>
-
-
 </template>
 
-<template v-for="(item, index ) in lista_espera" >
-<li class="nav-item ">
-<a style="border-radius:4px;" v-if="index == 0"   class="nav-link active"  data-toggle="tab" v-bind:href="'#nav'+index"> @{{item.clientes.nombre}} x </a> 
 
-<a  style="border-radius:10px;"  v-else   class="nav-link "  data-toggle="tab" v-bind:href="'#nav'+index"> @{{item.clientes.nombre}} x </a> 
+
+
+<template v-for="(item, index ) in lista_espera" >
+<li class="nav-item">
+
+
+
+<a style="border-radius:4px;" v-if="index == 0"   class="nav-link active"  data-toggle="tab" v-bind:href="'#nav'+index"> @{{item.clientes.nombre}} @{{index}}  <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
+
+
+
+
+<a  style="border-radius:10px;"  v-else   class="nav-link"  data-toggle="tab" v-bind:href="'#nav'+index"> @{{item.clientes.nombre}}  @{{index}} <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span>  </a> 
+
+
+
+
+
 </li>
 </template>
 
@@ -275,7 +285,18 @@ No existen tareas registradas
 <template v-if="lista_espera.length==0" >
 <div  style="margin-right: 0px; margin-left: 0px; margin-bottom: 0px;"  class=" tab-pane fade active show">
 <br>
-@include('layouts.carrusel.index')
+
+
+<div  class="card alert-warning" style="width:180px; height:200px;"   >
+<div class="card-body">
+<h4 style="font-size: 16px; margin-top: 45%" class="card-title "><i class="fas fa-exclamation-circle"></i> Sin proyectos</h4>  
+ </div>
+</div> 
+
+
+
+
+
 </div>
 </template>
 
@@ -287,23 +308,16 @@ No existen tareas registradas
 <template v-for="(item, index ) in lista_espera" >
 <div v-bind:id="'nav'+index"  v-if="index==0" style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;"  class=" tab-pane fade active show"   >
 
-
 @include('layouts.carrusel.index')
-
-
-</div>
-
-<div v-bind:id="'nav'+index"   v-else="" style="margin-right: 0px; margin-left: 0px; margin-bottom: 0px;"  class=" tab-pane fade ">
-
-
-@include('layouts.carrusel.index')
-
-
 
 </div>
 
 
 
+
+<div v-bind:id="'nav'+index"   v-else="" style="margin-right: 0px; margin-left: 0px; margin-bottom: 0px;"  class="tab-pane fade ">
+@include('layouts.carrusel.index')
+</div>
 
 
 </template>

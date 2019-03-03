@@ -25,6 +25,7 @@ public function create( Request $request )
 
 $proyecto= new Proyectos();
 $proyecto->nombre=  $request->proyecto;
+$proyecto->fecha_recepcion=$request->fecha_recepcion;
 $proyecto->fecha_entrega=$request->fecha_entrega;
 $proyecto->presupuesto=$request->presupuesto;
 $proyecto->comentario=$request->comentario;
@@ -213,7 +214,7 @@ return [
 {
 
 
-$lista_espera = Lista_espera::where('proyectos_id',$request->id)->delete();
+$lista_espera = Lista_espera::where('clientes_id',$request->id)->delete();
 return  $lista_espera;
 
 
@@ -501,8 +502,6 @@ public function listPrincipal( Request $request )
     {
 
 
-
-
 $lista_principal = Lista_principal::with(['proyectos', 'proyectos.clientes'])
 ->with(['proyectos.tareas' => function ($query) {
 $query->latest()->limit(4);
@@ -547,12 +546,16 @@ return response()->json (['lista_principal'=> $lista_principal ,
     }
 
 
-public function listEspera( Request $request )
-    {
+public function listEspera( Request $request ){
+
+
 
 
 $lista_espera = Lista_espera::with(['clientes','clientes.proyectos' ])->get() ;
 return response()->json (['lista_espera'=> $lista_espera]) ;
+
+    
+
 
     }
 

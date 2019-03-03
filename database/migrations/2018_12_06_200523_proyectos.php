@@ -18,13 +18,14 @@ class Proyectos extends Migration
  Schema::create('proyectos', function (Blueprint $table) {
              $table->increments('id');
              $table->string('nombre')->nullable();
+             $table->string('img')->nullable();
+             $table->string('descripcion')->nullable();
+              $table->string('prioridad')->nullable();
              $table->string('estado')->nullable();
              $table->date('fecha_recepcion')->nullable();
              $table->date('fecha_entrega')->nullable();
              $table->string('presupuesto')->nullable();
              $table->longText('comentario')->nullable();
-
-
 
 
 

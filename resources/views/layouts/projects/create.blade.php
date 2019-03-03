@@ -71,7 +71,7 @@ Registrar un nuevo proyecto
 
 
 
-<date-picker2 autocomplete="off"   title="Fecha de recepcion" name="date" placeholder="Fecha de recepcion"  v-model="Rproyecto.fecha_entrega"  class="form-control"  :config="options"></date-picker2>
+<date-picker2 autocomplete="off"   title="Fecha de entrega" name="date" placeholder="Fecha de entrega"  v-model="Rproyecto.fecha_entrega"  class="form-control"  :config="options"></date-picker2>
 </div>
 
 

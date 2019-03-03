@@ -522,8 +522,7 @@ console.log(this.state);
 this.state = 0;
 }
 
-}
-,
+},
 
 
 edit_tarea: function(item) {
@@ -533,28 +532,15 @@ console.log(this.state_tarea );
   } else{
 this.state_edit  = 0;
 }
-
-}
-
-
-
-,
+},
 getListaEspera: function(dato)  {
 var urlEspera = '/api/proyectos/espera';
 axios.get(urlEspera).then(response => {
-
 this.lista_espera = response.data.lista_espera
-
 console.log(this.lista_espera.length);
-
-
-
 });
 this.todosProyectos()
-
- }
-,
-
+ },
 delete_principal: function(item) {
 
 axios({
@@ -586,16 +572,17 @@ axios({
   url: '/api/lista_espera/delete/',
   method: 'get',
   params: {
- id: item.proyectos_id
+ id: item.id
   }}
   ).then(function (response) {
 
 Proyectos.getListaEspera();
+
 })
 }
 ,
 confirmar_delete_espera: function(item) {
-alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar el proyecto '+item.nombre_proyecto +' de la lista de proyectos en espera?' 
+alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar el cliente '+item.nombre +' de la lista de espera?' 
   ,() => {
 Proyectos.delete_espera(item);
     }, 
