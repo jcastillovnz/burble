@@ -539,6 +539,11 @@ axios.get(urlEspera).then(response => {
 this.lista_espera = response.data.lista_espera
 console.log(this.lista_espera.length);
 });
+
+$('#nav_0').addClass('active');
+$('#nav0').addClass('active show');
+
+
 this.todosProyectos()
  },
 delete_principal: function(item) {
@@ -551,6 +556,9 @@ axios({
   }}
   ).then(function (response) {
 Proyectos.getListaPrincipal();
+
+
+
 })
 
 }

@@ -242,9 +242,11 @@ No existen tareas registradas
 <template v-for="(item, index ) in lista_espera" >
 <li class="nav-item">
 
+<a style="border-radius:4px;"  class="nav-link" 
+:class="{ 'active': index <= 0}"  data-toggle="tab" :id="'nav_'+index"  v-bind:href="'#nav'+index"> @{{item.clientes.nombre}} @{{index}}  <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
 
 
-<a style="border-radius:4px;" v-if="index == 0" :class="'nav-link active'"  data-toggle="tab" v-bind:href="'#nav'+index"> @{{item.clientes.nombre}} @{{index}}  <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
+
 
 
 
