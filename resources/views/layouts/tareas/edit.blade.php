@@ -128,7 +128,7 @@ Empleado encargado:
 
     
 
-     <date-picker  title="Fecha de inicio" :disabled="state_edit == 0" v-model="Rtarea.fecha_inicio" class="form-control"  :config="options"></date-picker>
+     <fecha-inicio-tarea  title="Fecha de inicio" :disabled="state_edit == 0" v-model="Rtarea.fecha_inicio" class="form-control"  :config="options"></fecha-inicio-tarea>
 
 
 

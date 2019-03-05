@@ -54,7 +54,7 @@ Registrar un nuevo proyecto
 
 
 
- <date-picker required=""  placeholder="Fecha de recepcion"  autocomplete="off"   v-model="Rproyecto.fecha_recepcion"  class="form-control"  :config="options"></date-picker>
+ <proyecto-fecha-recepcion required=""  placeholder="Fecha de recepcion"  autocomplete="off"   v-model="Rproyecto.fecha_recepcion"  class="form-control"  :config="{format:'YYYY/MM/DD'}"></proyecto-fecha-recepcion>
 
 
 
@@ -71,7 +71,7 @@ Registrar un nuevo proyecto
 
 
 
-<date-picker2 autocomplete="off"   title="Fecha de entrega" name="date" placeholder="Fecha de entrega"  v-model="Rproyecto.fecha_entrega"  class="form-control"  :config="options"></date-picker2>
+<proyecto-fecha-entrega autocomplete="off"   title="Fecha de entrega" name="date" placeholder="Fecha de entrega"  v-model="Rproyecto.fecha_entrega"  class="form-control"  :config="options"></proyecto-fecha-entrega>
 </div>
 
 

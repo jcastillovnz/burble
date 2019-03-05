@@ -211,9 +211,15 @@ No existen tareas registradas
 
 
 
-
 <!-- TABS -->
 <div  id="lista_espera" style=" " style="" class="col-sm-12 container ">  
+
+
+
+
+
+
+
 
 <div   style="margin.right: 90px;  padding-left:62px;  padding-right:62px;"   id="seccion_espera"  class="col-sm-12">
  <!-- Nav tabs -->
@@ -302,17 +308,19 @@ No existen tareas registradas
 
 
 <template v-for="(item, index ) in lista_espera" >
-<div v-bind:id="'nav'+index"  v-if="index==0" style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;"  class=" tab-pane fade active show"   >
+
+
+<div v-bind:id="'nav'+index"  style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;"  class="tab-pane fade "   :class="{ 'active show': index <= 0}" >
+
+
 
 @include('layouts.carrusel.index')
 
-</div>
 
 
 
 
-<div v-bind:id="'nav'+index"   v-else="" style="margin-right: 0px; margin-left: 0px; margin-bottom: 0px;"  class="tab-pane fade ">
-@include('layouts.carrusel.index')
+
 </div>
 
 
@@ -333,7 +341,7 @@ No existen tareas registradas
 </div>
 </div>
 
- </div>
+</div>
 
 <!-- TABS -->
 
@@ -354,6 +362,8 @@ No existen tareas registradas
 
 
 </div>
+
+
 
 
 

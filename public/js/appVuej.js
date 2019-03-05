@@ -3,6 +3,7 @@
 
 
 
+
 var Proyectos = new Vue({ 
     el: '#AppProyectos',
      mounted(){
@@ -65,28 +66,13 @@ return pagesArray;
 ,
 
 
+ data: {
 
-    data: {
-   items: [
-         { message: 'Foo' },
-          { message: 'Bar' },
-          { message: 'Bar2' },
-          { message: 'Bar3' },
-
-
-
-
-
-
-
-
-        ],
-        count: 0,
-    
-  
+    count: 0,
     options: {
       // https://momentjs.com/docs/#/displaying/
-      format: 'YYYY/MM/DD ',
+
+      format: 'YYYY/MM/DD',
       useCurrent: false,
       showClear: true,
       showClose: true,
@@ -161,6 +147,7 @@ pagination:{
 
 
 },
+ 
 directives: {
             carousel: {
                 inserted: function (el) {
@@ -178,8 +165,8 @@ directives: {
                             items: 6
                           }
                         }
-                    }).trigger('to.owl.carousel', app.items.length)
-                    console.log("crousel inserted")
+                    }).trigger('to.owl.carousel')
+                  
                 },
             }
         }
@@ -540,6 +527,10 @@ this.lista_espera = response.data.lista_espera
 console.log(this.lista_espera.length);
 });
 
+/*
+$('#nav_0').click();
+*/
+
 $('#nav_0').addClass('active');
 $('#nav0').addClass('active show');
 
@@ -838,7 +829,7 @@ onEnd: function (/**Event*/evt) {
     evt.newIndex;  // element's new index within new parent
 
 
-    document.getElementById('loader-lista-espera').style.display="none";
+   // document.getElementById('loader-lista-espera').style.display="none";
   },
 
 

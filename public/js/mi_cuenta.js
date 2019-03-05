@@ -10,7 +10,7 @@ var cuenta = new Vue({
 this.getUser();
     },
 
-    data: {
+data: {
  options: {
       // https://momentjs.com/docs/#/displaying/
       format: 'YYYY/MM/DD ',

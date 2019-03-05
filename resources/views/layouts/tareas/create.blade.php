@@ -46,7 +46,7 @@ Registrar un nueva tarea
 </div>
 
 
-   <date-picker  title="Fecha de inicio"  v-model="Rtarea.fecha_inicio" class="form-control"  :config="options"></date-picker>
+   <tarea-fecha-inicio title="Fecha de inicio"  v-model="Rtarea.fecha_inicio" class="form-control"  :config="options" ></tarea-fecha-inicio>
 
 
 
@@ -60,9 +60,9 @@ Registrar un nueva tarea
 
 
 
-    <date-picker title="Fecha de entrega" name="date" placeholder="Fecha de entrega"  v-model="Rtarea.fecha_termino" class="form-control"  :config="options"></date-picker>
+    <fecha-termino-tarea title="Fecha de entrega" name="date" placeholder="Fecha de entrega"  v-model="Rtarea.fecha_termino" class="form-control"  :config="options"></fecha-termino-tarea>
 
-    
+        <date-picker name="date"  :config="{format: 'DD-MM-AA'}"></date-picker>
 
 
 

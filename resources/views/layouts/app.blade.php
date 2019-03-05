@@ -23,6 +23,8 @@
 <link href="{{ asset('css/loader.css') }}" rel="stylesheet" type="text/css">
  
 <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" type="text/css">
+
+<link href="{{ asset('https://rawgit.com/cristijora/vue-tabs/master/dist/vue-tabs.min.css') }}" rel="stylesheet" type="text/css">
  
                           
 
@@ -44,6 +46,9 @@
 
 
 
+<link rel="stylesheet" href="https://unpkg.com/vue-nav-tabs/themes/vue-tabs.css">
+<script src="https://unpkg.com/vue-nav-tabs/dist/vue-tabs.js"></script>
+
 
 
 
@@ -52,10 +57,6 @@
 <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}" defer></script>
 <script src="{{ asset('js/vue-bootstrap-datetimepicker.js') }}" defer></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
-
-
-
-
 
 
 <nav  class="navbar navbar-expand-lg navbar-light border-bottom ">
