@@ -59,17 +59,20 @@ busqueda:'',
 state: 0,
 resultados: [],
 
- rellenar: { 
+ Rproyecto: { 
     'id':'',
-    'foto':'', 
+     'img':'',
     'nombre_proyecto':'',
-     'fecha_recepcion':'',
+    'descripcion':'',
+    'prioridad':'',
+    'fecha_recepcion':'',
     'fecha_entrega':'',
     'presupuesto':'',
     'Ntareas':'',
     'comentario':'',
     ////////////////
-    'nombre_cliente':''
+    'nombre_cliente':'',
+    'cliente_id':''
    },
 pagination:{
 'total': 0,
@@ -123,16 +126,16 @@ methods: {
 show_proyecto: function(proyecto) {
 
 $('#edit_item').modal('show');
-this.rellenar.id              = proyecto.id;
-this.rellenar.nombre_proyecto = proyecto.nombre;
-this.rellenar.fecha_recepcion = proyecto.fecha_recepcion;
-this.rellenar.fecha_entrega   = proyecto.fecha_entrega;
-this.rellenar.presupuesto     = proyecto.presupuesto;
-this.rellenar.comentario      = proyecto.comentario;
-this.rellenar.nombre_cliente  = proyecto.clientes.nombre;
-this.rellenar.Ntareas         = proyecto.tareas.length;
+this.Rproyecto.id              = proyecto.id;
+this.Rproyecto.nombre_proyecto = proyecto.nombre;
+this.Rproyecto.prioridad       = proyecto.prioridad;
+this.Rproyecto.fecha_recepcion = proyecto.fecha_recepcion;
+this.Rproyecto.fecha_entrega   = proyecto.fecha_entrega;
+this.Rproyecto.presupuesto     = proyecto.presupuesto;
+this.Rproyecto.comentario      = proyecto.comentario;
+this.Rproyecto.nombre_cliente  = proyecto.clientes.nombre;
+this.Rproyecto.Ntareas         = proyecto.tareas.length;
 
-console.log(this.rellenar.fecha_recepcion);
 }
 ,
 close: function(proyecto) {
@@ -177,12 +180,14 @@ document.getElementById('loader-details-proyecto').style.display="block";
 var url = '/api/proyectos/update' ;
 axios.post( url, {
 
-id:this.rellenar.id,
-nombre: this.rellenar.nombre_proyecto,
-fecha_recepcion: this.rellenar.fecha_recepcion,
-fecha_entrega: this.rellenar.fecha_entrega,
-presupuesto: this.rellenar.presupuesto,
-comentario:this.rellenar.comentario,
+id:this.Rproyecto.id,
+nombre: this.Rproyecto.nombre_proyecto,
+prioridad: this.Rproyecto.prioridad,
+descripcion: this.Rproyecto.descripcion,
+fecha_recepcion: this.Rproyecto.fecha_recepcion,
+fecha_entrega: this.Rproyecto.fecha_entrega,
+presupuesto: this.Rproyecto.presupuesto,
+comentario:this.Rproyecto.comentario,
 
 
 
@@ -250,14 +255,14 @@ search.buscar();
 
 },
 clear: function() {
-this.rellenar.id = '';
-this.rellenar.nombre_proyecto = '';
-this.rellenar.fecha_recepcion = '';
-this.rellenar.fecha_entrega = '';
-this.rellenar.presupuesto = '';
-this.rellenar.comentario = '';
-this.rellenar.nombre_cliente = '';
-this.rellenar.Ntareas = '';
+this.Rproyecto.id = '';
+this.Rproyecto.nombre_proyecto = '';
+this.Rproyecto.fecha_recepcion = '';
+this.rRproyecto.fecha_entrega = '';
+this.rRproyecto.presupuesto = '';
+this.Rproyecto.comentario = '';
+this.rRproyecto.nombre_cliente = '';
+this.Rproyecto.Ntareas = '';
 
 },
 buscar: function () {

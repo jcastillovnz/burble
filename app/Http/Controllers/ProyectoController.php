@@ -66,7 +66,8 @@ $proyecto= Proyectos::where('id', $request->id)->first();
 
 
 $proyecto->nombre=  $request->nombre;
-
+$proyecto->prioridad=  $request->prioridad;
+$proyecto->descripcion =  $request->descripcion;
 
 $proyecto->fecha_recepcion=$request->fecha_recepcion;
 
@@ -551,7 +552,7 @@ public function listEspera( Request $request ){
 
 
 
-$lista_espera = Lista_espera::with(['clientes','clientes.proyectos' ])->get() ;
+$lista_espera = Lista_espera::with(['clientes','clientes.proyectos','clientes.proyectos.tareas','clientes.proyectos.clientes' ])->get() ;
 return response()->json (['lista_espera'=> $lista_espera]) ;
 
     

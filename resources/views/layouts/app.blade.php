@@ -14,7 +14,6 @@
 
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
     
 <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" >
@@ -36,18 +35,21 @@
 
 <script src="{{ asset('js/sortable.js') }}" defer></script>
 
+
+
+
+<!-- CARRUSEL -->
 <!-- CARRUSEL -->
 <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.theme.default.min.css" crossorigin="anonymous">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" defer="" ></script>
 <script src="{{ asset('js/carrusel.js') }}" defer></script>
+
+<!-- CARRUSEL -->
 <!-- CARRUSEL -->
 
 
-
-<link rel="stylesheet" href="https://unpkg.com/vue-nav-tabs/themes/vue-tabs.css">
-<script src="https://unpkg.com/vue-nav-tabs/dist/vue-tabs.js"></script>
 
 
 
@@ -57,6 +59,13 @@
 <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}" defer></script>
 <script src="{{ asset('js/vue-bootstrap-datetimepicker.js') }}" defer></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
+
+<!-- NAVS -->
+<link rel="stylesheet" href="https://unpkg.com/vue-nav-tabs/themes/vue-tabs.css">
+<script src="https://unpkg.com/vue-nav-tabs/dist/vue-tabs.js"></script>
+<!-- NAVS -->
+
+<script src="{{ asset('js/panel-control.js') }}" defer></script>
 
 
 <nav  class="navbar navbar-expand-lg navbar-light border-bottom ">
@@ -80,12 +89,7 @@
 
 <ul class="navbar-nav  my-lg-0">
 @guest
-<!-- 
-<li class="nav-item active">
-<a class="nav-link" href="#"><i class="fas fa-user"></i> Iniciar session <span class="sr-only">(current)</span></a>
-</li>
 
- -->
  @else
 
 <form  class="form-inline my-2 my-lg-0"  action="{{ url('/busqueda') }}"  method="GET" >

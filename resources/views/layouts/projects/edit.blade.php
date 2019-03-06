@@ -2,10 +2,10 @@
 
 
 <!-- MODAL EDITAR PROYECTO-->
-<div  class="modal fade "  id="edit_item"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div  class="modal fade edit_proyecto"  id="edit_item"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div  class="modal-dialog ">
 <div class="modal-content ">
-<form   autocomplete="off"      method="GET" class="hidden"   @submit.prevent="update_proyecto(rellenar.id)"  >
+<form   autocomplete="off"      method="GET" class="hidden"   @submit.prevent="update_proyecto(Rproyecto.id)"  >
 <div class="modal-header ">
 <div class="col-sm-12 text-primary">
 <center>
@@ -27,13 +27,13 @@ Informacion de proyecto
 </div>
 <div class="modal-body">
 
-
+<!-- 
 <span align="left" class="text-primary">
 <strong>
  Cliente:  @{{rellenar.nombre_cliente}} 
 </strong>
 </span>
-
+ -->
 
 <div class="row">
 
@@ -48,7 +48,7 @@ Informacion de proyecto
           <i class="fas fa-briefcase"></i>
       </span>
         </div>
-        <input :disabled="state == 0" v-model="rellenar.nombre_proyecto" type="text" class="form-control input-sm" id="validationDefaultUsername" placeholder="Nombre proyecto" aria-describedby="inputGroupPrepend2" required>
+        <input :disabled="state == 0" v-model="Rproyecto.nombre_proyecto" type="text" class="form-control input-sm" id="validationDefaultUsername" placeholder="Nombre proyecto" aria-describedby="inputGroupPrepend2" required>
       </div>
   </div>
 
@@ -65,8 +65,7 @@ Informacion de proyecto
 
 
 
-
-  <input  title="Fecha de entrega" :disabled="state == 0" autocomplete="off"    v-model="rellenar.fecha_recepcion"   class="form-control"  :config="options"></input >
+ <proyecto-fecha-recepcion  :disabled="state == 0" placeholder="Fecha de recepcion"  autocomplete="off"   v-model="Rproyecto.fecha_recepcion"  class="form-control"  :config="{format:'YYYY/MM/DD'}"></proyecto-fecha-recepcion>
 
 
 
@@ -88,9 +87,7 @@ Informacion de proyecto
         </div>
 
 
-
-  <input  title="Fecha de entrega" :disabled="state == 0" autocomplete="off"    v-model="rellenar.fecha_entrega"   class="form-control"  :config="options"></input >
-
+<proyecto-fecha-entrega :disabled="state == 0" autocomplete="off"   title="Fecha de entrega" name="date" placeholder="Fecha de entrega"  v-model="Rproyecto.fecha_entrega"  class="form-control"  :config="options"></proyecto-fecha-entrega>
 
 
 
@@ -107,7 +104,7 @@ Informacion de proyecto
 <i class="fas fa-dollar-sign"></i>
       </span>
         </div>
-        <input :disabled="state == 0" v-model="rellenar.presupuesto" type="text" class="form-control input-sm" id="validationDefaultUsername" placeholder="Presupuesto"  required>
+        <input :disabled="state == 0" v-model="Rproyecto.presupuesto" type="text" class="form-control input-sm" id="validationDefaultUsername" placeholder="Presupuesto"  required>
       </div>
   </div>
 
@@ -120,13 +117,43 @@ Informacion de proyecto
 <i class="fas fa-sort-numeric-up"></i>
       </span>
         </div>
-        <input disabled="" v-model="rellenar.Ntareas" type="text" class="form-control input-sm" id="validationDefaultUsername" placeholder="Presupuesto"  required>
+        <input disabled="" v-model="Rproyecto.Ntareas" type="text" class="form-control input-sm" id="validationDefaultUsername" placeholder="N tareas"  required>
       </div>
   </div>
 
 
 
+  <div class="col-sm-6   form-group">
+ <strong>Prioridad</strong> 
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+<i class="fas fa-circle"  v-bind:class="{ 'green': Rproyecto.prioridad == 'baja','yellow': Rproyecto.prioridad == 'media', 'red': Rproyecto.prioridad == 'alta'   }"   ></i>
+      </span>
+        </div>
+  <select :disabled="state == 0" autocomplete="off" required="" v-model="Rproyecto.prioridad" type="text" class="form-control" placeholder="Prioridad">
+<option value="" :selected="Rproyecto.prioridad == null">Prioridad</option>
+<option :selected="Rproyecto.prioridad=='alta'"    value="alta">Alta - Rojo</option>
+<option :selected="Rproyecto.prioridad=='media'"   value="media">Media - Amarillo</option>
+<option :selected="Rproyecto.prioridad=='baja'"    value="baja">Baja - Verde </option>
+</select>
+      </div>
+  </div>
 
+
+  <div class="col-sm-12   form-group">
+ <strong>Descripcion</strong> 
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" >
+<i class="fas fa-text-height"></i>
+      </span>
+        </div>
+
+<textarea :disabled="state == 0" v-model="Rproyecto.descripcion"   class="form-control input-sm" rows="2" id="comment"></textarea>
+
+</div>
+</div>
 
 
 
@@ -139,14 +166,14 @@ Informacion de proyecto
       </span>
         </div>
 
-<textarea :disabled="state == 0" v-model="rellenar.comentario"   class="form-control input-sm" rows="2" id="comment"></textarea>
+<textarea :disabled="state == 0" v-model="Rproyecto.comentario"   class="form-control input-sm" rows="2" id="comment"></textarea>
 
       </div>
   </div>
 
 <div class="col-sm-12">
 <p class="text-right">
-<a :href="'/detalle/'+rellenar.id"  >
+<a :href="'/detalle/'+Rproyecto.id"  >
 <i class="fas fa-caret-right"></i>
 
 Ver mas detalles

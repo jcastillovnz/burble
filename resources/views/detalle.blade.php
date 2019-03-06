@@ -78,6 +78,24 @@ v-model="cliente"   placeholder="Cliente">
 </div>
 
 
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text">
+<i class="fas fa-circle"  v-bind:class="{ 'green': Rproyecto.prioridad == 'baja','yellow': Rproyecto.prioridad == 'media', 'red': Rproyecto.prioridad == 'alta'   }"   ></i>
+</span>
+</div>
+
+
+<select  :disabled="state == 0"  autocomplete="off" required="" v-model="Rproyecto.prioridad" type="text" class="form-control" placeholder="Prioridad">
+<option value="" selected="">Seleccione prioridad</option>
+<option value="alta">Alta - Rojo</option>
+<option value="media">Media - Amarillo</option>
+<option value="baja">Baja - Verde </option>
+</select>
+
+</div>
+
+
  <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text">
@@ -102,7 +120,7 @@ v-model="cliente"   placeholder="Cliente">
  <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span style="width: 35px"  class="input-group-text">
-<i class="fas fa-clock"></i>
+<i class="fas fa-dollar-sign"></i>
          </span>
     </div>
     <input  :disabled="state == 0"   v-model="Rproyecto.presupuesto"   title="Presupuesto" type="text"     class="form-control input-sm input" placeholder="Presupuesto">
@@ -112,17 +130,31 @@ v-model="cliente"   placeholder="Cliente">
 
 
 
+
 <div class="input-group mb-3">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text ">
-<i class="fas fa-user"></i>
+<i class="fas fa-text-height"></i>
 </span>
 </div>
-   
+  
+<textarea   :disabled="state == 0" v-model="Rproyecto.descripcion"   placeholder="Descripcion" class="form-control" rows="3">
+</textarea>
+
+  </div>
 
 
-<textarea   :disabled="state == 0" v-model="Rproyecto.comentario"   placeholder="Comentario" class="form-control" rows="5"></textarea>
 
+
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text ">
+<i class="fas fa-comments"></i>
+</span>
+</div>
+  
+<textarea   :disabled="state == 0" v-model="Rproyecto.comentario"   placeholder="Comentario" class="form-control" rows="5">
+</textarea>
 
   </div>
 
@@ -131,7 +163,7 @@ v-model="cliente"   placeholder="Cliente">
 
 
 <div class="col-sm-12">
-<div class="btn-group float-right">
+<div  style="margin-bottom: 10px;" class="btn-group float-right">
 
 <div  id="loader-details-proyecto"   class="loader loader-sm loader-tarea"></div>
 

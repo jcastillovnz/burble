@@ -46,6 +46,24 @@ Registrar un nuevo proyecto
 </div>
 
 
+ <div class="input-group  col-sm-12">
+<div class="input-group-prepend">
+<span style="width: 35px"  class="input-group-text"><i class="fas far fa-chart-bar"></i></span>
+</div>
+
+
+<select autocomplete="off" required="" v-model="Rproyecto.prioridad" type="text" class="form-control" placeholder="Prioridad">
+<option value="" selected="">Seleccione prioridad</option>
+<option value="alta">Alta - Rojo</option>
+<option value="media">Media - Amarillo</option>
+<option value="baja">Baja - Verde </option>
+</select>
+
+</div>
+
+
+
+
 <div class="input-group col-sm-12">
 <div class="input-group-prepend">
 <span style="width: 35px"  class="input-group-text"><i class="fas fa-clock"></i>  </span>
@@ -53,11 +71,7 @@ Registrar un nuevo proyecto
 
 
 
-
  <proyecto-fecha-recepcion required=""  placeholder="Fecha de recepcion"  autocomplete="off"   v-model="Rproyecto.fecha_recepcion"  class="form-control"  :config="{format:'YYYY/MM/DD'}"></proyecto-fecha-recepcion>
-
-
-
 
 
 </div>

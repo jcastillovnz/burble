@@ -233,12 +233,14 @@ id: id
 }).then(response => {
 this.proyecto = response.data;
 this.Rproyecto.id = this.proyecto.id;
+this.Rproyecto.img = this.proyecto.img;
 this.Rproyecto.nombre_proyecto = this.proyecto.nombre;
+this.Rproyecto.prioridad= this.proyecto.prioridad;
 this.Rproyecto.fecha_recepcion = this.proyecto.fecha_recepcion;
 this.Rproyecto.fecha_entrega = this.proyecto.fecha_entrega;
 this.Rproyecto.presupuesto = this.proyecto.presupuesto;
 this.Rproyecto.comentario = this.proyecto.comentario;
-
+this.Rproyecto.descripcion = this.proyecto.descripcion;
 
 this.cliente =  this.proyecto.clientes.nombre;
 this.getTareas_proyecto(this.proyecto);

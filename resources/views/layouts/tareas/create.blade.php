@@ -62,9 +62,6 @@ Registrar un nueva tarea
 
     <fecha-termino-tarea title="Fecha de entrega" name="date" placeholder="Fecha de entrega"  v-model="Rtarea.fecha_termino" class="form-control"  :config="options"></fecha-termino-tarea>
 
-        <date-picker name="date"  :config="{format: 'DD-MM-AA'}"></date-picker>
-
-
 
 </div>
 

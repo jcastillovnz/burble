@@ -42,6 +42,7 @@ clear: both;
 
    position:fixed;
    left:0px;
+   z-index: -100;
    bottom:20px;
    height:30px;
    width:100%;
@@ -373,7 +374,34 @@ padding-bottom: none;
 
 
 
+.card-p-baja{
+ border-left-width: 3px;
+    border-left-style: solid; 
+    border-left-color: rgb(0, 128, 1);
+}
+.card-p-media{
+ border-left-width: 3px;
+    border-left-style: solid; 
+    border-left-color: #ffad43;
+}
 
+.card-p-alta{
+ border-left-width: 3px;
+    border-left-style: solid; 
+    border-left-color: red;
+}
+
+
+.green {
+  color:green;
+}
+.red {
+  color:red;
+}
+
+.yellow {
+  color: #ffad43;
+}
 
 .margin-none{
   padding-left: 4px;

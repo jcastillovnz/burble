@@ -216,14 +216,8 @@ No existen tareas registradas
 
 
 
-
-
-
-
-
 <div   style="margin.right: 90px;  padding-left:62px;  padding-right:62px;"   id="seccion_espera"  class="col-sm-12">
  <!-- Nav tabs -->
-
 
 <a id="archivo" href=" {{ asset('/proyectos-archivados/')  }}  ">
 <span style="margin:0px; font-size: 15px; " class="float-right">
@@ -232,9 +226,13 @@ No existen tareas registradas
 </span>
 </a>
 
+
+
+
+
+
+
 <ul class="nav nav-tabs" role="tablist">
-
-
 
 <template v-if="lista_espera.length==0" >
 <li  class="nav-item ">
@@ -245,11 +243,15 @@ No existen tareas registradas
 
 
 
+
+
+
+
 <template v-for="(item, index ) in lista_espera" >
 <li class="nav-item">
 
-<a style="border-radius:4px;"  class="nav-link" 
-:class="{ 'active': index <= 0}"  data-toggle="tab" :id="'nav_'+index"  v-bind:href="'#nav'+index"> @{{item.clientes.nombre}} @{{index}}  <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
+<a @click="setNav(index)" style="border-radius:4px;"  class="nav-link" 
+:class="{ 'active': index <= 0}"  data-toggle="tab" :id="'nav_'+index"  v-bind:href="'#nav'+index"> @{{item.clientes.nombre}}  <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
 
 
 
@@ -258,13 +260,17 @@ No existen tareas registradas
 
 
 </li>
+
+
+
+
 </template>
 
 
 
 
 <li class="nav-item">
-<button @click="create_pestana()"   class="btn btn-light   rounded-circle float-right "> 
+<button @click.prevent="create_pestana()"   class="btn btn-light   rounded-circle float-right "> 
 <i class="fas fa-plus"></i>
 </button>
 </li>
@@ -276,31 +282,23 @@ No existen tareas registradas
 
 
 
- <!-- Tab panes -->
+ <!-- Tab CONTENT-->
 <div     class="tab-content "  >
-
-
-
 
 
 
 <template v-if="lista_espera.length==0" >
 <div  style="margin-right: 0px; margin-left: 0px; margin-bottom: 0px;"  class=" tab-pane fade active show">
 <br>
-
-
 <div  class="card alert-warning" style="width:180px; height:200px;"   >
 <div class="card-body">
 <h4 style="font-size: 16px; margin-top: 45%" class="card-title "><i class="fas fa-exclamation-circle"></i> Sin proyectos</h4>  
  </div>
 </div> 
-
-
-
-
-
 </div>
 </template>
+
+
 
 
 
@@ -308,22 +306,9 @@ No existen tareas registradas
 
 
 <template v-for="(item, index ) in lista_espera" >
-
-
 <div v-bind:id="'nav'+index"  style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;"  class="tab-pane fade "   :class="{ 'active show': index <= 0}" >
-
-
-
 @include('layouts.carrusel.index')
-
-
-
-
-
-
 </div>
-
-
 </template>
 
 
@@ -331,35 +316,20 @@ No existen tareas registradas
 
 
 
-
-
-
-
-
-
-
 </div>
 </div>
-
 </div>
-
 <!-- TABS -->
 
 
 
 
 @include('layouts.projects.create')
+@include('layouts.projects.edit')
 <div id="AppProyectos">
-
 @include('layouts.espera.add')	
 @include('layouts.tareas.edit')
-
 </div>
-
-
-
-
-
 
 </div>
 

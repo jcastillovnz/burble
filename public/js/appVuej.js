@@ -67,11 +67,9 @@ return pagesArray;
 
 
  data: {
-
+    navs: 0,
     count: 0,
     options: {
-      // https://momentjs.com/docs/#/displaying/
-
       format: 'YYYY/MM/DD',
       useCurrent: false,
       showClear: true,
@@ -105,7 +103,10 @@ proyecto: '',
         comentario_tarea: '',
  Rproyecto: { 
     'id':'',
+     'img':'',
     'nombre_proyecto':'',
+    'descripcion':'',
+    'prioridad':'',
     'fecha_recepcion':'',
     'fecha_entrega':'',
     'presupuesto':'',
@@ -202,8 +203,11 @@ archivo: function(dato)  {
 });
 }
 ,
+setNav: function(dato)  {
 
+this.navs = dato;
 
+},
 create_pestana: function(dato)  {
 $('.addPestana').modal('show');
 
@@ -350,6 +354,93 @@ this.Rtarea.empleado_id = user.id;
 },
 
 
+show_proyecto: function(proyecto) {
+
+
+$('.edit_proyecto').modal('show');
+
+this.Rproyecto.id              = proyecto.id;
+this.Rproyecto.img             = proyecto.img;
+this.Rproyecto.nombre_proyecto = proyecto.nombre;
+this.Rproyecto.prioridad       = proyecto.prioridad ;
+this.Rproyecto.descripcion     = proyecto.descripcion;
+this.Rproyecto.fecha_recepcion = proyecto.fecha_recepcion;
+this.Rproyecto.fecha_entrega   = proyecto.fecha_entrega;
+this.Rproyecto.presupuesto     = proyecto.presupuesto;
+this.Rproyecto.comentario      = proyecto.comentario;
+this.Rproyecto.nombre_cliente  = proyecto.clientes.nombre;
+this.Rproyecto.Ntareas         = proyecto.tareas.length;
+
+
+},
+
+
+update_proyecto: function(status) {
+document.getElementById('btn-details-proyecto').disabled = true;
+document.getElementById('loader-details-proyecto').style.display="block";
+
+
+var url = '/api/proyectos/update' ;
+axios.post( url, {
+
+id:this.Rproyecto.id,
+nombre: this.Rproyecto.nombre_proyecto,
+prioridad: this.Rproyecto.prioridad,
+descripcion: this.Rproyecto.descripcion,
+fecha_recepcion: this.Rproyecto.fecha_recepcion,
+fecha_entrega: this.Rproyecto.fecha_entrega,
+presupuesto: this.Rproyecto.presupuesto,
+comentario:this.Rproyecto.comentario,
+
+
+
+
+validateStatus: (status) => {
+return true; // I'm always returning true, you may want to do it depending on the status received
+},
+}).catch(error => {
+}).then(response => {
+if (response.data == "true") {
+
+document.getElementById('btn-details-proyecto').disabled = false;
+document.getElementById('loader-details-proyecto').style.display="none";
+this.state= 0;
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+$('#nav_0').click();
+
+
+
+nav = '#nav_'+this.navs;
+
+//A =$(nav );
+//A.click();
+
+
+
+
+
+
+
+
+
+Proyectos.getListaEspera();
+
+}
+else
+{
+document.getElementById('btn-details-proyecto').disabled = false;
+document.getElementById('loader-details-proyecto').style.display="none";
+
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+}
+});
+
+
+},
+
+
+
 close_tarea: function() {
 $('#edit_tarea').modal('hide');
 this.clear_tarea();
@@ -365,6 +456,7 @@ $('.nuevaTarea').modal('hide');
 
 close: function() {
 $('#edit_proyecto').modal('hide');
+$('#edit_item').modal('hide');
 this.clear();
 
 if (this.state_edit == 1) {
@@ -379,6 +471,8 @@ this.Rproyecto.id = '';
 this.Rproyecto.nombre_proyecto = '';
 this.Rproyecto.fecha_recepcion = '';
 this.Rproyecto.fecha_entrega = '';
+this.Rproyecto.prioridad = '';
+this.Rproyecto.descripcion = '';
 this.Rproyecto.presupuesto = '';
 this.Rproyecto.Ntareas = '';
 this.Rproyecto.nombre_cliente = '';
@@ -575,8 +669,8 @@ axios({
   }}
   ).then(function (response) {
 
-Proyectos.getListaEspera();
-
+//Proyectos.getListaEspera();
+location ="/home";
 })
 }
 ,
