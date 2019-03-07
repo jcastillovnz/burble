@@ -40,9 +40,9 @@
 
 <template v-if="lista_principal.length <=  0">
 
-<div    class="col-sm-6">
-<div class="card borde-burble alert-warning" >
-<div class="container alert ">
+<div    class="col-sm-6" >
+<div  class="card borde-burble alert-warning" >
+<div style="margin-top: 20px; margin-bottom: 20px;"  class="container alert ">
 
 <p align="center">
 <h6> <strong> <i class="fas fa-exclamation-circle"></i> No hay proyectos en proceso</strong>  </h6>

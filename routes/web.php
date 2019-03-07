@@ -54,6 +54,7 @@ Route::get('/estadisticas', 'EstadisticasController@index');
 Route::get('/busqueda', 'BusquedaController@index');
 
 Route::post('/detalle/tarea/send_imagen/{id}','ProyectoController@tarea_imagen');
+Route::post('/proyecto/send_imagen/{id}','ProyectoController@proyecto_imagen');
 
 
 Route::get('/detalle/{id}', 'ProyectoController@detalle');

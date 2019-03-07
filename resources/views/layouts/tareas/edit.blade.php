@@ -237,7 +237,7 @@ Empleado encargado:
 <div with="300" class="">
 
 <center>
-<img  v-if="Rtarea.imagen_tarea"  class="col-sm"  :src="'{{url ('/img/tareas/fotos/')}}'+'/' +Rtarea.imagen_tarea" >
+<img  v-if="Rproyecto.img"  class="col-sm"  :src="'{{url ('/img/proyectos/fotos/')}}'+'/' +Rproyecto.img" >
 <img v-else class="col-sm"  src="{{url ('img/pieza.png')}} " >
 <input ref="imagen" type="file"  value="" class="invisible" @change="cargar_imagen_tarea(this)"   name="">
 </center>

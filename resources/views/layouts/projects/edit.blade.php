@@ -171,6 +171,40 @@ Informacion de proyecto
       </div>
   </div>
 
+
+
+
+
+<div class="col-sm-12 ">
+
+
+
+<div with="250" class="">
+
+<center>
+<img  with="250" v-if="Rproyecto.img"  class="col-sm"  :src="'{{url ('/img/proyectos/fotos/')}}'+'/' +Rproyecto.img" >
+<img  v-else class="col-sm"  src="{{url ('img/pieza.png')}} " >
+<input ref="imagen_proyecto" type="file"  value="" class="invisible" @change="cargar_imagen_proyecto(this)"   name="">
+</center>
+
+
+<div  class="card-img-overlay float-right">
+<button  @click="$refs.imagen_proyecto.click()"    title="Actualizar imagen" style="margin-top: 65%; margin-left: 90%;"  type="button"    class="btn btn-info btn-sm rounded-circle boton-overlay"><i class="fas fa-sync"></i>
+</button>
+</div>
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
 <div class="col-sm-12">
 <p class="text-right">
 <a :href="'/detalle/'+Rproyecto.id"  >

@@ -1,33 +1,50 @@
-<!-- CARDS -->
-<div class="card "   v-bind:class="{ 'card-p-baja': item.prioridad == 'baja','card-p-media': item.prioridad  == 'media', 'card-p-alta': item.prioridad  == 'alta'   }"   style="width:180px;"   >
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="card "   v-bind:class="{ 'card-p-baja': item.prioridad == 'baja','card-p-media': item.prioridad  == 'media', 'card-p-alta': item.prioridad  == 'alta'   }"    >
  
-<div  @click="show_proyecto(item)"  class="float-ritgh" style="color:white;  position: absolute; right: 0;">
-<i class="fas fa-pen-square"></i>
-</div>
+ 
 
-<img  v-if="item.img!=null" height="80" src="https://i.dailymail.co.uk/i/pix/2015/01/07/2477609600000578-2899561-Multi_talented_IMG_praised_model_Gizele_Oliveira_for_her_ability-m-11_1420639554729.jpg">
-
-
-<img  v-else="" height="80" src="https://i.dailymail.co.uk/i/pix/2015/01/07/2477609600000578-2899561-Multi_talented_IMG_praised_model_Gizele_Oliveira_for_her_ability-m-11_1420639554729.jpg">
-
+<img  height="120"  src="{{url ('img/pieza.png')}} ">
+  
 
 <div class="card-body">
-<h4 style="font-size: 15px;" class="card-title"><i class="far fa-folder"></i>  @{{ item.nombre }}</h4>  
-<p style="font-size: 12px;" class="card-text">
+<h4 style="font-size: 12px;" class="card-title">
+	<i @click="show_proyecto(item)" class="fas fa-pen-square"></i> 
+<a :href="'/detalle/'+item.id"  >
+ @{{ item.nombre }}
+</a>
+</h4>  
+      <p style="font-size: 10px;" class="card-text">
+
 	<template v-if="item.descripcion!= null">
 		@{{ item.descripcion }}  
 	</template>
 <template v-else="">
 Sin descripcion
 	</template>
+  </p>
+    </div>
+    <div class="card-footer" >
+      <small style="font-size: 10px;" class="text-muted">@{{ item.fecha_recepcion }} / @{{ item.fecha_entrega }}</small>
 
-</p>
 
-<span style="font-size: 11px;">
+    </div>
 
-@{{ item.fecha_recepcion }} / @{{ item.fecha_entrega }}
-</span>
- </div>
-</div>
+
+
+
+
+
+
 <!-- CARDS -->  
 

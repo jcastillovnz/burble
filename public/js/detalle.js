@@ -169,9 +169,11 @@ var url = '/api/proyectos/update' ;
 axios.post( url, {
 id:this.Rproyecto.id,
 nombre: this.Rproyecto.nombre_proyecto,
+prioridad: this.Rproyecto.prioridad,
 fecha_recepcion: this.Rproyecto.fecha_recepcion,
 fecha_entrega: this.Rproyecto.fecha_entrega,
 presupuesto: this.Rproyecto.presupuesto,
+descripcion:this.Rproyecto.descripcion,
 comentario:this.Rproyecto.comentario,
 validateStatus: (status) => {
 return true; // I'm always returning true, you may want to do it depending on the status received
@@ -218,8 +220,6 @@ this.Rtarea.fecha_inicio = +anio+'/'+mes+'/'+dia;
 
 ,
 getProyecto: function(dato)  {
-
-
 
 
 

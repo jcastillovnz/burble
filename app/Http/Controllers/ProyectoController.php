@@ -234,6 +234,32 @@ return  $lista_principal;
 
 }
 
+public function proyecto_imagen($id, Request $request)
+{
+
+
+$proyecto = Proyectos::where('id', $id)->first();
+
+if ($request->hasFile('imagen')===true ){
+$file = $request->file('imagen');
+$img = 'img_'.time().'.'.$file->getClientOriginalExtension();
+
+$path = public_path().'/img/proyectos/fotos/';
+$file->move($path,$img );
+
+$proyecto->img =$img  ;
+$proyecto->save();
+
+if ($proyecto->save()==true) {
+$data = $proyecto->img;
+return response()->json($data); 
+}
+
+
+
+
+}
+}
 
 
 
