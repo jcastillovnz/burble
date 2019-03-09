@@ -212,11 +212,11 @@ No existen tareas registradas
 
 
 <!-- TABS -->
-<div  id="lista_espera" style=" " style="" class="col-sm-12 container ">  
+<div  id="lista_espera" style=" " style="" class="col-sm-12 ">  
 
 
 
-<div   style="margin.right: 90px;  padding-left:62px;  padding-right:62px;"   id="seccion_espera"  class="col-sm-12">
+<div      id="seccion_espera"  >
  <!-- Nav tabs -->
 
 <a id="archivo" href=" {{ asset('/proyectos-archivados/')  }}  ">
@@ -307,7 +307,10 @@ No existen tareas registradas
 
 <template v-for="(item, index ) in lista_espera" >
 <div v-bind:id="'nav'+index"  style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;"  class="tab-pane fade "   :class="{ 'active show': index <= 0}" >
-@include('layouts.carrusel.index')
+
+
+
+CONTENIDO @{{item.clientes.nombre}} 
 </div>
 </template>
 
@@ -325,12 +328,23 @@ No existen tareas registradas
 
 
 @include('layouts.projects.create')
+@include('layouts.espera.add')	
 @include('layouts.projects.edit')
 <div id="AppProyectos">
-@include('layouts.espera.add')	
 @include('layouts.tareas.edit')
+
 </div>
 
+
+
+
+
+
+
+<div id="AppProyectos">
+
+
+</div>
 </div>
 
 

@@ -236,17 +236,6 @@
 
 
 <footer  id="footer" class="col-sm-12 margin-bottom-none footer" >
-
-
-
-
-
-
-
-
-
-
-
 <center  >
 <br>
 <p style="font-size: 12px;" align="center">
@@ -254,9 +243,6 @@
 © 2018  Burble para Achelier Studio -   <a target="blank" href="https://github.com/jcastillovnz"> <i class="fas fa-code"></i> Desarrollado por Jose Castillo </a> 
 </p>
 </center>
-
-
-
 
 </footer>
 </html>

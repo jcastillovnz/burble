@@ -128,6 +128,7 @@ v-model="cliente"   placeholder="Cliente">
 
   </div>
 
+ 
 
 
 
@@ -157,6 +158,35 @@ v-model="cliente"   placeholder="Cliente">
 </textarea>
 
   </div>
+
+
+
+<div style="margin-bottom: 10px;" class="col-sm-12">
+
+
+<img  class="col-sm" v-if="Rproyecto.img"  :src="'{{url ('/img/proyectos/fotos/')}}'+'/' +Rproyecto.img" >
+<img  class="col-sm" v-else  src="{{url ('img/pieza.png')}} " >
+
+<input ref="imagen_proyecto" type="file"  value="" class="invisible" @change="cargar_imagen_proyecto(this)"   name="">
+
+
+
+
+
+<div  class="card-img-overlay float-right">
+<button  @click="$refs.imagen_proyecto.click()"    title="Actualizar imagen" style="margin-top: 65%; margin-left: 90%;"  type="button"    class="btn btn-info btn-sm rounded-circle boton-overlay"><i class="fas fa-sync"></i>
+</button>
+</div>
+
+
+
+
+
+
+
+</div>
+
+
 
 
 

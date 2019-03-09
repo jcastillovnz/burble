@@ -156,6 +156,28 @@ getUsers: function(dato)  {
 });
  }
 ,
+enviar_foto_proyecto: function(file)  {
+const formData = new FormData()
+formData.append('imagen', file, file.name)
+axios.post('/proyecto/send_imagen/'+this.Rproyecto.id, formData).then(function(response){
+Detalle_proyecto.getProyecto();
+
+
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+})
+.catch(function(error){
+var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+
+});
+},
+
+cargar_imagen_proyecto: function(e) {
+const file = event.target.files[0];
+
+this.foto = file;
+this.enviar_foto_proyecto(file);
+},
+
 
 
 

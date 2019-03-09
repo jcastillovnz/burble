@@ -211,6 +211,8 @@ this.navs = dato;
 create_pestana: function(dato)  {
 $('.addPestana').modal('show');
 
+
+
 },
 
 create_espera: function(item) {
@@ -676,9 +678,14 @@ Proyectos.getListaPrincipal();
 confirmar_delete_principal: function(item) {
 
 
-alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar el proyecto '+item.nombre_proyecto +' de la lista de proyectos en proceso?' 
+alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de eliminar el proyecto '+item.nombre_proyecto +' de la lista de proyectos en proceso?' 
   ,() => {
+
+Proyectos.lista_espera.splice(index, 1)    
 Proyectos.delete_principal(item);
+
+
+
 }, 
 function()
 { 
@@ -694,14 +701,17 @@ axios({
   }}
   ).then(function (response) {
 
-//Proyectos.getListaEspera();
-location ="/home";
+Proyectos.getListaEspera();
+//location ="/home";
 })
 }
 ,
-confirmar_delete_espera: function(item) {
-alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar el cliente '+item.nombre +' de la lista de espera?' 
+confirmar_delete_espera: function(item, index) {
+alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de eliminar el cliente '+item.nombre +' de la lista de espera?' 
   ,() => {
+
+
+
 Proyectos.delete_espera(item);
     }, 
 function()

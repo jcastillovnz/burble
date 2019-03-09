@@ -12,10 +12,12 @@
 
 <div class="card "   v-bind:class="{ 'card-p-baja': item.prioridad == 'baja','card-p-media': item.prioridad  == 'media', 'card-p-alta': item.prioridad  == 'alta'   }"    >
  
- 
+ <img  height="120" v-if="item.img"  :src="'{{url ('/img/proyectos/fotos/')}}'+'/' +item.img" >
 
-<img  height="120"  src="{{url ('img/pieza.png')}} ">
-  
+
+<img  v-else height="120"  src="{{url ('img/pieza.png')}} " >
+
+
 
 <div class="card-body">
 <h4 style="font-size: 12px;" class="card-title">

@@ -13,40 +13,32 @@
 
 #seccion_espera {
 /*clear: both;*/
-position: fixed;
-left: 0 ; right: 0;
+ flex: 1;
+  padding-left:none;
+  padding-right:none;
 
-  padding-left:62px;
-    padding-right:62px;
-
-bottom:40px;
-margin-top: 0px;
+margin-top: 20px;
+margin-right: 0px;
+margin-left: 0px;
 }
 
 
 
-
-
-
-
-.box{
-
-
-
-
+body{
+  flex: 1;
 }
+
+
 
 
 #footer {
-clear: both;
+/*clear: both;*/
+ flex: 1;
 
-   position:fixed;
-   left:0px;
-   z-index: -100;
-   bottom:20px;
-   height:30px;
-   width:100%;
+bottom: 0px;
 }
+
+
 
 
 

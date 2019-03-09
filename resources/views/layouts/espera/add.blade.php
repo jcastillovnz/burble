@@ -1,5 +1,5 @@
   <!-- The Modal -->
-  <div class="modal fade addPestana" id="myModal">
+  <div class="modal  addPestana" id="myModal" >
     <div class="modal-dialog">
       <div class="modal-content">
       <form method="GET" class="hidden" role="form"  v-on:submit.prevent="create_espera(this)"  >

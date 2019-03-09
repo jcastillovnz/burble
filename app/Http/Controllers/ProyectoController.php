@@ -314,11 +314,10 @@ $clear = Lista_espera::where('proyectos_id', $request->id)->delete();
 
 $monitor = Lista_espera::where('clientes_id', $request->id )->first();
 
-
 if ($monitor == null) {
 
 $lista_espera = new Lista_espera();
-$lista_espera->clientes_id=  $request->id;
+$lista_espera->clientes_id =  $request->id;
 $lista_espera->save();
 
 return [
@@ -345,7 +344,7 @@ return ['estado'=>'existe'];
 
 $lista_espera = Lista_espera::all();
 foreach ($lista_espera as $key => $value) {
-$value->proyectos_id =  $request->nuevoOrden[$key];
+$value->clientes_id =  $request->nuevoOrden[$key];
 $value->save();
 }
 
