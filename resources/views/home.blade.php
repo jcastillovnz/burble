@@ -245,26 +245,17 @@ No existen tareas registradas
 
 
 
-
-
-<template v-for="(item, index ) in lista_espera" >
-<li class="nav-item">
+<li class="nav-item"  v-for="(item, index ) in lista_espera"   :key="item.id">
 
 <a @click="setNav(index)" style="border-radius:4px;"  class="nav-link" 
 :class="{ 'active': index <= 0}"  data-toggle="tab" :id="'nav_'+index"  v-bind:href="'#nav'+index"> @{{item.clientes.nombre}}  <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
-
-
-
-
-
-
 
 </li>
 
 
 
 
-</template>
+
 
 
 
@@ -303,16 +294,16 @@ No existen tareas registradas
 
 
 
-
-
-<template v-for="(item, index ) in lista_espera" >
-<div v-bind:id="'nav'+index"  style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;"  class="tab-pane fade "   :class="{ 'active show': index <= 0}" >
+<div  v-for="(item, index ) in lista_espera" :key="item.id"   v-bind:id="'nav'+index"  style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;"     class="tab-pane fade "   :class="{ 'active show': index <= 0}" >
 
 
 
 CONTENIDO @{{item.clientes.nombre}} 
+
+
+
 </div>
-</template>
+
 
 
 

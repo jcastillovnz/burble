@@ -242,7 +242,10 @@ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i
 }
 
 if (response.data.estado=="existe") {
+
 var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Cliente ya esta en la lista </strong> </center>');
+
+
 }
 
 
