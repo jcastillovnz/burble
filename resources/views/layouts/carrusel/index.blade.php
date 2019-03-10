@@ -12,8 +12,7 @@
 
 
 
-@include('layouts.carrusel.cards')
-
+CONTENIDO @{{item.nombre}}
 
 
 

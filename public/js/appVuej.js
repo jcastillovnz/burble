@@ -227,14 +227,15 @@ axios({
   }}
   ).then(function (response) {
 
-Proyectos.getListaEspera();
+
 document.getElementById('loader-create-espera').style.display="none";
 document.getElementById('btn-create-espera').disabled = false;
 $('.addPestana').modal('hide');
 
-console.log(response.data.estado);
+
 
 if (response.data.estado== true) {
+  Proyectos.getListaEspera();
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 }
 if (response.data.estado== false) {
@@ -244,7 +245,6 @@ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i
 if (response.data.estado=="existe") {
 
 var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Cliente ya esta en la lista </strong> </center>');
-
 
 }
 
@@ -648,7 +648,7 @@ getListaEspera: function(dato)  {
 var urlEspera = '/api/proyectos/espera';
 axios.get(urlEspera).then(response => {
 this.lista_espera = response.data.lista_espera
-console.log(this.lista_espera.length);
+
 });
 
 /*
@@ -919,28 +919,23 @@ axios({
 
 
 
-var espera = document.getElementById("lista_espera");
+var espera = document.getElementById("navs_espera");
 Sortable.create(espera, { 
 /* options */ 
 
-
  group: {
- name: 'LISTAESPERA',
-    put: ['LISTAPRINCIPAL']
+ name: 'NAVS',
+  
 },
 
 
-  ghostClass: "ghost",
-  filter: ".ignore-elements", 
-  sort: true,
-  preventOnFilter: true,
-  fallbackClass: "sortable-fallback", 
-  swapThreshold: 1,
-  dragClass: "sortable-drag",
-  dragoverBubble: true,
-  removeCloneOnHide: true,
 
+  sort: true,
+  handle: '.handle',
 animation: 150, // ms, animation speed 
+
+
+
  // Element is chosen
   onChoose: function (/**Event*/evt) {
     evt.oldIndex;  // element index within parent
@@ -971,7 +966,7 @@ onEnd: function (/**Event*/evt) {
   onAdd: function (/**Event*/evt) {
 
 Proyectos.additem_espera(evt.item.id);
-
+Proyectos.lista_espera.splice(index, 1)  ;
 
 
 //x = document.getElementsByClassName("item_proceso")[0];
@@ -979,14 +974,14 @@ Proyectos.additem_espera(evt.item.id);
 //x.remove()
 
 
- location ="/home";
+ //location ="/home";
 //evt.item.remove();
 
 },
 // Element is removed from the list into another list
  onRemove: function (/**Event*/evt) {
     // same properties as onEnd
-
+Proyectos.lista_espera.splice(index, 1)  ;
 
 
   },
@@ -995,7 +990,7 @@ Proyectos.additem_espera(evt.item.id);
     evt.oldIndex;  // element index within parent
 
 
-document.getElementById('loader-lista-espera').style.display="block"
+//document.getElementById('loader-lista-espera').style.display="block"
 
 
   },
@@ -1008,8 +1003,14 @@ onClone: function (/**Event*/evt) {
   
 onUpdate: function (evt/**Event*/){
 
-const Neworden = [...document.querySelectorAll('.item_espera')].map(el => el.id);
+
+
+
+const Neworden = [...document.querySelectorAll('.handle')].map(el => el.id);
 console.log(Neworden);
+
+
+
 axios({
 url: '/api/lista_espera/update/',
 method: 'get',
@@ -1025,7 +1026,7 @@ nuevoOrden: Neworden,
 
 
 
-document.getElementById('loader-lista-espera').style.display="none";
+//document.getElementById('loader-lista-espera').style.display="none";
 
 })
 

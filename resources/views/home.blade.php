@@ -212,7 +212,7 @@ No existen tareas registradas
 
 
 <!-- TABS -->
-<div  id="lista_espera" style=" " style="" class="col-sm-12 ">  
+<div   style=" " style="" class="col-sm-12 ">  
 
 
 
@@ -229,10 +229,7 @@ No existen tareas registradas
 
 
 
-
-
-
-<ul class="nav nav-tabs" role="tablist">
+<ul class="nav nav-tabs"  id="navs_espera" role="tablist">
 
 <template v-if="lista_espera.length==0" >
 <li  class="nav-item ">
@@ -245,9 +242,9 @@ No existen tareas registradas
 
 
 
-<li class="nav-item"  v-for="(item, index ) in lista_espera"   :key="item.id">
+<li class="nav-item  handle" v-for="(item, index ) in lista_espera"  :id="item.clientes.id" v-bind:value="item.proyectos_id"  :key="item.id">
 
-<a @click="setNav(index)" style="border-radius:4px;"  class="nav-link" 
+<a @click="setNav(index)" style="border-radius:4px;"  class="nav-link item" 
 :class="{ 'active': index <= 0}"  data-toggle="tab" :id="'nav_'+index"  v-bind:href="'#nav'+index"> @{{item.clientes.nombre}}  <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
 
 </li>
@@ -298,9 +295,7 @@ No existen tareas registradas
 
 
 
-CONTENIDO @{{item.clientes.nombre}} 
-
-
+@include('layouts.carrusel.index')
 
 </div>
 
