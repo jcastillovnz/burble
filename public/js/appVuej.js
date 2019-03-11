@@ -237,6 +237,30 @@ $('.addPestana').modal('hide');
 if (response.data.estado== true) {
   Proyectos.getListaEspera();
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+
+
+
+/*REORDENAR NAVS*/
+itemNav =  document.getElementsByClassName('item-nav')
+for (var i = 0; i < itemNav.length; i++) {
+nav=  document.getElementsByClassName('item-nav')[i] ;
+if (i >0 ) {
+  nav.classList.remove("active");
+  nav.classList.remove("show");
+}
+if (i ==0) {
+nav.classList.add("active");
+nav.classList.add("show");
+}
+console.log(nav);
+}
+/*REORDENAR NAVS*/
+
+
+
+
+
 }
 if (response.data.estado== false) {
 var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
@@ -412,24 +436,13 @@ document.getElementById('loader-details-proyecto').style.display="none";
 this.state= 0;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 
-$('#nav_0').click();
-
-
-
-nav = '#nav_'+this.navs;
-
-//A =$(nav );
-//A.click();
-
-
-
-
-
-
-
+//$('#nav_0').click();
 
 
 Proyectos.getListaEspera();
+
+
+
 
 }
 else
@@ -647,7 +660,18 @@ this.state_edit  = 0;
 getListaEspera: function(dato)  {
 var urlEspera = '/api/proyectos/espera';
 axios.get(urlEspera).then(response => {
+
+ //var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> REORDENADO</strong> </center>');
 this.lista_espera = response.data.lista_espera
+
+
+
+
+
+
+
+
+
 
 });
 
@@ -703,8 +727,31 @@ axios({
  id: item.id
   }}
   ).then(function (response) {
-
 Proyectos.getListaEspera();
+
+
+/*REORDENAR NAVS*/
+itemNav =  document.getElementsByClassName('item-nav')
+for (var i = 0; i < itemNav.length; i++) {
+nav=  document.getElementsByClassName('item-nav')[i] ;
+if (i >0 ) {
+
+  nav.classList.remove("active");
+  nav.classList.remove("show");
+
+}
+if (i <=0) {
+
+nav.classList.add("active");
+nav.classList.add("show");
+
+}
+console.log(nav);
+}
+/*REORDENAR NAVS*/
+
+
+
 //location ="/home";
 })
 }
@@ -932,6 +979,7 @@ Sortable.create(espera, {
 
   sort: true,
   handle: '.handle',
+  filter: '.disabled',
 animation: 150, // ms, animation speed 
 
 
@@ -978,13 +1026,7 @@ Proyectos.lista_espera.splice(index, 1)  ;
 //evt.item.remove();
 
 },
-// Element is removed from the list into another list
- onRemove: function (/**Event*/evt) {
-    // same properties as onEnd
-Proyectos.lista_espera.splice(index, 1)  ;
 
-
-  },
 // Element dragging started
   onStart: function (/**Event*/evt) {
     evt.oldIndex;  // element index within parent
@@ -1007,7 +1049,40 @@ onUpdate: function (evt/**Event*/){
 
 
 const Neworden = [...document.querySelectorAll('.handle')].map(el => el.id);
-console.log(Neworden);
+
+
+itemNav =  document.getElementsByClassName('item-nav')
+for (var i = 0; i < itemNav.length; i++) {
+nav=  document.getElementsByClassName('item-nav')[i] ;
+
+if (i >0 ) {
+
+
+  /*
+  nav.style.color = "red";
+  nav.classList.remove("anotherclass");
+  nav.classList.remove("active");
+  nav.classList.remove("show");
+*/
+}
+if (i ==0) {
+
+
+/*
+nav.style.color = "green";
+nav.classList.add("active");
+nav.classList.add("show");
+*/
+
+
+}
+console.log(nav);
+}
+
+
+
+
+
 
 
 
@@ -1021,8 +1096,8 @@ nuevoOrden: Neworden,
 
 
 //Proyectos.delete_principal(item);
-//Proyectos.getListaPrincipal();
- //location ="/home";
+//Proyectos.getListaEspera();
+//location ="/home";
 
 
 
