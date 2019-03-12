@@ -252,11 +252,6 @@ No existen tareas registradas
 
 
 
-
-
-
-
-
 <li class="nav-item">
 <button @click.prevent="create_pestana()"   class="btn btn-light   rounded-circle float-right "> 
 <i class="fas fa-plus"></i>
@@ -273,14 +268,12 @@ No existen tareas registradas
  <!-- Tab CONTENT-->
 <div     class="tab-content "  >
 
-
-
 <template v-if="lista_espera.length==0" >
-<div  style="margin-right: 0px; margin-left: 0px; margin-bottom: 0px;"  class=" tab-pane fade active show">
+<div  style="margin-right: 0px; margin-left: 0px; margin-bottom: 0px;"  class="tab-pane fade active show">
 <br>
 <div  class="card alert-warning" style="width:180px; height:200px;"   >
 <div class="card-body">
-<h4 style="font-size: 16px; margin-top: 45%" class="card-title "><i class="fas fa-exclamation-circle"></i> Sin proyectos</h4>  
+<h4 style="font-size: 16px; margin-top: 45%" class="card-title "><i class="fas fa-exclamation-circle"></i> Sin clientes</h4>  
  </div>
 </div> 
 </div>
@@ -289,13 +282,22 @@ No existen tareas registradas
 
 
 
+<div  v-for="(item, index ) in lista_espera" :key="item.id"   v-bind:id="'tab_'+index"  style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;"     class="tab-pane fade item-tab"   :class="{ 'active show': index <= 0}" >
 
 
-<div  v-for="(item, index ) in lista_espera" :key="item.id"   v-bind:id="'nav'+index"  style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;"     class="tab-pane fade "   :class="{ 'active show': index <= 0}" >
 
 
 
 CONTENIDO @{{item.clientes.nombre}}
+
+
+@include('layouts.carrusel.index')
+
+
+
+
+
+
 
 </div>
 

@@ -21,7 +21,10 @@
 
 <div class="card-body">
 <h4 style="font-size: 12px;" class="card-title">
-	<i @click="show_proyecto(item)" class="fas fa-pen-square"></i> 
+
+
+
+
 <a :href="'/detalle/'+item.id"  >
  @{{ item.nombre }}
 </a>
@@ -35,8 +38,18 @@
 Sin descripcion
 	</template>
   </p>
+
+
+
+<i @click="show_proyecto(item)" class="fas fa-pen-square"></i> 
+<i class="fas fa-hand-pointer"></i>
+  
     </div>
     <div class="card-footer" >
+
+
+
+
       <small style="font-size: 10px;" class="text-muted">@{{ item.fecha_recepcion }} / @{{ item.fecha_entrega }}</small>
 
 
