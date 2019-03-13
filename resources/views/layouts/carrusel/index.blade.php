@@ -1,13 +1,17 @@
 
 
-<div class="list-item" >
+<div  :key="item.clientes.id"  class="list-item" >
 
 
-<div  class="owl-carousel owl-theme" v-carousel  >
+CARRUSEL  @{{item.clientes.nombre}} 
+
+
+
+<div :key="item.clientes.id"  class="owl-carousel owl-theme" v-carousel  >
 
 
 <template v-if="item.clientes.proyectos.length == 0" >
-<div   :key="item.id"  style="margin-right: 0px; margin-left: 0px;" class="item" >
+<div   :key="item.clientes.id"  style="margin-right: 0px; margin-left: 0px;" class="item" >
 
 <br>
 <div  class="card alert-warning" style="width:180px; height:200px;"   >
@@ -26,7 +30,7 @@
 
 
 <template v-for="item in item.clientes.proyectos" >
-<div :class="'carrusel_'+index"  :key="item.id"  style="margin-right: 0px; margin-left: 0px;" class="item" >
+<div :class="'carrusel_'+index"  :key="item.clientes.id"     style="margin-right: 0px; margin-left: 0px;" class="item" >
 
 
 

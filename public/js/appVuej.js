@@ -2,11 +2,20 @@
 
 
 
+window.onload = function() {
+$('.nav-tabs a:first').tab('show') ;
+};
+
+
 
 
 var Proyectos = new Vue({ 
     el: '#AppProyectos',
      mounted(){
+
+
+
+  
 this.getListaPrincipal();
 this.getListaEspera();
 
@@ -205,39 +214,7 @@ archivo: function(dato)  {
 ,
 reordenarNavs: function(dato)  {
 
-/*REORDENAR NAVS*/
-itemNav =  document.getElementsByClassName('item-nav')
-for (var i = 0; i < itemNav.length; i++) {
-nav=  document.getElementsByClassName('item-nav')[i] ;
-tab=  document.getElementsByClassName('item-tab')[i] ;
-
-
-if (i >0 ) {
-
-  
-nav.classList.remove("active");
-nav.classList.remove("show");
-
-tab.classList.remove("active");
-tab.classList.remove("show");
-
-
-
-}
-if (i ==0) {
-console.log("RENDER");
-nav.classList.add("active");
-nav.classList.add("show");
-
-
-tab.classList.add("active");
-tab.classList.add("show");
-}
-
-
-console.log(tab);
-}
-/*REORDENAR NAVS*/
+$('.nav-tabs a:first').tab('show') ;
 
 
 
@@ -686,8 +663,6 @@ console.log(this.lista_espera);
 
 
 
-this.reordenarNavs();
-
 
 
 
@@ -695,6 +670,7 @@ this.reordenarNavs();
 
 
 
+//this.reordenarNavs();
 
 
 this.todosProyectos()
