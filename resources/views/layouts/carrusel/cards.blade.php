@@ -10,7 +10,7 @@
 
 
 
-<div  style="max-width: 175px;"  class="card "  :key="item.clientes.id"  v-bind:class="{ 'card-p-baja': item.prioridad == 'baja','card-p-media': item.prioridad  == 'media', 'card-p-alta': item.prioridad  == 'alta'   }"    >
+<div  style="max-width: 175px;"  class="card "    v-bind:class="{ 'card-p-baja': item.prioridad == 'baja','card-p-media': item.prioridad  == 'media', 'card-p-alta': item.prioridad  == 'alta'   }"    >
  
  <img  height="120" v-if="item.img"  :src="'{{url ('/img/proyectos/fotos/')}}'+'/' +item.img" >
 
@@ -41,8 +41,20 @@ Sin descripcion
 
 
 
-<i @click="show_proyecto(item)" class="fas fa-pen-square"></i> 
-<i class="fas fa-hand-pointer"></i>
+
+<button @click="show_proyecto(item)" class="btn btn-light btn-sm">
+<i  class="fas fa-pen-square"></i> 
+
+</button>
+
+
+<button @click="additem_principal(item.id)" class="btn btn-light btn-sm">
+<i   class="fas fa-level-up-alt"></i>
+</button>
+
+
+
+
 
     </div>
     <div class="card-footer" >

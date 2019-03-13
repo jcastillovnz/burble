@@ -1,7 +1,5 @@
 
 
-
-
 Vue.component('proyecto-fecha-recepcion', Vue.extend(VueBootstrapDatetimePicker));
 
 
@@ -33,6 +31,8 @@ $.extend(true, $.fn.datetimepicker.defaults, {
     close: 'far fa-times-circle'
   }
 });
+
+
 
 
 

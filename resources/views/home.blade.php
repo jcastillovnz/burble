@@ -244,8 +244,14 @@ No existen tareas registradas
 
 <li class="nav-item  handle" v-for="(item, index ) in lista_espera"  :id="item.clientes.id" v-bind:value="item.proyectos_id"  :key="item.clientes.id">
 
-<a  style="border-radius:4px;"  :key="item.clientes.id" class="nav-link item-nav" 
+
+
+
+<a  style="border-radius:4px;"  :id="'nav_'+index"    :key="item.clientes.id" class="nav-link item-nav" 
   data-toggle="tab"   v-bind:href="'#nav'+item.clientes.id"> @{{item.clientes.nombre}}    <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
+
+
+
  
 </li>
 
@@ -284,7 +290,6 @@ No existen tareas registradas
 
 <div v-for="(item, index ) in lista_espera" :key="item.clientes.id"  :id="'nav'+item.clientes.id" style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;" class="tab-pane fade item-tab"  >
 
-<p align="left">@{{item.clientes.nombre}} </p>
 
 @include('layouts.carrusel.index')
 
