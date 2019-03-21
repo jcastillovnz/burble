@@ -1,15 +1,9 @@
 
 
+AQUI
 
 
-
-
-
-
-
-
-
-
+<!--  
 <div  style="max-width: 175px;"  class="card "  :key="item.clientes.id"  v-bind:class="{ 'card-p-baja': item.prioridad == 'baja','card-p-media': item.prioridad  == 'media', 'card-p-alta': item.prioridad  == 'alta'   }"    >
  
  <img  height="120" v-if="item.img"  :src="'{{url ('/img/proyectos/fotos/')}}'+'/' +item.img" >
@@ -41,8 +35,6 @@ Sin descripcion
 
 
 
-<<<<<<< HEAD
-
 
 <button @click="additem_principal(item.id)" class="btn btn-light btn-sm">
 <i class="fas fa-sort-amount-up"></i>
@@ -60,10 +52,7 @@ Sin descripcion
 </button>
 
 
-=======
-<i @click="show_proyecto(item)" class="fas fa-pen-square"></i> 
-<i class="fas fa-hand-pointer"></i>
->>>>>>> parent of 5a5343c... update card
+
 
     </div>
     <div class="card-footer" >
@@ -76,10 +65,7 @@ Sin descripcion
 
     </div>
 
-
-
-
-
+-->
 
 
 <!-- CARDS -->  
