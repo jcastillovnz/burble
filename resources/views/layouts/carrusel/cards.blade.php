@@ -42,17 +42,21 @@ Sin descripcion
 
 
 
+
+<button @click="additem_principal(item.id)" class="btn btn-light btn-sm">
+<i class="fas fa-sort-amount-up"></i>
+</button>
+
 <button @click="show_proyecto(item)" class="btn btn-light btn-sm">
 <i  class="fas fa-pen-square"></i> 
 
 </button>
 
 
-<button @click="additem_principal(item.id)" class="btn btn-light btn-sm">
-<i   class="fas fa-level-up-alt"></i>
+
+<button   @click="espera_principal(item)"  class="btn btn-light btn-sm">
+<i class="fas fa-trash"></i>
 </button>
-
-
 
 
 

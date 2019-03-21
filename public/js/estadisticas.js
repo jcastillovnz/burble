@@ -94,9 +94,4 @@ console.log(this.proyectos)
 ,
 
 
-
-
-
-
-
 })

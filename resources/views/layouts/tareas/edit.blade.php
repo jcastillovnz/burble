@@ -1,5 +1,5 @@
 
-<div  class="modal fade "  id="edit_tarea"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div  class="modal "  id="edit_tarea"    tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div  class="modal-dialog ">
 <div class="modal-content ">
 

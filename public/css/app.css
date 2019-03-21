@@ -11,6 +11,16 @@
 
 
 
+.modal-backdrop{z-index: 1050;}
+.modal{z-index: 1060;}
+
+#edit_tarea {
+    z-index: 99999;
+}
+
+
+
+
 #seccion_espera {
 /*clear: both;*/
  flex: 1;

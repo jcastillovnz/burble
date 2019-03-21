@@ -18,6 +18,15 @@ use Illuminate\Http\Request;
 
 */
 
+Route::get('/add_filtro/', 'ProyectoController@add_filtro');
+
+Route::post('/principal_espera/', 'ProyectoController@principal_espera');
+
+Route::post('/espera_principal/', 'ProyectoController@espera_principal');
+
+
+
+
 
 Route::get('/empleados-estadistica/', 'EstadisticasController@empleados');
 Route::get('/proyectos-estadistica/', 'EstadisticasController@proyectos');
@@ -35,6 +44,8 @@ Route::get('/consulta/proyecto/', 'ProyectoController@proyecto');
 Route::get('/tareas/delete/', 'ProyectoController@delete_tarea');
 Route::post('/tareas/update/', 'ProyectoController@update_tarea');
 Route::get('/proyecto/tarea/create/', 'ProyectoController@create_tarea');
+
+
 
 
 

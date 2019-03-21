@@ -372,8 +372,6 @@ document.getElementById('btn-create-tarea').disabled = false;
 show_tarea: function(tarea, user) {
 
 
-
-$('#edit_tarea').modal('show');
 this.Rtarea.id = tarea.id;
 this.Rtarea.nombre_tarea = tarea.nombre;
 this.Rtarea.objetivo_tarea = tarea.objetivo;
@@ -392,6 +390,11 @@ this.Rtarea.empleado_nombre = user.name;
 this.Rtarea.empleado_apellido = user.apellido;
 this.Rtarea.empleado_foto = user.foto;
 this.Rtarea.empleado_id = user.id;
+
+
+$('#edit_tarea').modal('show');
+
+
 },
 
 
@@ -560,8 +563,6 @@ document.getElementById('btn-edit-tarea').disabled = true;
 document.getElementById('loader-edit-tarea').style.display="block";
 var url = '/api/tareas/update' ;
 axios.post( url, {
-
-
 id:this.Rtarea.id,
 nombre: this.Rtarea.nombre_tarea,
 imagen_tarea: this.Rtarea.imagen_tarea,
@@ -683,10 +684,6 @@ this.carga == true;
 });
 
 
-
-//this.reordenarNavs();
-
-
 this.todosProyectos()
  },
 delete_principal: function(item) {
@@ -733,18 +730,132 @@ axios({
   ).then(function (response) {
 Proyectos.getListaEspera();
 
-Proyectos.reordenarNavs();
-
-
-
-
 
 //location ="/home";
 })
 }
 ,
+
+
+espera_principal: function(item, index) {
+alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de quitar el proyecto '+item.nombre +' de la lista de espera?' 
+  ,() => {
+
+Proyectos.add_filtro_espera(item);
+    }, 
+function()
+{ 
+
+});
+},
+
+delete_proyecto_espera: function(id) {
+var url = '/api/espera_principal' ;
+axios.post( url, {
+
+id:id,
+filtro: 0,
+
+
+validateStatus: (status) => {
+return true; // I'm always returning true, you may want to do it depending on the status received
+},
+}).catch(error => {
+}).then(response => {
+
+
+if (response.data === "true") {
+
+Proyectos.getListaEspera();
+
+}
+else
+{
+
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+}
+});
+
+},
+
+
+
+principal_espera: function(item) {
+var url = '/api/principal_espera' ;
+axios.post( url, {
+
+id:item.id,
+filtro: 1,
+
+
+validateStatus: (status) => {
+return true; // I'm always returning true, you may want to do it depending on the status received
+},
+}).catch(error => {
+}).then(response => {
+
+
+if (response.data == "true") {
+
+
+Proyectos.getListaEspera();
+Proyectos.getListaPrincipal();
+
+
+
+}
+else
+{
+
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+}
+});
+
+},
+
+
+
+
+add_filtro_espera: function(item, index) {
+
+var url = 'api/add_filtro' ;
+
+axios.get(url , {
+    params: {
+      id: item.id,
+      filtro: 0,
+
+    }
+  })
+  .then(function (response) {
+    // handle success
+ console.log(response.data );
+if (response.data=== 'true') {
+
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-database"></i> Enviado al archivo </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+Proyectos.getListaEspera();
+
+
+}
+else
+{
+
+
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+}
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+},
+
 confirmar_delete_espera: function(item, index) {
-alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de eliminar el cliente '+item.nombre +' de la lista de espera?' 
+alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de eliminar el cliente  '+item.nombre +' de la lista de espera?' 
   ,() => {
 
 
@@ -809,9 +920,18 @@ axios({
   params: {
  id: id ,
  }}).then(function (response) {
+console.log(response.data.estado);
+         
+if (response.data.estado==1) {
 
-//var item = {proyectos_id:id};
-//Proyectos.delete_espera(item);
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Ya existe en la lista</strong> </center>');
+
+
+
+}
+
+
+Proyectos.delete_proyecto_espera(id);
 Proyectos.getListaPrincipal();
 Proyectos.getListaEspera();
 

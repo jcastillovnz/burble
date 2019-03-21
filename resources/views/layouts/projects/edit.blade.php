@@ -184,6 +184,9 @@ Informacion de proyecto
 <center>
 <img  with="250" v-if="Rproyecto.img"  class="col-sm"  :src="'{{url ('/img/proyectos/fotos/')}}'+'/' +Rproyecto.img" >
 <img  v-else class="col-sm"  src="{{url ('img/pieza.png')}} " >
+
+
+
 <input ref="imagen_proyecto" type="file"  value="" class="invisible" @change="cargar_imagen_proyecto(this)"   name="">
 </center>
 

@@ -64,13 +64,15 @@
 
 <template v-for="(item, A) in lista_principal"  v-sortable="{ onUpdate: onUpdate }">
 
-<div   :id="item.proyectos_id"    class="col-sm-6 box-lg item_proceso">
+<div   :id="item.proyectos_id"     class="col-sm-6 box-lg item_proceso">
 <div   class="container-fluid borde-burble border bg-light">
 <p style="margin-top: 3px;  margin-bottom: 1px;"  >
 <h4  style="font-size: 13px;  " class="" align="left"> 
 <a style="margin-bottom: 1px;" :href="'{{url('detalle/')}}'+'/'+ item.proyectos.id " >
 <strong  >  
      @{{item.proyectos.nombre}}
+
+     @{{item.proyectos.id}} 
 </strong>   
 </a>
 
@@ -107,7 +109,7 @@ No existen tareas registradas
 
 <template   v-for="(tarea, B) in item.proyectos.tareas" >
 
-<div    :class="tarea.prioridad"> 
+<div     :class="tarea.prioridad"> 
 
 <div class="row">
 <div class="col">
@@ -162,7 +164,7 @@ No existen tareas registradas
 
 <hr>
 <div class="btn-group float-right" >
-<div title="Imagenes" class="button-collapse btn-sm"   id="button-collapse" data-toggle="collapse" v-bind:href="'#collapseExample'+ item.id"  aria-expanded="false" aria-controls="collapseExample" role="button">
+<div title="Imagenes" class="button-collapse btn btn-light btn-sm"   id="button-collapse" data-toggle="collapse" v-bind:href="'#collapseExample'+ item.id"  aria-expanded="false" aria-controls="collapseExample" role="button">
 <i style="font-size: 12px" class="fas fa-chevron-down" ></i>
 </div>
 
@@ -171,12 +173,20 @@ No existen tareas registradas
 
 
 
-<div title="Nueva tarea" class="button-collapse btn-sm " v-on:click="nueva_tarea(item)"   id="button-collapse"  role="button">
+<div title="Nueva tarea" class="button-collapse btn btn-light btn-sm" v-on:click="nueva_tarea(item)"   id="button-collapse"  role="button">
 <i style="font-size: 12px" class="fas fa-plus-circle"></i>
 </div>
 
 
-<div title="Eliminar" v-on:click="confirmar_delete_principal(item)"   class=" btn-sm " aria-expanded="false" id="button-collapse">
+<div title="enviar a lista de espera" class="button-collapse btn btn-light btn-sm" v-on:click="principal_espera(item.proyectos)"   id="button-collapse"  role="button">
+<i style="font-size: 12px" class="fas fa-sort-amount-down"></i>
+
+</div>
+
+
+
+
+<div title="Eliminar" v-on:click="confirmar_delete_principal(item)"   class=" btn btn-light btn-sm " aria-expanded="false" id="button-collapse">
 <i  style="font-size: 12px" class="fas fa-trash"></i>
 </div>
 
@@ -189,6 +199,7 @@ No existen tareas registradas
 <div class="col-sm-12 img-group">
 <div class="text-center">
 <template   v-for="(tarea, i) in item.proyectos.tareas" >
+	
 <img width="120" v-if="tarea.imagen"   :src="'{{url ('/img/tareas/fotos/')}}'+'/' +tarea.imagen"  class="img-fluid zoom-panel">
 <img width="120" v-else  src="img/pieza.png"  class="img-fluid zoom-panel" alt="...">
 </template>
@@ -201,6 +212,10 @@ No existen tareas registradas
 <!-- CIERRE PROYECTO -->
 <!-- PROYECTO -->
 
+
+
+
+@include('layouts.tareas.edit')
 </div>
 
 
@@ -227,8 +242,6 @@ No existen tareas registradas
 </a>
 
 
-
-
 <ul class="nav nav-tabs"  id="navs_espera" role="tablist">
 
 <template v-if="lista_espera.length==0" >
@@ -248,7 +261,7 @@ No existen tareas registradas
 
 
 <a  style="border-radius:4px;"  :id="'nav_'+index"    :key="item.clientes.id" class="nav-link item-nav" 
-  data-toggle="tab"   v-bind:href="'#nav'+item.clientes.id"> @{{item.clientes.nombre}}    <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
+  data-toggle="tab"   v-bind:href="'#nav'+item.clientes.id"> @{{item.clientes.nombre}}      <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
 
 
 
@@ -291,7 +304,12 @@ No existen tareas registradas
 <div v-for="(item, index ) in lista_espera" :key="item.clientes.id"  :id="'nav'+item.clientes.id" style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;" class="tab-pane fade item-tab"  >
 
 
+
+
+
 @include('layouts.carrusel.index')
+
+
 
 
 
@@ -314,12 +332,10 @@ No existen tareas registradas
 
 
 @include('layouts.projects.create')
+
 @include('layouts.espera.add')	
+
 @include('layouts.projects.edit')
-<div id="AppProyectos">
-@include('layouts.tareas.edit')
-
-</div>
 
 
 
@@ -327,13 +343,10 @@ No existen tareas registradas
 
 
 
-<div id="AppProyectos">
+
 
 
 </div>
-</div>
-
-
 
 
 

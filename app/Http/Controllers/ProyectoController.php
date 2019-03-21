@@ -26,6 +26,7 @@ public function create( Request $request )
 $proyecto= new Proyectos();
 $proyecto->nombre=  $request->proyecto;
 $proyecto->fecha_recepcion=$request->fecha_recepcion;
+$proyecto->filtro=1;
 $proyecto->fecha_entrega=$request->fecha_entrega;
 $proyecto->presupuesto=$request->presupuesto;
 $proyecto->comentario=$request->comentario;
@@ -219,7 +220,6 @@ $lista_espera = Lista_espera::where('clientes_id',$request->id)->delete();
 return  $lista_espera;
 
 
-
 }
 
 
@@ -267,43 +267,56 @@ return response()->json($data);
  public function AddListaPrincipal(Request $request)
 { 
 
-
-
-
 $monitor = Lista_principal::where('proyectos_id', $request->id)->first();
 
-if (isset($monitor)==false) {
+/*  INICIA */
+
+
+
+if ($monitor == null) {
+
 
 $lista_principal = Lista_principal::all();
 $count = count($lista_principal);
 
-if ($count>=0 AND $count<=3 )
-{
+
+if ($count>=0 AND $count<=3 ){
+
 $lista_principal = new Lista_principal();
 $lista_principal->proyectos_id = $request->id;
 $lista_principal->save();
-}
 
-if ($count==4 )
-{
-foreach ($lista_principal as $key => $value) {
-
-	if ($key ==3) {
-		$value->proyectos_id=$request->id;
-        $value->save();
-	}
-}
+return ['estado'=>'0'];
 }
 
 
-$clear = Lista_espera::where('proyectos_id', $request->id)->delete();
+
+if ($count==4 ){
 
 
+foreach ($lista_principal as $key => $value){
 
+
+if ($key ==3) {
+$value->proyectos_id=$request->id;
+$value->save();
+
+return ['estado'=>'0'];
 
 }
 
 
+}
+
+/*  TERMINA */
+}
+}
+
+else {
+
+return ['estado'=>'1'];
+
+}
 
 
 }
@@ -319,6 +332,7 @@ if ($monitor == null) {
 $lista_espera = new Lista_espera();
 $lista_espera->clientes_id =  $request->id;
 $lista_espera->save();
+
 
 return [
 'estado'=>$lista_espera->save()
@@ -342,6 +356,8 @@ return ['estado'=>'existe'];
 { 
 
 
+
+
 $lista_espera = Lista_espera::all();
 foreach ($lista_espera as $key => $value) {
 $value->clientes_id =  $request->nuevoOrden[$key];
@@ -357,6 +373,8 @@ return response()->json($lista_espera);
  public function UpdateListaPrincipal(Request $request)
 { 
 
+
+dd( $request->all());
 
 $lista_principal = Lista_principal::all();
 foreach ($lista_principal as $key => $value) {
@@ -572,15 +590,130 @@ return response()->json (['lista_principal'=> $lista_principal ,
     }
 
 
+public function principal_espera( Request $request){
+
+$lista_principal = Lista_principal::where('proyectos_id',$request->id)->delete();
+
+
+
+$proyecto = Proyectos::where('id',$request->id)->first();
+
+$proyecto->filtro = $request->filtro;
+$proyecto->save();
+
+
+if ($proyecto ->save()==true) {
+$data = "true";
+return response()->json($data); 
+}
+else {
+$data = "false";
+return response()->json($data); 
+}
+
+
+
+
+
+}
+
+
+public function espera_principal( Request $request){
+
+
+
+
+$proyecto = Proyectos::where('id',$request->id)->first();
+
+$proyecto->filtro = $request->filtro;
+$proyecto->save();
+
+
+if ($proyecto ->save()==true) {
+$data = "true";
+return response()->json($data); 
+}
+else {
+$data = "false";
+return response()->json($data); 
+}
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+public function add_filtro( Request $request){
+/*
+$proyectos = Proyectos::all();
+foreach ($proyectos as $key => $value) {
+ $value->filtro = 1;
+
+ $value->save();
+}
+*/
+
+
+
+
+$proyecto = Proyectos::where('id',$request->id )->first();
+$proyecto ->filtro = $request->filtro;
+$proyecto ->save();
+
+if ($proyecto ->save()==true) {
+$data = "true";
+return response()->json($data); 
+}
+else {
+$data = "false";
+return response()->json($data); 
+}
+
+
+
+
+
+
+
+    }
+
+
+
+
 public function listEspera( Request $request ){
 
 
-
-
+/*
 $lista_espera = Lista_espera::with(['clientes','clientes.proyectos','clientes.proyectos.tareas','clientes.proyectos.clientes' ])->get() ;
+*/
+
+
+
+$lista_espera = Lista_espera::with(['clientes','clientes.proyectos.tareas','clientes.proyectos.clientes' ])->with(['clientes.proyectos' => function($query)
+{
+    $query->where('filtro', 1);
+
+}])->get();
+
+
+
+
 return response()->json (['lista_espera'=> $lista_espera]) ;
 
-    
+
+///LOS PROYECTOS DEBEN ESTAR FILTRADOS POR EL FILTRO == 1
+
+
+
 
 
     }
