@@ -693,15 +693,15 @@ axios({
  id:item.proyectos_id
   }}
   ).then(function (response) {
-Proyectos.getListaPrincipal();
 
+
+Proyectos.getListaPrincipal();
 
 
 
 })
 
-}
-,
+},
 confirmar_delete_principal: function(item) {
 
 
@@ -728,7 +728,12 @@ axios({
   }}
   ).then(function (response) {
 Proyectos.getListaEspera();
-this.reordenarNavs();
+//this.reordenarNavs();
+
+$('.nav-tabs a:first').tab('show') 
+
+
+
 
 //location ="/home";
 })
