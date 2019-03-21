@@ -72,7 +72,7 @@
 <strong  >  
      @{{item.proyectos.nombre}}
 
-    
+     @{{item.proyectos.id}} 
 </strong>   
 </a>
 
@@ -101,6 +101,8 @@ No existen tareas registradas
 </p>
 
 </template>
+
+
 
 
 
@@ -255,13 +257,27 @@ No existen tareas registradas
 
 <li class="nav-item  handle" v-for="(item, index ) in lista_espera"  :id="item.clientes.id" v-bind:value="item.proyectos_id"  :key="item.id">
 
+<<<<<<< HEAD
 <a  style="border-radius:4px;"  :key="item.id" class="nav-link item-nav" 
 :class="{ 'active': index <= 0}"  data-toggle="tab" :id="'nav_'+index"  v-bind:href="'#nav'+index"> @{{item.clientes.nombre}}  <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
 
 
 
+=======
+<<<<<<< HEAD
 
 
+
+<a  style="border-radius:4px;"  :id="'nav_'+index"    :key="item.clientes.id" class="nav-link item-nav" 
+  data-toggle="tab"   v-bind:href="'#nav'+item.clientes.id"> @{{item.clientes.nombre}}      <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
+
+>>>>>>> parent of 49a1a5f... funcional NAVS OK
+
+
+=======
+<a  style="border-radius:4px;"  :key="item.clientes.id" class="nav-link item-nav" 
+  data-toggle="tab"   v-bind:href="'#nav'+item.clientes.id"> @{{item.clientes.nombre}}    <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
+>>>>>>> parent of 5a5343c... update card
  
 </li>
 
@@ -298,7 +314,9 @@ No existen tareas registradas
 
 
 
-<div v-for="(item, index ) in lista_espera" :key="'navs'+item.clientes.id"  :id="'nav'+item.clientes.id" style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;" class="tab-pane fade item-tab"  >
+<div v-for="(item, index ) in lista_espera" :key="item.clientes.id"  :id="'nav'+item.clientes.id" style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;" class="tab-pane fade item-tab"  >
+
+<p align="left">@{{item.clientes.nombre}} </p>
 
 
 
@@ -334,6 +352,13 @@ CONTENIDO @{{item.clientes.nombre}}
 @include('layouts.espera.add')	
 
 @include('layouts.projects.edit')
+
+
+
+
+
+
+
 
 
 

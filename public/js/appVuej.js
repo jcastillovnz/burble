@@ -16,20 +16,6 @@ mes = fecha.getMonth()+1;// +1 porque los meses empiezan en 0
 anio = fecha.getFullYear();
 this.Rproyecto.fecha_recepcion = +anio+'/'+mes+'/'+dia;
 this.Rtarea.fecha_inicio = +anio+'/'+mes+'/'+dia;
-
- b = setInterval(nav, 1500);
-
-function nav(argument) {
-
-$('.nav-tabs a:first').tab('show') 
-
- clearInterval(b);
-
-}
-
-
-
-
 },
 
 created: function()  {
@@ -696,6 +682,16 @@ axios.get(urlEspera).then(response => {
 
  //var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> REORDENADO</strong> </center>');
 this.lista_espera = response.data.lista_espera
+<<<<<<< HEAD
+this.carga == true;
+=======
+
+console.log(this.lista_espera);
+
+
+
+
+>>>>>>> parent of 5a5343c... update card
 
 console.log(this.lista_espera);
 
@@ -719,11 +715,14 @@ axios({
   url: '/api/lista_principal/delete/',
   method: 'get',
   params: {
- id:item.id
+ id:item.proyectos_id
   }}
   ).then(function (response) {
 
+
 Proyectos.getListaPrincipal();
+
+
 
 })
 
@@ -731,11 +730,11 @@ Proyectos.getListaPrincipal();
 confirmar_delete_principal: function(item) {
 
 
-alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de eliminar el proyecto '+item.proyectos.nombre +' de la lista de proyectos en proceso?' 
+alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de eliminar el proyecto '+item.nombre_proyecto +' de la lista de proyectos en proceso?' 
   ,() => {
 
-//Proyectos.lista_espera.splice(index, 1)    
-Proyectos.delete_principal(item.proyectos);
+Proyectos.lista_espera.splice(index, 1)    
+Proyectos.delete_principal(item);
 
 
 
@@ -756,7 +755,9 @@ axios({
 Proyectos.getListaEspera();
 //this.reordenarNavs();
 
-$('.nav-tabs a:first').tab('show') ;
+$('.nav-tabs a:first').tab('show') 
+
+
 
 
 //location ="/home";
@@ -959,10 +960,15 @@ if (response.data.estado==1) {
 }
 
 
-
+<<<<<<< HEAD
+Proyectos.delete_proyecto_espera(id);
+=======
+var item = {proyectos_id:id};
+Proyectos.delete_espera(item);
+>>>>>>> parent of 5a5343c... update card
 Proyectos.getListaPrincipal();
 
-//location ="/home";
+location ="/home";
 })
 
 
@@ -1035,7 +1041,7 @@ var id = evt.item.id;
 var item =  evt.item;
 Proyectos.additem_principal(evt.item.id);
  //location ="/home";
-
+ location ="/home";
 console.log( evt.oldIndex);
 //evt.item.remove();
 //x = document.getElementsByClassName("item_espera")[0];
