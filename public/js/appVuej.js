@@ -2,6 +2,11 @@
 
 
 
+window.onload = function() {
+$('.nav-tabs a:first').tab('show') ;
+};
+
+
 
 
 var Proyectos = new Vue({ 
@@ -10,6 +15,7 @@ var Proyectos = new Vue({
 
 
 
+  
 this.getListaPrincipal();
 this.getListaEspera();
 
@@ -18,29 +24,8 @@ dia = fecha.getDate();
 mes = fecha.getMonth()+1;// +1 porque los meses empiezan en 0
 anio = fecha.getFullYear();
 this.Rproyecto.fecha_recepcion = +anio+'/'+mes+'/'+dia;
-this.Rtarea.fecha_inicio = +anio+'/'+mes+'/'+dia; 
-
-
-
-
- b = setInterval(nav, 1500);
-
-function nav(argument) {
-
-$('.nav-tabs a:first').tab('show') 
-
- clearInterval(b);
-
-}
-
-
-
-
-
+this.Rtarea.fecha_inicio = +anio+'/'+mes+'/'+dia;
 },
-
-
-
 
 created: function()  {
 
@@ -101,7 +86,6 @@ return pagesArray;
     }
 ,
 users_espera:'',
-carga: '',
 state: 0 ,
 state_edit: 0 ,
 state_tarea : 0,
@@ -227,7 +211,6 @@ archivo: function(dato)  {
 
 });
 }
-
 ,
 reordenarNavs: function(dato)  {
 
@@ -676,7 +659,16 @@ axios.get(urlEspera).then(response => {
 
  //var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> REORDENADO</strong> </center>');
 this.lista_espera = response.data.lista_espera
+<<<<<<< HEAD
 this.carga == true;
+=======
+
+console.log(this.lista_espera);
+
+
+
+
+>>>>>>> parent of 5a5343c... update card
 
 
 });
@@ -705,10 +697,10 @@ Proyectos.getListaPrincipal();
 confirmar_delete_principal: function(item) {
 
 
-alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de eliminar el proyecto '+item.proyectos.nombre +' de la lista de proyectos en proceso?' 
+alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de eliminar el proyecto '+item.nombre_proyecto +' de la lista de proyectos en proceso?' 
   ,() => {
 
-
+Proyectos.lista_espera.splice(index, 1)    
 Proyectos.delete_principal(item);
 
 
@@ -935,10 +927,15 @@ if (response.data.estado==1) {
 }
 
 
+<<<<<<< HEAD
 Proyectos.delete_proyecto_espera(id);
+=======
+var item = {proyectos_id:id};
+Proyectos.delete_espera(item);
+>>>>>>> parent of 5a5343c... update card
 Proyectos.getListaPrincipal();
-Proyectos.getListaEspera();
 
+location ="/home";
 })
 
 
@@ -980,9 +977,6 @@ Proyectos.getListaEspera();
 /*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*//*PROCESO*/
 
 window.onload = function() {
-
-
-
 var proceso = document.getElementById("lista_proceso");
 Sortable.create(proceso, { 
 /* options */ 
@@ -1076,49 +1070,6 @@ axios({
 })
 },
 }); // That's all.
-
-
-
-
-
-var proyectos_espera = document.getElementById("tabs_proyectos");
-Sortable.create(proceso, { 
-/* options */ 
-
- group: {
-name: 'LISTAESPERA',
-put: ['LISTAPRINCIPAL']
-},
-
-animation: 200, // ms, animation speed 
-
-
-onUpdate: function (evt/**Event*/){
-
-
-
-
-
-},
-}); // That's all.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2186,7 +2137,6 @@ this.state = 0;
 }
 }
 });
-
 
 
 
