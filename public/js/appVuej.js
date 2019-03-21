@@ -676,8 +676,6 @@ axios.get(urlEspera).then(response => {
 
  //var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> REORDENADO</strong> </center>');
 this.lista_espera = response.data.lista_espera
-
-
 this.carga == true;
 
 
@@ -696,6 +694,7 @@ axios({
   }}
   ).then(function (response) {
 Proyectos.getListaPrincipal();
+
 
 
 
@@ -729,7 +728,7 @@ axios({
   }}
   ).then(function (response) {
 Proyectos.getListaEspera();
-
+this.reordenarNavs();
 
 //location ="/home";
 })
