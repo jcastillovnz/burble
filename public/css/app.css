@@ -9,6 +9,55 @@
                 margin: 0;
             }
 
+
+
+.modal-backdrop{z-index: 1050;}
+.modal{z-index: 1060;}
+
+#edit_tarea {
+    z-index: 99999;
+}
+
+.carrusel{
+
+
+max-width: 180px;
+width:180px; 
+  margin-right: 0px; margin-left: 0px;
+}
+
+
+#seccion_espera {
+/*clear: both;*/
+ flex: 1;
+  padding-left:none;
+  padding-right:none;
+
+margin-top: 20px;
+margin-right: 0px;
+margin-left: 0px;
+}
+
+
+
+body{
+  flex: 1;
+}
+
+
+
+
+#footer {
+/*clear: both;*/
+ flex: 1;
+
+bottom: 0px;
+}
+
+
+
+
+
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -199,7 +248,8 @@ font-size: 15px;
 
 .box-sm{
 
-  max-width: 120px; margin-right:auto; margin-left:auto;  
+float: left;
+max-width: 110px; ;  
 }
 
 .box-lg{
@@ -332,7 +382,34 @@ padding-bottom: none;
 
 
 
+.card-p-baja{
+ border-left-width: 3px;
+    border-left-style: solid; 
+    border-left-color: rgb(0, 128, 1);
+}
+.card-p-media{
+ border-left-width: 3px;
+    border-left-style: solid; 
+    border-left-color: #ffad43;
+}
 
+.card-p-alta{
+ border-left-width: 3px;
+    border-left-style: solid; 
+    border-left-color: red;
+}
+
+
+.green {
+  color:green;
+}
+.red {
+  color:red;
+}
+
+.yellow {
+  color: #ffad43;
+}
 
 .margin-none{
   padding-left: 4px;
@@ -411,3 +488,11 @@ padding-top: none;
     animation-duration: 0.5s;
     animation-name: nodeInserted;
 }
+
+
+
+
+
+
+
+

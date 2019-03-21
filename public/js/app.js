@@ -1,13 +1,24 @@
 
 
-Vue.component('date-picker2', VueBootstrapDatetimePicker);
-// Using font-awesome 5 icons
+
+
+Vue.component('proyecto-fecha-recepcion', Vue.extend(VueBootstrapDatetimePicker));
+
+
+Vue.component('proyecto-fecha-entrega', VueBootstrapDatetimePicker);
 
 Vue.component('fechaProyecto', VueBootstrapDatetimePicker);
 
 Vue.component('date-picker-edit-tarea', VueBootstrapDatetimePicker);
 
+Vue.component('tarea-fecha-inicio', VueBootstrapDatetimePicker);
+
+Vue.component('fecha-inicio-tarea',  VueBootstrapDatetimePicker);
+Vue.component('fecha-termino-tarea',  VueBootstrapDatetimePicker);
+
+// Initialize as global component
 Vue.component('date-picker', VueBootstrapDatetimePicker);
+
 // Using font-awesome 5 icons
 $.extend(true, $.fn.datetimepicker.defaults, {
   icons: {
@@ -25,8 +36,9 @@ $.extend(true, $.fn.datetimepicker.defaults, {
 
 
 
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();   
-});
+
+
+
+
 
 

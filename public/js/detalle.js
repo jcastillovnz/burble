@@ -156,6 +156,28 @@ getUsers: function(dato)  {
 });
  }
 ,
+enviar_foto_proyecto: function(file)  {
+const formData = new FormData()
+formData.append('imagen', file, file.name)
+axios.post('/proyecto/send_imagen/'+this.Rproyecto.id, formData).then(function(response){
+Detalle_proyecto.getProyecto();
+
+
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+})
+.catch(function(error){
+var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+
+});
+},
+
+cargar_imagen_proyecto: function(e) {
+const file = event.target.files[0];
+
+this.foto = file;
+this.enviar_foto_proyecto(file);
+},
+
 
 
 
@@ -169,9 +191,11 @@ var url = '/api/proyectos/update' ;
 axios.post( url, {
 id:this.Rproyecto.id,
 nombre: this.Rproyecto.nombre_proyecto,
+prioridad: this.Rproyecto.prioridad,
 fecha_recepcion: this.Rproyecto.fecha_recepcion,
 fecha_entrega: this.Rproyecto.fecha_entrega,
 presupuesto: this.Rproyecto.presupuesto,
+descripcion:this.Rproyecto.descripcion,
 comentario:this.Rproyecto.comentario,
 validateStatus: (status) => {
 return true; // I'm always returning true, you may want to do it depending on the status received
@@ -221,8 +245,6 @@ getProyecto: function(dato)  {
 
 
 
-
-
 id = document.getElementById('proyecto_id').value;
 axios({
 url: '/proyecto/',
@@ -233,12 +255,14 @@ id: id
 }).then(response => {
 this.proyecto = response.data;
 this.Rproyecto.id = this.proyecto.id;
+this.Rproyecto.img = this.proyecto.img;
 this.Rproyecto.nombre_proyecto = this.proyecto.nombre;
+this.Rproyecto.prioridad= this.proyecto.prioridad;
 this.Rproyecto.fecha_recepcion = this.proyecto.fecha_recepcion;
 this.Rproyecto.fecha_entrega = this.proyecto.fecha_entrega;
 this.Rproyecto.presupuesto = this.proyecto.presupuesto;
 this.Rproyecto.comentario = this.proyecto.comentario;
-
+this.Rproyecto.descripcion = this.proyecto.descripcion;
 
 this.cliente =  this.proyecto.clientes.nombre;
 this.getTareas_proyecto(this.proyecto);

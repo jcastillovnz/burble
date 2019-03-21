@@ -1,7 +1,21 @@
 
+
+
+
+window.onload = function() {
+$('.nav-tabs a:first').tab('show') ;
+};
+
+
+
+
 var Proyectos = new Vue({ 
     el: '#AppProyectos',
      mounted(){
+
+
+
+  
 this.getListaPrincipal();
 this.getListaEspera();
 
@@ -11,6 +25,20 @@ mes = fecha.getMonth()+1;// +1 porque los meses empiezan en 0
 anio = fecha.getFullYear();
 this.Rproyecto.fecha_recepcion = +anio+'/'+mes+'/'+dia;
 this.Rtarea.fecha_inicio = +anio+'/'+mes+'/'+dia;
+
+ b = setInterval(nav, 1500);
+
+function nav(argument) {
+
+$('.nav-tabs a:first').tab('show') 
+
+ clearInterval(b);
+
+}
+
+
+
+
 },
 
 created: function()  {
@@ -61,12 +89,11 @@ return pagesArray;
 ,
 
 
-
-    data: {
-
+ data: {
+    navs: 0,
+    count: 0,
     options: {
-      // https://momentjs.com/docs/#/displaying/
-      format: 'YYYY/MM/DD ',
+      format: 'YYYY/MM/DD',
       useCurrent: false,
       showClear: true,
       showClose: true,
@@ -99,7 +126,10 @@ proyecto: '',
         comentario_tarea: '',
  Rproyecto: { 
     'id':'',
+     'img':'',
     'nombre_proyecto':'',
+    'descripcion':'',
+    'prioridad':'',
     'fecha_recepcion':'',
     'fecha_entrega':'',
     'presupuesto':'',
@@ -141,14 +171,33 @@ pagination:{
 
 
 },
+ 
+directives: {
+            carousel: {
+                inserted: function (el) {
+                    $(el).owlCarousel({
+                        loop: false,
+                        margin: 15,
+                        nav:false,
+                        rewind:false,
+                        dots:false ,
+                        responsive: {
+                          0: {
+                            items: 1
+                          },
+                          600: {
+                            items: 6
+                          }
+                        }
+                    }).trigger('to.owl.carousel')
+                  
+                },
+            }
+        }
+,
+
 
 methods: {
-
-
-
-
-
-
 getUsers: function(e)  {
 
  var urlUsers = '/api/usuarios/';
@@ -177,14 +226,70 @@ archivo: function(dato)  {
 });
 }
 ,
+reordenarNavs: function(dato)  {
+
+$('.nav-tabs a:first').tab('show') ;
 
 
-show: function(dato)  {
+
+},
+create_pestana: function(dato)  {
+$('.addPestana').modal('show');
+
+
+
+},
+
+create_espera: function(item) {
+
+document.getElementById('loader-create-espera').style.display="block";
+document.getElementById('btn-create-espera').disabled = true;
+axios({ 
+  url: '/api/proyectos/espera/add/',
+  method: 'get',
+  params: {
+ id: Proyectos.Rproyecto.cliente_id,
+  }}
+  ).then(function (response) {
+
+
+document.getElementById('loader-create-espera').style.display="none";
+document.getElementById('btn-create-espera').disabled = false;
+$('.addPestana').modal('hide');
+
+
+
+if (response.data.estado== true) {
+  Proyectos.getListaEspera();
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+
+
+  Proyectos.reordenarNavs();
+
 
 
 
 }
+if (response.data.estado== false) {
+var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+}
+
+if (response.data.estado=="existe") {
+
+var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Cliente ya esta en la lista </strong> </center>');
+
+}
+
+
+
+
+})
+
+}
 ,
+
+
 
 
 todosProyectos: function(dato)  {
@@ -201,20 +306,12 @@ todosProyectos: function(dato)  {
 getListaPrincipal: function(dato)  {
 document.getElementById("loader").style.display = "none";;
 this.getUsers();
-
 var urlPrincipal = '/api/proyectos/principal';
 axios.get(urlPrincipal).then(response => {
 this.lista_principal = response.data.lista_principal;
-
 this.users = response.data.users;
-
-
-
-
-
 });
- }
-,
+},
 
 
 
@@ -272,8 +369,6 @@ document.getElementById('btn-create-tarea').disabled = false;
 show_tarea: function(tarea, user) {
 
 
-
-$('#edit_tarea').modal('show');
 this.Rtarea.id = tarea.id;
 this.Rtarea.nombre_tarea = tarea.nombre;
 this.Rtarea.objetivo_tarea = tarea.objetivo;
@@ -292,7 +387,88 @@ this.Rtarea.empleado_nombre = user.name;
 this.Rtarea.empleado_apellido = user.apellido;
 this.Rtarea.empleado_foto = user.foto;
 this.Rtarea.empleado_id = user.id;
+
+
+$('#edit_tarea').modal('show');
+
+
 },
+
+
+show_proyecto: function(proyecto) {
+
+
+$('.edit_proyecto').modal('show');
+
+this.Rproyecto.id              = proyecto.id;
+this.Rproyecto.img             = proyecto.img;
+this.Rproyecto.nombre_proyecto = proyecto.nombre;
+this.Rproyecto.prioridad       = proyecto.prioridad ;
+this.Rproyecto.descripcion     = proyecto.descripcion;
+this.Rproyecto.fecha_recepcion = proyecto.fecha_recepcion;
+this.Rproyecto.fecha_entrega   = proyecto.fecha_entrega;
+this.Rproyecto.presupuesto     = proyecto.presupuesto;
+this.Rproyecto.comentario      = proyecto.comentario;
+this.Rproyecto.nombre_cliente  = proyecto.clientes.nombre;
+this.Rproyecto.Ntareas         = proyecto.tareas.length;
+
+
+},
+
+
+update_proyecto: function(status) {
+document.getElementById('btn-details-proyecto').disabled = true;
+document.getElementById('loader-details-proyecto').style.display="block";
+
+
+var url = '/api/proyectos/update' ;
+axios.post( url, {
+
+id:this.Rproyecto.id,
+nombre: this.Rproyecto.nombre_proyecto,
+prioridad: this.Rproyecto.prioridad,
+descripcion: this.Rproyecto.descripcion,
+fecha_recepcion: this.Rproyecto.fecha_recepcion,
+fecha_entrega: this.Rproyecto.fecha_entrega,
+presupuesto: this.Rproyecto.presupuesto,
+comentario:this.Rproyecto.comentario,
+
+
+
+
+validateStatus: (status) => {
+return true; // I'm always returning true, you may want to do it depending on the status received
+},
+}).catch(error => {
+}).then(response => {
+if (response.data == "true") {
+
+document.getElementById('btn-details-proyecto').disabled = false;
+document.getElementById('loader-details-proyecto').style.display="none";
+this.state= 0;
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+//$('#nav_0').click();
+
+
+Proyectos.getListaEspera();
+
+
+
+
+}
+else
+{
+document.getElementById('btn-details-proyecto').disabled = false;
+document.getElementById('loader-details-proyecto').style.display="none";
+
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+}
+});
+
+
+},
+
 
 
 close_tarea: function() {
@@ -310,6 +486,7 @@ $('.nuevaTarea').modal('hide');
 
 close: function() {
 $('#edit_proyecto').modal('hide');
+$('#edit_item').modal('hide');
 this.clear();
 
 if (this.state_edit == 1) {
@@ -324,6 +501,8 @@ this.Rproyecto.id = '';
 this.Rproyecto.nombre_proyecto = '';
 this.Rproyecto.fecha_recepcion = '';
 this.Rproyecto.fecha_entrega = '';
+this.Rproyecto.prioridad = '';
+this.Rproyecto.descripcion = '';
 this.Rproyecto.presupuesto = '';
 this.Rproyecto.Ntareas = '';
 this.Rproyecto.nombre_cliente = '';
@@ -381,8 +560,6 @@ document.getElementById('btn-edit-tarea').disabled = true;
 document.getElementById('loader-edit-tarea').style.display="block";
 var url = '/api/tareas/update' ;
 axios.post( url, {
-
-
 id:this.Rtarea.id,
 nombre: this.Rtarea.nombre_tarea,
 imagen_tarea: this.Rtarea.imagen_tarea,
@@ -446,6 +623,31 @@ this.foto = file;
 this.enviar_foto_tarea(file);
 },
 
+enviar_foto_proyecto: function(file)  {
+const formData = new FormData()
+formData.append('imagen', file, file.name)
+axios.post('/proyecto/send_imagen/'+this.Rproyecto.id, formData).then(function(response){
+Proyectos.Rproyecto.img=response.data;
+
+console.log(response.data);
+Proyectos.getListaPrincipal();
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+})
+.catch(function(error){
+var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+
+});
+},
+
+cargar_imagen_proyecto: function(e) {
+const file = event.target.files[0];
+
+this.foto = file;
+this.enviar_foto_proyecto(file);
+},
+
+
+
 edicion: function(item) {
 if (this.state == 0) {
 this.state = 1;
@@ -454,8 +656,7 @@ console.log(this.state);
 this.state = 0;
 }
 
-}
-,
+},
 
 
 edit_tarea: function(item) {
@@ -465,47 +666,46 @@ console.log(this.state_tarea );
   } else{
 this.state_edit  = 0;
 }
-
-}
-
-
-
-,
+},
 getListaEspera: function(dato)  {
 var urlEspera = '/api/proyectos/espera';
 axios.get(urlEspera).then(response => {
 
+ //var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> REORDENADO</strong> </center>');
 this.lista_espera = response.data.lista_espera
-//this.users_espera = response.data.users
-
 
 
 });
+
+
 this.todosProyectos()
-
- }
-,
-
+ },
 delete_principal: function(item) {
 
 axios({
   url: '/api/lista_principal/delete/',
   method: 'get',
   params: {
- id:item.proyectos_id
+ id:item.id
   }}
   ).then(function (response) {
+
 Proyectos.getListaPrincipal();
+
 })
 
-}
-,
+},
 confirmar_delete_principal: function(item) {
 
 
-alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar el proyecto '+item.nombre_proyecto +' de la lista de proyectos en proceso?' 
+alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de eliminar el proyecto '+item.proyectos.nombre +' de la lista de proyectos en proceso?' 
   ,() => {
-Proyectos.delete_principal(item);
+
+//Proyectos.lista_espera.splice(index, 1)    
+Proyectos.delete_principal(item.proyectos);
+
+
+
 }, 
 function()
 { 
@@ -517,17 +717,144 @@ axios({
   url: '/api/lista_espera/delete/',
   method: 'get',
   params: {
- id: item.proyectos_id
+ id: item.id
   }}
   ).then(function (response) {
-
 Proyectos.getListaEspera();
+//this.reordenarNavs();
+
+$('.nav-tabs a:first').tab('show') ;
+
+
+//location ="/home";
 })
 }
 ,
-confirmar_delete_espera: function(item) {
-alertify.confirm(' <strong>Alerta - Burble</strong>', '¿Estas seguro de eliminar el proyecto '+item.nombre_proyecto +' de la lista de proyectos en espera?' 
+
+
+espera_principal: function(item, index) {
+alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de quitar el proyecto '+item.nombre +' de la lista de espera?' 
   ,() => {
+
+Proyectos.add_filtro_espera(item);
+    }, 
+function()
+{ 
+
+});
+},
+
+delete_proyecto_espera: function(id) {
+var url = '/api/espera_principal' ;
+axios.post( url, {
+
+id:id,
+filtro: 0,
+
+
+validateStatus: (status) => {
+return true; // I'm always returning true, you may want to do it depending on the status received
+},
+}).catch(error => {
+}).then(response => {
+
+
+if (response.data === "true") {
+
+Proyectos.getListaEspera();
+
+}
+else
+{
+
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+}
+});
+
+},
+
+
+
+principal_espera: function(item) {
+var url = '/api/principal_espera' ;
+axios.post( url, {
+
+id:item.id,
+filtro: 1,
+
+
+validateStatus: (status) => {
+return true; // I'm always returning true, you may want to do it depending on the status received
+},
+}).catch(error => {
+}).then(response => {
+
+
+if (response.data == "true") {
+
+
+Proyectos.getListaEspera();
+Proyectos.getListaPrincipal();
+
+
+
+}
+else
+{
+
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+}
+});
+
+},
+
+
+
+
+add_filtro_espera: function(item, index) {
+
+var url = 'api/add_filtro' ;
+
+axios.get(url , {
+    params: {
+      id: item.id,
+      filtro: 0,
+
+    }
+  })
+  .then(function (response) {
+    // handle success
+ console.log(response.data );
+if (response.data=== 'true') {
+
+var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-database"></i> Enviado al archivo </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
+
+Proyectos.getListaEspera();
+
+
+}
+else
+{
+
+
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Hubo un problema </strong> </center>');
+}
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+},
+
+confirmar_delete_espera: function(item, index) {
+alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de eliminar el cliente  '+item.nombre +' de la lista de espera?' 
+  ,() => {
+
+
+
 Proyectos.delete_espera(item);
     }, 
 function()
@@ -580,10 +907,6 @@ document.getElementById('btn-proyecto').disabled = false;
 
 });
 },
-
-
-
-
 additem_principal:function(id){
 
 axios({ 
@@ -592,19 +915,26 @@ axios({
   params: {
  id: id ,
  }}).then(function (response) {
+console.log(response.data.estado);
+         
+if (response.data.estado==1) {
 
-var item = {proyectos_id:id};
-Proyectos.delete_espera(item);
+ var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> Ya existe en la lista</strong> </center>');
+
+
+
+}
+
+
+
 Proyectos.getListaPrincipal();
 
-location ="/home";
+//location ="/home";
 })
 
 
 
 },
-
-
 additem_espera:function(id){
 
 axios({ 
@@ -614,25 +944,16 @@ axios({
  id: id ,
   }}
   ).then(function (response) {
-
-
 var item = {proyectos_id:id};
-
-
 Proyectos.delete_principal(item);
 Proyectos.getListaEspera();
-
-
  //location ="/home";
-
-
-
 })
 
 
 },
 
-
+  
 
   }
 });
@@ -681,7 +1002,7 @@ var id = evt.item.id;
 var item =  evt.item;
 Proyectos.additem_principal(evt.item.id);
  //location ="/home";
- location ="/home";
+
 console.log( evt.oldIndex);
 //evt.item.remove();
 //x = document.getElementsByClassName("item_espera")[0];
@@ -747,28 +1068,27 @@ axios({
 
 
 
-var espera = document.getElementById("lista_espera");
+var espera = document.getElementById("navs_espera");
 Sortable.create(espera, { 
 /* options */ 
 
-
  group: {
- name: 'LISTAESPERA',
-    put: ['LISTAPRINCIPAL']
+ name: 'NAVS',
+  
 },
 
 
-  ghostClass: "ghost",
-  filter: ".ignore-elements", 
-  sort: true,
-  preventOnFilter: true,
-  fallbackClass: "sortable-fallback", 
-  swapThreshold: 1,
-  dragClass: "sortable-drag",
-  dragoverBubble: true,
-  removeCloneOnHide: true,
 
+  sort: true,
+  handle: '.handle',
+  filter: '.disabled',
 animation: 150, // ms, animation speed 
+removeCloneOnHide: true,
+disabled: false,
+direction: 'horizontal',
+bubbleScroll: true,
+removeCloneOnHide: true,
+
  // Element is chosen
   onChoose: function (/**Event*/evt) {
     evt.oldIndex;  // element index within parent
@@ -789,7 +1109,7 @@ onEnd: function (/**Event*/evt) {
     evt.newIndex;  // element's new index within new parent
 
 
-    document.getElementById('loader-lista-espera').style.display="none";
+   // document.getElementById('loader-lista-espera').style.display="none";
   },
 
 
@@ -799,7 +1119,7 @@ onEnd: function (/**Event*/evt) {
   onAdd: function (/**Event*/evt) {
 
 Proyectos.additem_espera(evt.item.id);
-
+Proyectos.lista_espera.splice(index, 1)  ;
 
 
 //x = document.getElementsByClassName("item_proceso")[0];
@@ -807,23 +1127,17 @@ Proyectos.additem_espera(evt.item.id);
 //x.remove()
 
 
- location ="/home";
+ //location ="/home";
 //evt.item.remove();
 
 },
-// Element is removed from the list into another list
- onRemove: function (/**Event*/evt) {
-    // same properties as onEnd
 
-
-
-  },
 // Element dragging started
   onStart: function (/**Event*/evt) {
     evt.oldIndex;  // element index within parent
 
 
-document.getElementById('loader-lista-espera').style.display="block"
+//document.getElementById('loader-lista-espera').style.display="block"
 
 
   },
@@ -836,8 +1150,11 @@ onClone: function (/**Event*/evt) {
   
 onUpdate: function (evt/**Event*/){
 
-const Neworden = [...document.querySelectorAll('.item_espera')].map(el => el.id);
-console.log(Neworden);
+
+
+
+const Neworden = [...document.querySelectorAll('.handle')].map(el => el.id);
+
 axios({
 url: '/api/lista_espera/update/',
 method: 'get',
@@ -848,12 +1165,13 @@ nuevoOrden: Neworden,
 
 
 //Proyectos.delete_principal(item);
-//Proyectos.getListaPrincipal();
- //location ="/home";
+
+Proyectos.getListaEspera();
+//location ="/home";
 
 
 
-document.getElementById('loader-lista-espera').style.display="none";
+//document.getElementById('loader-lista-espera').style.display="none";
 
 })
 
