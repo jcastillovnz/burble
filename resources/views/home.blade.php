@@ -258,19 +258,11 @@ No existen tareas registradas
 <a  style="border-radius:4px;"  :key="item.id" class="nav-link item-nav" 
 :class="{ 'active': index <= 0}"  data-toggle="tab" :id="'nav_'+index"  v-bind:href="'#nav'+index"> @{{item.clientes.nombre}}  <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
 
-<<<<<<< HEAD
-
-
-
-<a  style="border-radius:4px;"  :id="'nav_'+index"    class="nav-link item-nav" 
-  data-toggle="tab"   v-bind:href="'#nav'+item.clientes.id"> @{{item.clientes.nombre}}     @{{item.clientes.id}}   <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
 
 
 
 
  
-=======
->>>>>>> parent of 482067c... UPDATE
 </li>
 
 
@@ -306,19 +298,11 @@ No existen tareas registradas
 
 
 
-<<<<<<< HEAD
 <div v-for="(item, index ) in lista_espera" :key="'navs'+item.clientes.id"  :id="'nav'+item.clientes.id" style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;" class="tab-pane fade item-tab"  >
-
-
-=======
-<div  v-for="(item, index ) in lista_espera" :key="item.id"   v-bind:id="'tab_'+index"  style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;"     class="tab-pane fade item-tab"   :class="{ 'active show': index <= 0}" >
-
-
 
 
 
 CONTENIDO @{{item.clientes.nombre}}
->>>>>>> parent of 482067c... UPDATE
 
 
 @include('layouts.carrusel.index')

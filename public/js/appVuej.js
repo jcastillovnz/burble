@@ -697,8 +697,6 @@ axios.get(urlEspera).then(response => {
  //var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> REORDENADO</strong> </center>');
 this.lista_espera = response.data.lista_espera
 
-<<<<<<< HEAD
-=======
 console.log(this.lista_espera);
 
 
@@ -707,17 +705,12 @@ this.reordenarNavs();
 
 
 
->>>>>>> parent of 482067c... UPDATE
+
 
 });
 
 
-<<<<<<< HEAD
-=======
 
-
-
->>>>>>> parent of 482067c... UPDATE
 this.todosProyectos()
  },
 delete_principal: function(item) {
