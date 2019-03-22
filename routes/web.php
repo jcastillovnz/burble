@@ -30,7 +30,7 @@ Route::get('/consulta/busqueda/', 'BusquedaController@busqueda');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/mi-cuenta', 'CuentaController@index')->name('cuenta');
+Route::get('/mi-cuenta', 'CuentaController@index')->name('micuenta');
 Route::get('/gestiones', 'GestionController@index')->name('gestiones');
 
 Route::post('/send_foto/{id}', 'GestionController@foto');
@@ -53,11 +53,11 @@ Route::get('/estadisticas', 'EstadisticasController@index');
 
 Route::get('/busqueda', 'BusquedaController@index');
 
-Route::post('/detalle/tarea/send_imagen/{id}','ProyectoController@tarea_imagen');
+Route::post('/proyecto/tarea/send_imagen/{id}','ProyectoController@tarea_imagen');
 Route::post('/proyecto/send_imagen/{id}','ProyectoController@proyecto_imagen');
 
 
-Route::get('/detalle/{id}', 'ProyectoController@detalle');
+Route::get('/proyecto/{id}', 'ProyectoController@detalle');
 Route::get('/proyecto/', 'ProyectoController@proyecto');
 Route::get('/proyecto/paginar/tareas/', 'ProyectoController@proyectoTareas');
 Route::get('/proyectos-archivados/', 'ProyectoController@registros');

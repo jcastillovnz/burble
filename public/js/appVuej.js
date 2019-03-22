@@ -16,6 +16,22 @@ mes = fecha.getMonth()+1;// +1 porque los meses empiezan en 0
 anio = fecha.getFullYear();
 this.Rproyecto.fecha_recepcion = +anio+'/'+mes+'/'+dia;
 this.Rtarea.fecha_inicio = +anio+'/'+mes+'/'+dia;
+
+
+
+b = setInterval(nav, 1500);
+
+function nav(argument) {
+
+$('.nav-tabs a:first').tab('show') 
+
+ clearInterval(b);
+
+}
+
+
+
+
 },
 
 created: function()  {
@@ -682,22 +698,10 @@ axios.get(urlEspera).then(response => {
 
  //var notification =  alertify.warning(' <center> <strong style="color:black;"> <i class="fas fa-exclamation-circle"></i> REORDENADO</strong> </center>');
 this.lista_espera = response.data.lista_espera
-<<<<<<< HEAD
-this.carga == true;
-=======
-
-console.log(this.lista_espera);
 
 
 
-
->>>>>>> parent of 5a5343c... update card
-
-console.log(this.lista_espera);
-
-
-
-this.reordenarNavs();
+//this.reordenarNavs();
 
 
 
@@ -733,7 +737,7 @@ confirmar_delete_principal: function(item) {
 alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de eliminar el proyecto '+item.nombre_proyecto +' de la lista de proyectos en proceso?' 
   ,() => {
 
-Proyectos.lista_espera.splice(index, 1)    
+//Proyectos.lista_espera.splice(index, 1)    
 Proyectos.delete_principal(item);
 
 
@@ -771,6 +775,8 @@ alertify.confirm(' <strong>Burble</strong>', '¿Estas seguro de quitar el proyec
   ,() => {
 
 Proyectos.add_filtro_espera(item);
+
+
     }, 
 function()
 { 
@@ -864,6 +870,7 @@ if (response.data=== 'true') {
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-database"></i> Enviado al archivo </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 
 Proyectos.getListaEspera();
+Proyectos.getListaPrincipal();
 
 
 }
@@ -927,7 +934,7 @@ this.close();
 document.getElementById('btn-proyecto').disabled = false;
 var notification = alertify.notify(' <center> <strong style="color:white;"> <i class="fas fa-check-circle"></i> Guardado  </strong> </center> ', 'success', 5, function(){  console.log('dismissed'); });
 Proyectos.getListaEspera();
-// document.getElementById("formulario_proyecto").reset();       
+location ="/home";    
 }
 else
 {
@@ -960,15 +967,14 @@ if (response.data.estado==1) {
 }
 
 
-<<<<<<< HEAD
+
 Proyectos.delete_proyecto_espera(id);
-=======
-var item = {proyectos_id:id};
-Proyectos.delete_espera(item);
->>>>>>> parent of 5a5343c... update card
+
+Proyectos.delete_espera(id);
+
 Proyectos.getListaPrincipal();
 
-location ="/home";
+//location ="/home";
 })
 
 
@@ -1042,7 +1048,7 @@ var item =  evt.item;
 Proyectos.additem_principal(evt.item.id);
  //location ="/home";
  location ="/home";
-console.log( evt.oldIndex);
+
 //evt.item.remove();
 //x = document.getElementsByClassName("item_espera")[0];
   

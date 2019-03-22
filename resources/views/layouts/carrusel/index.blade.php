@@ -1,22 +1,15 @@
 
 
-<div  :key="item.clientes.id"  class="list-item" >
+<div  id="tabs_proyectos"  :key="item.clientes.id"  class="list-item" >
 
 
-<<<<<<< HEAD
-<template v-if="item.clientes.proyectos.length == 0" >	
-<div :key="item.id "   style="margin-right: 0px; margin-left: 0px;" class="item carrusel" >
-=======
-CARRUSEL  @{{item.clientes.nombre}} 
+<br>
 
-
-
-<div :key="item.clientes.id"  class="owl-carousel owl-theme" v-carousel  >
+<div :key="item.clientes.id"    class="owl-carousel owl-theme" v-carousel  >
 
 
 <template v-if="item.clientes.proyectos.length == 0" >
 <div   :key="item.clientes.id"  style="margin-right: 0px; margin-left: 0px;" class="item" >
->>>>>>> parent of 49a1a5f... funcional NAVS OK
 
 <br>
 <div  class="card alert-warning" style="width:180px; height:200px;"   >
@@ -33,25 +26,13 @@ CARRUSEL  @{{item.clientes.nombre}}
 
 
 
-<<<<<<< HEAD
-<div v-for="item in item.clientes.proyectos"  :key="item.id "   class="item carrusel" >
-trytr
- @{{ item.nombre }}
-=======
 
 <template v-for="item in item.clientes.proyectos" >
-<div :class="'carrusel_'+index"  :key="item.clientes.id"     style="margin-right: 0px; margin-left: 0px;" class="item" >
-
->>>>>>> parent of 49a1a5f... funcional NAVS OK
-
-
+<div :class="'carrusel_'+index"      style="margin-right: 0px; margin-left: 0px;" class="item" >
 
 
 
 @include('layouts.carrusel.cards')
-
-
-
 
 
 

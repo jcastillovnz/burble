@@ -103,7 +103,7 @@ return response()->json($data);
 
 $proyecto= Proyectos::where('id', $request->id)->with('clientes')  ->first();
 
-return view('detalle', compact('proyecto'));
+return view('proyecto', compact('proyecto'));
 
 
 }

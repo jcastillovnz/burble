@@ -6,12 +6,15 @@
 <form  autocomplete="off"    method="GET" class="hidden"  @submit.prevent="create(this)" >
  <div class="modal-header ">
     
-<div class="col-sm-12 text-primary">
+<div  align="center" class="col-sm-12 text-primary">
+
 <i class="fas fa-suitcase"></i>
 <strong>
 Registrar un nuevo usuario
 
 </strong>
+
+
 <button type="button" class="close float-right"  data-dismiss="modal"  v-on:click="close_modal(rellenar)" >&times;</button>
 </div>
 </div>

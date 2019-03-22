@@ -11,10 +11,10 @@
   
 
 
-<div  id="Mi_cuenta"  class="content">
+<div  id="Mi_cuenta"  class="">
 
 <div class="col-sm-12">
-<div style="padding-left: 1%; font-size: 18px; " align="left" class="">
+<div style="padding-left: 1%; font-size: 18px; " align="left" class="container">
 
 <strong>
 Mi cuenta

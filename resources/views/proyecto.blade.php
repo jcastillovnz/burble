@@ -254,9 +254,9 @@ No existen tareas en este proyecto !
   <table  class="table table-borderless">
     <thead>
       <tr  >
-        <th>#</th>
+      
         <th>Imagen</th>
-        <th>Tareas</th>
+        <th>Nombre de tarea</th>
         <th>Tipo</th>
         <th>Prioridad</th>
         <th>Empleado</th>
@@ -274,7 +274,7 @@ No existen tareas en este proyecto !
 
 
       <tr v-for="tarea  in tareas" >
-        <td> @{{tarea.id}}        </td>
+    
          <td>  
 
        
@@ -293,7 +293,7 @@ No existen tareas en este proyecto !
         <td>
 <div class="dropdown">
 <button class="btn btn-light btn-sm " type="button" id="dropdownMenuButton" data-toggle="dropdown">
-<i class="fas fa-cogs"></i></button>
+<i class="fas fa-cogs"></i></button> 
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
 

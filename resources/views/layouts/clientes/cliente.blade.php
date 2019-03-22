@@ -143,131 +143,53 @@ Cliente
 
 
 
-<div class="col-sm-8 ">
+<div  class="col-sm-8 ">
 
 
 
-
-
-
-
-<div class="table-responsive">
-<template  v-if="contactos.length == 0"   >
-
-
-<p style="font-size: 18px;"> <strong> Contactos</strong>
-
-
-
-<button title="Nuevo contacto" type="button" @click="nuevoContacto(cliente)"   class="btn btn-light  rounded-circle float-right " > <i class="fas fa-plus"></i></button>
-
-
-
-</p>
-
-
-<center>
-<i class="fas fa-exclamation-circle text-warning"></i>
-<strong>
-No existen contactos en este cliente!
-
-
-
-
-
-</strong>
-</center>
-
-</template>
-
-
-<template   v-else >
-
-<p> <strong> Contactos</strong>
-
-
-
-<button title="Nuevo contacto" type="button" @click="nuevoContacto(cliente)"   class="btn btn-light  rounded-circle float-right " > <i class="fas fa-plus"></i></button>
-
-
-
-</p>
-
-  <table  class="table table-borderless">
-    <thead>
-      <tr  >
-        <th>#</th>
-      
-        <th> Nombre</th>
-        <th>Apellido</th>
-        <th>Telefono</th>
-      
-        
-
-      </tr>
-    </thead>
-
-
-
-
-    <tbody>
-
-
-
-
-      <tr v-for="(item, key) in contactos"   >
-        <td>  @{{item.id}}     </td>
-        <td>  @{{item.nombre}}   </td>
-        <td>  @{{item.apellido}}    </td>
-        <td> @{{item.telefono}}</td>
-       
-
-
-        
-        <td>
-<div class="dropdown">
-<button class="btn btn-light btn-sm " type="button" id="dropdownMenuButton" data-toggle="dropdown">
-<i class="fas fa-cogs"></i></button>
-<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-
-<a class="dropdown-item"   v-on:click="mostrar_Contacto(item)"  >Detalle</a>
-
-<a class="dropdown-item"  v-on:click="eliminar_contacto(item)"  > Eliminar</a>
-
-</div>
-</div>  
-</td>
-</tr>
-
-
-
-</tbody>
-</table>
-
-
-
-</div>
-
-<hr>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#proyectos">Proyectos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#contactos">Contactos</a>
+    </li>
  
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="proyectos" class="container tab-pane active">
+
+<p  style="font-size: 18px; ">       <h4 align="left" style="font-size: 18px;">Proyectos</h4>
+
+<button title="Nuevo proyectos" type="button" @click="nuevoProyecto()"   class="btn btn-light  rounded-circle float-right " > <i class="fas fa-plus"></i></button>
+
+</p>
+
+@include('layouts.clientes.contactos.index')
 
 
 
 
+    </div>
+    <div id="contactos" class="container tab-pane fade">
+
+<p  style="font-size: 18px; ">       <h4 align="left" style="font-size: 18px;">Contactos</h4>
+<button title="Nuevo contacto" type="button" @click="nuevoContacto(cliente)"   class="btn btn-light  rounded-circle float-right " > <i class="fas fa-plus"></i></button>
+</p>
 
 
 
+@include('layouts.clientes.contactos.index')
+
+    
 
 
+    </div>
 
-
-
-</template>
-
-
-
-</div>
+  </div>
 
 
 

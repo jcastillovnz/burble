@@ -68,7 +68,7 @@
 <div   class="container-fluid borde-burble border bg-light">
 <p style="margin-top: 3px;  margin-bottom: 1px;"  >
 <h4  style="font-size: 13px;  " class="" align="left"> 
-<a style="margin-bottom: 1px;" :href="'{{url('detalle/')}}'+'/'+ item.proyectos.id " >
+<a style="margin-bottom: 1px;" :href="'{{url('proyecto/')}}'+'/'+ item.proyectos.id " >
 <strong  >  
      @{{item.proyectos.nombre}}
 
@@ -242,6 +242,8 @@ No existen tareas registradas
 </a>
 
 
+
+
 <ul class="nav nav-tabs"  id="navs_espera" role="tablist">
 
 <template v-if="lista_espera.length==0" >
@@ -255,29 +257,16 @@ No existen tareas registradas
 
 
 
-<li class="nav-item  handle" v-for="(item, index ) in lista_espera"  :id="item.clientes.id" v-bind:value="item.proyectos_id"  :key="item.id">
+<li class="nav-item  handle" v-for="(item, index ) in lista_espera"  :id="item.clientes.id" v-bind:value="item.proyectos_id"  :key="item.clientes.id">
 
-<<<<<<< HEAD
-<a  style="border-radius:4px;"  :key="item.id" class="nav-link item-nav" 
-:class="{ 'active': index <= 0}"  data-toggle="tab" :id="'nav_'+index"  v-bind:href="'#nav'+index"> @{{item.clientes.nombre}}  <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
-
-
-
-=======
-<<<<<<< HEAD
 
 
 
 <a  style="border-radius:4px;"  :id="'nav_'+index"    :key="item.clientes.id" class="nav-link item-nav" 
   data-toggle="tab"   v-bind:href="'#nav'+item.clientes.id"> @{{item.clientes.nombre}}      <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
 
->>>>>>> parent of 49a1a5f... funcional NAVS OK
 
 
-=======
-<a  style="border-radius:4px;"  :key="item.clientes.id" class="nav-link item-nav" 
-  data-toggle="tab"   v-bind:href="'#nav'+item.clientes.id"> @{{item.clientes.nombre}}    <span  v-on:click="confirmar_delete_espera(item.clientes)" class="">x</span></a> 
->>>>>>> parent of 5a5343c... update card
  
 </li>
 
@@ -316,16 +305,8 @@ No existen tareas registradas
 
 <div v-for="(item, index ) in lista_espera" :key="item.clientes.id"  :id="'nav'+item.clientes.id" style="margin-right: 0px; margin-left: 0px;margin-bottom: 0px;" class="tab-pane fade item-tab"  >
 
-<p align="left">@{{item.clientes.nombre}} </p>
-
-
-
-CONTENIDO @{{item.clientes.nombre}}
-
 
 @include('layouts.carrusel.index')
-
-
 
 
 
