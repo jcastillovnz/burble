@@ -1,6 +1,5 @@
 
 
-
 <!-- MODAL EDITAR PROYECTO-->
 <div  class="modal fade edit_proyecto"  id="edit_item"  tabindex="2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div  class="modal-dialog ">
@@ -27,13 +26,7 @@ Informacion de proyecto
 </div>
 <div class="modal-body">
 
-<!-- 
-<span align="left" class="text-primary">
-<strong>
- Cliente:  @{{rellenar.nombre_cliente}} 
-</strong>
-</span>
- -->
+
 
 <div class="row">
 
@@ -48,7 +41,7 @@ Informacion de proyecto
           <i class="fas fa-briefcase"></i>
       </span>
         </div>
-        <input :disabled="state == 0" v-model="Rproyecto.nombre_proyecto" type="text" class="form-control input-sm" id="validationDefaultUsername" placeholder="Nombre proyecto" aria-describedby="inputGroupPrepend2" required>
+        <input :disabled="state == 0" v-model="Rproyecto.nombre_proyecto" type="text" class="form-control input-sm"  placeholder="Nombre proyecto" aria-describedby="inputGroupPrepend2" required>
       </div>
   </div>
 
@@ -81,7 +74,7 @@ Informacion de proyecto
    <strong>Fecha entrega</strong> 
       <div class="input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupPrepend2">
+          <span class="input-group-text" >
 <i class="fas fa-flag-checkered"></i>
       </span>
         </div>
@@ -104,7 +97,7 @@ Informacion de proyecto
 <i class="fas fa-dollar-sign"></i>
       </span>
         </div>
-        <input :disabled="state == 0" v-model="Rproyecto.presupuesto" type="text" class="form-control input-sm" id="validationDefaultUsername" placeholder="Presupuesto"  required>
+        <input :disabled="state == 0" v-model="Rproyecto.presupuesto" type="text" class="form-control input-sm"  placeholder="Presupuesto"  required>
       </div>
   </div>
 
@@ -117,7 +110,7 @@ Informacion de proyecto
 <i class="fas fa-sort-numeric-up"></i>
       </span>
         </div>
-        <input disabled="" v-model="Rproyecto.Ntareas" type="text" class="form-control input-sm" id="validationDefaultUsername" placeholder="N tareas"  required>
+        <input disabled="" v-model="Rproyecto.Ntareas" type="text" class="form-control input-sm" placeholder="N tareas"  required>
       </div>
   </div>
 
@@ -150,7 +143,7 @@ Informacion de proyecto
       </span>
         </div>
 
-<textarea :disabled="state == 0" v-model="Rproyecto.descripcion"   class="form-control input-sm" rows="2" id="comment"></textarea>
+<textarea :disabled="state == 0" v-model="Rproyecto.descripcion"   class="form-control input-sm" rows="2" ></textarea>
 
 </div>
 </div>
@@ -166,7 +159,7 @@ Informacion de proyecto
       </span>
         </div>
 
-<textarea :disabled="state == 0" v-model="Rproyecto.comentario"   class="form-control input-sm" rows="2" id="comment"></textarea>
+<textarea :disabled="state == 0" v-model="Rproyecto.comentario"   class="form-control input-sm" rows="2" ></textarea>
 
       </div>
   </div>
@@ -182,7 +175,7 @@ Informacion de proyecto
 <div with="250" class="">
 
 <center>
-<img  with="250" v-if="Rproyecto.img"  class="col-sm"  :src="'{{url ('/img/proyectos/fotos/')}}'+'/' +Rproyecto.img" >
+<img  with="250" v-if="Rproyecto.img"  class="col-sm"  :src="'{{url ('/img/proyectos/fotos/')}}'+'/'+ Rproyecto.img" >
 <img  v-else class="col-sm"  src="{{url ('img/pieza.png')}} " >
 
 
@@ -192,7 +185,7 @@ Informacion de proyecto
 
 
 <div  class="card-img-overlay float-right">
-<button  @click="$refs.imagen_proyecto.click()"    title="Actualizar imagen" style="margin-top: 65%; margin-left: 90%;"  type="button"    class="btn btn-info btn-sm rounded-circle boton-overlay"><i class="fas fa-sync"></i>
+<button  @click="$refs.imagen_proyecto.click()"    title="Actualizar imagen" style="margin-top: 20%; margin-left: 90%;"  type="button"    class="btn btn-info btn-sm rounded-circle boton-overlay"><i class="fas fa-sync"></i>
 </button>
 </div>
 
@@ -204,13 +197,9 @@ Informacion de proyecto
 
 
 
-
-
-
-
 <div class="col-sm-12">
 <p class="text-right">
-<a :href="'/detalle/'+Rproyecto.id"  >
+<a :href="'/proyecto/'+Rproyecto.id"  >
 <i class="fas fa-caret-right"></i>
 
 Ver mas detalles

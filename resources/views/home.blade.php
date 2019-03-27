@@ -2,6 +2,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+<script src="{{ asset('js/cliente.js') }}" defer></script>
 <div id="AppClientes"  >
 @include('layouts.clientes.create')
 </div>

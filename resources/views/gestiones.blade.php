@@ -2,7 +2,7 @@
 
 @section('content')
 
-
+<script src="{{ asset('js/cliente.js') }}" defer></script>
 
 <div class="container ">
 
@@ -47,6 +47,10 @@ Gestiones
     </div>
 
   </div>
+
+
+
+
 </div>
 
 

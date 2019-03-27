@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 
 use App\Clientes;
 use App\Contactos;
-
+use App\Proyectos;
+use App\User;
+use App\Tareas;
+use Session;
+use App\Lista_principal;
+use App\Lista_espera;
 
 
 
@@ -50,7 +55,12 @@ return view('layouts.clientes.cliente', compact('cliente'));
     public function GetClientes()
     {
 
-  $clientes = Clientes::orderBy('id', 'desc')->paginate(10);
+
+
+
+
+
+$clientes = Clientes::orderBy('id', 'desc')->paginate(15);
 return [
 'pagination'=> [
 'total'=> $clientes->total(),
@@ -63,6 +73,11 @@ return [
 'clientes'=> $clientes
 ];
 
+
+
+
+
+
 }
 
 
@@ -70,15 +85,16 @@ return [
   public function GetCliente(Request $request)
     {
 
- $cliente = clientes::where('id', $request->id)->with('contactos')->first();
-
+ $cliente = clientes::where('id', $request->id)->with(['contactos', 'proyectos'])
+->first();
 
 
 
 
 return [
 'contactos'=> $cliente->contactos ,
-'cliente'=> $cliente
+'cliente'=> $cliente,
+'proyectos'=>  $cliente->proyectos
 ];
 
 

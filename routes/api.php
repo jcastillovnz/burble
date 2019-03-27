@@ -24,8 +24,9 @@ Route::post('/principal_espera/', 'ProyectoController@principal_espera');
 
 Route::post('/espera_principal/', 'ProyectoController@espera_principal');
 
-
-
+Route::get('/proyectos/', 'ProyectoController@GetProyectos');
+//Route::get('/proyectos/', 'ProyectoController@list');
+Route::get('/proyectosxuser/', 'ProyectoController@GetProyectosxuser');
 
 
 Route::get('/empleados-estadistica/', 'EstadisticasController@empleados');
@@ -94,7 +95,7 @@ Route::get('/clientes/', 'ClienteController@GetClientes');
 
 
 
-Route::get('/proyectos/', 'ProyectoController@list');
+
 Route::get('/count-proyectos/', 'ProyectoController@todosProyectos');
 
 

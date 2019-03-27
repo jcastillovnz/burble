@@ -5,31 +5,30 @@
 
 
 <div class="col-sm-12">
-<div  style="margin-bottom: 4%; margin: 0px;  margin-top: 0px;" class="col-sm-12">
-<strong  style="font-size: 18px;" class="float-left text-info"> 
-<i class="fas fa-suitcase"></i>
-Cliente
-</strong> 
-</div>
+
 
 
 <div  style="margin: 0px;  margin-top: 0px;"  id="AppClientes"  class="content">
 @include('layouts.clientes.create')
+
+
+
+
+
 <div class="col-sm-12">
 
+
+
 <div style="padding-left: 1%;  font-size: 17px;" align="left" class="">
-<input value="{{$cliente->id}}"  :onload="getCliente()" id="cliente_id" class="invisible" >
+<input value="{{$cliente->id}}"  id="cliente_id" class="invisible" >
+</div>
 </div>
 
 
 
 
 
-
-</div>
 <div    class="col-sm-12">
-
-
 
 
 
@@ -43,7 +42,7 @@ Cliente
 
 
 
-<p style="font-size: 18px;">
+<p align="left" style="font-size: 18px;"><i class="fas fa-suitcase"></i> 
 <strong>Informacion de cliente</strong>
 </p>
 
@@ -143,38 +142,39 @@ Cliente
 
 
 
-<div  class="col-sm-8 ">
+<div   class="col-sm-8 ">
 
 
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#proyectos">Proyectos</a>
+      <a class="nav-link active" data-toggle="tab" href="#nav_proyectos">Proyectos</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#contactos">Contactos</a>
+      <a class="nav-link" data-toggle="tab" href="#nav_contactos">Contactos</a>
     </li>
  
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div id="proyectos" class="container tab-pane active">
+    <div id="nav_proyectos" class="container tab-pane active">
 
 <p  style="font-size: 18px; ">       <h4 align="left" style="font-size: 18px;">Proyectos</h4>
 
-<button title="Nuevo proyectos" type="button" @click="nuevoProyecto()"   class="btn btn-light  rounded-circle float-right " > <i class="fas fa-plus"></i></button>
+<button title="Nuevo proyectos" type="button"    class="btn btn-light  rounded-circle float-right " > <i class="fas fa-plus"></i></button>
 
 </p>
 
-@include('layouts.clientes.contactos.index')
+
+@include('layouts.clientes.proyectos.index')
 
 
 
 
     </div>
-    <div id="contactos" class="container tab-pane fade">
+    <div id="nav_contactos" class="container tab-pane fade">
 
 <p  style="font-size: 18px; ">       <h4 align="left" style="font-size: 18px;">Contactos</h4>
 <button title="Nuevo contacto" type="button" @click="nuevoContacto(cliente)"   class="btn btn-light  rounded-circle float-right " > <i class="fas fa-plus"></i></button>
@@ -211,9 +211,6 @@ Cliente
 
 
 @include('layouts.clientes.contactos.create')
-
-
-
 @include('layouts.clientes.contactos.edit')
 
 

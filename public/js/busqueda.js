@@ -291,9 +291,13 @@ busqueda:this.busqueda
 }).then(response => {
   this.resultados = response.data.proyectos.data
   this.pagination=  response.data.pagination
-
 });
 },
+
+
+
+
+
 changePage: function (page) {
 this.pagination.current_page=page;
 this.paginar(page);

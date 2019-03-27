@@ -34,11 +34,6 @@ $proyecto->clientes_id=$request->cliente;
 $proyecto->save();
 
 
-
-
-
-
-
 if ($proyecto->save()==true) {
 $data = "true";
 return response()->json($data); 
@@ -49,6 +44,18 @@ return response()->json($data);
 }
 
 
+}
+
+
+public function GetProyectos(Request $request)
+{
+  
+
+$proyectos = Proyectos::where( 'clientes_id', $request->id)->get();
+
+
+
+return $proyectos;
 
 
 }
@@ -128,7 +135,7 @@ return view('busqueda')->with('state', 'archivo');
 { 
 
 
-$proyectos = Proyectos::with('clientes')->with('tareas')->orderBy('id', 'desc')->paginate(8); ;
+$proyectos = Proyectos::with('clientes')->with('tareas')->orderBy('id', 'desc')->paginate(8); 
 
 
 return [
@@ -374,7 +381,7 @@ return response()->json($lista_espera);
 { 
 
 
-dd( $request->all());
+
 
 $lista_principal = Lista_principal::all();
 foreach ($lista_principal as $key => $value) {
@@ -435,6 +442,8 @@ return [
 
 
     }
+
+
 
 
 

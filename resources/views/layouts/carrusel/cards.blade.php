@@ -12,10 +12,9 @@
 
 <div  style="max-width: 175px;"  class="card "    v-bind:class="{ 'card-p-baja': item.prioridad == 'baja','card-p-media': item.prioridad  == 'media', 'card-p-alta': item.prioridad  == 'alta'   }"    >
  
- <img  height="120" v-if="item.img"  :src="'{{url ('/img/proyectos/fotos/')}}'+'/' +item.img" >
+ <img  class="img-card" v-if="item.img"  :src="'{{url ('/img/proyectos/fotos/')}}'+'/' +item.img" >
 
-
-<img  v-else height="120"  src="{{url ('img/pieza.png')}} " >
+ <img  class="img-card" v-else  src="{{url ('img/pieza.png')}} " >
 
 
 

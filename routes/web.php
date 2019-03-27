@@ -29,6 +29,11 @@ Route::get('/busqueda/', 'BusquedaController@index')->name('busqueda');
 Route::get('/consulta/busqueda/', 'BusquedaController@busqueda');
 
 
+Route::get('/proyectosxuser/', 'GestionController@GetProyectosxuser');
+
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/mi-cuenta', 'CuentaController@index')->name('micuenta');
 Route::get('/gestiones', 'GestionController@index')->name('gestiones');

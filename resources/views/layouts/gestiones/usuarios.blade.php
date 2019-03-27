@@ -43,7 +43,7 @@
 <td>
 <div align="right" class="dropdown">
 <button    class="btn btn-light btn-sm "  type="button" id="dropdownMenuButton" data-toggle="dropdown"  >
-<i class="fas fa-cogs"></i> Opciones
+<i class="fas fa-cogs"></i> 
 </button>
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 <a class="dropdown-item"  v-on:click.prevent="mostrar(item)"   >Detalles</a>

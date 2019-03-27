@@ -1,13 +1,15 @@
 
 
-<div class="table-responsive">
-<template  v-if="contactos.length == 0"   >
+
+<div   class="table-responsive">
+
+<template  v-if="proyectos .length == 0"   >
 
 
 <center>
 <i class="fas fa-exclamation-circle text-warning"></i>
 <strong>
-No existen contactos en este cliente!
+No existen proyectos en este cliente!
 
 
 
@@ -29,10 +31,11 @@ No existen contactos en este cliente!
  
       
         <th> Nombre</th>
-        <th>Apellido</th>
-        <th>Telefono</th>
-        <th>Email</th>
-      
+
+        <th>Nº tareas</th>
+        <th>Fecha recepcion</th>
+        <th>Fecha entrega</th>
+        <th>Accion</th>
         
 
       </tr>
@@ -46,12 +49,12 @@ No existen contactos en este cliente!
 
 
 
-      <tr v-for="(item, key) in contactos"   >
+      <tr v-for="(item, key) in proyectos"   >
 
         <td>  @{{item.nombre}}   </td>
-        <td>  @{{item.apellido}}    </td>
-        <td> @{{item.telefono}}</td>
-         <td>  @{{item.email}}    </td>
+        <td>   @{{item.tareas}}        </td>
+        <td>  @{{item.fecha_recepcion}}   </td>
+         <td> @{{item.fecha_entrega}}    </td>
 
 
         
@@ -69,6 +72,9 @@ No existen contactos en este cliente!
 </div>
 </div>  
 </td>
+
+
+
 </tr>
 
 

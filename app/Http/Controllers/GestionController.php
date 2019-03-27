@@ -10,6 +10,9 @@ use Carbon\Carbon;
 use App\File;
 use App\lista_principal;
 use App\lista_espera;
+use App\Proyectos;
+use App\Tareas;
+
 use Session;
 use Auth;
 use DB;
@@ -48,9 +51,62 @@ public function User(Request $request)
  
 $user = User::where('id', $request->id)->first();
 
-return response()->json($user); 
+
+$proyectos  = Proyectos::with('clientes')->whereHas('tareas', function($q) use ($request) 
+{
+$q->where('users_id', $request->id);
+})->orderBy('id', 'desc')->paginate(2);
+
+
+
+
+return $user;
+}
+
+
+
+
+ public  function GetProyectosxuser( Request $request )
+    {
+
+
+$proyectos  = Proyectos::with('clientes')->with('tareas') ->whereHas('tareas', function($q) use ($request) 
+{
+$q->where('users_id', $request->id);
+})->orderBy('id', 'desc')->paginate(20);
+
+return [
+'pagination'=> [
+'total'=> $proyectos->total(),
+'current_page'=> $proyectos->currentPage(),
+'per_page'=> $proyectos->perPage(),
+'last_page'=> $proyectos->lastPage(),
+'from'=> $proyectos->firstItem(),
+'to'=> $proyectos->lastPage(),
+],
+'proyectos'=> $proyectos,
+];
+
+
+
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -78,7 +134,7 @@ public function list(Request $request)
 {
 
 
-$usuarios = User::orderBy('id', 'desc')->paginate(8);
+$usuarios = User::orderBy('id', 'desc')->paginate(15);
 
 return [
 'pagination'=> [
@@ -153,7 +209,6 @@ public function User_update(Request $request)
 
 
 $user = User::where('id', $request->id)->first();
-
 
 $user->name = $request->nombre;
 $user->apellido = $request->apellido;

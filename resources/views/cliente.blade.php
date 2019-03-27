@@ -17,8 +17,6 @@ Datos de proyecto
 <button title="Nueva tarea" class="btn btn-light  rounded-circle float-right " data-toggle="modal" data-target=".nuevaTarea"> <i class="fas fa-plus"></i> </button>
 
 
-
-
 <input value="{{$proyecto->id}}"  id="proyecto_id" class="invisible" >
 
 </div>

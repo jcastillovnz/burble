@@ -1,28 +1,19 @@
 
-
 <div class="table-responsive">
-<template  v-if="contactos.length == 0"   >
-
-
-
+<template  v-if="contactos.length == 0">
 
 
 <center>
 <i class="fas fa-exclamation-circle text-warning"></i>
 <strong>
 No existen contactos en este cliente!
-
-
-
-
-
 </strong>
 </center>
 
 </template>
 
 
-<template   v-else >
+<template  v-else >
 
 
 

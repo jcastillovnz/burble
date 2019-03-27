@@ -20,6 +20,7 @@ class Proyectos extends Migration
              $table->string('nombre')->nullable();
              $table->string('img')->nullable();
              $table->string('descripcion')->nullable();
+             $table->string('filtro')->nullable();
               $table->string('prioridad')->nullable();
              $table->string('estado')->nullable();
              $table->date('fecha_recepcion')->nullable();

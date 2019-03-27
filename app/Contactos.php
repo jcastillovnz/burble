@@ -12,7 +12,7 @@ class Contactos extends Model
 
 public function clientes()
 {
-  return $this->belongsTo('App\clientes');
+  return $this->belongsTo('App\Clientes');
 }
 
 
